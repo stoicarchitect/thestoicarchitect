@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found — The Stoic Architect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow:wght@400;500&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0d0e10; --cream: #f5f0e8; --gold: #c9a84c; --stone: #6b7280;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Barlow', system-ui, sans-serif;
+      --condensed: 'Barlow Condensed', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--sans);
+      background: var(--ink);
+      color: var(--cream);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bg-num {
+      position: absolute;
+      font-family: var(--serif);
+      font-size: 40vw;
+      font-weight: 900;
+      color: rgba(201,168,76,0.03);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+    .content { position: relative; z-index: 2; max-width: 520px; }
+    .label { font-family: var(--condensed); font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+    h1 { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05; margin-bottom: 16px; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .divider { width: 48px; height: 2px; background: var(--gold); margin: 20px auto; }
+    p { font-size: 0.95rem; color: var(--stone); line-height: 1.75; margin-bottom: 36px; font-family: var(--sans); }
+    .links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; font-family: var(--condensed); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 14px 28px; background: var(--gold); color: var(--ink); text-decoration: none; transition: background 0.2s; }
+    .btn-primary:hover { background: #e2c579; }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; font-family: var(--condensed); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; padding: 14px 28px; border: 1px solid rgba(201,168,76,0.3); color: var(--cream); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-note { position: absolute; bottom: 32px; font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(201,168,76,0.35); }
+  </style>
+</head>
+<body>
+  <div class="bg-num">404</div>
+  <div class="content">
+    <div class="label">Page Not Found</div>
+    <h1>Even the best<br>framework has<br><em>wrong turns.</em></h1>
+    <div class="divider"></div>
+    <p>The page you're looking for doesn't exist or has moved. Let's get you back on the right path.</p>
+    <div class="links">
+      <a href="index.html" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        Back to Home
+      </a>
+      <a href="framework.html" class="btn-ghost">The F5IVE Framework</a>
+      <a href="book.html" class="btn-ghost">The Book</a>
+    </div>
+  </div>
+  <div class="footer-note">Faith · Family · Finance · Fitness · Freedom</div>
+</body>
+</html>

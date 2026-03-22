@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Book — Vision to Victory | Daniel Brown MSc</title>
+  <meta name="description" content="Vision to Victory: Why Men Fail, Why They Succeed, and How to Master the Difference. A 70,000-word men's personal development framework by Daniel Brown MSc." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink:         #0d0e10;
+      --ink-soft:    #1a1c20;
+      --ink-mid:     #2e3138;
+      --stone:       #6b7280;
+      --stone-light: #9ca3af;
+      --cream:       #f5f0e8;
+      --cream-dark:  #ede8de;
+      --gold:        #c9a84c;
+      --gold-light:  #e2c579;
+      --gold-dark:   #a07c2e;
+      --white:       #ffffff;
+      --serif:       'Playfair Display', Georgia, serif;
+      --sans:        'Barlow', system-ui, sans-serif;
+      --condensed:   'Barlow Condensed', sans-serif;
+      --section-pad: clamp(80px, 10vw, 130px);
+      --container:   1200px;
+      --gutter:      clamp(24px, 5vw, 80px);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--sans); background: var(--ink); color: var(--cream); line-height: 1.6; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+    .label { font-family: var(--condensed); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+    .divider { width: 48px; height: 2px; background: var(--gold); margin: 16px 0 28px; }
+    .divider--center { margin: 16px auto 28px; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    .reveal { opacity:1; transform:translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .js-loaded .reveal { opacity:0; transform:translateY(36px); }
+    .js-loaded .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      padding: 20px var(--gutter);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    nav.scrolled { background: rgba(13,14,16,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.15); }
+    .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.03em; line-height: 1.2; }
+    .nav-logo span { display: block; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-family: var(--condensed); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-family: var(--condensed); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone-light); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-cta { font-family: var(--condensed); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 10px 22px; border: 1px solid var(--gold); color: var(--gold); transition: background 0.2s, color 0.2s; }
+    .nav-cta:hover { background: var(--gold); color: var(--ink); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--cream); }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(13,14,16,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: var(--cream); transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-close { position: absolute; top: 24px; right: var(--gutter); font-size: 1.5rem; color: var(--stone-light); cursor: pointer; }
+
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; font-family: var(--condensed); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 16px 32px; background: var(--gold); color: var(--ink); transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 10px; font-family: var(--condensed); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; padding: 16px 32px; border: 1px solid rgba(201,168,76,0.4); color: var(--cream); transition: border-color 0.2s, color 0.2s, transform 0.15s; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    /* ── HERO ── */
+    #book-hero {
+      padding-top: 120px;
+      padding-bottom: 100px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #0d0e10 0%, #111318 60%, #0a0b0d 100%);
+    }
+    .book-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 80% 50%, rgba(201,168,76,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 40% at 5% 20%, rgba(201,168,76,0.04) 0%, transparent 60%);
+    }
+    .book-hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 100% 80% at 50% 50%, black 0%, transparent 80%);
+    }
+    .book-hero-inner {
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .book-hero-left { animation: fadeUp 0.9s ease 0.2s both; }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--condensed); font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 28px;
+    }
+    .breadcrumb a { color: var(--stone); transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: var(--gold); }
+    .book-title-wrap { margin-bottom: 28px; }
+    .book-hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+    .book-hero-title .italic { font-style: italic; color: var(--gold); }
+    .book-hero-subtitle {
+      font-family: var(--condensed);
+      font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone-light);
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+    .book-meta-row {
+      display: flex; flex-wrap: wrap; gap: 24px;
+      margin: 32px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .meta-item { }
+    .meta-label { font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-bottom: 4px; }
+    .meta-value { font-family: var(--condensed); font-size: 0.9rem; font-weight: 600; color: var(--cream); letter-spacing: 0.05em; }
+    .book-hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 40px; }
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--condensed); font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); padding: 8px 16px;
+      border: 1px solid rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.06);
+    }
+    .status-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+    /* ── BOOK COVER LARGE ── */
+    .book-hero-right { display: flex; justify-content: center; align-items: center; animation: fadeIn 1.2s ease 0.5s both; }
+    .book-display {
+      position: relative;
+      width: clamp(240px, 30vw, 360px);
+    }
+    .book-display-cover {
+      width: 100%;
+      aspect-ratio: 3/4.3;
+      background: linear-gradient(150deg, #18191e 0%, #0d0e10 100%);
+      border: 1px solid rgba(201,168,76,0.18);
+      padding: 44px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 50px 100px rgba(0,0,0,0.7), inset 0 1px 0 rgba(201,168,76,0.12);
+      transform: perspective(900px) rotateY(-6deg) rotateX(1deg);
+      transition: transform 0.6s ease;
+    }
+    .book-display-cover:hover { transform: perspective(900px) rotateY(-2deg) rotateX(0deg); }
+    .cover-bg-pattern {
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(201,168,76,0.04) 39px, rgba(201,168,76,0.04) 40px);
+      pointer-events: none;
+    }
+    .cover-top-rule { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin-bottom: 28px; }
+    .cover-brand { font-family: var(--condensed); font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; text-align: center; }
+    .cover-arch-wrap { position: relative; margin-bottom: 28px; }
+    .cover-arch {
+      width: 64px; height: 64px;
+      border: 1.5px solid var(--gold);
+      border-bottom: none;
+      border-radius: 32px 32px 0 0;
+      position: relative;
+    }
+    .cover-arch::before {
+      content: '';
+      position: absolute;
+      top: 18px; left: 50%; transform: translateX(-50%);
+      width: 8px; height: 8px;
+      border: 1.5px solid rgba(201,168,76,0.5);
+      border-radius: 50%;
+    }
+    .cover-arch::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: -16px; right: -16px;
+      height: 1px; background: var(--gold);
+    }
+    .cover-title-block { text-align: center; position: relative; z-index: 1; margin-bottom: 8px; }
+    .cover-title {
+      font-family: var(--serif);
+      font-size: 2.1rem;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+    }
+    .cover-to {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--gold);
+      margin: 4px 0;
+    }
+    .cover-rule { width: 48px; height: 1px; background: var(--gold); margin: 16px auto; }
+    .cover-subtitle-block { text-align: center; }
+    .cover-subtitle {
+      font-family: var(--condensed);
+      font-size: 0.55rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone-light);
+      line-height: 1.8;
+    }
+    .cover-author {
+      position: absolute; bottom: 28px; left: 0; right: 0;
+      text-align: center;
+    }
+    .cover-author-rule { width: 32px; height: 1px; background: rgba(201,168,76,0.4); margin: 0 auto 10px; }
+    .cover-author-name { font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+    .cover-author-cred { font-family: var(--condensed); font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone); margin-top: 2px; }
+    .cover-bottom-rule { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin-top: auto; }
+    .book-spine-large {
+      position: absolute; left: -22px; top: 2%; bottom: 2%; width: 22px;
+      background: linear-gradient(90deg, #07080a, #13141a);
+      border: 1px solid rgba(201,168,76,0.1);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .book-spine-text {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      font-family: var(--condensed);
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.4);
+      white-space: nowrap;
+    }
+    .book-shadow {
+      position: absolute;
+      bottom: -30px; left: 10%; right: 5%;
+      height: 40px;
+      background: rgba(0,0,0,0.5);
+      filter: blur(20px);
+      border-radius: 50%;
+    }
+    .book-glow-large {
+      position: absolute; inset: -30px;
+      background: radial-gradient(ellipse at 60% 50%, rgba(201,168,76,0.1) 0%, transparent 65%);
+      pointer-events: none; z-index: -1;
+    }
+
+    /* ── SYNOPSIS ── */
+    #synopsis {
+      padding: var(--section-pad) 0;
+      background: var(--cream);
+    }
+    .synopsis-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .synopsis-text { color: var(--ink); }
+    .synopsis-text .label { color: var(--gold-dark); }
+    .synopsis-text .divider { background: var(--gold-dark); }
+    .synopsis-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+    .synopsis-title em { font-style: italic; color: var(--gold-dark); }
+    .synopsis-p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--ink-mid);
+      margin-bottom: 20px;
+    }
+    .synopsis-p strong { color: var(--ink); font-weight: 600; }
+    .key-quotes { display: flex; flex-direction: column; gap: 16px; margin-top: 36px; }
+    .key-quote {
+      padding: 18px 22px;
+      background: var(--ink);
+      border-left: 3px solid var(--gold);
+      color: var(--cream);
+    }
+    .key-quote p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--cream-dark);
+    }
+    .synopsis-aside { position: sticky; top: 120px; }
+    .aside-card {
+      background: var(--ink);
+      padding: 36px 32px;
+      margin-bottom: 16px;
+    }
+    .aside-card-title {
+      font-family: var(--condensed);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .aside-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .aside-stat-num { font-family: var(--serif); font-size: 2.2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .aside-stat-label { font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone); margin-top: 4px; }
+    .audience-list { display: flex; flex-direction: column; gap: 10px; }
+    .audience-item { display: flex; gap: 12px; align-items: flex-start; }
+    .audience-arrow { color: var(--gold); font-family: var(--condensed); font-size: 0.8rem; flex-shrink: 0; padding-top: 1px; }
+    .audience-text { font-size: 0.82rem; color: var(--stone-light); line-height: 1.5; }
+    .notify-box {
+      background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.04));
+      border: 1px solid rgba(201,168,76,0.25);
+      padding: 28px;
+      text-align: center;
+    }
+    .notify-box p { font-size: 0.82rem; color: var(--stone-light); line-height: 1.6; margin-bottom: 16px; }
+    .notify-form { display: flex; flex-direction: column; gap: 10px; }
+    .notify-form input { padding: 12px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.25); color: var(--cream); font-family: var(--sans); font-size: 0.85rem; outline: none; transition: border-color 0.2s; }
+    .notify-form input:focus { border-color: var(--gold); }
+    .notify-form input::placeholder { color: var(--stone); }
+    .notify-form button { padding: 12px; background: var(--gold); color: var(--ink); font-family: var(--condensed); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; transition: background 0.2s; border: none; cursor: pointer; }
+    .notify-form button:hover { background: var(--gold-light); }
+
+    /* ── MOVEMENTS ── */
+    #movements {
+      padding: var(--section-pad) 0;
+      background: var(--ink);
+    }
+    .movements-header { text-align: center; margin-bottom: 80px; }
+    .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+    .movements-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .movement-card {
+      background: var(--ink-soft);
+      padding: 52px 48px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .movement-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .movement-card:hover { background: #1c1f26; }
+    .movement-card:hover::before { transform: scaleX(1); }
+    .movement-bg-num {
+      position: absolute; right: 32px; top: 24px;
+      font-family: var(--serif);
+      font-size: 7rem; font-weight: 900;
+      color: rgba(201,168,76,0.04);
+      line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .movement-tag { font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .movement-title { font-family: var(--serif); font-size: 1.7rem; font-weight: 700; color: var(--cream); margin-bottom: 16px; line-height: 1.2; }
+    .movement-sub { font-family: var(--condensed); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--stone); margin-bottom: 20px; }
+    .movement-desc { font-size: 0.88rem; color: var(--stone-light); line-height: 1.75; margin-bottom: 28px; }
+    .chapter-list { display: flex; flex-direction: column; gap: 6px; }
+    .chapter-item {
+      display: flex; align-items: baseline; gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .chapter-item:last-child { border-bottom: none; }
+    .ch-num { font-family: var(--condensed); font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold); flex-shrink: 0; width: 32px; }
+    .ch-title { font-size: 0.82rem; color: var(--stone-light); line-height: 1.4; }
+    .ch-hook { font-size: 0.75rem; font-style: italic; color: var(--stone); margin-top: 2px; }
+
+    /* ── FRAMEWORK PREVIEW ── */
+    #framework-preview {
+      padding: var(--section-pad) 0;
+      background: #0a0b0d;
+    }
+    .framework-preview-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .framework-preview-text .section-title { margin-bottom: 12px; }
+    .framework-preview-text p { color: var(--stone-light); font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px; }
+    .pillars-list { display: flex; flex-direction: column; gap: 2px; margin: 32px 0; }
+    .pillar-row {
+      display: grid;
+      grid-template-columns: 40px 80px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 20px;
+      background: var(--ink-soft);
+      border-left: 0 solid var(--gold);
+      transition: border-left-width 0.2s, background 0.2s, padding-left 0.2s;
+      cursor: default;
+    }
+    .pillar-row:hover { border-left-width: 3px; background: #1c1f26; padding-left: 17px; }
+    .pillar-row-num { font-family: var(--condensed); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .pillar-row-name { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--cream); }
+    .pillar-row-desc { font-size: 0.78rem; color: var(--stone); line-height: 1.5; }
+    .framework-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .framework-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .fv-header {
+      background: var(--ink-soft);
+      padding: 24px 28px;
+      text-align: center;
+      border-top: 2px solid var(--gold);
+    }
+    .fv-header-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--cream); }
+    .fv-header-sub { font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-top: 6px; }
+    .fv-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .fv-pillar {
+      background: var(--ink-soft);
+      padding: 28px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+    .fv-pillar:hover { background: #1c1f26; }
+    .fv-pillar-icon { font-size: 1.5rem; margin-bottom: 10px; display: block; }
+    .fv-pillar-name { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--cream); }
+    .fv-pillar-word { font-family: var(--condensed); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-top: 4px; }
+    .fv-footer {
+      background: var(--gold);
+      padding: 20px 28px;
+      text-align: center;
+    }
+    .fv-footer-text { font-family: var(--condensed); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); font-weight: 700; }
+
+    /* ── COMPS / MARKET ── */
+    #market {
+      padding: var(--section-pad) 0;
+      background: var(--cream);
+    }
+    .market-inner { color: var(--ink); }
+    .market-header { margin-bottom: 60px; }
+    .market-header .label { color: var(--gold-dark); }
+    .market-header .divider { background: var(--gold-dark); }
+    .market-header .section-title { color: var(--ink); max-width: 600px; }
+    .market-header p { color: var(--ink-mid); font-size: 0.95rem; line-height: 1.8; max-width: 640px; margin-top: 20px; }
+    .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 48px; }
+    .comp-card {
+      background: var(--ink);
+      padding: 32px 28px;
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+    .comp-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform 0.3s; }
+    .comp-card:hover::after { transform:scaleX(1); }
+    .comp-card-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--cream); margin-bottom: 4px; }
+    .comp-card-author { font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .comp-card-desc { font-size: 0.8rem; color: var(--stone-light); line-height: 1.65; margin-bottom: 16px; }
+    .comp-card-gap { font-size: 0.78rem; font-style: italic; color: var(--stone); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 14px; }
+    .gap-box {
+      background: var(--ink);
+      padding: 40px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .gap-box-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 16px; }
+    .gap-box-title em { font-style: italic; color: var(--gold); }
+    .gap-box-text { font-size: 0.88rem; color: var(--stone-light); line-height: 1.8; }
+    .gap-box-quote {
+      border-left: 3px solid var(--gold);
+      padding-left: 24px;
+    }
+    .gap-box-quote p { font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--cream); line-height: 1.7; }
+    .gap-box-quote cite { font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone); display: block; margin-top: 12px; }
+
+    /* ── NOTIFY FULL WIDTH ── */
+    #notify {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #0f1115 0%, #0d0e10 50%, #12100e 100%);
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .notify-bg { position: absolute; inset: 0; font-family: var(--serif); font-size: 22vw; font-weight: 900; color: rgba(201,168,76,0.025); display: flex; align-items: center; justify-content: center; pointer-events: none; user-select: none; letter-spacing: -0.04em; }
+    .notify-inner { position: relative; z-index: 2; max-width: 560px; margin: 0 auto; }
+    .notify-inner .section-title { margin-bottom: 8px; }
+    .notify-inner .divider { margin: 16px auto 20px; }
+    .notify-inner > p { color: var(--stone-light); font-size: 0.95rem; line-height: 1.7; margin-bottom: 32px; }
+    .notify-full-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto 16px; }
+    .notify-full-form input { flex:1; padding:16px 20px; background:rgba(255,255,255,0.06); border:1px solid rgba(201,168,76,0.25); border-right:none; color:var(--cream); font-family:var(--sans); font-size:0.9rem; outline:none; transition:border-color 0.2s; }
+    .notify-full-form input::placeholder { color:var(--stone); }
+    .notify-full-form input:focus { border-color:var(--gold); }
+    .notify-full-form button { padding:16px 24px; background:var(--gold); color:var(--ink); font-family:var(--condensed); font-size:0.75rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; transition:background 0.2s; white-space:nowrap; border:none; cursor:pointer; }
+    .notify-full-form button:hover { background:var(--gold-light); }
+    .notify-small { font-size:0.75rem; color:var(--stone); font-family:var(--condensed); letter-spacing:0.08em; }
+
+    /* ── FOOTER ── */
+    footer { background:#07080a; padding:60px 0 32px; border-top:1px solid rgba(201,168,76,0.12); }
+    .footer-inner { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:48px; margin-bottom:48px; }
+    .footer-logo { font-family:var(--serif); font-size:1.2rem; font-weight:700; color:var(--cream); margin-bottom:4px; }
+    .footer-logo-sub { font-family:var(--condensed); font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+    .footer-tagline { font-size:0.82rem; color:var(--stone); line-height:1.7; max-width:240px; }
+    .footer-col h4 { font-family:var(--condensed); font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .footer-col ul a { font-size:0.82rem; color:var(--stone); transition:color 0.2s; }
+    .footer-col ul a:hover { color:var(--cream); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,0.06); padding-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+    .footer-copy { font-size:0.78rem; color:var(--stone); font-family:var(--condensed); letter-spacing:0.08em; }
+    .footer-f5 { font-family:var(--condensed); font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:rgba(201,168,76,0.5); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .comp-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .gap-box { grid-template-columns: 1fr; gap: 28px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .book-hero-inner { grid-template-columns: 1fr; }
+      .book-hero-right { display: none; }
+      .synopsis-inner { grid-template-columns: 1fr; }
+      .synopsis-aside { position: static; }
+      .movements-grid { grid-template-columns: 1fr; }
+      .framework-preview-inner { grid-template-columns: 1fr; }
+      .comp-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .notify-full-form { flex-direction: column; }
+      .notify-full-form input { border-right: 1px solid rgba(201,168,76,0.25); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">
+      Vision to Victory
+      <span>The Stoic Architect</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="book.html" class="active">The Book</a></li>
+      <li><a href="framework.html">F5IVE</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#content">Insights</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="index.html#capture" class="nav-cta">Get the Free Guide</a>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <span class="mobile-close" onclick="toggleMenu()">✕</span>
+    <a href="index.html" onclick="toggleMenu()">Home</a>
+    <a href="book.html" onclick="toggleMenu()">The Book</a>
+    <a href="framework.html" onclick="toggleMenu()">F5IVE Framework</a>
+    <a href="about.html" onclick="toggleMenu()">About Daniel</a>
+    <a href="index.html#capture" onclick="toggleMenu()">Free Guide</a>
+    <a href="index.html#contact" onclick="toggleMenu()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="book-hero">
+    <div class="book-hero-bg"></div>
+    <div class="book-hero-grid"></div>
+    <div class="container">
+      <div class="book-hero-inner">
+        <div class="book-hero-left">
+          <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span>The Book</span>
+          </div>
+          <div class="book-title-wrap">
+            <h1 class="book-hero-title">
+              Vision<br>
+              <span class="italic">to</span><br>
+              Victory
+            </h1>
+            <p class="book-hero-subtitle">
+              Why Men Fail, Why They Succeed,<br>
+              and How to Master the Difference
+            </p>
+          </div>
+          <div class="book-meta-row">
+            <div class="meta-item">
+              <div class="meta-label">Author</div>
+              <div class="meta-value">Daniel Brown MSc</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Category</div>
+              <div class="meta-value">Men's Personal Development</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Word Count</div>
+              <div class="meta-value">~70,000 words</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Chapters</div>
+              <div class="meta-value">19 across 4 Parts</div>
+            </div>
+          </div>
+          <div class="book-hero-actions">
+            <a href="#notify" class="btn-primary">
+              Notify Me on Launch
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="index.html#capture" class="btn-outline">Get the Free F5IVE Guide</a>
+          </div>
+          <div class="status-badge">
+            <div class="status-dot"></div>
+            On Submission to UK Literary Agents — March 2026
+          </div>
+        </div>
+        <div class="book-hero-right">
+          <div class="book-display">
+            <div class="book-glow-large"></div>
+            <div class="book-spine-large">
+              <div class="book-spine-text">Vision to Victory · Daniel Brown MSc</div>
+            </div>
+            <div class="book-display-cover">
+              <div class="cover-bg-pattern"></div>
+              <div class="cover-top-rule"></div>
+              <div class="cover-brand">The Stoic Architect</div>
+              <div class="cover-arch-wrap">
+                <div class="cover-arch"></div>
+              </div>
+              <div class="cover-title-block">
+                <div class="cover-title">Vision</div>
+                <div class="cover-to">to</div>
+                <div class="cover-title">Victory</div>
+              </div>
+              <div class="cover-rule"></div>
+              <div class="cover-subtitle-block">
+                <div class="cover-subtitle">Why Men Fail, Why They Succeed,<br>and How to Master the Difference</div>
+              </div>
+              <div class="cover-author">
+                <div class="cover-author-rule"></div>
+                <div class="cover-author-name">Daniel Brown</div>
+                <div class="cover-author-cred">MSc · The Stoic Architect</div>
+              </div>
+              <div class="cover-bottom-rule"></div>
+            </div>
+            <div class="book-shadow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYNOPSIS -->
+  <section id="synopsis">
+    <div class="container">
+      <div class="synopsis-inner">
+        <div class="synopsis-text reveal">
+          <div class="label">About the Book</div>
+          <div class="divider"></div>
+          <h2 class="synopsis-title">
+            Not a motivational book.<br>
+            <em>A structural one.</em>
+          </h2>
+          <p class="synopsis-p">
+            Most men who fail don't lack talent, intelligence, or ambition. They lack <strong>structure</strong>. They are capable men operating without a system — succeeding in one area of their lives while others quietly collapse around them.
+          </p>
+          <p class="synopsis-p">
+            <strong>Vision to Victory</strong> is the book for the man who has already read Atomic Habits, Can't Hurt Me, and The Compound Effect — and still feels something structural is missing. Because it is. Those books address one domain. This book addresses the architecture of the whole man.
+          </p>
+          <p class="synopsis-p">
+            Built around the <strong>F5IVE Framework</strong> — five interdependent pillars of Faith, Family, Finance, Fitness, and Freedom — this is a complete system for men who are serious about becoming who they are capable of being. Not in one area. In all of them. Simultaneously.
+          </p>
+          <p class="synopsis-p">
+            This book was not written from a stage or a theory. It was written from the wreckage — redundancy, separation, a five-year rebuild from the ground up. The F5IVE Framework is not a concept. It is the product of that process.
+          </p>
+          <div class="key-quotes">
+            <div class="key-quote"><p>"Success in one pillar while the others collapse is not victory. It's imbalance with better PR."</p></div>
+            <div class="key-quote"><p>"Vision compounds. Motivation fades. You don't need more inspiration — you need a framework."</p></div>
+            <div class="key-quote"><p>"The man most anchored is the man most free."</p></div>
+          </div>
+        </div>
+        <div class="synopsis-aside reveal">
+          <div class="aside-card">
+            <div class="aside-card-title">By the Numbers</div>
+            <div class="aside-stats">
+              <div><div class="aside-stat-num">70K</div><div class="aside-stat-label">Words</div></div>
+              <div><div class="aside-stat-num">19</div><div class="aside-stat-label">Chapters</div></div>
+              <div><div class="aside-stat-num">4</div><div class="aside-stat-label">Parts</div></div>
+              <div><div class="aside-stat-num">5</div><div class="aside-stat-label">Pillars</div></div>
+            </div>
+          </div>
+          <div class="aside-card">
+            <div class="aside-card-title">Who This Book Is For</div>
+            <div class="audience-list">
+              <div class="audience-item"><div class="audience-arrow">→</div><div class="audience-text">Men aged 28–45 who are professionally established but feel misaligned</div></div>
+              <div class="audience-item"><div class="audience-arrow">→</div><div class="audience-text">Men who have read every self-help book and still feel something is missing</div></div>
+              <div class="audience-item"><div class="audience-arrow">→</div><div class="audience-text">Men navigating redundancy, separation, new fatherhood, or major transition</div></div>
+              <div class="audience-item"><div class="audience-arrow">→</div><div class="audience-text">Men who are sceptical of hype and looking for structure, not motivation</div></div>
+            </div>
+          </div>
+          <div class="notify-box">
+            <div class="label" style="color:var(--gold);margin-bottom:12px;">Be First to Know</div>
+            <p>The book is currently on submission. Get notified the moment it's available.</p>
+            <form class="notify-form" onsubmit="handleNotify(event)">
+              <input type="email" placeholder="Your email address" required />
+              <button type="submit">Notify Me</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOVEMENTS / CHAPTERS -->
+  <section id="movements">
+    <div class="container">
+      <div class="movements-header reveal">
+        <div class="label">Inside the Book</div>
+        <div class="divider divider--center"></div>
+        <h2 class="section-title">Four Movements. One Architecture.</h2>
+        <p style="color:var(--stone-light);max-width:520px;margin:16px auto 0;font-size:0.95rem;line-height:1.7;">
+          The book is not a collection of tips. It is a complete system — diagnosis, foundation, framework, and transformation — in the correct sequence.
+        </p>
+      </div>
+      <div class="movements-grid">
+
+        <div class="movement-card reveal">
+          <div class="movement-bg-num">I</div>
+          <div class="movement-tag">Part One</div>
+          <h3 class="movement-title">The Problem</h3>
+          <div class="movement-sub">Chapters 1 – 2</div>
+          <p class="movement-desc">Before building anything, you have to understand why capable men fail. Not through lack of talent — through lack of structure. This section is the honest diagnosis most books skip.</p>
+          <div class="chapter-list">
+            <div class="chapter-item">
+              <div class="ch-num">Ch.1</div>
+              <div>
+                <div class="ch-title">Why Men Fail</div>
+                <div class="ch-hook">The structural gap behind every capable man who keeps falling short</div>
+              </div>
+            </div>
+            <div class="chapter-item">
+              <div class="ch-num">Ch.2</div>
+              <div>
+                <div class="ch-title">Vision vs Motivation</div>
+                <div class="ch-hook">Why motivation is a trap — and what compounds instead</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movement-card reveal">
+          <div class="movement-bg-num">II</div>
+          <div class="movement-tag">Part Two</div>
+          <h3 class="movement-title">The Foundation</h3>
+          <div class="movement-sub">Chapters 3 – 10</div>
+          <p class="movement-desc">Eight chapters that dismantle the internal obstacles that sabotage every system before it can work. You cannot build on ground that hasn't been cleared.</p>
+          <div class="chapter-list">
+            <div class="chapter-item"><div class="ch-num">Ch.3</div><div><div class="ch-title">Consistency</div><div class="ch-hook">The one quality that outperforms talent, intelligence and motivation</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.4</div><div><div class="ch-title">Faith</div><div class="ch-hook">Why belief is not a soft concept — it is the structural anchor</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.5</div><div><div class="ch-title">Excuses</div><div class="ch-hook">The architecture of avoidance and how to dismantle it permanently</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.6</div><div><div class="ch-title">Avoidance</div><div class="ch-hook">What you're not doing — and why it's costing you everything</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.7</div><div><div class="ch-title">Fear</div><div class="ch-hook">Fear as data, not obstacle — the reframe that changes everything</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.8</div><div><div class="ch-title">Pride</div><div class="ch-hook">The silent saboteur hiding in plain sight</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.9</div><div><div class="ch-title">Environment</div><div class="ch-hook">Why the men around you determine more than your mindset does</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.10</div><div><div class="ch-title">Communication</div><div class="ch-hook">The skill every man underestimates until it's already cost him</div></div></div>
+          </div>
+        </div>
+
+        <div class="movement-card reveal">
+          <div class="movement-bg-num">III</div>
+          <div class="movement-tag">Part Three</div>
+          <h3 class="movement-title">The F5IVE Pillars</h3>
+          <div class="movement-sub">Chapters 11 – 15</div>
+          <p class="movement-desc">The heart of the book. Five interdependent pillars — not sequential steps, not a checklist. An architecture. Held in alignment simultaneously, they produce the one thing every man is actually after: Freedom.</p>
+          <div class="chapter-list">
+            <div class="chapter-item"><div class="ch-num">Ch.11</div><div><div class="ch-title">Faith</div><div class="ch-hook">The foundation beneath everything — purpose, belief, identity</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.12</div><div><div class="ch-title">Family</div><div class="ch-hook">Your most important relationships — who you are when no one is watching</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.13</div><div><div class="ch-title">Finance</div><div class="ch-hook">Financial sovereignty — the system behind the freedom</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.14</div><div><div class="ch-title">Fitness</div><div class="ch-hook">The discipline of the body is the discipline of the mind</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.15</div><div><div class="ch-title">Freedom</div><div class="ch-hook">Not an aspiration. The output of the other four</div></div></div>
+          </div>
+        </div>
+
+        <div class="movement-card reveal">
+          <div class="movement-bg-num">IV</div>
+          <div class="movement-tag">Part Four</div>
+          <h3 class="movement-title">Transformation</h3>
+          <div class="movement-sub">Chapters 16 – 19</div>
+          <p class="movement-desc">The framework only works if it becomes a system. This section is the blueprint for doing exactly that — and understanding that transformation is a process, not an event.</p>
+          <div class="chapter-list">
+            <div class="chapter-item"><div class="ch-num">Ch.16</div><div><div class="ch-title">Building Systems</div><div class="ch-hook">How to operationalise the F5IVE Framework in your actual life</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.17</div><div><div class="ch-title">Transformation as Process</div><div class="ch-hook">Why it takes longer than you want — and less time than you fear</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.18</div><div><div class="ch-title">Victory Defined</div><div class="ch-hook">What winning actually looks like when it's your definition, not theirs</div></div></div>
+            <div class="chapter-item"><div class="ch-num">Ch.19</div><div><div class="ch-title">The Torch Is Yours</div><div class="ch-hook">The responsibility that comes with becoming the man you set out to be</div></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FRAMEWORK PREVIEW -->
+  <section id="framework-preview">
+    <div class="container">
+      <div class="framework-preview-inner">
+        <div class="framework-preview-text reveal">
+          <div class="label">The System</div>
+          <div class="divider"></div>
+          <h2 class="section-title">The F5IVE Framework</h2>
+          <p>The framework at the heart of the book. Five interdependent pillars that, when held in alignment simultaneously, produce the one outcome every man is actually working towards — Freedom.</p>
+          <p>It is not a sequential process. It is not a checklist. It is an architecture — and like any architecture, every element depends on every other.</p>
+          <div class="pillars-list">
+            <div class="pillar-row"><div class="pillar-row-num">I</div><div class="pillar-row-name">Faith</div><div class="pillar-row-desc">Purpose, belief, and the values that anchor you</div></div>
+            <div class="pillar-row"><div class="pillar-row-num">II</div><div class="pillar-row-name">Family</div><div class="pillar-row-desc">Your most important relationships — who you truly are</div></div>
+            <div class="pillar-row"><div class="pillar-row-num">III</div><div class="pillar-row-name">Finance</div><div class="pillar-row-desc">Financial sovereignty built on disciplined systems</div></div>
+            <div class="pillar-row"><div class="pillar-row-num">IV</div><div class="pillar-row-name">Fitness</div><div class="pillar-row-desc">Physical discipline as the proof of internal commitment</div></div>
+            <div class="pillar-row"><div class="pillar-row-num">V</div><div class="pillar-row-name">Freedom</div><div class="pillar-row-desc">The output of the other four — not a goal, a result</div></div>
+          </div>
+          <div class="framework-cta">
+            <a href="framework.html" class="btn-primary">
+              Explore the Full Framework
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="index.html#capture" class="btn-outline">Get the Free Guide</a>
+          </div>
+        </div>
+        <div class="framework-visual reveal">
+          <div class="fv-header">
+            <div class="fv-header-title">The F5IVE Framework</div>
+            <div class="fv-header-sub">Faith · Family · Finance · Fitness · Freedom</div>
+          </div>
+          <div class="fv-pillars">
+            <div class="fv-pillar"><span class="fv-pillar-icon">🕊</span><div class="fv-pillar-name">Faith</div><div class="fv-pillar-word">Pillar I</div></div>
+            <div class="fv-pillar"><span class="fv-pillar-icon">🏛</span><div class="fv-pillar-name">Family</div><div class="fv-pillar-word">Pillar II</div></div>
+            <div class="fv-pillar"><span class="fv-pillar-icon">◈</span><div class="fv-pillar-name">Finance</div><div class="fv-pillar-word">Pillar III</div></div>
+            <div class="fv-pillar"><span class="fv-pillar-icon">⚡</span><div class="fv-pillar-name">Fitness</div><div class="fv-pillar-word">Pillar IV</div></div>
+          </div>
+          <div class="fv-header" style="border-top:none;border-bottom:2px solid var(--gold);">
+            <span style="font-size:1.5rem;display:block;margin-bottom:8px;">∞</span>
+            <div class="fv-header-title">Freedom</div>
+            <div class="fv-header-sub">Pillar V · The Output</div>
+          </div>
+          <div class="fv-footer">
+            <div class="fv-footer-text">All Five. In Alignment. Simultaneously.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET POSITIONING -->
+  <section id="market">
+    <div class="container">
+      <div class="market-inner">
+        <div class="market-header reveal">
+          <div class="label">Market Positioning</div>
+          <div class="divider"></div>
+          <h2 class="section-title" style="color:var(--ink);">The book for the man<br>who has read them all.</h2>
+          <p>Every major title in this space changed something for you. But each one addressed a single domain. Vision to Victory is the overarching framework — the missing architecture that connects them all.</p>
+        </div>
+        <div class="comp-grid reveal">
+          <div class="comp-card">
+            <div class="comp-card-title">Atomic Habits</div>
+            <div class="comp-card-author">James Clear</div>
+            <div class="comp-card-desc">The definitive guide to behaviour change and habit systems. Changed how millions of people think about daily action.</div>
+            <div class="comp-card-gap">Addresses habits. Doesn't address the man behind them — his identity, his relationships, his purpose.</div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card-title">Can't Hurt Me</div>
+            <div class="comp-card-author">David Goggins</div>
+            <div class="comp-card-desc">Raw, visceral, and transformative. Proves that mental toughness can take you further than you ever believed.</div>
+            <div class="comp-card-gap">Addresses mental fortitude. Doesn't provide the structural framework for the whole life.</div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card-title">The Compound Effect</div>
+            <div class="comp-card-author">Darren Hardy</div>
+            <div class="comp-card-desc">Compelling argument for consistency and small daily choices adding up to dramatic long-term results.</div>
+            <div class="comp-card-gap">Addresses momentum. Doesn't address the five-pillar architecture that makes it sustainable.</div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card-title">Feel-Good Productivity</div>
+            <div class="comp-card-author">Ali Abdaal</div>
+            <div class="comp-card-desc">A fresh, psychologically grounded take on productivity that makes the process itself enjoyable.</div>
+            <div class="comp-card-gap">Addresses output and energy. Doesn't address the structural alignment beneath productivity.</div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card-title">Principles</div>
+            <div class="comp-card-author">Ray Dalio</div>
+            <div class="comp-card-desc">A masterclass in systematic thinking — building personal and organisational operating principles from the ground up.</div>
+            <div class="comp-card-gap">Addresses systems thinking. Not written for the man at the coalface of his own rebuild.</div>
+          </div>
+          <div class="comp-card" style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.04));border:1px solid rgba(201,168,76,0.2);">
+            <div class="comp-card-title" style="color:var(--gold);">Vision to Victory</div>
+            <div class="comp-card-author" style="color:var(--stone-light);">Daniel Brown MSc</div>
+            <div class="comp-card-desc">The overarching framework that connects all five domains — Faith, Family, Finance, Fitness, Freedom — into one coherent architecture for the whole man.</div>
+            <div class="comp-card-gap" style="color:var(--gold);border-top-color:rgba(201,168,76,0.15);">This is the book none of them are. The structural missing piece.</div>
+          </div>
+        </div>
+        <div class="gap-box reveal">
+          <div>
+            <h3 class="gap-box-title">The man who has tried <em>everything</em> — and still feels something structural is missing.</h3>
+            <p class="gap-box-text">He's read the books. He's done the gym. He's listened to the podcasts. He's had the therapy. And he's still succeeding in one area while others quietly collapse. That is not a motivation problem. It's an architecture problem. Vision to Victory is the architecture.</p>
+          </div>
+          <div class="gap-box-quote">
+            <p>"Every major book in this space addresses one domain in isolation. I set out to write the one that addresses the whole man — the framework that makes all the other work finally stick."</p>
+            <cite>— Daniel Brown MSc, Author</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTIFY -->
+  <section id="notify">
+    <div class="notify-bg">V2V</div>
+    <div class="container">
+      <div class="notify-inner reveal">
+        <div class="label">Publication Updates</div>
+        <div class="divider divider--center"></div>
+        <h2 class="section-title">Be the first to know.</h2>
+        <p>Vision to Victory is currently on submission to UK literary agents. Register below and you'll be notified the moment the book is available — before anyone else.</p>
+        <form class="notify-full-form" onsubmit="handleNotifyFull(event)">
+          <input type="email" placeholder="Your email address" required id="notifyEmail" />
+          <button type="submit">Notify Me on Launch</button>
+        </form>
+        <p class="notify-small">No spam. Just the launch announcement when it happens.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">Vision to Victory</div>
+          <div class="footer-logo-sub">The Stoic Architect · @danielmrbrown</div>
+          <p class="footer-tagline">The F5IVE Framework for the man who has tried everything — and knows something structural is still missing.</p>
+        </div>
+        <div class="footer-col">
+          <h4>The Book</h4>
+          <ul>
+            <li><a href="#synopsis">About the Book</a></li>
+            <li><a href="#movements">Chapter Overview</a></li>
+            <li><a href="#framework-preview">The F5IVE Framework</a></li>
+            <li><a href="#notify">Get Notified</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Daniel</h4>
+          <ul>
+            <li><a href="about.html">About Daniel</a></li>
+            <li><a href="index.html#content">Insights</a></li>
+            <li><a href="index.html#contact">Speaking</a></li>
+            <li><a href="index.html#contact">Press Kit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="#">F5IVE Brotherhood</a></li>
+            <li><a href="https://instagram.com/danielmrbrown" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://youtube.com/@danielmrbrown" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="mailto:danielbrown.authorf5@gmail.com">Email Daniel</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Daniel Brown MSc. All rights reserved. · <a href="#" style="color:var(--stone);">Privacy Policy</a> · <a href="#" style="color:var(--stone);">Cookie Policy</a></p>
+        <div class="footer-f5">Faith · Family · Finance · Fitness · Freedom</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+    document.documentElement.classList.add('js-loaded');
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 60); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    const CK_FORM_ID = '9232780';
+
+    async function subscribeToConvertKit(email, btn, successText) {
+      btn.textContent = 'Subscribing...';
+      btn.disabled = true;
+      try {
+        const res = await fetch(`https://app.convertkit.com/forms/${CK_FORM_ID}/subscriptions`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email_address: email })
+        });
+        if (res.ok) {
+          btn.textContent = successText || '✓ You\'re on the list';
+          btn.style.background = '#2e7d32';
+          btn.closest('form').querySelectorAll('input').forEach(i => i.disabled = true);
+        } else {
+          btn.textContent = 'Try Again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Try Again';
+        btn.disabled = false;
+      }
+    }
+
+    function handleNotify(e) {
+      e.preventDefault();
+      const email = e.target.querySelector('input[type="email"]').value;
+      const btn = e.target.querySelector('button');
+      subscribeToConvertKit(email, btn, '✓ You\'re on the list');
+    }
+
+    function handleNotifyFull(e) {
+      e.preventDefault();
+      const email = document.getElementById('notifyEmail').value;
+      const btn = e.target.querySelector('button');
+      subscribeToConvertKit(email, btn, '✓ You\'re on the list');
+    }
+  </script>
+</body>
+</html>
