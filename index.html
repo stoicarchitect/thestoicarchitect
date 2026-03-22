@@ -1256,8 +1256,8 @@
     }
   </style>
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WJHZYMBLF"></script>
-  <script>
+  <script data-cfasync="false" async src="https://www.googletagmanager.com/gtag/js?id=G-3WJHZYMBLF"></script>
+  <script data-cfasync="false">
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -1761,87 +1761,6 @@
   </footer>
 
   <!-- ── SCRIPTS ───────────────────────────────────────────────────── -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Nav scroll effect
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
-
-    // Mobile menu
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
-
-    // ConvertKit Form ID
-    const CK_FORM_ID = '9232780';
-
-    // Universal ConvertKit subscribe function
-    async function subscribeToConvertKit(email, btn, successText) {
-      btn.textContent = 'Subscribing...';
-      btn.disabled = true;
-      try {
-        const res = await fetch(`https://app.convertkit.com/forms/${CK_FORM_ID}/subscriptions`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email_address: email })
-        });
-        if (res.ok) {
-          btn.textContent = successText || '✓ You\'re In';
-          btn.style.background = '#2e7d32';
-          btn.closest('form').querySelectorAll('input').forEach(i => i.disabled = true);
-        } else {
-          btn.textContent = 'Try Again';
-          btn.disabled = false;
-          btn.style.background = '';
-        }
-      } catch (err) {
-        btn.textContent = 'Try Again';
-        btn.disabled = false;
-      }
-    }
-
-    // Email capture — F5IVE Guide
-    function handleCapture(e) {
-      e.preventDefault();
-      const email = document.getElementById('captureEmail').value;
-      const btn = e.target.querySelector('button');
-      subscribeToConvertKit(email, btn, "✓ Check Your Inbox");
-    }
-
-    // Contact form — Formspree (replace YOUR_FORM_ID once set up at formspree.io)
-    async function handleContact(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-      const data = new FormData(e.target);
-      try {
-        const res = await fetch('https://formspree.io/f/mlgpkjvl', {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          btn.textContent = '✓ Message Sent';
-          btn.style.background = '#2e7d32';
-        } else {
-          btn.textContent = 'Try Again';
-          btn.disabled = false;
-        }
-      } catch {
-        btn.textContent = 'Try Again';
-        btn.disabled = false;
-      }
-    }
-
-    // Stagger pill
+  <script data-cfasync="false" src="/main.js"></script>
+</body>
+</html>
