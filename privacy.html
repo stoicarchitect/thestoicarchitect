@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy & Cookie Policy — The Stoic Architect</title>
+  <meta name="description" content="Privacy and Cookie Policy for thestoicarchitect.com — Daniel Brown MSc." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:        #0d0e10;
+      --ink-soft:   #1a1c20;
+      --stone:      #6b7280;
+      --stone-light:#9ca3af;
+      --cream:      #f5f0e8;
+      --cream-dark: #ede8de;
+      --gold:       #c9a84c;
+      --gold-dark:  #a07c2e;
+      --serif:      'Playfair Display', Georgia, serif;
+      --sans:       'Barlow', system-ui, sans-serif;
+      --condensed:  'Barlow Condensed', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--ink); line-height: 1.6; }
+    a { color: var(--gold-dark); text-decoration: underline; }
+    a:hover { color: var(--ink); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px clamp(24px,5vw,80px); display: flex; align-items: center; justify-content: space-between; background: rgba(13,14,16,0.97); border-bottom: 1px solid rgba(201,168,76,0.15); }
+    .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--cream); line-height: 1.2; text-decoration: none; }
+    .nav-logo span { display: block; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-family: var(--condensed); }
+    .nav-back { font-family: var(--condensed); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone-light); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+
+    .page-hero {
+      background: var(--ink);
+      padding: 140px clamp(24px,5vw,80px) 80px;
+      text-align: center;
+    }
+    .page-hero .label { font-family: var(--condensed); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+    .page-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; color: var(--cream); margin-top: 16px; margin-bottom: 16px; }
+    .page-hero p { font-family: var(--condensed); font-size: 0.8rem; letter-spacing: 0.1em; color: var(--stone-light); }
+
+    .policy-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 72px clamp(24px,5vw,48px) 100px;
+    }
+
+    /* Tab nav */
+    .policy-tabs {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 52px;
+      position: sticky;
+      top: 65px;
+      z-index: 10;
+    }
+    .policy-tab {
+      flex: 1;
+      padding: 14px 20px;
+      background: var(--ink-soft);
+      color: var(--stone-light);
+      font-family: var(--condensed);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      border-top: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .policy-tab.active { background: var(--ink); color: var(--cream); border-top-color: var(--gold); }
+    .policy-tab:hover:not(.active) { background: var(--ink); color: var(--stone-light); }
+
+    .policy-section { display: none; }
+    .policy-section.active { display: block; }
+
+    /* Typography */
+    .policy-updated {
+      font-family: var(--condensed);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .policy-intro {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 28px 32px;
+      border-left: 3px solid var(--gold);
+      margin-bottom: 44px;
+    }
+    .policy-intro p { font-size: 0.9rem; line-height: 1.75; color: var(--stone-light); }
+    .policy-intro p strong { color: var(--cream); }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 40px 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    h2:first-of-type { margin-top: 0; }
+    h3 {
+      font-family: var(--condensed);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin: 24px 0 8px;
+    }
+    p { font-size: 0.9rem; color: #3a3d44; line-height: 1.85; margin-bottom: 16px; }
+    p:last-child { margin-bottom: 0; }
+    ul, ol { padding-left: 20px; margin-bottom: 16px; }
+    li { font-size: 0.9rem; color: #3a3d44; line-height: 1.75; margin-bottom: 6px; }
+    strong { color: var(--ink); font-weight: 600; }
+
+    .info-box {
+      background: var(--cream-dark);
+      border-left: 3px solid var(--gold-dark);
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .info-box p { margin: 0; font-size: 0.85rem; }
+
+    .contact-block {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 32px;
+      margin-top: 48px;
+      border-top: 2px solid var(--gold);
+    }
+    .contact-block .label { font-family: var(--condensed); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: block; }
+    .contact-block p { color: var(--stone-light); font-size: 0.88rem; margin-bottom: 8px; }
+    .contact-block a { color: var(--gold); }
+
+    footer { background: #07080a; padding: 40px clamp(24px,5vw,80px); border-top: 1px solid rgba(201,168,76,0.12); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-copy { font-size: 0.78rem; color: var(--stone); font-family: var(--condensed); letter-spacing: 0.08em; }
+    .footer-f5 { font-family: var(--condensed); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(201,168,76,0.5); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      Vision to Victory
+      <span>The Stoic Architect</span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Home
+    </a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="label">Legal</div>
+    <h1>Privacy &amp; Cookie Policy</h1>
+    <p>Last updated: March 2026 &nbsp;·&nbsp; thestoicarchitect.com &nbsp;·&nbsp; Daniel Brown MSc</p>
+  </div>
+
+  <div class="policy-wrap">
+
+    <div class="policy-tabs">
+      <button class="policy-tab active" onclick="switchTab('privacy')">Privacy Policy</button>
+      <button class="policy-tab" onclick="switchTab('cookies')">Cookie Policy</button>
+    </div>
+
+    <!-- PRIVACY POLICY -->
+    <div class="policy-section active" id="tab-privacy">
+      <div class="policy-updated">Effective date: 21 March 2026 &nbsp;·&nbsp; Version 1.0</div>
+
+      <div class="policy-intro">
+        <p><strong>Plain English summary:</strong> This website collects your email address if you choose to sign up, uses Google Analytics to understand how people use the site, and uses a contact form service (Formspree) to receive your messages. We don't sell your data. We don't share it with advertisers. We only use it to communicate with you about the book, the F5IVE Framework, and The Stoic Architect.</p>
+      </div>
+
+      <h2>1. Who We Are</h2>
+      <p>This website is operated by <strong>Daniel Brown MSc</strong>, trading as The Stoic Architect, based in Telford, United Kingdom. For the purposes of UK data protection law, Daniel Brown is the data controller for this website.</p>
+      <p><strong>Contact:</strong> <a href="mailto:danielbrown.authorf5@gmail.com">danielbrown.authorf5@gmail.com</a></p>
+
+      <h2>2. What Data We Collect</h2>
+      <h3>Email address (when you subscribe)</h3>
+      <p>If you submit your email address via any sign-up form on this website, we collect and store your email address. This is used to send you the F5IVE Framework guide you requested and, with your permission, future updates about the book, framework, and content from The Stoic Architect.</p>
+      <p>Email subscriptions are managed via <strong>ConvertKit (Kit)</strong>. You can unsubscribe at any time via the link in any email we send you.</p>
+
+      <h3>Contact form submissions</h3>
+      <p>If you submit the contact or speaking enquiry form on this website, your name, email address, and message are transmitted to and stored by <strong>Formspree</strong>, a third-party form service. This data is used solely to respond to your enquiry.</p>
+
+      <h3>Website usage data (analytics)</h3>
+      <p>We use <strong>Google Analytics 4</strong> to understand how visitors use this website — which pages are visited, how long people spend on them, and where visitors come from. This data is anonymised and aggregated. We do not use it to identify individual visitors.</p>
+
+      <h3>Data we do NOT collect</h3>
+      <p>We do not collect payment information, sensitive personal data, or any data from users under the age of 16. This website is not directed at children.</p>
+
+      <h2>3. How We Use Your Data</h2>
+      <ul>
+        <li>To deliver the free F5IVE Framework guide you requested</li>
+        <li>To send you updates about Vision to Victory and The Stoic Architect (only if you subscribed)</li>
+        <li>To respond to speaking, media, and general enquiries you initiate</li>
+        <li>To understand how the website is being used and improve it</li>
+      </ul>
+      <p>We will never use your data for advertising, sell it to third parties, or use it for any purpose other than those listed above.</p>
+
+      <h2>4. Legal Basis for Processing (UK GDPR)</h2>
+      <ul>
+        <li><strong>Email subscriptions:</strong> Consent — you actively opted in</li>
+        <li><strong>Contact form submissions:</strong> Legitimate interest — you initiated contact</li>
+        <li><strong>Analytics:</strong> Legitimate interest — understanding site usage to improve it</li>
+      </ul>
+
+      <h2>5. Third-Party Services</h2>
+      <div class="info-box">
+        <p>The following third-party services are used on this website. Each has its own privacy policy governing how they handle data:</p>
+      </div>
+      <ul>
+        <li><strong>ConvertKit (Kit)</strong> — email marketing. <a href="https://convertkit.com/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
+        <li><strong>Formspree</strong> — contact form processing. <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></li>
+        <li><strong>Google Analytics 4</strong> — website analytics. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
+        <li><strong>Netlify</strong> — website hosting. <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">Privacy Policy</a></li>
+        <li><strong>Google Fonts</strong> — typography. Fonts are loaded from Google's servers.</li>
+      </ul>
+
+      <h2>6. Data Retention</h2>
+      <ul>
+        <li><strong>Email subscribers:</strong> Retained until you unsubscribe. You can unsubscribe at any time.</li>
+        <li><strong>Contact form data:</strong> Retained by Formspree for as long as necessary to respond to your enquiry, then deleted.</li>
+        <li><strong>Analytics data:</strong> Retained by Google Analytics per their standard retention settings (14 months by default).</li>
+      </ul>
+
+      <h2>7. Your Rights Under UK GDPR</h2>
+      <p>If you are based in the UK or EEA, you have the following rights regarding your personal data:</p>
+      <ul>
+        <li><strong>Right of access</strong> — you can request a copy of the data we hold about you</li>
+        <li><strong>Right to rectification</strong> — you can ask us to correct inaccurate data</li>
+        <li><strong>Right to erasure</strong> — you can ask us to delete your data</li>
+        <li><strong>Right to restrict processing</strong> — you can ask us to limit how we use your data</li>
+        <li><strong>Right to data portability</strong> — you can ask for your data in a portable format</li>
+        <li><strong>Right to withdraw consent</strong> — you can unsubscribe from emails at any time</li>
+        <li><strong>Right to complain</strong> — you have the right to lodge a complaint with the <a href="https://ico.org.uk" target="_blank" rel="noopener">ICO (ico.org.uk)</a></li>
+      </ul>
+      <p>To exercise any of these rights, contact us at <a href="mailto:danielbrown.authorf5@gmail.com">danielbrown.authorf5@gmail.com</a>. We will respond within 30 days.</p>
+
+      <h2>8. Data Security</h2>
+      <p>This website is hosted on Netlify with SSL encryption (HTTPS). All data transmitted to and from this website is encrypted in transit. We take reasonable technical measures to protect your data, and use reputable third-party services with their own security standards.</p>
+
+      <h2>9. Links to Other Websites</h2>
+      <p>This website contains links to third-party websites including Instagram, YouTube, Amazon, and other retailers. We are not responsible for the privacy practices of those sites. We recommend reviewing their privacy policies independently.</p>
+
+      <h2>10. Changes to This Policy</h2>
+      <p>We may update this privacy policy from time to time. When we do, we will update the date at the top of this page. Continued use of the website after changes constitutes acceptance of the updated policy.</p>
+
+      <div class="contact-block">
+        <span class="label">Questions about your data?</span>
+        <p>Contact Daniel directly at any time:</p>
+        <p><a href="mailto:danielbrown.authorf5@gmail.com">danielbrown.authorf5@gmail.com</a></p>
+        <p style="margin-top:8px;font-size:0.8rem;">Daniel Brown MSc · The Stoic Architect · Telford, United Kingdom</p>
+      </div>
+    </div>
+
+    <!-- COOKIE POLICY -->
+    <div class="policy-section" id="tab-cookies">
+      <div class="policy-updated">Effective date: 21 March 2026 &nbsp;·&nbsp; Version 1.0</div>
+
+      <div class="policy-intro">
+        <p><strong>Plain English summary:</strong> This website uses a small number of cookies. Some are essential for the site to work. Others help us understand how people use the site via Google Analytics. You can opt out of analytics cookies at any time.</p>
+      </div>
+
+      <h2>1. What Are Cookies?</h2>
+      <p>Cookies are small text files stored on your device when you visit a website. They are widely used to make websites work, remember your preferences, and provide information to website owners about how their site is being used.</p>
+
+      <h2>2. Cookies We Use</h2>
+
+      <h3>Essential cookies</h3>
+      <p>These cookies are necessary for the website to function. They cannot be switched off. They include:</p>
+      <div class="info-box">
+        <p><strong>Netlify session cookies</strong> — used by our hosting provider to manage site delivery and performance. No personal data is stored. These are temporary and expire when you close your browser.</p>
+      </div>
+
+      <h3>Analytics cookies (Google Analytics 4)</h3>
+      <p>We use Google Analytics 4 to understand how visitors use this website. These cookies collect information about:</p>
+      <ul>
+        <li>Which pages you visit and in what order</li>
+        <li>How long you spend on each page</li>
+        <li>What country or region you are visiting from</li>
+        <li>What device and browser you are using</li>
+        <li>Whether you have visited the site before</li>
+      </ul>
+      <p>This information is <strong>anonymous and aggregated</strong> — it does not identify you personally. The following Google Analytics cookies may be set:</p>
+      <div class="info-box">
+        <p><strong>_ga</strong> — distinguishes users. Expires after 2 years.<br>
+        <strong>_ga_[ID]</strong> — maintains session state. Expires after 2 years.<br>
+        <strong>_gid</strong> — distinguishes users. Expires after 24 hours.</p>
+      </div>
+      <p>You can opt out of Google Analytics tracking by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+
+      <h3>Third-party cookies</h3>
+      <p>If you interact with embedded content or follow links to third-party platforms (Instagram, YouTube, etc.), those platforms may set their own cookies according to their own policies. We have no control over these cookies.</p>
+
+      <h2>3. Cookies We Do NOT Use</h2>
+      <p>This website does not use:</p>
+      <ul>
+        <li>Advertising or targeting cookies</li>
+        <li>Social media tracking pixels</li>
+        <li>Remarketing or retargeting cookies</li>
+        <li>Any cookies that track you across other websites</li>
+      </ul>
+
+      <h2>4. Managing Cookies</h2>
+      <p>You can control and delete cookies through your browser settings. Please note that disabling certain cookies may affect the functionality of this website.</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Apple Safari</a></li>
+        <li><a href="https://support.microsoft.com/en-us/windows/manage-cookies-in-microsoft-edge" target="_blank" rel="noopener">Microsoft Edge</a></li>
+      </ul>
+
+      <h2>5. Your Consent</h2>
+      <p>By continuing to use this website, you consent to the use of essential cookies as described above. For analytics cookies, we rely on legitimate interest given the anonymised, aggregated nature of the data collected.</p>
+      <p>If you have any concerns about cookies used on this website, please contact us at <a href="mailto:danielbrown.authorf5@gmail.com">danielbrown.authorf5@gmail.com</a>.</p>
+
+      <h2>6. Changes to This Policy</h2>
+      <p>We may update this cookie policy as our use of cookies changes or as regulations require. Updates will be reflected by the date at the top of this page.</p>
+
+      <div class="contact-block">
+        <span class="label">Cookie questions?</span>
+        <p>Contact Daniel directly at any time:</p>
+        <p><a href="mailto:danielbrown.authorf5@gmail.com">danielbrown.authorf5@gmail.com</a></p>
+        <p style="margin-top:8px;font-size:0.8rem;">Daniel Brown MSc · The Stoic Architect · Telford, United Kingdom</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2026 Daniel Brown MSc. All rights reserved. · <a href="privacy.html" style="color:var(--stone);">Privacy Policy</a> · <a href="privacy.html" style="color:var(--stone);">Cookie Policy</a></p>
+    <div class="footer-f5">Faith · Family · Finance · Fitness · Freedom</div>
+  </footer>
+
+  <script>
+    function switchTab(tab) {
+      document.querySelectorAll('.policy-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.policy-section').forEach(s => s.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
