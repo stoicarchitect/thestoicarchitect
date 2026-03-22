@@ -1777,17 +1777,17 @@
       document.getElementById('mobileMenu').classList.toggle('open');
     }
 
-    // Scroll reveal — only hide elements if JS is working
-    document.documentElement.classList.add('js-loaded');
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
+    // Scroll reveal
+    window.addEventListener('load', function() {
+      document.documentElement.classList.add('js-loaded');
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => observer.observe(el));
+    });
 
     // ConvertKit Form ID
     const CK_FORM_ID = '9232780';
