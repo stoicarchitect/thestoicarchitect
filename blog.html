@@ -560,9 +560,6 @@
   </footer>
 
   <script data-cfasync="false">
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
-    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
     function filterArticles(pillar, btn) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -592,4 +589,11 @@
           body: JSON.stringify({ email_address: email })
         });
         btn.textContent = res.ok ? '✓ You\'re in' : 'Try Again';
-        if (res.ok) { btn.style.background = '#2e7d32'; e.target.querySelector('input'
+        if (res.ok) { btn.style.background = '#2e7d32'; e.target.querySelector('input'.disabled = true; }
+        else { btn.disabled = false; }
+      } catch { btn.textContent = 'Try Again'; btn.disabled = false; }
+    }
+  </script>
+  <script src="nav.js"></script>
+</body>
+</html>

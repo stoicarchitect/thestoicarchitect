@@ -1049,9 +1049,6 @@
   </footer>
 
   <script data-cfasync="false">
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
-    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
@@ -1074,3 +1071,11 @@
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
+        if (res.ok) { btn.textContent = '✓ Sent'; btn.style.background = '#2e7d32'; }
+        else { btn.disabled = false; btn.textContent = 'Send Enquiry'; }
+      } catch { btn.disabled = false; btn.textContent = 'Send Enquiry'; }
+    }
+  </script>
+  <script src="nav.js"></script>
+</body>
+</html>

@@ -589,9 +589,6 @@
   </footer>
 
   <script data-cfasync="false">
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
-    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
     const CK_FORM_ID = '9232780';
     async function handleJoin(e) {
@@ -609,3 +606,10 @@
           btn.style.background = '#2e7d32';
           e.target.querySelector('input').disabled = true;
         } else {
+        } else { btn.disabled = false; }
+      } catch { btn.textContent = 'Try Again'; btn.disabled = false; }
+    }
+  </script>
+  <script src="nav.js"></script>
+</body>
+</html>

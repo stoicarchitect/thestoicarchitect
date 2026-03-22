@@ -481,9 +481,6 @@
   </footer>
 
   <script data-cfasync="false">
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
-    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
     async function handleEnquiry(e) {
       e.preventDefault();
@@ -503,3 +500,14 @@
       const bios = {
         short: 'Daniel Brown MSc is the author of Vision to Victory and founder of the F5IVE Framework — a men\'s personal development system built around five interdependent life pillars. An Operations Director with 13 years of senior leadership experience, he writes as The Stoic Architect.',
         medium: 'Daniel Brown MSc is a UK-based author, leadership professional, and founder of the F5IVE Framework — a men\'s personal development system built around five interdependent life pillars: Faith, Family, Finance, Fitness, and Freedom. He holds an MSc in Psychology and a BSc (Hons) in Artificial Intelligence from Manchester Metropolitan University, and serves as Operations Director at Hyve Solutions Europe. His debut book, Vision to Victory: Why Men Fail, Why They Succeed, and How to Master the Difference, is currently on submission to UK literary agents. He creates content as The Stoic A
+        medium: 'Daniel Brown MSc is a UK-based author, leadership professional, and founder of the F5IVE Framework.'
+      };
+      navigator.clipboard.writeText(bios[type]).then(() => {
+        const btns = document.querySelectorAll('.bio-copy-btn');
+        btns.forEach(b => { if (b.getAttribute('onclick').includes(type)) { b.textContent = '✓ Copied'; setTimeout(() => b.textContent = 'Copy ↗', 2000); }});
+      });
+    }
+  </script>
+  <script src="nav.js"></script>
+</body>
+</html>
