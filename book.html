@@ -51,27 +51,22 @@
     .reveal.visible { opacity:1; transform:translateY(0); }
 
     /* ── NAV ── */
-    nav {
-      position: fixed; top:0; left:0; right:0; z-index:100;
-      padding: 20px var(--gutter);
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background 0.4s, backdrop-filter 0.4s;
-    }
-    nav.scrolled { background: rgba(13,14,16,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.15); }
-    .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.03em; line-height: 1.2; }
-    .nav-logo span { display: block; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-family: var(--condensed); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a { font-family: var(--condensed); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone-light); transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-    .nav-cta { font-family: var(--condensed); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 10px 22px; border: 1px solid var(--gold); color: var(--gold); transition: background 0.2s, color 0.2s; }
-    .nav-cta:hover { background: var(--gold); color: var(--ink); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { display: block; width: 26px; height: 2px; background: var(--cream); }
-    .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(13,14,16,0.98); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: var(--cream); transition: color 0.2s; }
-    .mobile-menu a:hover { color: var(--gold); }
-    .mobile-close { position: absolute; top: 24px; right: var(--gutter); font-size: 1.5rem; color: var(--stone-light); cursor: pointer; }
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px var(--gutter);display:flex;align-items:center;justify-content:space-between;transition:background 0.4s;}
+    nav.scrolled{background:rgba(13,14,16,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.15);}
+    .nav-logo{font-family:var(--serif);font-size:1.1rem;font-weight:700;letter-spacing:0.03em;line-height:1.2;}
+    .nav-logo span{display:block;font-size:0.65rem;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-family:var(--condensed);}
+    .nav-links{display:flex;gap:36px;list-style:none;}
+    .nav-links a{font-family:var(--condensed);font-size:0.8rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone-light);transition:color 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold);}
+    .nav-cta{font-family:var(--condensed);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:10px 22px;border:1px solid var(--gold);color:var(--gold);transition:background 0.2s,color 0.2s;}
+    .nav-cta:hover{background:var(--gold);color:var(--ink);}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+    .hamburger span{display:block;width:26px;height:2px;background:var(--cream);}
+    .mobile-menu{display:none;position:fixed;inset:0;background:rgba(13,14,16,0.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--cream);transition:color 0.2s;}
+    .mobile-menu a:hover{color:var(--gold);}
+    .mobile-close{position:absolute;top:24px;right:var(--gutter);font-size:1.5rem;color:var(--stone-light);cursor:pointer;}
 
     .btn-primary { display: inline-flex; align-items: center; gap: 10px; font-family: var(--condensed); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 16px 32px; background: var(--gold); color: var(--ink); transition: background 0.2s, transform 0.15s; }
     .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
@@ -578,10 +573,7 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="index.html" class="nav-logo">
-      Vision to Victory
-      <span>The Stoic Architect</span>
-    </a>
+    <a href="index.html" class="nav-logo">Vision to Victory<span>The Stoic Architect</span></a>
     <ul class="nav-links">
       <li><a href="book.html" class="active">The Book</a></li>
       <li><a href="framework.html">F5IVE</a></li>
@@ -590,7 +582,7 @@
       <li><a href="brotherhood.html">Brotherhood</a></li>
       <li><a href="speaking.html">Speaking</a></li>
     </ul>
-    <a href="index.html#capture" class="nav-cta">Get the Free Guide</a>
+    <a href="index.html#capture" class="nav-cta">Free Guide</a>
     <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </nav>
 
