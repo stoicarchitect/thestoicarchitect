@@ -554,12 +554,12 @@
     }
   </style>
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WJHZYMBLF"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-3WJHZYMBLF');
+    gtag('config', 'G-XXXXXXXXXX');
   </script>
 </head>
 <body>
@@ -576,7 +576,7 @@
       <li><a href="about.html" class="active">About</a></li>
       <li><a href="blog.html">Insights</a></li>
       <li><a href="brotherhood.html">Brotherhood</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
     </ul>
     <a href="index.html#capture" class="nav-cta">Get the Free Guide</a>
     <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
@@ -924,7 +924,7 @@
               <div class="press-kit-item">Key quotes and talking points</div>
               <div class="press-kit-item">F5IVE Framework explainer</div>
             </div>
-            <a href="/cdn-cgi/l/email-protection#385c5956515d545a4a574f5616594d4c50574a5e0d785f55595154165b5755" class="btn-primary" style="display:inline-flex;">
+            <a href="mailto:danielbrown.authorf5@gmail.com" class="btn-primary" style="display:inline-flex;">
               Request Press Kit
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -983,7 +983,7 @@
             <div class="community-card-name">YouTube</div>
             <div class="community-card-handle">The Stoic Architect</div>
           </a>
-          <a href="/cdn-cgi/l/email-protection#8aeeebe4e3efe6e8f8e5fde4a4ebfffee2e5f8ecbfcaede7ebe3e6a4e9e5e7" class="community-card">
+          <a href="mailto:danielbrown.authorf5@gmail.com" class="community-card">
             <span class="community-card-icon">✉</span>
             <div class="community-card-name">Email Daniel</div>
             <div class="community-card-handle">Direct enquiries</div>
@@ -1024,7 +1024,7 @@
             <li><a href="about.html">About Daniel</a></li>
             <li><a href="#speaking">Speaking</a></li>
             <li><a href="blog.html">Insights</a></li>
-            <li><a href="/cdn-cgi/l/email-protection#3f5b5e51565a535d4d504851115e4a4b57504d590a7f58525e5653115c5052">Press Kit</a></li>
+            <li><a href="mailto:danielbrown.authorf5@gmail.com">Press Kit</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -1033,7 +1033,7 @@
             <li><a href="#">F5IVE Brotherhood</a></li>
             <li><a href="https://instagram.com/danielmrbrown" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://youtube.com/@danielmrbrown" target="_blank" rel="noopener">YouTube</a></li>
-            <li><a href="/cdn-cgi/l/email-protection#badedbd4d3dfd6d8c8d5cdd494dbcfced2d5c8dc8ffaddd7dbd3d694d9d5d7">Email Daniel</a></li>
+            <li><a href="mailto:danielbrown.authorf5@gmail.com">Email Daniel</a></li>
           </ul>
         </div>
       </div>
@@ -1044,7 +1044,7 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
     function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
@@ -1068,3 +1068,17 @@
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
+          btn.textContent = '✓ Enquiry Sent';
+          btn.style.background = '#2e7d32';
+        } else {
+          btn.textContent = 'Try Again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Try Again';
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
