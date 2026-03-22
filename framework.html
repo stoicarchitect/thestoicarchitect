@@ -1193,12 +1193,15 @@
     function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
     // Scroll reveal
-    document.documentElement.classList.add('js-loaded');
+    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
+    if ('IntersectionObserver' in window) {
+      document.documentElement.classList.add('js-loaded');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => observer.observe(el));
+    }
 
     // Pillar tabs
     function activatePillar(num) {

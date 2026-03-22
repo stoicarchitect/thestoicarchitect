@@ -44,6 +44,8 @@
     @keyframes fadeUp { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
     .reveal { opacity:1; transform:translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .js-loaded .mobile-menu { display: none !important; }
+    .js-loaded .mobile-menu.open { display: flex !important; }
     .js-loaded .reveal { opacity:0; transform:translateY(36px); }
     .js-loaded .reveal.visible { opacity:1; transform:translateY(0); }
 

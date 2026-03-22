@@ -924,7 +924,7 @@
               <div class="press-kit-item">Key quotes and talking points</div>
               <div class="press-kit-item">F5IVE Framework explainer</div>
             </div>
-            <a href="mailto:danielbrown.authorf5@gmail.com" class="btn-primary" style="display:inline-flex;">
+            <a href="/cdn-cgi/l/email-protection#bbdfdad5d2ded7d9c9d4ccd595dacecfd3d4c9dd8efbdcd6dad2d795d8d4d6" class="btn-primary" style="display:inline-flex;">
               Request Press Kit
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -983,7 +983,7 @@
             <div class="community-card-name">YouTube</div>
             <div class="community-card-handle">The Stoic Architect</div>
           </a>
-          <a href="mailto:danielbrown.authorf5@gmail.com" class="community-card">
+          <a href="/cdn-cgi/l/email-protection#6206030c0b070e00100d150c4c0317160a0d10045722050f030b0e4c010d0f" class="community-card">
             <span class="community-card-icon">✉</span>
             <div class="community-card-name">Email Daniel</div>
             <div class="community-card-handle">Direct enquiries</div>
@@ -1024,7 +1024,7 @@
             <li><a href="about.html">About Daniel</a></li>
             <li><a href="#speaking">Speaking</a></li>
             <li><a href="blog.html">Insights</a></li>
-            <li><a href="mailto:danielbrown.authorf5@gmail.com">Press Kit</a></li>
+            <li><a href="/cdn-cgi/l/email-protection#4e2a2f20272b222c3c213920602f3b3a26213c287b0e29232f2722602d2123">Press Kit</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -1033,7 +1033,7 @@
             <li><a href="#">F5IVE Brotherhood</a></li>
             <li><a href="https://instagram.com/danielmrbrown" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://youtube.com/@danielmrbrown" target="_blank" rel="noopener">YouTube</a></li>
-            <li><a href="mailto:danielbrown.authorf5@gmail.com">Email Daniel</a></li>
+            <li><a href="/cdn-cgi/l/email-protection#4d292c232428212f3f223a23632c383925223f2b780d2a202c2421632e2220">Email Daniel</a></li>
           </ul>
         </div>
       </div>
@@ -1044,17 +1044,20 @@
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
     function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
-    document.documentElement.classList.add('js-loaded');
+    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
+    if ('IntersectionObserver' in window) {
+      document.documentElement.classList.add('js-loaded');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => observer.observe(el));
+    }
 
     async function handleSpeaking(e) {
       e.preventDefault();
@@ -1068,17 +1071,3 @@
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
-          btn.textContent = '✓ Enquiry Sent';
-          btn.style.background = '#2e7d32';
-        } else {
-          btn.textContent = 'Try Again';
-          btn.disabled = false;
-        }
-      } catch {
-        btn.textContent = 'Try Again';
-        btn.disabled = false;
-      }
-    }
-  </script>
-</body>
-</html>
