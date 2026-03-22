@@ -213,6 +213,14 @@
       .articles-header{flex-direction:column;align-items:flex-start;gap:12px;}
     }
   </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WJHZYMBLF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3WJHZYMBLF');
+  </script>
 </head>
 <body>
 
@@ -536,7 +544,7 @@
             <li><a href="https://instagram.com/danielmrbrown" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://youtube.com/@danielmrbrown" target="_blank" rel="noopener">YouTube</a></li>
             <li><a href="index.html#capture">Free F5IVE Guide</a></li>
-            <li><a href="mailto:danielbrown.authorf5@gmail.com">Contact Daniel</a></li>
+            <li><a href="/cdn-cgi/l/email-protection#d6b2b7b8bfb3bab4a4b9a1b8f8b7a3a2beb9a4b0e396b1bbb7bfbaf8b5b9bb">Contact Daniel</a></li>
           </ul>
         </div>
       </div>
@@ -547,7 +555,7 @@
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
     function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
@@ -580,10 +588,4 @@
           body: JSON.stringify({ email_address: email })
         });
         btn.textContent = res.ok ? '✓ You\'re in' : 'Try Again';
-        if (res.ok) { btn.style.background = '#2e7d32'; e.target.querySelector('input').disabled = true; }
-        else btn.disabled = false;
-      } catch { btn.textContent = 'Try Again'; btn.disabled = false; }
-    }
-  </script>
-</body>
-</html>
+        if (res.ok) { btn.style.background = '#2e7d32'; e.target.querySelector('input'
