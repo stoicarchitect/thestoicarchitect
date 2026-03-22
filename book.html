@@ -44,10 +44,11 @@
     @keyframes fadeUp { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
     .reveal { opacity:1; transform:translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .js-loaded .mobile-menu { display: none !important; }
-    .js-loaded .mobile-menu.open { display: flex !important; }
-    .js-loaded .reveal { opacity:0; transform:translateY(36px); }
-    .js-loaded .reveal.visible { opacity:1; transform:translateY(0); }
+    .mobile-menu, .mobile-menu.open {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .reveal.visible { opacity:1; transform:translateY(0); }
 
     /* ── NAV ── */
     nav {
@@ -599,6 +600,9 @@
     <a href="book.html" onclick="toggleMenu()">The Book</a>
     <a href="framework.html" onclick="toggleMenu()">F5IVE Framework</a>
     <a href="about.html" onclick="toggleMenu()">About Daniel</a>
+    <a href="blog.html" onclick="toggleMenu()">Insights</a>
+    <a href="brotherhood.html" onclick="toggleMenu()">Brotherhood</a>
+    <a href="speaking.html" onclick="toggleMenu()">Speaking</a>
     <a href="index.html#capture" onclick="toggleMenu()">Free Guide</a>
     <a href="index.html#contact" onclick="toggleMenu()">Contact</a>
   </div>
@@ -1018,8 +1022,8 @@
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
     function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-    document.documentElement.classList.add('js-loaded');
-    const reveals = document.querySelectorAll('.reveal');
+    window.addEventListener('load', function() {
+        const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 60); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
