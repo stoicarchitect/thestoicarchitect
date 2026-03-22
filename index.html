@@ -86,13 +86,17 @@
       100% { background-position:  200% center; }
     }
     .reveal {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
     }
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+    .mobile-menu, .mobile-menu.open {
+      opacity: 1 !important;
+      transform: none !important;
     }
 
     /* ─── NAV ────────────────────────────────────────────────────── */
