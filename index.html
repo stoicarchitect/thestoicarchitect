@@ -86,17 +86,94 @@
       100% { background-position:  200% center; }
     }
     .reveal {
-      opacity: 0;
-      transform: translateY(36px);
+      opacity: 1;
+      transform: translateY(0);
       transition: opacity 0.85s ease, transform 0.85s ease;
     }
-    .reveal.visible {
+    .js-loaded .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+    }
+    .js-loaded .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
     .mobile-menu, .mobile-menu.open {
       opacity: 1 !important;
       transform: none !important;
+    }
+
+
+    /* ── ONE DIMENSIONAL ─────────────────────────────────────────── */
+    #one-dimensional { padding: var(--section-pad) 0; background: var(--ink-soft); }
+    .onedim-inner { max-width: 900px; margin: 0 auto; }
+    .onedim-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-bottom: 48px; }
+    .onedim-card { background: var(--ink); padding: 32px 24px; text-align: center; border-bottom: 2px solid transparent; transition: border-color 0.3s; }
+    .onedim-card:hover { border-bottom-color: var(--gold); }
+    .onedim-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
+    .onedim-title { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; color: var(--cream); margin-bottom: 10px; }
+    .onedim-desc { font-size: 0.8rem; color: var(--stone-light); line-height: 1.65; }
+    .onedim-conclusion { text-align: center; font-size: 1rem; color: var(--stone-light); line-height: 1.85; max-width: 660px; margin: 0 auto; padding: 32px; background: var(--ink); border-left: 3px solid var(--gold); }
+    .onedim-conclusion strong { color: var(--cream); }
+
+    /* ── ASSESSMENT ──────────────────────────────────────────────── */
+    #assessment { padding: var(--section-pad) 0; background: var(--cream); }
+    .assessment-header { text-align: center; margin-bottom: 56px; }
+    .assessment-header .section-title { color: var(--ink); }
+    .assessment-wrap { max-width: 720px; margin: 0 auto; }
+    .assessment-progress { margin-bottom: 32px; }
+    .progress-bar { height: 3px; background: rgba(0,0,0,0.1); margin-bottom: 10px; }
+    .progress-fill { height: 100%; background: var(--gold); transition: width 0.4s ease; }
+    .progress-label { font-family: var(--condensed); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone); }
+    .question-card { background: var(--ink); padding: 40px; }
+    .question-pillar { font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .question-text { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; color: var(--cream); line-height: 1.4; margin-bottom: 32px; }
+    .answer-options { display: flex; flex-direction: column; gap: 10px; }
+    .answer-btn { padding: 14px 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--stone-light); font-family: var(--sans); font-size: 0.88rem; text-align: left; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+    .answer-btn:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.3); color: var(--cream); }
+    .answer-btn.selected { background: rgba(201,168,76,0.15); border-color: var(--gold); color: var(--cream); }
+    .gate-card { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .gate-preview { background: var(--ink); padding: 40px 32px; }
+    .gate-preview-title { font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .gate-bar-wrap { margin-bottom: 14px; }
+    .gate-bar-label { font-family: var(--condensed); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone-light); margin-bottom: 6px; display: flex; justify-content: space-between; }
+    .gate-bar { height: 6px; background: rgba(255,255,255,0.08); }
+    .gate-bar-fill { height: 100%; background: var(--gold); filter: blur(1px); opacity: 0.5; }
+    .gate-form-wrap { background: var(--ink-soft); padding: 40px 32px; }
+    .gate-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; color: var(--cream); margin-bottom: 12px; }
+    .gate-desc { font-size: 0.88rem; color: var(--stone-light); line-height: 1.75; margin-bottom: 24px; }
+    .gate-form input { width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-bottom: 2px solid rgba(201,168,76,0.3); color: var(--cream); font-family: var(--sans); font-size: 0.9rem; outline: none; margin-bottom: 12px; transition: border-color 0.2s; }
+    .gate-form input:focus { border-bottom-color: var(--gold); }
+    .results-card { background: var(--ink); padding: 48px; }
+    .results-header { text-align: center; margin-bottom: 40px; }
+    .results-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--cream); margin-bottom: 10px; }
+    .results-subtitle { font-size: 0.9rem; color: var(--stone-light); line-height: 1.7; }
+    .results-bars { margin-bottom: 36px; }
+    .result-bar-item { margin-bottom: 18px; }
+    .result-bar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .result-bar-name { font-family: var(--condensed); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream); }
+    .result-bar-score { font-family: var(--condensed); font-size: 0.72rem; color: var(--gold); }
+    .result-bar-track { height: 8px; background: rgba(255,255,255,0.06); }
+    .result-bar-fill { height: 100%; transition: width 1s ease; }
+    .results-insight { background: var(--ink-soft); padding: 28px 32px; margin-bottom: 32px; border-left: 3px solid var(--gold); }
+    .results-insight-label { font-family: var(--condensed); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .results-insight p { font-size: 0.92rem; color: var(--stone-light); line-height: 1.8; }
+    .results-insight p strong { color: var(--cream); }
+    .results-articles { margin-bottom: 36px; }
+    .results-articles-label { font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .result-article-link { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); color: var(--stone-light); font-size: 0.88rem; transition: color 0.2s; }
+    .result-article-link:hover { color: var(--gold); }
+    .results-cta { text-align: center; }
+
+    .book-bridge { text-align: center; }
+    .book-bridge > p strong { color: var(--cream); }
+
+    .contact-simple { max-width: 600px; margin: 0 auto; text-align: center; }
+
+    @media (max-width: 768px) {
+      .onedim-grid { grid-template-columns: 1fr 1fr; }
+      .gate-card { grid-template-columns: 1fr; }
+      .gate-preview { display: none; }
     }
 
     /* ─── NAV ────────────────────────────────────────────────────── */
@@ -1322,34 +1399,22 @@
             And How to Master the Difference.
           </p>
           <p class="hero-tagline">
-            Not a motivational book.<br>A structural one.
+            The book that doesn't motivate you.<br>It <em>builds</em> you.
           </p>
           <div class="hero-actions">
-            <a href="#capture" class="btn-primary">
-              Get the Free F5IVE Guide
+            <a href="#assessment" class="btn-primary">
+              Take the F5IVE Assessment
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="#book" class="btn-secondary">
-              Explore the Book
+            <a href="book.html" class="btn-secondary">
+              About the Book
             </a>
           </div>
           <div class="hero-stats">
-            <div class="stat-item">
-              <div class="stat-num">70K</div>
-              <div class="stat-label">Words</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-num">19</div>
-              <div class="stat-label">Chapters</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-num">5</div>
-              <div class="stat-label">Pillars</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-num">13+</div>
-              <div class="stat-label">Yrs Leadership</div>
-            </div>
+            <div class="stat-item"><div class="stat-num">70K</div><div class="stat-label">Words</div></div>
+            <div class="stat-item"><div class="stat-num">19</div><div class="stat-label">Chapters</div></div>
+            <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Pillars</div></div>
+            <div class="stat-item"><div class="stat-num">13+</div><div class="stat-label">Yrs Leadership</div></div>
           </div>
         </div>
         <div class="hero-right">
@@ -1361,10 +1426,7 @@
               <div class="book-cover-arch"></div>
               <div class="book-cover-title">Vision<br>to<br>Victory</div>
               <div class="book-cover-line"></div>
-              <div class="book-cover-sub">
-                Why Men Fail, Why They Succeed,<br>
-                and How to Master the Difference
-              </div>
+              <div class="book-cover-sub">Why Men Fail, Why They Succeed,<br>and How to Master the Difference</div>
               <div class="book-cover-author">Daniel Brown MSc</div>
             </div>
           </div>
@@ -1373,28 +1435,62 @@
     </div>
   </section>
 
-  <!-- ── TENSION STRIP ────────────────────────────────────────────── -->
+  <!-- ── THE PROBLEM ────────────────────────────────────────────── -->
   <section id="tension">
     <div class="container">
       <div class="tension-inner reveal">
-        <div class="label">The Problem</div>
+        <div class="label">The Question</div>
         <div class="divider divider--center"></div>
         <h2 class="tension-headline">
-          Most men don't fail because they lack talent.<br>
-          They fail because they lack <em>structure</em>.
+          If someone could show you <em>exactly</em> why men like you fail —<br>
+          would you want to know?
         </h2>
         <p class="tension-sub">
-          Succeeding in one pillar while the others quietly collapse is not victory. It's imbalance with better PR. You don't need more motivation. You need a framework.
+          Not a generic answer. Not "work harder" or "believe in yourself." The specific, structural reason that capable, ambitious, hard-working men keep falling short in the areas that matter most — despite doing almost everything right.
         </p>
-        <a href="#capture" class="btn-primary" style="display:inline-flex;margin:0 auto;">
-          Get the F5IVE Framework Free
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <p class="tension-sub" style="margin-top:16px;">
+          That answer exists. And it is not what most men expect.
+        </p>
         <div class="tension-quotes">
+          <p class="t-quote">"It was never a motivation problem. It was always a structure problem."</p>
+          <p class="t-quote">"The men who appear to have it all figured out are not more talented. They are more architecturally sound."</p>
           <p class="t-quote">"Vision compounds. Motivation fades."</p>
-          <p class="t-quote">"Built in the wreckage. Refined over five years."</p>
-          <p class="t-quote">"The man most anchored is the man most free."</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ONE DIMENSIONAL ──────────────────────────────────────────── -->
+  <section id="one-dimensional">
+    <div class="container">
+      <div class="onedim-inner reveal">
+        <div class="label">The Real Problem</div>
+        <div class="divider divider--center"></div>
+        <h2 class="section-title" style="text-align:center;margin-bottom:24px;">Most men are one-dimensional.<br>And they don't know it.</h2>
+        <p style="text-align:center;color:var(--stone-light);max-width:620px;margin:0 auto 48px;font-size:1rem;line-height:1.85;">Succeeding in one area while the others quietly collapse is not victory. It is imbalance with better PR. The man who earns well but is never present at home. The man who trains every day but has no financial foundation. The man with the career but no purpose behind it.</p>
+        <div class="onedim-grid">
+          <div class="onedim-card">
+            <div class="onedim-icon">💼</div>
+            <div class="onedim-title">Career without purpose</div>
+            <p class="onedim-desc">High performance at work, but no clarity on why any of it matters.</p>
+          </div>
+          <div class="onedim-card">
+            <div class="onedim-icon">💰</div>
+            <div class="onedim-title">Income without sovereignty</div>
+            <p class="onedim-desc">Earning well for years with nothing structurally built beneath it.</p>
+          </div>
+          <div class="onedim-card">
+            <div class="onedim-icon">🏋</div>
+            <div class="onedim-title">Fitness without presence</div>
+            <p class="onedim-desc">Body in shape, but mentally absent from the relationships that matter.</p>
+          </div>
+          <div class="onedim-card">
+            <div class="onedim-icon">🏠</div>
+            <div class="onedim-title">Provider without fulfilment</div>
+            <p class="onedim-desc">Giving everything to others while quietly running on empty inside.</p>
+          </div>
+        </div>
+        <p class="onedim-conclusion">The answer is not to work harder in the area you are already succeeding in. <strong>The answer is to build all five simultaneously — with a framework designed for exactly that.</strong></p>
       </div>
     </div>
   </section>
@@ -1403,112 +1499,136 @@
   <section id="framework">
     <div class="container">
       <div class="framework-header reveal">
-        <div class="label">The System</div>
+        <div class="label">The Solution</div>
         <div class="divider divider--center"></div>
         <h2 class="section-title">The F5IVE Framework</h2>
         <p style="color:var(--stone-light);max-width:520px;margin:16px auto 0;font-size:0.95rem;line-height:1.7;">
-          Five interdependent pillars. Held in alignment simultaneously. This is not a checklist — it is an architecture for the whole man.
+          Five interdependent pillars. Held in alignment simultaneously. Not a checklist — an architecture for the whole man.
         </p>
       </div>
       <div class="pillars-grid reveal">
-        <div class="pillar">
-          <div class="pillar-num">Pillar I</div>
-          <span class="pillar-icon">🕊</span>
-          <div class="pillar-name">Faith</div>
-          <p class="pillar-desc">The foundation beneath everything. Your sense of purpose, belief, and the values that anchor you when everything else shifts.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-num">Pillar II</div>
-          <span class="pillar-icon">🏛</span>
-          <div class="pillar-name">Family</div>
-          <p class="pillar-desc">Your most important relationships. The people who reflect who you truly are — and who you are becoming.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-num">Pillar III</div>
-          <span class="pillar-icon">◈</span>
-          <div class="pillar-name">Finance</div>
-          <p class="pillar-desc">Not wealth for its own sake. Financial sovereignty — the freedom that comes from disciplined systems and long-term vision.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-num">Pillar IV</div>
-          <span class="pillar-icon">⚡</span>
-          <div class="pillar-name">Fitness</div>
-          <p class="pillar-desc">The discipline of the body is the discipline of the mind. Physical strength is the visible proof of internal commitment.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-num">Pillar V</div>
-          <span class="pillar-icon">∞</span>
-          <div class="pillar-name">Freedom</div>
-          <p class="pillar-desc">The output of the other four. When Faith, Family, Finance and Fitness are aligned — Freedom is not an aspiration. It is the result.</p>
-        </div>
+        <div class="pillar"><div class="pillar-num">Pillar I</div><span class="pillar-icon">🕊</span><div class="pillar-name">Faith</div><p class="pillar-desc">The foundation beneath everything. Your sense of purpose, belief, and the values that anchor you when everything else shifts.</p></div>
+        <div class="pillar"><div class="pillar-num">Pillar II</div><span class="pillar-icon">🏛</span><div class="pillar-name">Family</div><p class="pillar-desc">Your most important relationships. The people who reflect who you truly are — and who you are becoming.</p></div>
+        <div class="pillar"><div class="pillar-num">Pillar III</div><span class="pillar-icon">◈</span><div class="pillar-name">Finance</div><p class="pillar-desc">Not wealth for its own sake. Financial sovereignty — the freedom that comes from disciplined systems and long-term vision.</p></div>
+        <div class="pillar"><div class="pillar-num">Pillar IV</div><span class="pillar-icon">⚡</span><div class="pillar-name">Fitness</div><p class="pillar-desc">The discipline of the body is the discipline of the mind. Physical strength is the visible proof of internal commitment.</p></div>
+        <div class="pillar"><div class="pillar-num">Pillar V</div><span class="pillar-icon">∞</span><div class="pillar-name">Freedom</div><p class="pillar-desc">The output of the other four. When the first four are aligned — Freedom is not an aspiration. It is the result.</p></div>
       </div>
       <div class="framework-statement reveal">
-        <blockquote>
-          Every major book in this space addresses one domain in isolation. Vision to Victory is the overarching framework — for the man who has read them all and still feels something structural is missing.
-        </blockquote>
+        <blockquote>Every major book in this space addresses one domain in isolation. Vision to Victory is the overarching framework — for the man who has read them all and still feels something structural is missing.</blockquote>
+        <div style="text-align:center;margin-top:32px;">
+          <a href="framework.html" class="btn-primary" style="display:inline-flex;">
+            Explore the Full Framework
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── THE BOOK ─────────────────────────────────────────────────── -->
-  <section id="book">
+  <!-- ── F5IVE ASSESSMENT ─────────────────────────────────────────── -->
+  <section id="assessment">
     <div class="container">
-      <div class="book-inner">
-        <div class="book-structure reveal">
-          <div class="label">Inside the Book</div>
-          <div class="divider"></div>
-          <h2>Four Movements.<br>One Architecture.</h2>
-          <p>Vision to Victory is structured as a complete system — diagnosis, foundation, framework, and transformation. It doesn't motivate you. It builds you.</p>
-          <div class="movements">
-            <div class="movement">
-              <div class="movement-num">Part I</div>
-              <div>
-                <div class="movement-title">The Problem</div>
-                <div class="movement-chapters">Ch. 1–2 · Why Men Fail · Vision vs Motivation</div>
-              </div>
-            </div>
-            <div class="movement">
-              <div class="movement-num">Part II</div>
-              <div>
-                <div class="movement-title">The Foundation</div>
-                <div class="movement-chapters">Ch. 3–10 · Consistency · Faith · Excuses · Fear · Pride · Environment · Communication</div>
-              </div>
-            </div>
-            <div class="movement">
-              <div class="movement-num">Part III</div>
-              <div>
-                <div class="movement-title">The F5IVE Pillars</div>
-                <div class="movement-chapters">Ch. 11–15 · Faith · Family · Finance · Fitness · Freedom</div>
-              </div>
-            </div>
-            <div class="movement">
-              <div class="movement-num">Part IV</div>
-              <div>
-                <div class="movement-title">Transformation</div>
-                <div class="movement-chapters">Ch. 16–19 · Building Systems · Process · Victory Defined · The Torch Is Yours</div>
-              </div>
+      <div class="assessment-header reveal">
+        <div class="label">The F5IVE Self-Assessment</div>
+        <div class="divider divider--center"></div>
+        <h2 class="section-title">Where are you strongest?<br>Where are you most exposed?</h2>
+        <p style="color:var(--stone-light);max-width:560px;margin:16px auto 0;font-size:0.95rem;line-height:1.85;">15 questions. 5 minutes. A clear picture of where your F5IVE stands right now — and exactly where to focus first.</p>
+      </div>
+      <div class="assessment-wrap" id="assessmentWrap">
+        <div id="assessmentQuestions">
+          <div class="assessment-progress">
+            <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+            <div class="progress-label" id="progressLabel">Question 1 of 15</div>
+          </div>
+          <div class="question-card" id="questionCard">
+            <div class="question-pillar" id="questionPillar"></div>
+            <div class="question-text" id="questionText"></div>
+            <div class="answer-options" id="answerOptions"></div>
+          </div>
+        </div>
+        <div id="assessmentGate" style="display:none;">
+          <div class="gate-card reveal">
+            <div class="gate-preview" id="gatePreview"></div>
+            <div class="gate-form-wrap">
+              <div class="label">Unlock Your Full Results</div>
+              <div class="divider"></div>
+              <h3 class="gate-title">Your F5IVE profile is ready.</h3>
+              <p class="gate-desc">Enter your email to receive your full personalised breakdown — your scores across all five pillars, your biggest gap, and exactly what to focus on first.</p>
+              <form onsubmit="handleAssessmentSubmit(event)" class="gate-form">
+                <input type="email" placeholder="Your email address" required id="assessmentEmail" />
+                <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+                  Send My F5IVE Results
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </form>
+              <p style="font-size:0.75rem;color:var(--stone);margin-top:12px;text-align:center;">No spam. Unsubscribe anytime.</p>
             </div>
           </div>
         </div>
-        <div class="book-comps reveal">
-          <div class="label">If You've Read These…</div>
-          <div class="divider"></div>
-          <div class="comps-label">Comparable titles</div>
-          <div class="comp-list">
-            <div class="comp-item"><div class="comp-dot"></div><div class="comp-name">Atomic Habits</div><div class="comp-author">James Clear</div></div>
-            <div class="comp-item"><div class="comp-dot"></div><div class="comp-name">Can't Hurt Me</div><div class="comp-author">David Goggins</div></div>
-            <div class="comp-item"><div class="comp-dot"></div><div class="comp-name">The Compound Effect</div><div class="comp-author">Darren Hardy</div></div>
-            <div class="comp-item"><div class="comp-dot"></div><div class="comp-name">Feel-Good Productivity</div><div class="comp-author">Ali Abdaal</div></div>
-            <div class="comp-item"><div class="comp-dot"></div><div class="comp-name">Principles</div><div class="comp-author">Ray Dalio</div></div>
+        <div id="assessmentResults" style="display:none;">
+          <div class="results-card">
+            <div class="results-header">
+              <div class="label">Your F5IVE Assessment</div>
+              <div class="divider divider--center"></div>
+              <h3 class="results-title" id="resultsTitle"></h3>
+              <p class="results-subtitle" id="resultsSubtitle"></p>
+            </div>
+            <div class="results-bars" id="resultsBars"></div>
+            <div class="results-insight" id="resultsInsight"></div>
+            <div class="results-articles" id="resultsArticles"></div>
+            <div class="results-cta">
+              <a href="book.html" class="btn-primary" style="display:inline-flex;">
+                See How the Book Addresses This
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
           </div>
-          <div class="gap-statement">
-            <p>You've read all of them. Each one changed something. But you still feel something <strong>structural is missing.</strong><br><br>This is that book.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── THE BOOK BRIDGE ──────────────────────────────────────────── -->
+  <section id="book">
+    <div class="container">
+      <div class="book-bridge reveal">
+        <div class="label">The Complete Answer</div>
+        <div class="divider divider--center"></div>
+        <h2 class="section-title" style="text-align:center;max-width:700px;margin:0 auto 20px;">Everything above lives inside one book.</h2>
+        <p style="text-align:center;color:var(--stone-light);max-width:620px;margin:0 auto 48px;font-size:1rem;line-height:1.85;">The assessment gave you a snapshot. The F5IVE Framework gave you the structure. <strong style="color:var(--cream);">Vision to Victory</strong> gives you the complete architecture — every pillar explored in depth, the systems to build them, and the framework to hold them in alignment simultaneously. This is not a book you read once. It is a book you build with.</p>
+        <div class="book-inner">
+          <div class="book-structure reveal">
+            <div class="label">Inside the Book</div>
+            <div class="divider"></div>
+            <h2>Four Movements.<br>One Architecture.</h2>
+            <p>Structured as a complete system — diagnosis, foundation, framework, and transformation. It doesn't motivate you. It builds you.</p>
+            <div class="movements">
+              <div class="movement"><div class="movement-num">Part I</div><div><div class="movement-title">The Problem</div><div class="movement-chapters">Ch. 1–2 · Why Men Fail · Vision vs Motivation</div></div></div>
+              <div class="movement"><div class="movement-num">Part II</div><div><div class="movement-title">The Foundation</div><div class="movement-chapters">Ch. 3–10 · Consistency · Faith · Excuses · Fear · Pride · Environment · Communication</div></div></div>
+              <div class="movement"><div class="movement-num">Part III</div><div><div class="movement-title">The F5IVE Pillars</div><div class="movement-chapters">Ch. 11–15 · Faith · Family · Finance · Fitness · Freedom</div></div></div>
+              <div class="movement"><div class="movement-num">Part IV</div><div><div class="movement-title">Transformation</div><div class="movement-chapters">Ch. 16–19 · Building Systems · Process · Victory Defined · The Torch Is Yours</div></div></div>
+            </div>
+            <div style="margin-top:32px;">
+              <a href="book.html" class="btn-primary" style="display:inline-flex;">
+                Explore the Book
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
           </div>
-          <div style="margin-top:32px;">
-            <a href="#capture" class="btn-primary">
-              Get Notified on Launch
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+          <div class="book-comps reveal">
+            <div class="label">If You've Read These…</div>
+            <div class="divider"></div>
+            <div class="comps-label">Comparable titles</div>
+            <div class="comp-list">
+              <div class="comp-item"><div class="comp-dot"></div><div class="comp-name">Atomic Habits</div><div class="comp-author">James Clear</div></div>
+              <div class="comp-item"><div class="comp-dot"></div><div class="comp-name">Can't Hurt Me</div><div class="comp-author">David Goggins</div></div>
+              <div class="comp-item"><div class="comp-dot"></div><div class="comp-name">The Compound Effect</div><div class="comp-author">Darren Hardy</div></div>
+              <div class="comp-item"><div class="comp-dot"></div><div class="comp-name">Feel-Good Productivity</div><div class="comp-author">Ali Abdaal</div></div>
+              <div class="comp-item"><div class="comp-dot"></div><div class="comp-name">Principles</div><div class="comp-author">Ray Dalio</div></div>
+            </div>
+            <div class="gap-statement">
+              <p>You've read all of them. Each one changed something. But you still feel something <strong>structural is missing.</strong><br><br>This is that book.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1533,32 +1653,19 @@
           <div class="label">The Author</div>
           <div class="divider"></div>
           <h2 class="section-title" style="color:var(--ink);">Daniel Brown MSc</h2>
-          <p class="about-bio">
-            Daniel Brown is a UK-based author, leadership professional, and founder of the F5IVE Framework — a men's personal development system built around five interdependent life pillars. He writes and creates under the name <strong>The Stoic Architect</strong>.
-          </p>
-          <p class="about-bio">
-            This book was not written from a stage. It was written from the wreckage — redundancy while newly married and a new father, followed by separation, and a five-year rebuild across all five pillars simultaneously. <strong>That process became the framework. The framework became this book.</strong>
-          </p>
+          <p class="about-bio">Daniel Brown is a UK-based author, leadership professional, and founder of the F5IVE Framework. He writes as <strong>The Stoic Architect</strong>.</p>
+          <p class="about-bio">This book was not written from a stage. It was written from the wreckage — redundancy while newly married and a new father, followed by separation, and a five-year rebuild across all five pillars simultaneously. <strong>That process became the framework. The framework became this book.</strong></p>
           <div class="credentials-grid">
-            <div class="cred-item">
-              <div class="cred-title">Education</div>
-              <div class="cred-value">MSc Psychology<br>BSc (Hons) AI — MMU</div>
-            </div>
-            <div class="cred-item">
-              <div class="cred-title">Leadership</div>
-              <div class="cred-value">13 years senior leadership<br>250–400 direct reports</div>
-            </div>
-            <div class="cred-item">
-              <div class="cred-title">Current Role</div>
-              <div class="cred-value">Operations Director<br>Hyve Solutions Europe</div>
-            </div>
-            <div class="cred-item">
-              <div class="cred-title">Business</div>
-              <div class="cred-value">7 years business ownership<br>Housing · eCommerce · Recruitment</div>
-            </div>
+            <div class="cred-item"><div class="cred-title">Education</div><div class="cred-value">MSc Psychology<br>BSc (Hons) Artificial Intelligence</div></div>
+            <div class="cred-item"><div class="cred-title">Leadership</div><div class="cred-value">13 years senior leadership,<br>entrepreneurship &amp; mentorship</div></div>
+            
+            <div class="cred-item"><div class="cred-title">Business</div><div class="cred-value">A decade of business ownership<br>Housing · Automotive · eCommerce · Recruitment</div></div>
           </div>
-          <div class="origin-quote">
-            <p>"I didn't set out to write a self-help book. I set out to understand why capable men — men who had everything going for them — kept failing in the areas that mattered most. The answer was always structural. It was always the F5IVE."</p>
+          <div style="margin-top:28px;">
+            <a href="about.html" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;">
+              Read Daniel's Full Story
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -1573,12 +1680,8 @@
         <div class="label">Free Download</div>
         <div class="divider divider--center"></div>
         <h2 class="section-title">Get the F5IVE Framework Guide</h2>
-        <p class="capture-desc">
-          A free, structured introduction to the five pillars — what they are, how they interact, and the first steps to assessing where you stand right now.
-        </p>
-        <div class="capture-offer">
-          ✦ Free PDF Guide &nbsp;·&nbsp; Instant Download
-        </div>
+        <p class="capture-desc">A free, structured introduction to the five pillars — what they are, how they interact, and the first steps to assessing where you stand right now.</p>
+        <div class="capture-offer">✦ Free PDF Guide &nbsp;·&nbsp; Instant Download</div>
         <form class="email-form" onsubmit="handleCapture(event)">
           <input type="email" placeholder="Your email address" required id="captureEmail" />
           <button type="submit">Get It Now</button>
@@ -1597,60 +1700,45 @@
           <div class="divider"></div>
           <h2 class="section-title">From The Stoic Architect</h2>
         </div>
-        <a href="blog.html" class="view-all">
-          All Articles
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <a href="blog.html" class="view-all">All Articles <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
       <div class="articles-grid reveal">
-        <div class="article-card">
+        <a href="articles/the-identity-trap.html" class="article-card">
           <div class="article-pillar">Faith · Pillar I</div>
-          <div class="article-title">Why Purpose Is the Only Thing That Survives a Crisis</div>
-          <p class="article-excerpt">When everything external is stripped away — the job, the relationship, the identity you built — what remains is either an anchor or a void. Here's how to build the anchor.</p>
+          <div class="article-title">The Identity Trap: Why Men Build Their Entire Self on Things That Can Be Taken Away</div>
+          <p class="article-excerpt">The job title. The income. The relationship. When any one disappears — what remains?</p>
           <div class="article-read">Read More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        </div>
-        <div class="article-card">
+        </a>
+        <a href="articles/what-it-means-to-be-present.html" class="article-card">
+          <div class="article-pillar">Family · Pillar II</div>
+          <div class="article-title">What It Actually Means to Be Present</div>
+          <p class="article-excerpt">Presence is not about putting your phone down. It is about genuinely investing your attention in the person in front of you.</p>
+          <div class="article-read">Read More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
+        <a href="articles/earning-vs-building.html" class="article-card">
           <div class="article-pillar">Finance · Pillar III</div>
-          <div class="article-title">The Financial Identity Problem Men Don't Talk About</div>
-          <p class="article-excerpt">Most men have a complicated relationship with money that has nothing to do with numbers. It's about worth, identity, and the story they were told before they could question it.</p>
+          <div class="article-title">The Difference Between Earning and Building</div>
+          <p class="article-excerpt">Most men in financial difficulty are not there because they lack income. They are there because they have been earning without building.</p>
           <div class="article-read">Read More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        </div>
-        <div class="article-card">
+        </a>
+        <a href="articles/men-who-never-miss.html" class="article-card">
           <div class="article-pillar">Fitness · Pillar IV</div>
-          <div class="article-title">Discipline Is Not a Personality Trait. It's a Practice.</div>
-          <p class="article-excerpt">The men who appear to have iron discipline don't have something you don't. They have systems. They have environments designed for consistency. Here's the architecture.</p>
+          <div class="article-title">Why the Men Who Never Miss Are Not More Motivated Than You</div>
+          <p class="article-excerpt">The most consistent men are not built differently. They stopped relying on motivation.</p>
           <div class="article-read">Read More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SOCIAL ────────────────────────────────────────────────────── -->
-  <section id="social">
-    <div class="container">
-      <div class="social-header reveal">
-        <div class="label">@danielmrbrown</div>
-        <div class="divider divider--center"></div>
-        <h2 class="section-title">Follow The Stoic Architect</h2>
-        <p>Discipline, identity, and the F5IVE pillars — 3 to 5 times a week.</p>
-      </div>
-      <div class="social-links reveal">
-        <a href="https://instagram.com/danielmrbrown" class="social-btn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          Instagram
         </a>
-        <a href="https://youtube.com/@danielmrbrown" class="social-btn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          YouTube
+        <a href="articles/structure-creates-freedom.html" class="article-card">
+          <div class="article-pillar">Freedom · Pillar V</div>
+          <div class="article-title">Why Structure Creates Freedom</div>
+          <p class="article-excerpt">The freest men are the most structured. Not despite their disciplines — because of them.</p>
+          <div class="article-read">Read More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
         </a>
-      </div>
-      <div class="instagram-feed-placeholder reveal">
-        <div class="feed-item">Faith</div>
-        <div class="feed-item">Family</div>
-        <div class="feed-item">Finance</div>
-        <div class="feed-item">Fitness</div>
-        <div class="feed-item">Freedom</div>
-        <div class="feed-item">F5IVE</div>
+        <a href="articles/man-who-has-everything.html" class="article-card">
+          <div class="article-pillar">The F5IVE Framework</div>
+          <div class="article-title">The Man Who Has Everything and Still Feels Something Is Missing</div>
+          <p class="article-excerpt">He earns well. He trains. He is respected at work. And yet something doesn't add up.</p>
+          <div class="article-read">Read More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
       </div>
     </div>
   </section>
@@ -1658,64 +1746,16 @@
   <!-- ── CONTACT ──────────────────────────────────────────────────── -->
   <section id="contact">
     <div class="container">
-      <div class="contact-inner">
-        <div class="contact-info reveal">
-          <div class="label">Get In Touch</div>
-          <div class="divider"></div>
-          <h2 class="section-title" style="color:var(--ink);">Speaking.<br>Media. Press.</h2>
-          <p>Daniel is available for speaking engagements, media appearances, podcast interviews, and press enquiries relating to men's personal development, leadership, and the F5IVE Framework.</p>
-          <div class="contact-types">
-            <div class="contact-type">
-              <div class="contact-type-icon">🎤</div>
-              <div>
-                <div class="contact-type-title">Speaking Enquiries</div>
-                <div class="contact-type-desc">Conferences, corporate events, men's groups, podcasts</div>
-              </div>
-            </div>
-            <div class="contact-type">
-              <div class="contact-type-icon">📰</div>
-              <div>
-                <div class="contact-type-title">Press & Media</div>
-                <div class="contact-type-desc">Interviews, features, review copies, press kit</div>
-              </div>
-            </div>
-            <div class="contact-type">
-              <div class="contact-type-icon">🤝</div>
-              <div>
-                <div class="contact-type-title">Partnerships</div>
-                <div class="contact-type-desc">F5IVE Brotherhood collaborations, community events</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="contact-form-wrap reveal">
-          <form class="contact-form" onsubmit="handleContact(event)">
-            <div class="form-group">
-              <label>Your Name</label>
-              <input type="text" placeholder="Daniel Brown" required />
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" placeholder="you@example.com" required />
-            </div>
-            <div class="form-group">
-              <label>Enquiry Type</label>
-              <select>
-                <option>Speaking Enquiry</option>
-                <option>Press / Media</option>
-                <option>Partnerships</option>
-                <option>General</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Message</label>
-              <textarea rows="5" placeholder="Tell me about the opportunity..."></textarea>
-            </div>
-            <button type="submit" class="btn-ink">
-              Send Enquiry
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-          </form>
+      <div class="contact-simple reveal">
+        <div class="label">Get In Touch</div>
+        <div class="divider divider--center"></div>
+        <h2 class="section-title" style="text-align:center;">Speaking. Media. Press.</h2>
+        <p style="text-align:center;color:var(--stone-light);max-width:480px;margin:16px auto 32px;font-size:0.95rem;line-height:1.85;">Daniel is available for speaking engagements, podcast interviews, media appearances, and press enquiries.</p>
+        <div style="text-align:center;">
+          <a href="speaking.html" class="btn-primary" style="display:inline-flex;">
+            View Speaking & Press
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -1767,6 +1807,190 @@
 
   <!-- ── SCRIPTS ───────────────────────────────────────────────────── -->
   <script data-cfasync="false" src="/main.js"></script>
+
+  <script data-cfasync="false">
+    // F5IVE ASSESSMENT
+    const QUESTIONS = [
+      // FAITH
+      { pillar: 'Faith', pillarNum: 'Pillar I', text: 'When external pressures mount — work stress, financial strain, relationship conflict — you have a clear sense of who you are that remains stable.', },
+      { pillar: 'Faith', pillarNum: 'Pillar I', text: 'You can articulate the core values that guide your decisions, and your actions under pressure reflect those values consistently.', },
+      { pillar: 'Faith', pillarNum: 'Pillar I', text: 'Your sense of purpose is not tied exclusively to your professional role — it would survive a redundancy, a career change, or the loss of a title.', },
+      // FAMILY
+      { pillar: 'Family', pillarNum: 'Pillar II', text: 'When you are physically present with the people closest to you, you are genuinely mentally present — not distracted by work, tasks, or your phone.', },
+      { pillar: 'Family', pillarNum: 'Pillar II', text: 'The people closest to you would describe you as emotionally available and genuinely interested in what is happening in their lives.', },
+      { pillar: 'Family', pillarNum: 'Pillar II', text: 'Your most important relationships are improving — not just surviving — because of the deliberate investment you make in them.', },
+      // FINANCE
+      { pillar: 'Finance', pillarNum: 'Pillar III', text: 'You have a clear picture of your net financial position — what you own, what you owe, and what you are actively building.', },
+      { pillar: 'Finance', pillarNum: 'Pillar III', text: 'Your financial systems operate automatically — savings transfer on payday, investments are not dependent on monthly willpower.', },
+      { pillar: 'Finance', pillarNum: 'Pillar III', text: 'Financial stress is not a persistent background noise in your life — money is managed structurally rather than reactively.', },
+      // FITNESS
+      { pillar: 'Fitness', pillarNum: 'Pillar IV', text: 'Your training or physical practice is consistent regardless of how you feel — it operates as a system rather than depending on motivation.', },
+      { pillar: 'Fitness', pillarNum: 'Pillar IV', text: 'When you miss a session or fall off track, you return within 48 hours — consistency is recovered quickly rather than abandoned entirely.', },
+      { pillar: 'Fitness', pillarNum: 'Pillar IV', text: 'Your physical standards are a genuine reflection of your internal standards — your body is evidence of your commitment.', },
+      // FREEDOM
+      { pillar: 'Freedom', pillarNum: 'Pillar V', text: 'Your days have a deliberate structure that protects what matters — you direct your time rather than reacting to whatever is most urgent.', },
+      { pillar: 'Freedom', pillarNum: 'Pillar V', text: 'You regularly experience a sense of alignment — that who you are, what you do, and what you value are pointing in the same direction.', },
+      { pillar: 'Freedom', pillarNum: 'Pillar V', text: 'The overall architecture of your life — across all five areas — feels intentional rather than something that is simply happening to you.', },
+    ];
+
+    const ANSWERS = [
+      { text: 'Strongly agree — this describes me consistently', score: 5 },
+      { text: 'Mostly agree — more often than not', score: 4 },
+      { text: 'Neutral — sometimes yes, sometimes no', score: 3 },
+      { text: 'Mostly disagree — this is not often true', score: 2 },
+      { text: 'Strongly disagree — this rarely or never describes me', score: 1 },
+    ];
+
+    const PILLAR_ARTICLES = {
+      Faith: [
+        { title: 'The Identity Trap', href: 'articles/the-identity-trap.html' },
+        { title: 'Why Purpose Is the Only Thing That Survives a Crisis', href: 'articles/why-purpose-survives-a-crisis.html' },
+        { title: 'The Environment Problem', href: 'articles/the-environment-problem.html' },
+      ],
+      Family: [
+        { title: 'What It Actually Means to Be Present', href: 'articles/what-it-means-to-be-present.html' },
+        { title: 'Communication: The Skill Every Man Underestimates', href: 'articles/communication-the-underestimated-skill.html' },
+      ],
+      Finance: [
+        { title: 'The Difference Between Earning and Building', href: 'articles/earning-vs-building.html' },
+        { title: 'The Financial Identity Problem Men Don\'t Talk About', href: 'articles/financial-identity-problem.html' },
+      ],
+      Fitness: [
+        { title: 'Why the Men Who Never Miss Are Not More Motivated Than You', href: 'articles/men-who-never-miss.html' },
+        { title: 'Discipline Is Not a Personality Trait. It\'s a Practice.', href: 'articles/discipline-is-a-practice.html' },
+      ],
+      Freedom: [
+        { title: 'Why Structure Creates Freedom', href: 'articles/structure-creates-freedom.html' },
+        { title: 'Vision Compounds. Motivation Fades.', href: 'articles/vision-vs-motivation.html' },
+      ],
+    };
+
+    const PILLAR_COLORS = { Faith: '#8b9eb7', Family: '#b5956a', Finance: '#7aab7a', Fitness: '#c07070', Freedom: '#c9a84c' };
+
+    let currentQ = 0;
+    let scores = { Faith: 0, Family: 0, Finance: 0, Fitness: 0, Freedom: 0 };
+    let selectedScore = null;
+
+    function renderQuestion() {
+      const q = QUESTIONS[currentQ];
+      document.getElementById('questionPillar').textContent = q.pillar + ' · ' + q.pillarNum;
+      document.getElementById('questionText').textContent = q.text;
+      const opts = document.getElementById('answerOptions');
+      opts.innerHTML = '';
+      ANSWERS.forEach(a => {
+        const btn = document.createElement('button');
+        btn.className = 'answer-btn';
+        btn.textContent = a.text;
+        btn.onclick = () => selectAnswer(a.score, btn);
+        opts.appendChild(btn);
+      });
+      const pct = (currentQ / QUESTIONS.length) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = 'Question ' + (currentQ + 1) + ' of ' + QUESTIONS.length;
+      selectedScore = null;
+    }
+
+    function selectAnswer(score, btn) {
+      document.querySelectorAll('.answer-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedScore = score;
+      setTimeout(() => {
+        const pillar = QUESTIONS[currentQ].pillar;
+        scores[pillar] += score;
+        currentQ++;
+        if (currentQ < QUESTIONS.length) {
+          renderQuestion();
+        } else {
+          showGate();
+        }
+      }, 350);
+    }
+
+    function showGate() {
+      document.getElementById('assessmentQuestions').style.display = 'none';
+      document.getElementById('assessmentGate').style.display = 'block';
+      const pillars = Object.keys(scores);
+      const preview = document.getElementById('gatePreview');
+      let html = '<div class="gate-preview-title">Your F5IVE Scores — Preview</div>';
+      pillars.forEach(p => {
+        const pct = Math.round((scores[p] / 15) * 100);
+        html += '<div class="gate-bar-wrap"><div class="gate-bar-label"><span>' + p + '</span><span>???</span></div><div class="gate-bar"><div class="gate-bar-fill" style="width:' + pct + '%"></div></div></div>';
+      });
+      preview.innerHTML = html;
+    }
+
+    async function handleAssessmentSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('assessmentEmail').value;
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Sending...'; btn.disabled = true;
+      try {
+        await fetch('https://app.convertkit.com/forms/9232780/subscriptions', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email_address: email })
+        });
+      } catch(err) {}
+      document.getElementById('assessmentGate').style.display = 'none';
+      document.getElementById('assessmentResults').style.display = 'block';
+      showResults();
+    }
+
+    function showResults() {
+      const pillars = Object.keys(scores);
+      const maxScore = 15;
+      let weakest = pillars[0], strongest = pillars[0];
+      pillars.forEach(p => {
+        if (scores[p] < scores[weakest]) weakest = p;
+        if (scores[p] > scores[strongest]) strongest = p;
+      });
+
+      document.getElementById('resultsTitle').textContent = 'Your F5IVE Assessment Results';
+      document.getElementById('resultsSubtitle').textContent = 'Your strongest pillar is ' + strongest + '. Your biggest opportunity is ' + weakest + '.';
+
+      let barsHtml = '';
+      pillars.forEach(p => {
+        const pct = Math.round((scores[p] / maxScore) * 100);
+        const color = PILLAR_COLORS[p];
+        barsHtml += '<div class="result-bar-item"><div class="result-bar-header"><span class="result-bar-name">' + p + '</span><span class="result-bar-score">' + scores[p] + '/15</span></div><div class="result-bar-track"><div class="result-bar-fill" style="width:' + pct + '%;background:' + color + ';"></div></div></div>';
+      });
+      document.getElementById('resultsBars').innerHTML = barsHtml;
+
+      const insights = {
+        Faith: 'Your Foundation pillar needs attention. This is the most important one to address — without a stable sense of identity and purpose, every other pillar is building on sand. Start here.',
+        Family: 'Your Relationships pillar is your biggest gap. The quality of your most important connections reflects — and affects — everything else. Presence, communication, and genuine investment are the starting points.',
+        Finance: 'Your Financial Sovereignty is the area requiring most focus. Building financial structure removes a distorting anxiety that affects every other pillar. The goal is not wealth — it is the removal of financial stress as a constant background noise.',
+        Fitness: 'Your Physical Discipline pillar needs rebuilding. Consistency here is not about appearance — it is about proving to yourself, daily, that your standards are real. The system you build here transfers everywhere.',
+        Freedom: 'Your Freedom pillar — the integration of all five — is your weakest point. This often means the other pillars are misaligned rather than individually weak. The work is architectural: how they all connect, not just how each one performs in isolation.',
+      };
+
+      document.getElementById('resultsInsight').innerHTML = '<div class="results-insight-label">Your Primary Focus — ' + weakest + '</div><p>' + insights[weakest] + '</p>';
+
+      const articles = PILLAR_ARTICLES[weakest];
+      let artHtml = '<div class="results-articles-label">Recommended Reading for ' + weakest + '</div>';
+      articles.forEach(a => {
+        artHtml += '<a href="' + a.href + '" class="result-article-link">→ ' + a.title + '</a>';
+      });
+      document.getElementById('resultsArticles').innerHTML = artHtml;
+    }
+
+    // Initialise
+    renderQuestion();
+
+    // Scroll reveal
+    window.addEventListener('load', function() {
+      document.documentElement.classList.add('js-loaded');
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+      } else {
+        reveals.forEach(el => el.classList.add('visible'));
+      }
+    });
+  </script>
+
   <script src="nav.js"></script>
 </body>
 </html>
