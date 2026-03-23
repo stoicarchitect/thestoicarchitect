@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vision to Victory — 3D Book</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0d0e10; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; font-family:'Barlow Condensed','Arial Narrow',sans-serif; overflow:hidden; }
+  #glCanvas { cursor:grab; display:block; touch-action:none; }
+  #glCanvas:active { cursor:grabbing; }
+  .hint { margin-top:16px; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; color:#6b7280; }
+  .cta { margin-top:20px; display:inline-flex; align-items:center; gap:10px; font-size:0.8rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; padding:14px 28px; background:#c9a84c; color:#0d0e10; text-decoration:none; transition:background 0.2s; }
+  .cta:hover { background:#e2c579; }
+</style>
+</head>
+<body>
+<canvas id="glCanvas"></canvas>
+<div class="hint">Drag to rotate &nbsp;&middot;&nbsp; Scroll to zoom</div>
+<a href="book.html" class="cta">Explore the Book &rarr;</a>
+
+<script>
+const canvas = document.getElementById('glCanvas');
+function resize() {
+  const maxW = Math.min(window.innerWidth - 40, 520);
+  canvas.width = maxW;
+  canvas.height = maxW;
+}
+resize();
+
+const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+if (!gl) {
+  document.body.innerHTML = '<p style="color:#9ca3af;padding:40px;text-align:center;">WebGL not available</p>';
+  throw new Error('no webgl');
+}
+
+const VS = `
+attribute vec3 aPos;
+attribute vec2 aUV;
+attribute float aFace;
+uniform mat4 uMVP;
+varying vec2 vUV;
+varying float vFace;
+varying float vLight;
+void main() {
+  gl_Position = uMVP * vec4(aPos, 1.0);
+  vUV = aUV;
+  vFace = aFace;
+  vLight = aFace < 0.5 ? 1.0 : aFace < 1.5 ? 0.6 : aFace < 2.5 ? 0.5 : 0.65;
+}`;
+
+const FS = `
+precision mediump float;
+varying vec2 vUV;
+varying float vFace;
+varying float vLight;
+uniform sampler2D uTex0;
+uniform sampler2D uTex1;
+uniform sampler2D uTex2;
+uniform sampler2D uTex3;
+void main() {
+  vec4 col;
+  if (vFace < 0.5)      col = texture2D(uTex0, vUV);
+  else if (vFace < 1.5) col = texture2D(uTex1, vUV);
+  else if (vFace < 2.5) col = texture2D(uTex2, vUV);
+  else                  col = texture2D(uTex3, vUV);
+  gl_FragColor = vec4(col.rgb * vLight, 1.0);
+}`;
+
+function shader(type, src) {
+  const s = gl.createShader(type);
+  gl.shaderSource(s, src);
+  gl.compileShader(s);
+  return s;
+}
+const prog = gl.createProgram();
+gl.attachShader(prog, shader(gl.VERTEX_SHADER, VS));
+gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, FS));
+gl.linkProgram(prog);
+gl.useProgram(prog);
+
+const aPos  = gl.getAttribLocation(prog, 'aPos');
+const aUV   = gl.getAttribLocation(prog, 'aUV');
+const aFace = gl.getAttribLocation(prog, 'aFace');
+const uMVP  = gl.getUniformLocation(prog, 'uMVP');
+gl.uniform1i(gl.getUniformLocation(prog, 'uTex0'), 0);
+gl.uniform1i(gl.getUniformLocation(prog, 'uTex1'), 1);
+gl.uniform1i(gl.getUniformLocation(prog, 'uTex2'), 2);
+gl.uniform1i(gl.getUniformLocation(prog, 'uTex3'), 3);
+
+// Book dimensions
+const W = 0.62, H = 0.92, D = 0.09;
+
+function quad(p1,p2,p3,p4, u1,u2,u3,u4, f) {
+  return [
+    ...p1,...u1,f, ...p2,...u2,f, ...p3,...u3,f,
+    ...p1,...u1,f, ...p3,...u3,f, ...p4,...u4,f,
+  ];
+}
+
+const verts = new Float32Array([
+  // Front cover
+  ...quad([-W,-H,D],[W,-H,D],[W,H,D],[-W,H,D], [0,1],[1,1],[1,0],[0,0], 0),
+  // Back cover
+  ...quad([W,-H,-D],[-W,-H,-D],[-W,H,-D],[W,H,-D], [0,1],[1,1],[1,0],[0,0], 1),
+  // Spine (left)
+  ...quad([-W,-H,-D],[-W,-H,D],[-W,H,D],[-W,H,-D], [0,1],[1,1],[1,0],[0,0], 2),
+  // Right edge
+  ...quad([W,-H,D],[W,-H,-D],[W,H,-D],[W,H,D], [0,1],[1,1],[1,0],[0,0], 3),
+  // Top edge
+  ...quad([-W,-H,-D],[W,-H,-D],[W,-H,D],[-W,-H,D], [0,0],[1,0],[1,1],[0,1], 3),
+  // Bottom edge
+  ...quad([-W,H,D],[W,H,D],[W,H,-D],[-W,H,-D], [0,0],[1,0],[1,1],[0,1], 3),
+]);
+
+const STRIDE = 6;
+const buf = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
+
+function bindAttribs() {
+  const B = 4;
+  gl.enableVertexAttribArray(aPos);
+  gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, STRIDE*B, 0);
+  gl.enableVertexAttribArray(aUV);
+  gl.vertexAttribPointer(aUV, 2, gl.FLOAT, false, STRIDE*B, 3*B);
+  gl.enableVertexAttribArray(aFace);
+  gl.vertexAttribPointer(aFace, 1, gl.FLOAT, false, STRIDE*B, 5*B);
+}
+bindAttribs();
+
+function mkTex(unit, src, fallback) {
+  const t = gl.createTexture();
+  gl.activeTexture(gl.TEXTURE0 + unit);
+  gl.bindTexture(gl.TEXTURE_2D, t);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(fallback));
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const img = new Image();
+  img.onload = () => {
+    gl.activeTexture(gl.TEXTURE0 + unit);
+    gl.bindTexture(gl.TEXTURE_2D, t);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    gl.generateMipmap(gl.TEXTURE_2D);
+  };
+  img.src = src;
+}
+
+mkTex(0, 'book-cover.png', [28,42,36,255]);
+mkTex(1, 'book-back.png',  [28,42,36,255]);
+mkTex(2, 'book-spine.png', [20,32,28,255]);
+mkTex(3, 'book-pages.png', [240,233,218,255]);
+
+// Matrix math
+function m4() { return new Float32Array(16); }
+function ident() { const m=m4(); m[0]=m[5]=m[10]=m[15]=1; return m; }
+function persp(fov,asp,n,f) {
+  const m=m4(), t=1/Math.tan(fov/2);
+  m[0]=t/asp; m[5]=t; m[10]=(f+n)/(n-f); m[11]=-1; m[14]=2*f*n/(n-f); return m;
+}
+function mul(a,b) {
+  const m=m4();
+  for(let i=0;i<4;i++) for(let j=0;j<4;j++) { m[j*4+i]=0; for(let k=0;k<4;k++) m[j*4+i]+=a[k*4+i]*b[j*4+k]; }
+  return m;
+}
+function ry(a) { const m=ident(),c=Math.cos(a),s=Math.sin(a); m[0]=c;m[2]=s;m[8]=-s;m[10]=c; return m; }
+function rx(a) { const m=ident(),c=Math.cos(a),s=Math.sin(a); m[5]=c;m[6]=-s;m[9]=s;m[10]=c; return m; }
+function tr(x,y,z) { const m=ident(); m[12]=x;m[13]=y;m[14]=z; return m; }
+
+// Controls
+let ay=-0.4, ax=0.06, ty=ay, tx=ax;
+let drag=false, lx=0, ly=0, auto=true, dir=1, zoom=1;
+
+canvas.addEventListener('mousedown', e=>{drag=true;auto=false;lx=e.clientX;ly=e.clientY;});
+window.addEventListener('mousemove', e=>{
+  if(!drag)return;
+  ty+=(e.clientX-lx)*0.012; tx+=(e.clientY-ly)*0.008;
+  tx=Math.max(-0.45,Math.min(0.45,tx)); lx=e.clientX;ly=e.clientY;
+});
+window.addEventListener('mouseup',()=>{drag=false;setTimeout(()=>auto=true,2500);});
+
+canvas.addEventListener('touchstart',e=>{drag=true;auto=false;lx=e.touches[0].clientX;ly=e.touches[0].clientY;e.preventDefault();},{passive:false});
+canvas.addEventListener('touchmove',e=>{
+  if(!drag)return;
+  ty+=(e.touches[0].clientX-lx)*0.012; tx+=(e.touches[0].clientY-ly)*0.008;
+  tx=Math.max(-0.45,Math.min(0.45,tx)); lx=e.touches[0].clientX;ly=e.touches[0].clientY;e.preventDefault();
+},{passive:false});
+canvas.addEventListener('touchend',()=>{drag=false;setTimeout(()=>auto=true,2500);});
+canvas.addEventListener('wheel',e=>{zoom-=e.deltaY*0.001;zoom=Math.max(0.5,Math.min(1.6,zoom));e.preventDefault();},{passive:false});
+
+// Render
+gl.enable(gl.DEPTH_TEST);
+gl.enable(gl.CULL_FACE);
+gl.cullFace(gl.BACK);
+gl.clearColor(0.051,0.055,0.063,1);
+
+function frame() {
+  if(auto){ty+=0.005*dir;if(ty>0.72)dir=-1;if(ty<-0.72)dir=1;}
+  ay+=(ty-ay)*0.08; ax+=(tx-ax)*0.08;
+  gl.viewport(0,0,canvas.width,canvas.height);
+  gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+  const mvp=mul(persp(0.7,canvas.width/canvas.height,0.1,100),mul(tr(0,0,-3.2/zoom),mul(ry(ay),rx(ax))));
+  gl.uniformMatrix4fv(uMVP,false,mvp);
+  bindAttribs();
+  gl.drawArrays(gl.TRIANGLES,0,verts.length/STRIDE);
+  requestAnimationFrame(frame);
+}
+frame();
+</script>
+</body>
+</html>
