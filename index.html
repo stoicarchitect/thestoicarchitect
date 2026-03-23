@@ -1567,6 +1567,7 @@
         </div>
         <div id="assessmentResults" style="display:none;">
           <div class="results-card">
+            <div id="resultsConfirm" style="display:none;background:rgba(46,125,50,0.15);border:1px solid rgba(46,125,50,0.4);color:#81c784;padding:14px 20px;margin-bottom:24px;font-size:0.85rem;font-family:var(--condensed);letter-spacing:0.08em;"></div>
             <div class="results-header">
               <div class="label">Your F5IVE Assessment</div>
               <div class="divider divider--center"></div>
@@ -1924,34 +1925,66 @@
       const email = document.getElementById('assessmentEmail').value;
       const btn = e.target.querySelector('button');
       btn.textContent = 'Sending...'; btn.disabled = true;
-      try {
-        await fetch('https://app.convertkit.com/forms/9232780/subscriptions', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email_address: email })
-        });
-      } catch(err) {}
-      document.getElementById('assessmentGate').style.display = 'none';
-      document.getElementById('assessmentResults').style.display = 'block';
-      showResults();
-    }
 
-    function showResults() {
+      // Determine weakest pillar for tagging
       const pillars = Object.keys(scores);
-      const maxScore = 15;
       let weakest = pillars[0], strongest = pillars[0];
       pillars.forEach(p => {
         if (scores[p] < scores[weakest]) weakest = p;
         if (scores[p] > scores[strongest]) strongest = p;
       });
 
+      // Submit to ConvertKit with pillar tag
+      try {
+        await fetch('https://app.convertkit.com/forms/9232780/subscriptions', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email_address: email,
+            tags: ['f5ive-assessment', 'focus-' + weakest.toLowerCase()],
+            fields: {
+              weakest_pillar: weakest,
+              strongest_pillar: strongest,
+              faith_score: scores.Faith + '/15',
+              family_score: scores.Family + '/15',
+              finance_score: scores.Finance + '/15',
+              fitness_score: scores.Fitness + '/15',
+              freedom_score: scores.Freedom + '/15',
+            }
+          })
+        });
+      } catch(err) {}
+
+      // Update gate message before showing results
+      document.getElementById('assessmentGate').style.display = 'none';
+      document.getElementById('assessmentResults').style.display = 'block';
+      showResults(weakest, strongest);
+    }
+
+    function showResults(weakest, strongest) {
+      const pillars = Object.keys(scores);
+      const maxScore = 15;
+
       document.getElementById('resultsTitle').textContent = 'Your F5IVE Assessment Results';
-      document.getElementById('resultsSubtitle').textContent = 'Your strongest pillar is ' + strongest + '. Your biggest opportunity is ' + weakest + '.';
+      document.getElementById('resultsSubtitle').innerHTML =
+        'Strongest pillar: <strong style="color:var(--gold)">' + strongest + '</strong> &nbsp;·&nbsp; Primary focus: <strong style="color:#c07070">' + weakest + '</strong>';
+
+      // Confirmation message
+      const confirmEl = document.getElementById('resultsConfirm');
+      if (confirmEl) {
+        confirmEl.innerHTML = '✓ We\'ve sent your F5IVE guide — with a focus on <strong>' + weakest + '</strong> — to your inbox.';
+        confirmEl.style.display = 'block';
+      }
 
       let barsHtml = '';
       pillars.forEach(p => {
         const pct = Math.round((scores[p] / maxScore) * 100);
-        const color = PILLAR_COLORS[p];
-        barsHtml += '<div class="result-bar-item"><div class="result-bar-header"><span class="result-bar-name">' + p + '</span><span class="result-bar-score">' + scores[p] + '/15</span></div><div class="result-bar-track"><div class="result-bar-fill" style="width:' + pct + '%;background:' + color + ';"></div></div></div>';
+        let barColor = PILLAR_COLORS[p];
+        let badge = '';
+        if (p === strongest) { barColor = '#c9a84c'; badge = ' <span style="font-size:0.6rem;background:rgba(201,168,76,0.15);color:var(--gold);padding:2px 8px;letter-spacing:0.1em;text-transform:uppercase;font-family:var(--condensed);">Strongest</span>'; }
+        if (p === weakest) { barColor = '#c07070'; badge = ' <span style="font-size:0.6rem;background:rgba(192,112,112,0.15);color:#c07070;padding:2px 8px;letter-spacing:0.1em;text-transform:uppercase;font-family:var(--condensed);">Focus Here</span>'; }
+        const score = scores[p];
+        const pctDisplay = Math.round((score / maxScore) * 100);
+        barsHtml += '<div class="result-bar-item"><div class="result-bar-header"><span class="result-bar-name">' + p + badge + '</span><span class="result-bar-score" style="color:' + barColor + '">' + score + '/15 &nbsp;(' + pctDisplay + '%)</span></div><div class="result-bar-track"><div class="result-bar-fill" style="width:' + pctDisplay + '%;background:' + barColor + ';"></div></div></div>';
       });
       document.getElementById('resultsBars').innerHTML = barsHtml;
 
