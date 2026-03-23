@@ -1065,61 +1065,61 @@
           <div class="label">Where Do You Stand?</div>
           <div class="divider divider--center"></div>
           <h2 class="section-title">The F5IVE Self-Assessment</h2>
-          <p>Most men intuitively know which pillars need work. The harder part is being honest about it. The chart below represents a typical pattern — strong in some areas, weak in others. What does yours look like?</p>
+          <p>15 questions. 5 minutes. A clear picture of where your F5IVE stands right now — and exactly where to focus first.</p>
         </div>
-        <div class="assessment-grid reveal">
-          <div class="assessment-pillar">
-            <span class="assessment-pillar-icon">🕊</span>
-            <div class="assessment-pillar-name">Faith</div>
-            <div class="assessment-bar-wrap">
-              <div class="assessment-bar" data-pillar="1"></div>
-              <div class="assessment-bar-label">Typical: 60%</div>
-            </div>
+
+        <div id="fw-assessmentQuestions">
+          <div class="assessment-progress">
+            <div class="progress-bar" style="height:3px;background:rgba(255,255,255,0.08);margin-bottom:10px;"><div class="progress-fill" id="fw-progressFill" style="width:0%;height:100%;background:var(--gold);transition:width 0.4s ease;"></div></div>
+            <div style="font-family:var(--condensed);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);" id="fw-progressLabel">Question 1 of 15</div>
           </div>
-          <div class="assessment-pillar">
-            <span class="assessment-pillar-icon">🏛</span>
-            <div class="assessment-pillar-name">Family</div>
-            <div class="assessment-bar-wrap">
-              <div class="assessment-bar" data-pillar="2"></div>
-              <div class="assessment-bar-label">Typical: 40%</div>
-            </div>
+          <div style="background:var(--ink-soft);padding:40px;margin-top:24px;" id="fw-questionCard">
+            <div style="font-family:var(--condensed);font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;" id="fw-questionPillar"></div>
+            <div style="font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--cream);line-height:1.4;margin-bottom:32px;" id="fw-questionText"></div>
+            <div style="display:flex;flex-direction:column;gap:10px;" id="fw-answerOptions"></div>
           </div>
-          <div class="assessment-pillar">
-            <span class="assessment-pillar-icon">◈</span>
-            <div class="assessment-pillar-name">Finance</div>
-            <div class="assessment-bar-wrap">
-              <div class="assessment-bar" data-pillar="3"></div>
-              <div class="assessment-bar-label">Typical: 75%</div>
-            </div>
-          </div>
-          <div class="assessment-pillar">
-            <span class="assessment-pillar-icon">⚡</span>
-            <div class="assessment-pillar-name">Fitness</div>
-            <div class="assessment-bar-wrap">
-              <div class="assessment-bar" data-pillar="4"></div>
-              <div class="assessment-bar-label">Typical: 85%</div>
-            </div>
-          </div>
-          <div class="assessment-pillar">
-            <span class="assessment-pillar-icon">∞</span>
-            <div class="assessment-pillar-name">Freedom</div>
-            <div class="assessment-bar-wrap">
-              <div class="assessment-bar" data-pillar="5"></div>
-              <div class="assessment-bar-label">Typical: 30%</div>
+        </div>
+
+        <div id="fw-assessmentGate" style="display:none;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:24px;">
+            <div style="background:var(--ink);padding:40px 32px;" id="fw-gatePreview"></div>
+            <div style="background:var(--ink-soft);padding:40px 32px;">
+              <div class="label">Unlock Your Full Results</div>
+              <div class="divider"></div>
+              <h3 style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--cream);margin-bottom:12px;">Your F5IVE profile is ready.</h3>
+              <p style="font-size:0.88rem;color:var(--stone-light);line-height:1.75;margin-bottom:24px;">Enter your email to receive your full personalised breakdown — your scores, your biggest gap, and exactly what to focus on first.</p>
+              <form onsubmit="handleFwAssessmentSubmit(event)">
+                <input type="email" placeholder="Your email address" required id="fw-assessmentEmail" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-bottom:2px solid rgba(201,168,76,0.3);color:var(--cream);font-family:var(--sans);font-size:0.9rem;outline:none;margin-bottom:12px;" />
+                <button type="submit" class="btn-primary" style="width:100%;justify-content:center;display:flex;border:none;cursor:pointer;">
+                  Send My F5IVE Results
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:8px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </form>
+              <p style="font-size:0.75rem;color:var(--stone);margin-top:12px;text-align:center;">No spam. Unsubscribe anytime.</p>
             </div>
           </div>
         </div>
-        <p class="assessment-note reveal">"The weakest pillar is always the one you've been avoiding. That's where the work starts."</p>
-        <div class="assessment-cta reveal">
-          <p>Get the free F5IVE Framework guide — a structured introduction to all five pillars, how to assess where you stand right now, and the first steps toward genuine alignment.</p>
-          <div class="assessment-cta-btns">
-            <a href="#fw-capture" class="btn-primary">
-              Get the Free Guide
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="book.html" class="btn-outline">Read the Book</a>
+
+        <div id="fw-assessmentResults" style="display:none;margin-top:24px;">
+          <div style="background:var(--ink);padding:48px;">
+            <div style="text-align:center;margin-bottom:40px;">
+              <div class="label">Your F5IVE Assessment</div>
+              <div class="divider divider--center"></div>
+              <h3 style="font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--cream);margin-bottom:10px;" id="fw-resultsTitle"></h3>
+              <p style="font-size:0.9rem;color:var(--stone-light);" id="fw-resultsSubtitle"></p>
+            </div>
+            <div id="fw-resultsBars" style="margin-bottom:36px;"></div>
+            <div id="fw-resultsInsight" style="background:var(--ink-soft);padding:28px 32px;margin-bottom:32px;border-left:3px solid var(--gold);"></div>
+            <div id="fw-resultsArticles" style="margin-bottom:36px;"></div>
+            <div style="text-align:center;">
+              <a href="book.html" class="btn-primary" style="display:inline-flex;">
+                See How the Book Addresses This
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:8px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -1240,6 +1240,132 @@
         btn.disabled = false;
       }
     }
+
+    // ── FRAMEWORK PAGE ASSESSMENT ──
+    const FW_QUESTIONS = [
+      { pillar: 'Faith', pillarNum: 'Pillar I', text: 'When external pressures mount — work stress, financial strain, relationship conflict — you have a clear sense of who you are that remains stable.' },
+      { pillar: 'Faith', pillarNum: 'Pillar I', text: 'You can articulate the core values that guide your decisions, and your actions under pressure reflect those values consistently.' },
+      { pillar: 'Faith', pillarNum: 'Pillar I', text: 'Your sense of purpose is not tied exclusively to your professional role — it would survive a redundancy, a career change, or the loss of a title.' },
+      { pillar: 'Family', pillarNum: 'Pillar II', text: 'When you are physically present with the people closest to you, you are genuinely mentally present — not distracted by work, tasks, or your phone.' },
+      { pillar: 'Family', pillarNum: 'Pillar II', text: 'The people closest to you would describe you as emotionally available and genuinely interested in what is happening in their lives.' },
+      { pillar: 'Family', pillarNum: 'Pillar II', text: 'Your most important relationships are improving — not just surviving — because of the deliberate investment you make in them.' },
+      { pillar: 'Finance', pillarNum: 'Pillar III', text: 'You have a clear picture of your net financial position — what you own, what you owe, and what you are actively building.' },
+      { pillar: 'Finance', pillarNum: 'Pillar III', text: 'Your financial systems operate automatically — savings transfer on payday, investments are not dependent on monthly willpower.' },
+      { pillar: 'Finance', pillarNum: 'Pillar III', text: 'Financial stress is not a persistent background noise in your life — money is managed structurally rather than reactively.' },
+      { pillar: 'Fitness', pillarNum: 'Pillar IV', text: 'Your training or physical practice is consistent regardless of how you feel — it operates as a system rather than depending on motivation.' },
+      { pillar: 'Fitness', pillarNum: 'Pillar IV', text: 'When you miss a session or fall off track, you return within 48 hours — consistency is recovered quickly rather than abandoned entirely.' },
+      { pillar: 'Fitness', pillarNum: 'Pillar IV', text: 'Your physical standards are a genuine reflection of your internal standards — your body is evidence of your commitment.' },
+      { pillar: 'Freedom', pillarNum: 'Pillar V', text: 'Your days have a deliberate structure that protects what matters — you direct your time rather than reacting to whatever is most urgent.' },
+      { pillar: 'Freedom', pillarNum: 'Pillar V', text: 'You regularly experience a sense of alignment — that who you are, what you do, and what you value are pointing in the same direction.' },
+      { pillar: 'Freedom', pillarNum: 'Pillar V', text: 'The overall architecture of your life — across all five areas — feels intentional rather than something that is simply happening to you.' },
+    ];
+    const FW_ANSWERS = [
+      { text: 'Strongly agree — this describes me consistently', score: 5 },
+      { text: 'Mostly agree — more often than not', score: 4 },
+      { text: 'Neutral — sometimes yes, sometimes no', score: 3 },
+      { text: 'Mostly disagree — this is not often true', score: 2 },
+      { text: 'Strongly disagree — this rarely or never describes me', score: 1 },
+    ];
+    const FW_PILLAR_COLORS = { Faith: '#8b9eb7', Family: '#b5956a', Finance: '#7aab7a', Fitness: '#c07070', Freedom: '#c9a84c' };
+    const FW_PILLAR_ARTICLES = {
+      Faith: [{ title: 'The Identity Trap', href: 'articles/the-identity-trap.html' }, { title: 'Why Purpose Survives a Crisis', href: 'articles/why-purpose-survives-a-crisis.html' }],
+      Family: [{ title: 'What It Actually Means to Be Present', href: 'articles/what-it-means-to-be-present.html' }, { title: 'Communication: The Underestimated Skill', href: 'articles/communication-the-underestimated-skill.html' }],
+      Finance: [{ title: 'The Difference Between Earning and Building', href: 'articles/earning-vs-building.html' }, { title: 'The Financial Identity Problem', href: 'articles/financial-identity-problem.html' }],
+      Fitness: [{ title: 'Why the Men Who Never Miss Are Not More Motivated', href: 'articles/men-who-never-miss.html' }, { title: "Discipline Is Not a Personality Trait. It\'s a Practice.", href: 'articles/discipline-is-a-practice.html' }],
+      Freedom: [{ title: 'Why Structure Creates Freedom', href: 'articles/structure-creates-freedom.html' }, { title: 'Vision Compounds. Motivation Fades.', href: 'articles/vision-vs-motivation.html' }],
+    };
+    const FW_INSIGHTS = {
+      Faith: 'Your Foundation pillar needs attention. Without a stable sense of identity and purpose, every other pillar is building on sand.',
+      Family: 'Your Relationships pillar is your biggest gap. Presence, communication, and genuine investment are the starting points.',
+      Finance: 'Your Financial Sovereignty needs focus. The goal is not wealth — it is the removal of financial stress as a distorting force.',
+      Fitness: 'Your Physical Discipline pillar needs rebuilding. Consistency here proves your internal standards are real.',
+      Freedom: 'Your Freedom pillar — the integration of all five — is your weakest point. The work is architectural.',
+    };
+    let fwCurrentQ = 0;
+    let fwScores = { Faith: 0, Family: 0, Finance: 0, Fitness: 0, Freedom: 0 };
+
+    function fwRenderQuestion() {
+      const q = FW_QUESTIONS[fwCurrentQ];
+      document.getElementById('fw-questionPillar').textContent = q.pillar + ' · ' + q.pillarNum;
+      document.getElementById('fw-questionText').textContent = q.text;
+      const opts = document.getElementById('fw-answerOptions');
+      opts.innerHTML = '';
+      FW_ANSWERS.forEach(a => {
+        const btn = document.createElement('button');
+        btn.style.cssText = 'padding:14px 20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#9ca3af;font-family:var(--sans);font-size:0.88rem;text-align:left;cursor:pointer;transition:all 0.2s;width:100%;';
+        btn.textContent = a.text;
+        btn.onmouseover = () => { btn.style.background = 'rgba(201,168,76,0.08)'; btn.style.borderColor = 'rgba(201,168,76,0.3)'; btn.style.color = '#f5f0e8'; };
+        btn.onmouseout = () => { if (!btn.classList.contains('sel')) { btn.style.background = 'rgba(255,255,255,0.04)'; btn.style.borderColor = 'rgba(255,255,255,0.08)'; btn.style.color = '#9ca3af'; } };
+        btn.onclick = () => fwSelectAnswer(a.score, btn);
+        opts.appendChild(btn);
+      });
+      const pct = (fwCurrentQ / FW_QUESTIONS.length) * 100;
+      document.getElementById('fw-progressFill').style.width = pct + '%';
+      document.getElementById('fw-progressLabel').textContent = 'Question ' + (fwCurrentQ + 1) + ' of ' + FW_QUESTIONS.length;
+    }
+
+    function fwSelectAnswer(score, btn) {
+      document.querySelectorAll('#fw-answerOptions button').forEach(b => { b.classList.remove('sel'); b.style.background = 'rgba(255,255,255,0.04)'; b.style.borderColor = 'rgba(255,255,255,0.08)'; });
+      btn.classList.add('sel'); btn.style.background = 'rgba(201,168,76,0.15)'; btn.style.borderColor = '#c9a84c';
+      setTimeout(() => {
+        fwScores[FW_QUESTIONS[fwCurrentQ].pillar] += score;
+        fwCurrentQ++;
+        if (fwCurrentQ < FW_QUESTIONS.length) { fwRenderQuestion(); } else { fwShowGate(); }
+      }, 350);
+    }
+
+    function fwShowGate() {
+      document.getElementById('fw-assessmentQuestions').style.display = 'none';
+      document.getElementById('fw-assessmentGate').style.display = 'block';
+      const pillars = Object.keys(fwScores);
+      let html = '<div style="font-family:var(--condensed);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Your F5IVE Scores — Preview</div>';
+      pillars.forEach(p => {
+        const pct = Math.round((fwScores[p] / 15) * 100);
+        html += '<div style="margin-bottom:14px;"><div style="font-family:var(--condensed);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:6px;display:flex;justify-content:space-between;"><span>' + p + '</span><span>???</span></div><div style="height:6px;background:rgba(255,255,255,0.08);"><div style="width:' + pct + '%;height:100%;background:var(--gold);filter:blur(1px);opacity:0.5;"></div></div></div>';
+      });
+      document.getElementById('fw-gatePreview').innerHTML = html;
+    }
+
+    async function handleFwAssessmentSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('fw-assessmentEmail').value;
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Sending...'; btn.disabled = true;
+      const pillars = Object.keys(fwScores);
+      let weakest = pillars[0], strongest = pillars[0];
+      pillars.forEach(p => { if (fwScores[p] < fwScores[weakest]) weakest = p; if (fwScores[p] > fwScores[strongest]) strongest = p; });
+      try {
+        await fetch('https://app.convertkit.com/forms/9232780/subscriptions', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email_address: email, tags: ['f5ive-assessment', 'focus-' + weakest.toLowerCase()], fields: { weakest_pillar: weakest, strongest_pillar: strongest } })
+        });
+      } catch(err) {}
+      document.getElementById('fw-assessmentGate').style.display = 'none';
+      document.getElementById('fw-assessmentResults').style.display = 'block';
+      fwShowResults(weakest, strongest);
+    }
+
+    function fwShowResults(weakest, strongest) {
+      document.getElementById('fw-resultsTitle').textContent = 'Your F5IVE Assessment Results';
+      document.getElementById('fw-resultsSubtitle').innerHTML = 'Strongest: <strong style="color:var(--gold)">' + strongest + '</strong> &nbsp;·&nbsp; Primary focus: <strong style="color:#c07070">' + weakest + '</strong>';
+      let barsHtml = '';
+      Object.keys(fwScores).forEach(p => {
+        const pct = Math.round((fwScores[p] / 15) * 100);
+        let color = FW_PILLAR_COLORS[p];
+        let badge = '';
+        if (p === strongest) { color = '#c9a84c'; badge = ' <span style="font-size:0.6rem;background:rgba(201,168,76,0.15);color:var(--gold);padding:2px 8px;font-family:var(--condensed);letter-spacing:0.1em;text-transform:uppercase;">Strongest</span>'; }
+        if (p === weakest) { color = '#c07070'; badge = ' <span style="font-size:0.6rem;background:rgba(192,112,112,0.15);color:#c07070;padding:2px 8px;font-family:var(--condensed);letter-spacing:0.1em;text-transform:uppercase;">Focus Here</span>'; }
+        barsHtml += '<div style="margin-bottom:18px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-family:var(--condensed);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream);">' + p + badge + '</span><span style="font-family:var(--condensed);font-size:0.72rem;color:' + color + ';">' + fwScores[p] + '/15 (' + pct + '%)</span></div><div style="height:8px;background:rgba(255,255,255,0.06);"><div style="width:' + pct + '%;height:100%;background:' + color + ';transition:width 1s ease;"></div></div></div>';
+      });
+      document.getElementById('fw-resultsBars').innerHTML = barsHtml;
+      document.getElementById('fw-resultsInsight').innerHTML = '<div style="font-family:var(--condensed);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Your Primary Focus — ' + weakest + '</div><p style="font-size:0.92rem;color:var(--stone-light);line-height:1.8;">' + FW_INSIGHTS[weakest] + '</p>';
+      let artHtml = '<div style="font-family:var(--condensed);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Recommended Reading for ' + weakest + '</div>';
+      FW_PILLAR_ARTICLES[weakest].forEach(a => { artHtml += '<a href="' + a.href + '" style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:#9ca3af;font-size:0.88rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#9ca3af'">→ ' + a.title + '</a>'; });
+      document.getElementById('fw-resultsArticles').innerHTML = artHtml;
+    }
+
+    fwRenderQuestion();
+
   </script>
   <script src="nav.js"></script>
 </body>

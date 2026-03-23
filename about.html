@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Daniel Brown MSc — The Stoic Architect</title>
-  <meta name="description" content="Daniel Brown MSc is the author of Vision to Victory and founder of the F5IVE Framework. Operations Director, leadership professional, and creator of The Stoic Architect." />
+  <meta name="description" content="Daniel Brown MSc is the author of Vision to Victory and founder of the F5IVE Framework — creator of The Stoic Architect." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -41,7 +41,9 @@
     @keyframes fadeUp { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
     @keyframes lineGrow { from { width:0; } to { width:100%; } }
-    .reveal { opacity:0; transform:translateY(36px); transition: opacity 0.85s ease, transform 0.85s ease; }
+    .reveal { opacity:1; transform:translateY(0); transition: opacity 0.85s ease, transform 0.85s ease; }
+    .js-loaded .reveal { opacity:0; transform:translateY(36px); }
+    .js-loaded .reveal.visible { opacity:1; transform:translateY(0); }
     .mobile-menu, .mobile-menu.open {
       opacity: 1 !important;
       transform: none !important;
@@ -620,7 +622,7 @@
             </div>
             <div class="role-item">
               <div class="role-icon">⚙</div>
-              <div class="role-text"><strong>Operations Director</strong> — Hyve Solutions Europe Ltd</div>
+              <div class="role-text"><strong>Author</strong> — Vision to Victory · The Stoic Architect</div>
             </div>
             <div class="role-item">
               <div class="role-icon">🏛</div>
@@ -689,7 +691,7 @@
             </div>
             <div class="timeline-item">
               <div class="timeline-year">Now</div>
-              <div class="timeline-text">MSc Psychology. BSc AI. Operations Director. Author. Founder of The Stoic Architect and the F5IVE Brotherhood</div>
+              <div class="timeline-text">MSc Psychology. BSc AI. Author. Founder of The Stoic Architect and the F5IVE Brotherhood</div>
             </div>
           </div>
         </div>
@@ -716,8 +718,8 @@
             <div class="chapter-label">Chapter Three — The Author</div>
             <h3 class="chapter-heading">A practitioner who became a writer. Not the other way around.</h3>
             <div class="chapter-body">
-              <p>Daniel holds an MSc in Psychology and a BSc (Hons) in Artificial Intelligence from Manchester Metropolitan University. He intends to pursue doctoral research — grounding the F5IVE Framework in academic rigour as well as lived experience.</p>
-              <p>He currently serves as Operations Director at Hyve Solutions Europe Ltd, with director-level accountability across complex operational environments. He has built and run businesses across housing, automotive, eCommerce, and recruitment.</p>
+              <p>Daniel holds an MSc in Psychology and a BSc (Hons) in Artificial Intelligence. He intends to pursue doctoral research — grounding the F5IVE Framework in academic rigour as well as lived experience.</p>
+              <p>He has built and run businesses across housing, automotive, eCommerce, and recruitment — navigating entrepreneurship alongside a demanding senior career.</p>
               <p><strong>He is not a theorist who learned to write. He is a practitioner who had something to say — and the discipline, the academic foundation, and the lived experience to say it with authority.</strong></p>
               <p>Vision to Victory is the product of that combination. It is the book Daniel needed during his own rebuild — and couldn't find, because it didn't exist yet.</p>
             </div>
@@ -754,7 +756,7 @@
           <div class="cred-card-title">Leadership Career</div>
           <div class="cred-card-sub">13 Years · Senior &amp; Director Level</div>
           <div class="cred-card-body">
-            <strong>Operations Director</strong> at Hyve Solutions Europe Ltd — current role, complex multi-site operational leadership.<br><br>
+            
             <strong>Director-level accountability</strong> for large teams across manufacturing and healthcare environments.<br><br>
             The F5IVE Framework has been tested at scale — in high-pressure leadership environments, not just personal practice.
           </div>
@@ -1072,6 +1074,19 @@
         else { btn.disabled = false; btn.textContent = 'Send Enquiry'; }
       } catch { btn.disabled = false; btn.textContent = 'Send Enquiry'; }
     }
+    // Scroll reveal
+    window.addEventListener('load', function() {
+      document.documentElement.classList.add('js-loaded');
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+      } else {
+        reveals.forEach(el => el.classList.add('visible'));
+      }
+    });
   </script>
   <script src="nav.js"></script>
 </body>
