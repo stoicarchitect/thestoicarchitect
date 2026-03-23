@@ -2005,14 +2005,6 @@
 
     // Initialise
     renderQuestion();
-
-    // Scroll reveal
-    window.addEventListener('load', function() {
-      document.documentElement.classList.add('js-loaded');
-      const reveals = document.querySelectorAll('.reveal');
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
         reveals.forEach(el => observer.observe(el));
       } else {
@@ -2021,6 +2013,7 @@
     });
   </script>
 
+  <script src="reveal.js"></script>
   <script src="nav.js"></script>
 </body>
 </html>
