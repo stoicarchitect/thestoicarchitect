@@ -50,12 +50,13 @@
     @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
     @keyframes rotateIn { from { opacity:0; transform: rotate(-4deg) scale(0.96); } to { opacity:1; transform: rotate(0deg) scale(1); } }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.6;transform:scale(0.97);} }
-    .reveal { opacity:0; transform:translateY(36px); transition: opacity 0.85s ease, transform 0.85s ease; }
+    .reveal { opacity:1; transform:translateY(0); transition: opacity 0.85s ease, transform 0.85s ease; }
+    .js-loaded .reveal { opacity:0; transform:translateY(36px); }
     .mobile-menu, .mobile-menu.open {
       opacity: 1 !important;
       transform: none !important;
     }
-    .reveal.visible { opacity:1; transform:translateY(0); }
+    .js-loaded .reveal.visible { opacity:1; transform:translateY(0); }
     .reveal-d1 { transition-delay:0.1s; }
     .reveal-d2 { transition-delay:0.2s; }
     .reveal-d3 { transition-delay:0.3s; }
@@ -1366,6 +1367,19 @@
 
     fwRenderQuestion();
 
+    // Scroll reveal
+    window.addEventListener('load', function() {
+      document.documentElement.classList.add('js-loaded');
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+      } else {
+        reveals.forEach(el => el.classList.add('visible'));
+      }
+    });
   </script>
   <script src="nav.js"></script>
 </body>

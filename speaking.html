@@ -507,6 +507,19 @@
         btns.forEach(b => { if (b.getAttribute('onclick').includes(type)) { b.textContent = '✓ Copied'; setTimeout(() => b.textContent = 'Copy ↗', 2000); }});
       });
     }
+    // Scroll reveal
+    window.addEventListener('load', function() {
+      document.documentElement.classList.add('js-loaded');
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+      } else {
+        reveals.forEach(el => el.classList.add('visible'));
+      }
+    });
   </script>
   <script src="nav.js"></script>
 </body>
