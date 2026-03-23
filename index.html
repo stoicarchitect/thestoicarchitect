@@ -1482,7 +1482,7 @@
         </div>
         <div class="hero-right">
           <div class="book-3d-wrap">
-            <canvas id="heroBook" style="cursor:grab;display:block;touch-action:none;width:100%;max-width:560px;background:transparent;"></canvas>
+            <canvas id="heroBook" style="cursor:grab;display:block;touch-action:none;width:100%;max-width:560px;"></canvas>
             <div style="font-family:var(--condensed);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b7280;text-align:center;margin-top:10px;">Drag to rotate</div>
           </div>
         </div>
@@ -2076,14 +2076,16 @@
     // Size canvas
     function sizeCanvas() {
       const parent = canvas.parentElement;
-      const maxW = Math.min(parent ? parent.offsetWidth : 560, 560);
-      canvas.width = maxW || 560;
-      canvas.height = maxW || 560;
+      const maxW = Math.min((parent && parent.offsetWidth > 0) ? parent.offsetWidth : 560, 560);
+      canvas.width = Math.max(maxW, 300);
+      canvas.height = Math.max(maxW, 300);
     }
-    sizeCanvas();
+    // Size immediately with fallback, then again after layout
+    canvas.width = 500; canvas.height = 500;
+    requestAnimationFrame(() => { sizeCanvas(); });
     window.addEventListener('resize', sizeCanvas);
 
-    const gl = canvas.getContext('webgl', {alpha:true, premultipliedAlpha:false}) || canvas.getContext('experimental-webgl', {alpha:true, premultipliedAlpha:false});
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
     if (!gl) return;
 
     const VS = `
@@ -2209,9 +2211,7 @@ void main() {
     canvas.addEventListener('touchend',()=>{drag=false;setTimeout(()=>auto=true,2500);});
 
     gl.enable(gl.DEPTH_TEST);gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);
-    gl.clearColor(0,0,0,0);
-    gl.enable(gl.BLEND);
-    gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+    gl.clearColor(0.067,0.075,0.094,1.0);
 
     function frame(){
       if(auto){ty+=0.005*dir;if(ty>0.72)dir=-1;if(ty<-0.72)dir=1;}
