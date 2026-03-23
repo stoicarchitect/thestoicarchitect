@@ -181,6 +181,10 @@
       .enquiry-inner{grid-template-columns:1fr;}
       .footer-inner{grid-template-columns:1fr;gap:32px;}
     }
+    .reveal { opacity:1; transform:translateY(0); transition: opacity 0.85s ease, transform 0.85s ease; }
+    .js-loaded .reveal { opacity:0; transform:translateY(36px); }
+    .js-loaded .reveal.visible { opacity:1; transform:translateY(0); }
+    .mobile-menu, .mobile-menu.open { opacity:1 !important; transform:none !important; }
   </style>
 </head>
 <body>

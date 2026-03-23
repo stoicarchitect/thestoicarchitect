@@ -235,6 +235,10 @@
       .join-form{flex-direction:column;}
       .join-form input{border-right:1px solid rgba(201,168,76,0.25);}
     }
+    .reveal { opacity:1; transform:translateY(0); transition: opacity 0.85s ease, transform 0.85s ease; }
+    .js-loaded .reveal { opacity:0; transform:translateY(36px); }
+    .js-loaded .reveal.visible { opacity:1; transform:translateY(0); }
+    .mobile-menu, .mobile-menu.open { opacity:1 !important; transform:none !important; }
   </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WJHZYMBLF"></script>
