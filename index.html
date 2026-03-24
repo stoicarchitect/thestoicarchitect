@@ -178,50 +178,6 @@
 
 
     /* ── BOOK LIGHTBOX ────────────────────────────────────────── */
-    .book-lightbox {
-      display: none; position: fixed; inset: 0; z-index: 1000;
-      background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
-      cursor: pointer;
-    }
-    .book-lightbox.open { display: flex; }
-    .book-lightbox-inner {
-      position: relative; display: flex; gap: 24px; align-items: center;
-      padding: 40px; max-width: 95vw; max-height: 95vh;
-      cursor: default;
-    }
-    .book-lightbox-img {
-      height: min(80vh, 700px); width: auto; object-fit: contain;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.8);
-    }
-    .book-lightbox-close {
-      position: fixed; top: 20px; right: 28px;
-      font-family: var(--condensed); font-size: 0.75rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--stone-light);
-      cursor: pointer; background: none; border: 1px solid rgba(255,255,255,0.15);
-      padding: 8px 16px; transition: color 0.2s, border-color 0.2s;
-    }
-    .book-lightbox-close:hover { color: var(--gold); border-color: var(--gold); }
-    .book-lightbox-tabs {
-      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 8px;
-    }
-    .book-lightbox-tab {
-      font-family: var(--condensed); font-size: 0.7rem; letter-spacing: 0.15em;
-      text-transform: uppercase; padding: 8px 20px; cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.15); color: var(--stone-light);
-      background: none; transition: all 0.2s;
-    }
-    .book-lightbox-tab.active,
-    .book-lightbox-tab:hover { border-color: var(--gold); color: var(--gold); }
-    .book-lightbox-hint {
-      position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
-      font-family: var(--condensed); font-size: 0.65rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--stone);
-    }
-    @media (max-width: 768px) {
-      .book-lightbox-inner { padding: 20px; gap: 0; }
-      .book-lightbox-img { height: min(75vh, 500px); }
-    }
     /* ─── NAV ────────────────────────────────────────────────────── */
     nav {
       position: fixed;
@@ -2066,21 +2022,7 @@
 
     // Initialise
     renderQuestion();
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(el => observer.observe(el));
-      } else {
-        reveals.forEach(el => el.classList.add('visible'));
-      }
-    });
-  </script>    <button class="book-lightbox-close" onclick="closeLightboxDirect()">✕ Close</button>
-    <div class="book-lightbox-hint">Click image to toggle front / back</div>
-    <div class="book-lightbox-tabs">
-      <button class="book-lightbox-tab active" id="tabFront" onclick="showCover('front')">Front Cover</button>
-      <button class="book-lightbox-tab" id="tabBack" onclick="showCover('back')">Back Cover</button>
-    </div>
-  </div>
-
-  <div class="lb" id="lb" onclick="lbBg(event)">
+  </script>  <div class="lb" id="lb" onclick="lbBg(event)">
     <button class="lb-close" onclick="lbClose()">&#x2715; Close</button>
     <img id="lbImg" src="" alt="Book cover" onclick="lbFlip()" />
     <div class="lb-tabs">
