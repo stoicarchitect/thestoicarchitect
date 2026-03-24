@@ -2108,7 +2108,7 @@
     if (!canvas) return;
     canvas.addEventListener('click', lbOpen);
 
-    var gl = canvas.getContext('webgl',{alpha:false,antialias:true}) || canvas.getContext('experimental-webgl',{alpha:false,antialias:true});
+    var gl = canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:false}) || canvas.getContext('experimental-webgl',{alpha:true,antialias:true,premultipliedAlpha:false});
     if (!gl) return;
 
     var VS = 'attribute vec3 p;attribute vec2 u;attribute float f;uniform mat4 m;varying vec2 vu;varying float vf;varying float vl;void main(){gl_Position=m*vec4(p,1.0);vu=u;vf=f;vl=f<0.5?1.0:f<1.5?0.58:f<2.5?0.5:0.65;}';
@@ -2202,7 +2202,7 @@
     canvas.addEventListener('touchend',function(){drag=false;setTimeout(function(){auto=true;},2500);});
 
     gl.enable(gl.DEPTH_TEST); gl.enable(gl.CULL_FACE); gl.cullFace(gl.BACK);
-    gl.clearColor(0.067,0.075,0.094,1.0);
+    gl.clearColor(0.0,0.0,0.0,0.0);
 
     function frame(){
       if(auto){ty+=0.005*dir;if(ty>0.72)dir=-1;if(ty<-0.72)dir=1;}
