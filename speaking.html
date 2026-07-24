@@ -361,7 +361,7 @@
             </div>
             <div class="bio-card">
               <div class="bio-card-label">Medium Bio — 100 words</div>
-              <p class="bio-card-text">Daniel Brown MSc is a UK-based author, leadership professional, and founder of the F5IVE Framework — a men's personal development system built around five interdependent life pillars: Faith, Family, Finance, Fitness, and Freedom. He holds an MSc in Psychology and a BSc (Hons) in Artificial Intelligence. His debut book, Vision to Victory: Why Men Fail, Why They Succeed, and How to Master the Difference, is currently on submission to UK literary agents. He creates content as The Stoic Architect at @danielmrbrown.</p>
+              <p class="bio-card-text">Daniel Brown MSc is a UK-based author, leadership professional, and founder of the F5IVE Framework — a men's personal development system built around five interdependent life pillars: Faith, Family, Finance, Fitness, and Freedom. He holds an MSc in Psychology and a BSc (Hons) in Artificial Intelligence. His debut book, Vision to Victory: Why Men Fail, Why They Succeed, and How to Master the Difference, is published and available on Amazon. He creates content as The Stoic Architect at @danielmrbrown.</p>
               <button class="bio-copy-btn" onclick="copyBio('medium')">Copy ↗</button>
             </div>
           </div>
@@ -518,8 +518,7 @@
     function copyBio(type) {
       const bios = {
         short: 'Daniel Brown MSc is the author of Vision to Victory and founder of the F5IVE Framework — a men\'s personal development system built around five interdependent life pillars. A senior leader with over 13 years of director-level experience, he writes as The Stoic Architect.',
-        medium: 'Daniel Brown MSc is a UK-based author, leadership professional, and founder of the F5IVE Framework — a men\'s personal development system built around five interdependent life pillars: Faith, Family, Finance, Fitness, and Freedom. He holds an MSc in Psychology and a BSc (Hons) in Artificial Intelligence. His debut book, Vision to Victory: Why Men Fail, Why They Succeed, and How to Master the Difference, is currently on submission to UK literary agents. He creates content as The Stoic A
-        medium: 'Daniel Brown MSc is a UK-based author, leadership professional, and founder of the F5IVE Framework.'
+        medium: 'Daniel Brown MSc is a UK-based author, leadership professional, and founder of the F5IVE Framework — a men\'s personal development system built around five interdependent life pillars: Faith, Family, Finance, Fitness, and Freedom. He holds an MSc in Psychology and a BSc (Hons) in Artificial Intelligence. His debut book, Vision to Victory: Why Men Fail, Why They Succeed, and How to Master the Difference, is published and available on Amazon. He creates content as The Stoic Architect at @danielmrbrown.'
       };
       navigator.clipboard.writeText(bios[type]).then(() => {
         const btns = document.querySelectorAll('.bio-copy-btn');
