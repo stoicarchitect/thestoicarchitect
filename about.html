@@ -851,7 +851,7 @@
               Follow @danielmrbrown
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://youtube.com/@danielmrbrown" target="_blank" rel="noopener" class="btn-outline">YouTube</a>
+            <a href="https://youtube.com/@thestoicarchitectuk" target="_blank" rel="noopener" class="btn-outline">YouTube</a>
           </div>
         </div>
         <div class="reveal reveal-delay-1">
@@ -995,7 +995,7 @@
             <div class="community-card-name">Instagram</div>
             <div class="community-card-handle">@danielmrbrown</div>
           </a>
-          <a href="https://youtube.com/@danielmrbrown" target="_blank" rel="noopener" class="community-card">
+          <a href="https://youtube.com/@thestoicarchitectuk" target="_blank" rel="noopener" class="community-card">
             <span class="community-card-icon">▶</span>
             <div class="community-card-name">YouTube</div>
             <div class="community-card-handle">The Stoic Architect</div>
@@ -1049,7 +1049,7 @@
           <ul>
             <li><a href="#">F5IVE Brotherhood</a></li>
             <li><a href="https://instagram.com/danielmrbrown" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a href="https://youtube.com/@danielmrbrown" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://youtube.com/@thestoicarchitectuk" target="_blank" rel="noopener">YouTube</a></li>
             <li><a href="speaking.html#enquiry">Email Daniel</a></li>
           </ul>
         </div>
@@ -1076,17 +1076,10 @@
           method: 'POST', body: data,
           headers: { 'Accept': 'application/json' }
         });
-        if (res.ok) {
         if (res.ok) { btn.textContent = '✓ Sent'; btn.style.background = '#2e7d32'; }
         else { btn.disabled = false; btn.textContent = 'Send Enquiry'; }
       } catch { btn.disabled = false; btn.textContent = 'Send Enquiry'; }
     }
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(el => observer.observe(el));
-      } else {
-        reveals.forEach(el => el.classList.add('visible'));
-      }
-    });
   </script>
   <script src="reveal.js"></script>
   <script src="nav.js"></script>

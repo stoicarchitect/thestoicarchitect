@@ -1197,7 +1197,7 @@
           <ul>
             <li><a href="#">F5IVE Brotherhood</a></li>
             <li><a href="https://instagram.com/danielmrbrown" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a href="https://youtube.com/@danielmrbrown" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://youtube.com/@thestoicarchitectuk" target="_blank" rel="noopener">YouTube</a></li>
             <li><a href="#fw-capture">Free Guide</a></li>
           </ul>
         </div>
@@ -1369,17 +1369,11 @@
       document.getElementById('fw-resultsBars').innerHTML = barsHtml;
       document.getElementById('fw-resultsInsight').innerHTML = '<div style="font-family:var(--condensed);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Your Primary Focus — ' + weakest + '</div><p style="font-size:0.92rem;color:var(--stone-light);line-height:1.8;">' + FW_INSIGHTS[weakest] + '</p>';
       let artHtml = '<div style="font-family:var(--condensed);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Recommended Reading for ' + weakest + '</div>';
-      FW_PILLAR_ARTICLES[weakest].forEach(a => { artHtml += '<a href="' + a.href + '" style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:#9ca3af;font-size:0.88rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#9ca3af'">→ ' + a.title + '</a>'; });
+      FW_PILLAR_ARTICLES[weakest].forEach(a => { artHtml += '<a href="' + a.href + '" style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:#9ca3af;font-size:0.88rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#c9a84c\'" onmouseout="this.style.color=\'#9ca3af\'">→ ' + a.title + '</a>'; });
       document.getElementById('fw-resultsArticles').innerHTML = artHtml;
     }
 
     fwRenderQuestion();
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(el => observer.observe(el));
-      } else {
-        reveals.forEach(el => el.classList.add('visible'));
-      }
-    });
   </script>
   <script src="reveal.js"></script>
   <script src="nav.js"></script>

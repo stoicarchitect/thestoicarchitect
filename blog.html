@@ -670,7 +670,7 @@
           <h4>Community</h4>
           <ul>
             <li><a href="https://instagram.com/danielmrbrown" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a href="https://youtube.com/@danielmrbrown" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://youtube.com/@thestoicarchitectuk" target="_blank" rel="noopener">YouTube</a></li>
             <li><a href="index.html#capture">Free F5IVE Guide</a></li>
             <li><a href="speaking.html#enquiry">Contact Daniel</a></li>
           </ul>
@@ -713,16 +713,10 @@
           body: JSON.stringify({ email_address: email })
         });
         btn.textContent = res.ok ? '✓ You\'re in' : 'Try Again';
-        if (res.ok) { btn.style.background = '#2e7d32'; e.target.querySelector('input'.disabled = true; }
+        if (res.ok) { btn.style.background = '#2e7d32'; e.target.querySelector('input').disabled = true; }
         else { btn.disabled = false; }
       } catch { btn.textContent = 'Try Again'; btn.disabled = false; }
     }
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(el => observer.observe(el));
-      } else {
-        reveals.forEach(el => el.classList.add('visible'));
-      }
-    });
   </script>
   <script src="reveal.js"></script>
   <script src="nav.js"></script>
