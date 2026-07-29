@@ -8,6 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+<style>
+  :where(.sib-form-message-panel) { display: none; }
+  :where(.sib-form-message-panel .sib-notification__icon) { width: 18px; height: 18px; }
+</style>
 <style>
   :root {
     --bg: #0A0C09;
@@ -197,6 +202,95 @@
 
   .microcopy { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--cream-dim); margin-top: 14px; opacity: 0.7; }
 
+  /* ---------- BREVO FORM OVERRIDES ---------- */
+
+  .sib-form { background: transparent !important; text-align: left !important; padding: 0 !important; }
+  .brevo-container { background: transparent !important; border: none !important; max-width: 100% !important; padding: 0 !important; }
+
+  .brevo-field { margin-bottom: 14px; text-align: left; }
+
+  .brevo-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .brevo-input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 14px 16px;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    box-sizing: border-box;
+  }
+  .brevo-input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .brevo-input::placeholder { color: var(--cream-dim); opacity: 0.7; }
+
+  .brevo-optin { margin: 16px 0; text-align: left; }
+  .brevo-optin-label { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+  .brevo-checkbox { margin-top: 3px; accent-color: var(--gold); width: 16px; height: 16px; flex-shrink: 0; }
+  .brevo-optin-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--cream-dim);
+    line-height: 1.5;
+  }
+
+  .brevo-submit {
+    width: 100%;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-mid) 100%);
+    color: #1A1305;
+    border: none;
+    border-radius: 2px;
+    padding: 15px 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: filter 0.15s ease;
+  }
+  .brevo-submit:hover { filter: brightness(1.08); }
+  .brevo-submit:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
+
+  .brevo-msg-error, .brevo-msg-success {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    border-radius: 2px;
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    text-align: left;
+  }
+  .brevo-msg-error { background: rgba(220, 80, 80, 0.12); border: 1px solid rgba(220, 80, 80, 0.4); color: #E8B4B4; }
+  .brevo-msg-success { background: rgba(139, 181, 107, 0.12); border: 1px solid rgba(139, 181, 107, 0.4); color: #C8E0B0; }
+
+  .back-to-signup {
+    display: inline-block;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-mid) 100%);
+    color: #1A1305;
+    text-decoration: none;
+    border-radius: 2px;
+    padding: 15px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .back-to-signup:hover { filter: brightness(1.08); }
+
   /* ---------- DAYS ---------- */
 
   .days { padding: 60px 0; }
@@ -361,14 +455,56 @@
       </g>
     </svg>
 
-    <div class="cta-block">
+    <div class="cta-block" id="signup">
       <div class="cta-title">Get Day One free, right now</div>
       <div class="cta-sub">Enter your email. Day One lands immediately.</div>
-      <form action="https://b91ab0ac.sibforms.com/serve/MUIFAPM-RMBoQRODsIB2NoOJSZz4z814wVCRpgwFeYFhpTBWoRjTq5QXWgEsI_KWeIxkVuv5FxFjIAcUgMYmKLBEdgj_70jpqn0nSEGa90Kd-usWBvoHz52DLlDlp5Wu_VcQcMSU9HlWttLxrYX6CLgUAC5zLTSM2gvrcX1p7E5Nv_5lcUDKXGtUNpuZuyMq0wIeX22qZqB3zLh4vA==" method="post">
-        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
-        <input type="hidden" name="listIds" value="2">
-        <button type="submit">Send Me Day One</button>
-      </form>
+
+      <div class="sib-form">
+        <div id="sib-form-container" class="sib-form-container">
+          <div id="error-message" class="sib-form-message-panel brevo-msg-error">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
+            </div>
+          </div>
+          <div id="success-message" class="sib-form-message-panel brevo-msg-success">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <span class="sib-form-message-panel__inner-text">Your subscription has been successful.</span>
+            </div>
+          </div>
+          <div id="sib-container" class="sib-container--large sib-container--vertical brevo-container">
+            <form id="sib-form" method="POST" action="https://b91ab0ac.sibforms.com/serve/MUIFAPM-RMBoQRODsIB2NoOJSZz4z814wVCRpgwFeYFhpTBWoRjTq5QXWgEsI_KWeIxkVuv5FxFjIAcUgMYmKLBEdgj_70jpqn0nSEGa90Kd-usWBvoHz52DLlDlp5Wu_VcQcMSU9HlWttLxrYX6CLgUAC5zLTSM2gvrcX1p7E5Nv_5lcUDKXGtUNpuZuyMq0wIeX22qZqB3zLh4vA==" data-type="subscription">
+
+              <div class="brevo-field">
+                <label class="brevo-label" for="FIRSTNAME">First name</label>
+                <input class="brevo-input" maxlength="200" type="text" id="FIRSTNAME" name="FIRSTNAME" autocomplete="off" placeholder="Your first name" />
+              </div>
+
+              <div class="brevo-field">
+                <label class="brevo-label" for="EMAIL">Email</label>
+                <input class="brevo-input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="you@email.com" data-required="true" required />
+              </div>
+
+              <div class="brevo-optin">
+                <label class="brevo-optin-label">
+                  <input type="checkbox" class="brevo-checkbox" value="1" id="OPT_IN" name="OPT_IN" required />
+                  <span class="brevo-optin-text">I'd like to receive the F5IVE Journey emails. I can unsubscribe any time.</span>
+                </label>
+              </div>
+
+              <button class="brevo-submit sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
+                <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512" style="width:15px;height:15px;">
+                  <path fill="currentColor" d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                </svg>
+                Send Me Day One
+              </button>
+
+              <input type="text" name="email_address_check" value="" class="input--hidden">
+              <input type="hidden" name="locale" value="en">
+            </form>
+          </div>
+        </div>
+      </div>
+
       <div class="microcopy">Five emails. Five days. Unsubscribe any time.</div>
     </div>
   </section>
@@ -423,19 +559,32 @@
 
   <section class="final-cta">
     <h2>Day One is one click away.</h2>
-    <div class="cta-block">
-      <div class="cta-title">Start the Primer</div>
-      <div class="cta-sub">Enter your email. Day One lands immediately.</div>
-      <form action="https://api.brevo.com/v3/contacts/YOUR_FORM_ID_HERE" method="post">
-        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
-        <input type="hidden" name="listIds" value="2">
-        <button type="submit">Send Me Day One</button>
-      </form>
-      <div class="microcopy">Five emails. Five days. Unsubscribe any time.</div>
-    </div>
+    <a href="#signup" class="back-to-signup">Get Day One Free</a>
+    <div class="microcopy" style="margin-top:16px;">Five emails. Five days. Unsubscribe any time.</div>
   </section>
 
 </div>
+
+<script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+  window.LOCALE = 'en';
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+  window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
+  window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+  window.INVALID_NUMBER = "The information provided is invalid. Please review the field format and try again.";
+  window.INVALID_DATE = "Please enter a valid date";
+  window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
+  window.translation = {
+    common: {
+      selectedList: '{quantity} list selected',
+      selectedLists: '{quantity} lists selected',
+      selectedOption: '{quantity} selected',
+      selectedOptions: '{quantity} selected',
+    }
+  };
+  var AUTOHIDE = Boolean(0);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 
 </body>
 </html>
