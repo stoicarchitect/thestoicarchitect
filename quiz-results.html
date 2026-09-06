@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your F5IVE Results | The Stoic Architect</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0C09;
+    --bg-panel: #14170F;
+    --cream: #EDE6D3;
+    --cream-dim: #A9A38C;
+    --gold: #E8C468;
+    --gold-mid: #C9A24C;
+    --line: rgba(232, 196, 104, 0.18);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(ellipse 700px 500px at 50% 0%, rgba(139, 107, 46, 0.16), transparent 60%),
+      radial-gradient(ellipse 900px 700px at 50% 10%, rgba(30, 46, 30, 0.5), transparent 65%),
+      var(--bg);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 56px 24px 60px; }
+  .wordmark { font-family: 'Cinzel', serif; font-weight: 500; font-size: 14px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--cream); text-align: center; margin-bottom: 14px; }
+  .wordmark::after { content: ''; display: block; width: 48px; height: 1px; background: var(--gold); opacity: 0.5; margin: 14px auto 0; }
+  .eyebrow { font-family: 'Cinzel', serif; font-weight: 500; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); text-align: center; margin: 22px 0 22px; }
+
+  .results-card { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 2px; padding: 40px 32px; }
+  .results-header { text-align: center; margin-bottom: 32px; }
+  .results-title { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 500; color: var(--cream); margin-bottom: 10px; }
+  .results-subtitle { font-size: 17px; color: var(--cream-dim); line-height: 1.6; }
+
+  .total-score { text-align: center; margin-bottom: 32px; padding: 24px; border: 1px solid rgba(232,196,104,0.35); border-radius: 2px; background: radial-gradient(ellipse 300px 200px at 50% 30%, rgba(232, 196, 104, 0.1), transparent 70%); }
+  .total-score-num { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 3.2rem; color: var(--gold); line-height: 1; }
+  .total-score-label { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--cream-dim); margin-top: 8px; }
+
+  .results-bars { margin-bottom: 32px; }
+  .result-bar-item { margin-bottom: 18px; }
+  .result-bar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+  .result-bar-name { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); }
+  .result-bar-score { font-size: 13px; color: var(--gold); }
+  .result-bar-track { height: 8px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .result-bar-fill { height: 100%; background: var(--gold); }
+
+  .results-insight { background: var(--bg); padding: 26px 28px; margin-bottom: 28px; border-left: 3px solid var(--gold); border-radius: 2px; }
+  .results-insight-label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .results-insight p { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--cream-dim); line-height: 1.7; }
+  .results-insight p strong { color: var(--cream); }
+
+  .results-articles { margin-bottom: 30px; }
+  .results-articles-label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .result-article-link { display: block; padding: 13px 0; border-bottom: 1px solid var(--line); color: var(--cream-dim); font-family: 'Inter', sans-serif; font-size: 14px; text-decoration: none; }
+  .result-article-link:hover { color: var(--gold); }
+
+  .results-note { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--cream-dim); text-align: center; margin-bottom: 28px; }
+
+  .results-cta { text-align: center; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-mid) 100%);
+    color: #1A1305; text-decoration: none; border-radius: 2px; padding: 15px 28px;
+    font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0.07em; text-transform: uppercase; font-weight: 600;
+  }
+  .btn-primary:hover { filter: brightness(1.08); }
+
+  .fallback { text-align: center; padding: 40px 20px; }
+  .fallback p { font-size: 18px; color: var(--cream-dim); margin-bottom: 24px; }
+
+  footer { padding: 40px 0 0; text-align: center; }
+  footer p { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--cream-dim); opacity: 0.7; }
+  footer a { color: var(--cream-dim); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="wordmark">The Stoic Architect</div>
+  <div class="eyebrow">Your F5IVE Assessment</div>
+
+  <div id="resultsContent"></div>
+
+  <footer>
+    <p>Faith &middot; Family &middot; Finance &middot; Fitness &middot; Freedom<br>
+    <a href="https://www.thestoicarchitect.com/">thestoicarchitect.com</a></p>
+  </footer>
+</div>
+
+<script>
+  const PILLAR_ARTICLES = {
+    Faith: [
+      { title: 'The Identity Trap', href: 'https://www.thestoicarchitect.com/articles/the-identity-trap.html' },
+      { title: 'The Environment Problem', href: 'https://www.thestoicarchitect.com/articles/the-environment-problem.html' },
+    ],
+    Family: [
+      { title: 'What It Actually Means to Be Present', href: 'https://www.thestoicarchitect.com/articles/what-it-means-to-be-present.html' },
+      { title: 'Communication: The Skill Every Man Underestimates', href: 'https://www.thestoicarchitect.com/articles/communication-the-underestimated-skill.html' },
+    ],
+    Finance: [
+      { title: 'The Difference Between Earning and Building', href: 'https://www.thestoicarchitect.com/articles/earning-vs-building.html' },
+      { title: 'The Financial Identity Problem Men Don\u2019t Talk About', href: 'https://www.thestoicarchitect.com/articles/financial-identity-problem.html' },
+    ],
+    Fitness: [
+      { title: 'Why the Men Who Never Miss Are Not More Motivated Than You', href: 'https://www.thestoicarchitect.com/articles/men-who-never-miss.html' },
+      { title: 'Discipline Is Not a Personality Trait. It\u2019s a Practice.', href: 'https://www.thestoicarchitect.com/articles/discipline-is-a-practice.html' },
+    ],
+    Freedom: [
+      { title: 'Why Structure Creates Freedom', href: 'https://www.thestoicarchitect.com/articles/structure-creates-freedom.html' },
+      { title: 'Vision Compounds. Motivation Fades.', href: 'https://www.thestoicarchitect.com/articles/vision-vs-motivation.html' },
+    ],
+  };
+
+  const insights = {
+    Faith: 'Your Foundation pillar needs attention. This is the most important one to address, without a stable sense of identity and purpose, every other pillar is building on sand. Start here.',
+    Family: 'Your Relationships pillar is your biggest gap. The quality of your most important connections reflects, and affects, everything else. Presence, communication, and genuine investment are the starting points.',
+    Finance: 'Your Financial Sovereignty is the area requiring most focus. Building financial structure removes a distorting anxiety that affects every other pillar. The goal is not wealth, it is the removal of financial stress as a constant background noise.',
+    Fitness: 'Your Physical Discipline pillar needs rebuilding. Consistency here is not about appearance, it is about proving to yourself, daily, that your standards are real. The system you build here transfers everywhere.',
+    Freedom: 'Your Freedom pillar, the integration of all five, is your weakest point. This often means the other pillars are misaligned rather than individually weak. The work is architectural, how they all connect, not just how each one performs in isolation.',
+  };
+
+  function render() {
+    const container = document.getElementById('resultsContent');
+    let stored = null;
+    try {
+      const raw = sessionStorage.getItem('f5ive_quiz_results');
+      if (raw) stored = JSON.parse(raw);
+    } catch (e) { /* ignore */ }
+
+    if (!stored) {
+      container.innerHTML =
+        '<div class="fallback">' +
+        '<p>We could not find a fresh result in this browser session. This usually happens if you opened this link on a different device than the one you took the quiz on, your results are already on their way to your inbox.</p>' +
+        '<a href="https://www.thestoicarchitect.com/quiz.html" class="btn-primary">Retake The Assessment</a>' +
+        '</div>';
+      return;
+    }
+
+    const { scores, weakest, strongest, total } = stored;
+    const pillars = Object.keys(scores);
+
+    let barsHtml = '';
+    pillars.forEach(p => {
+      const pct = Math.round((scores[p] / 15) * 100);
+      barsHtml += '<div class="result-bar-item"><div class="result-bar-header"><span class="result-bar-name">' + p + '</span><span class="result-bar-score">' + scores[p] + '/15</span></div><div class="result-bar-track"><div class="result-bar-fill" style="width:' + pct + '%"></div></div></div>';
+    });
+
+    const articles = PILLAR_ARTICLES[weakest];
+    let artHtml = '<div class="results-articles-label">Recommended Reading for ' + weakest + '</div>';
+    articles.forEach(a => {
+      artHtml += '<a href="' + a.href + '" class="result-article-link">\u2192 ' + a.title + '</a>';
+    });
+
+    container.innerHTML =
+      '<div class="results-card">' +
+        '<div class="results-header">' +
+          '<div class="results-title">Your F5IVE Assessment Results</div>' +
+          '<div class="results-subtitle">Your strongest pillar is ' + strongest + '. Your biggest opportunity is ' + weakest + '.</div>' +
+        '</div>' +
+        '<div class="total-score">' +
+          '<div class="total-score-num">' + total + '<span style="font-size:1.4rem;color:var(--cream-dim);">/75</span></div>' +
+          '<div class="total-score-label">Your Overall F5IVE Score</div>' +
+        '</div>' +
+        '<div class="results-bars">' + barsHtml + '</div>' +
+        '<div class="results-insight"><div class="results-insight-label">Your Primary Focus \u2014 ' + weakest + '</div><p>' + insights[weakest] + '</p></div>' +
+        '<div class="results-articles">' + artHtml + '</div>' +
+        '<div class="results-cta"><a href="https://www.thestoicarchitect.com/framework.html" class="btn-primary">Explore the Full F5IVE Framework</a></div>' +
+      '</div>' +
+      '<p class="results-note">A copy of this breakdown is on its way to your inbox now, along with Day One of the F5IVE Journey.</p>';
+  }
+
+  render();
+</script>
+</body>
+</html>
