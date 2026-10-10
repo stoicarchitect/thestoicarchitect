@@ -441,7 +441,11 @@
     .buy-formats span { color: var(--gold); }
     .buy-divider { width: 1px; background: rgba(255,255,255,0.1); }
     .buy-guide-heading { font-family: var(--condensed); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); margin-bottom: 16px; }
-    .buy-guide-form { display: flex; gap: 0; max-width: 400px; margin: 0 auto 12px; }
+    .buy-guide-form input{flex:1 1 0;min-width:0;}
+    .buy-guide-form button{flex:none;}
+    .journey-optin{flex-basis:100%;display:flex;gap:10px;align-items:flex-start;justify-content:center;margin-top:12px;font-size:0.8rem;color:var(--stone);text-align:left;cursor:pointer;}
+    .journey-optin input{width:16px;height:16px;margin-top:2px;flex:none;accent-color:var(--gold);}
+    .buy-guide-form { display: flex; flex-wrap: wrap; gap: 0; max-width: 400px; margin: 0 auto 12px; }
     .buy-guide-form input { flex:1; padding:14px 18px; background:rgba(255,255,255,0.06); border:1px solid rgba(201,168,76,0.25); border-right:none; color:var(--cream); font-family:var(--sans); font-size:0.85rem; outline:none; transition:border-color 0.2s; }
     .buy-guide-form input::placeholder { color:var(--stone); }
     .buy-guide-form input:focus { border-color:var(--gold); }
@@ -888,12 +892,13 @@
           <div class="buy-divider"></div>
           <div>Kindle &nbsp;<span>£7.99</span></div>
         </div>
-        <div class="buy-guide-heading">Or — get the free F5IVE Framework Guide</div>
-        <form class="buy-guide-form" onsubmit="handleBuyGuide(event)">
+        <div class="buy-guide-heading">Or start the free five-day F5IVE Journey</div>
+        <form class="buy-guide-form" onsubmit="joinJourney(event, '\u2713 Check your inbox')">
           <input type="email" placeholder="Your email address" required id="buyGuideEmail" />
-          <button type="submit">Get It Free</button>
+          <button type="submit">Send Me Day One</button>
+          <label class="journey-optin"><input type="checkbox" required /><span>Send me the F5IVE Journey emails. I can unsubscribe any time.</span></label>
         </form>
-        <p class="buy-small">No spam. Instant download. Unsubscribe anytime.</p>
+        <p class="buy-small">Five emails. Five days. Unsubscribe anytime.</p>
       </div>
     </div>
   </section>
@@ -949,38 +954,27 @@
       entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 60); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
-    const CK_FORM_ID = '9232780';
-
-    async function subscribeToConvertKit(email, btn, successText) {
-      btn.textContent = 'Subscribing...';
-      btn.disabled = true;
+  });
+  </script>
+  <script>
+    /* F5IVE Journey sign-up (Brevo, same list as the homepage form) */
+    const JOURNEY_ACTION = 'https://b91ab0ac.sibforms.com/serve/MUIFAPM-RMBoQRODsIB2NoOJSZz4z814wVCRpgwFeYFhpTBWoRjTq5QXWgEsI_KWeIxkVuv5FxFjIAcUgMYmKLBEdgj_70jpqn0nSEGa90Kd-usWBvoHz52DLlDlp5Wu_VcQcMSU9HlWttLxrYX6CLgUAC5zLTSM2gvrcX1p7E5Nv_5lcUDKXGtUNpuZuyMq0wIeX22qZqB3zLh4vA==';
+    async function joinJourney(e, successText) {
+      e.preventDefault();
+      const form = e.target, btn = form.querySelector('button'), email = form.querySelector('input[type=email]').value.trim();
+      const original = btn.textContent;
+      btn.textContent = 'Sending...'; btn.disabled = true;
+      const fd = new FormData();
+      fd.append('EMAIL', email); fd.append('OPT_IN', '1'); fd.append('email_address_check', ''); fd.append('locale', 'en');
       try {
-        const res = await fetch(`https://app.convertkit.com/forms/${CK_FORM_ID}/subscriptions`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email_address: email })
-        });
-        if (res.ok) {
-          btn.textContent = successText || '✓ You\'re on the list';
-          btn.style.background = '#2e7d32';
-          btn.closest('form').querySelectorAll('input').forEach(i => i.disabled = true);
-        } else {
-          btn.textContent = 'Try Again';
-          btn.disabled = false;
-        }
-      } catch {
-        btn.textContent = 'Try Again';
-        btn.disabled = false;
+        await fetch(JOURNEY_ACTION + '?isAjax=1', { method: 'POST', body: fd, mode: 'no-cors' });
+        btn.textContent = successText; btn.style.background = '#2e7d32';
+        form.querySelectorAll('input').forEach(i => i.disabled = true);
+      } catch (err) {
+        btn.textContent = 'Try Again'; btn.disabled = false;
+        setTimeout(() => { if (!btn.disabled) btn.textContent = original; }, 2500);
       }
     }
-
-    function handleBuyGuide(e) {
-      e.preventDefault();
-      const email = document.getElementById('buyGuideEmail').value;
-      const btn = e.target.querySelector('button');
-      subscribeToConvertKit(email, btn, '✓ Check your inbox');
-    }
-  });
   </script>
   <script src="reveal.js"></script>
   <script src="nav.js"></script>

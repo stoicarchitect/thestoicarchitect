@@ -180,7 +180,12 @@
     .blog-capture-inner .section-title{margin-bottom:8px;}
     .blog-capture-inner .divider{margin:16px auto 20px;}
     .blog-capture-inner>p{color:var(--stone-light);font-size:0.95rem;line-height:1.7;margin-bottom:32px;}
-    .capture-form{display:flex;gap:0;max-width:440px;margin:0 auto 16px;}
+    .capture-form{display:flex;flex-wrap:wrap;gap:0;max-width:440px;margin:0 auto 16px;}
+    .capture-form input{flex:1 1 0;min-width:0;}
+    .capture-form button{flex:none;}
+    .journey-optin{flex-basis:100%;display:flex;gap:10px;align-items:flex-start;justify-content:center;margin-top:12px;font-size:0.8rem;color:var(--stone);text-align:left;cursor:pointer;}
+    .journey-optin input{width:16px;height:16px;margin-top:2px;flex:none;accent-color:var(--gold);}
+
     .capture-form input{flex:1;padding:16px 20px;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.25);border-right:none;color:var(--cream);font-family:var(--sans);font-size:0.9rem;outline:none;transition:border-color 0.2s;}
     .capture-form input::placeholder{color:var(--stone);}
     .capture-form input:focus{border-color:var(--gold);}
@@ -633,11 +638,12 @@
         <div class="divider divider--center"></div>
         <h2 class="section-title">Get new insights direct.</h2>
         <p>New articles on Faith, Family, Finance, Fitness, and Freedom — delivered to your inbox when they publish. No noise. Just substance.</p>
-        <form class="capture-form" onsubmit="handleCapture(event)">
+        <form class="capture-form" onsubmit="joinJourney(event, '\u2713 Check your inbox')">
           <input type="email" placeholder="Your email address" required id="blogEmail" />
           <button type="submit">Subscribe</button>
+          <label class="journey-optin"><input type="checkbox" required /><span>Send me the F5IVE Journey emails. I can unsubscribe any time.</span></label>
         </form>
-        <p class="capture-small">Join readers of The Stoic Architect. Unsubscribe anytime.</p>
+        <p class="capture-small">You start with the free five-day F5IVE Journey. Unsubscribe anytime.</p>
       </div>
     </div>
   </section>
@@ -703,21 +709,23 @@
       document.getElementById('articles-count').textContent = `Showing ${visible} article${visible !== 1 ? 's' : ''}`;
     }
 
-    const CK_FORM_ID = '9232780';
-    async function handleCapture(e) {
+    /* F5IVE Journey sign-up (Brevo, same list as the homepage form) */
+    const JOURNEY_ACTION = 'https://b91ab0ac.sibforms.com/serve/MUIFAPM-RMBoQRODsIB2NoOJSZz4z814wVCRpgwFeYFhpTBWoRjTq5QXWgEsI_KWeIxkVuv5FxFjIAcUgMYmKLBEdgj_70jpqn0nSEGa90Kd-usWBvoHz52DLlDlp5Wu_VcQcMSU9HlWttLxrYX6CLgUAC5zLTSM2gvrcX1p7E5Nv_5lcUDKXGtUNpuZuyMq0wIeX22qZqB3zLh4vA==';
+    async function joinJourney(e, successText) {
       e.preventDefault();
-      const email = document.getElementById('blogEmail').value;
-      const btn = e.target.querySelector('button');
-      btn.textContent = 'Subscribing...'; btn.disabled = true;
+      const form = e.target, btn = form.querySelector('button'), email = form.querySelector('input[type=email]').value.trim();
+      const original = btn.textContent;
+      btn.textContent = 'Sending...'; btn.disabled = true;
+      const fd = new FormData();
+      fd.append('EMAIL', email); fd.append('OPT_IN', '1'); fd.append('email_address_check', ''); fd.append('locale', 'en');
       try {
-        const res = await fetch(`https://app.convertkit.com/forms/${CK_FORM_ID}/subscriptions`, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email_address: email })
-        });
-        btn.textContent = res.ok ? '✓ You\'re in' : 'Try Again';
-        if (res.ok) { btn.style.background = '#2e7d32'; e.target.querySelector('input').disabled = true; }
-        else { btn.disabled = false; }
-      } catch { btn.textContent = 'Try Again'; btn.disabled = false; }
+        await fetch(JOURNEY_ACTION + '?isAjax=1', { method: 'POST', body: fd, mode: 'no-cors' });
+        btn.textContent = successText; btn.style.background = '#2e7d32';
+        form.querySelectorAll('input').forEach(i => i.disabled = true);
+      } catch (err) {
+        btn.textContent = 'Try Again'; btn.disabled = false;
+        setTimeout(() => { if (!btn.disabled) btn.textContent = original; }, 2500);
+      }
     }
   </script>
   <script src="reveal.js"></script>
