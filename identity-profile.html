@@ -422,6 +422,47 @@ p,.q{max-width:none}
   .pmedal{display:none}
   .evid{grid-template-columns:1fr}
 }
+/* version 5 */
+.pcode{display:flex;margin:4px 0 12px}
+.code{display:inline-flex;align-items:baseline;font:700 1rem var(--cond);letter-spacing:.12em;color:var(--gold-l)}
+.code.big{font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:.16em;padding:6px 14px;border:1px solid var(--gold);background:rgba(201,168,76,.08)}
+.code.small{font-size:1rem;margin:4px 0 2px}
+.code .ch{color:var(--stone);margin:0 .08em}
+.code .cv{color:var(--cream);opacity:.85}
+.legend{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+.legend div{background:var(--ink2);padding:16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.legend b{font:700 1.6rem/1 var(--cond);letter-spacing:.12em;color:var(--gold-l)}
+.legend span{font-size:.9rem;color:var(--stone)}
+.eyes{border:1px solid var(--line);background:rgba(21,24,29,.85);margin-top:14px}
+.eyetabs{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--line)}
+.eyetab{appearance:none;background:none;border:0;border-right:1px solid var(--line2);color:var(--stone);padding:16px 6px 14px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;font:600 .78rem var(--cond);letter-spacing:.14em;text-transform:uppercase;position:relative;transition:color .25s,background .25s}
+.eyetab:last-child{border-right:0}
+.eyetab svg{width:30px;height:30px;opacity:.6;transition:opacity .25s,transform .35s}
+.eyetab small{font:600 .72rem var(--cond);color:var(--stone2);letter-spacing:.06em}
+.eyetab:hover{color:var(--cream)}
+.eyetab.on{color:var(--gold-l);background:rgba(201,168,76,.08)}
+.eyetab.on svg{opacity:1;transform:translateY(-2px) scale(1.08)}
+.eyetab.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--gold)}
+.eyepane{padding:24px}
+.eyepane .k{font:600 .72rem var(--cond);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px}
+.eyepane .big{margin:0 0 12px}
+.eyepane.fresh{animation:rise .5s cubic-bezier(.2,.8,.2,1)}
+.snav button.on{color:var(--gold-l);font-weight:600;padding-left:12px;box-shadow:inset 3px 0 0 var(--gold)}
+.temple .crack{fill:none;stroke:#E2694C;stroke-width:2.5;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 4px rgba(226,105,76,.8));transition:stroke-dashoffset 1.2s cubic-bezier(.6,0,.3,1)}
+.temple .crack.go{stroke-dashoffset:0}
+.decode{font:700 clamp(1.6rem,5vw,2.6rem)/1 var(--cond);letter-spacing:.24em;color:var(--gold-l);margin:4px 0 16px;min-height:1.1em;font-variant-numeric:tabular-nums}
+.decode.done{text-shadow:0 0 22px rgba(232,207,134,.7);animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+.acode{display:block;font:700 .78rem var(--cond);font-style:normal;letter-spacing:.16em;color:var(--gold);margin-bottom:6px}
+@media (max-width:980px){.snav button.on{box-shadow:none;border-color:var(--gold);padding-left:12px}}
+@media (max-width:560px){
+  .eyetabs{grid-template-columns:repeat(5,1fr)}
+  .eyetab{padding:12px 2px;font-size:.6rem;letter-spacing:.06em}
+  .eyetab svg{width:24px;height:24px}
+  .legend{grid-template-columns:1fr}
+}
+.code.small{display:flex;width:max-content}
+.sid .ss{display:block}
+.eyepane .big{max-width:none}
 </style>
 </head>
 <body>
@@ -859,7 +900,7 @@ function drawCard(r) {
     x.strokeStyle = "#C9A84C"; x.lineWidth = 2; x.strokeRect(44, 44, 992, 1262); x.strokeStyle = "rgba(201,168,76,.35)"; x.strokeRect(58, 58, 964, 1234);
     if (logo) x.drawImage(logo, 470, 96, 140, 140);
     x.textAlign = "center"; x.fillStyle = "#C9A84C"; x.font = "600 30px " + cond; if ("letterSpacing" in x) x.letterSpacing = "8px";
-    x.fillText("MY F5IVE ARCHETYPE", 540, 300); if ("letterSpacing" in x) x.letterSpacing = "0px";
+    x.fillText("MY F5IVE ARCHETYPE", 540, 268); x.font = "700 52px " + cond; if ("letterSpacing" in x) x.letterSpacing = "14px"; x.fillStyle = "#E8CF86"; x.fillText(typeof codeOf === "function" ? codeOf(r) : "", 548, 330); if ("letterSpacing" in x) x.letterSpacing = "0px";
     var size = 112; x.font = "900 " + size + "px " + serif; while (x.measureText(r.archetype).width > 900 && size > 60) { size -= 4; x.font = "900 " + size + "px " + serif; }
     var tg = x.createLinearGradient(0, 330, 0, 440); tg.addColorStop(0, "#F5F0E8"); tg.addColorStop(1, "#E8CF86"); x.fillStyle = tg; x.fillText(r.archetype, 540, 420);
     x.fillStyle = "#C9C2B4"; x.font = "italic 500 40px " + serif;
@@ -1144,6 +1185,21 @@ function render() {
   enter(); afterReport(r);
 }
 
+/* ============ Code decode effect ============ */
+function decode(el, target, delay) {
+  if (!el) return; var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ5", out = target.split(""), lock = 0;
+  if (REDUCED) { el.textContent = target; return; }
+  el.textContent = target.replace(/[A-Z0-9]/g, "\u00a0");
+  later(function () {
+    var t = setInterval(function () {
+      el.textContent = out.map(function (c, i) { if (c === "-" || i < lock) return c; return chars.charAt(Math.floor(Math.random() * chars.length)); }).join("");
+      if (Math.random() < 0.34) lock++;
+      if (lock > out.length) { clearInterval(t); el.textContent = target; el.classList.add("done"); vibe(); }
+    }, 55);
+    timers.push(t);
+  }, delay);
+}
+
 /* ============ The reveal ============ */
 function runReveal() {
   var r = scoreProfile(buildInput()), ep = r.archetype === "The Complete Architect" ? "Complete" : r.anchor;
@@ -1169,7 +1225,8 @@ function runReveal() {
     rs.textContent = "";
     var tb = stage.querySelector(".templebox"); tb.style.transition = "max-width .8s"; tb.style.maxWidth = "260px";
     var letters = r.archetype.split("").map(function (ch, k) { return ch === " " ? " " : '<span style="animation-delay:' + (0.35 + k * 0.045) + 's">' + ch + "</span>"; }).join("");
-    document.getElementById("rname").innerHTML = medal(ep) + '<div class="name">' + letters + '</div><p class="sigline">' + SIGNATURE[r.archetype] + '</p><div class="row" style="justify-content:center"><button class="btn" data-act="next">Read my profile</button></div>';
+    document.getElementById("rname").innerHTML = medal(ep) + '<div class="name">' + letters + '</div><div class="decode" id="decode" aria-label="' + codeOf(r) + '"></div><p class="sigline">' + SIGNATURE[r.archetype] + '</p><div class="row" style="justify-content:center"><button class="btn" data-act="next">Read my profile</button></div>';
+    decode(document.getElementById("decode"), codeOf(r), 900 + r.archetype.length * 45);
     var sk = document.getElementById("skipbtn"); if (sk) sk.remove();
   }, 6000 * step);
 }
@@ -1313,6 +1370,78 @@ var SUPPORT_P = {
   Shared: "When something is wrong, you talk it through. You get unstuck fastest out loud, and the right person in your corner makes a real difference to you."
 };
 
+/* ============ F5IVE codes (modelled on 16Personalities: type letters, then a variant after the hyphen) ============ */
+var ANCHOR_CODE = { Faith: "SOUL", Family: "HOME", Finance: "GOLD", Fitness: "IRON", Freedom: "FREE" };
+var MODE_CODE = { Strategist: "S", Visionary: "V", Builder: "B", Operator: "O" };
+var VAR_CODE = { Perfectionist: "P", Steady: "M", Bold: "R" };
+var VAR_NAME = { P: "Perfecting", M: "Measured", R: "Ready" };
+var VAR_MEAN = { P: "you hold back until it feels right", M: "you start once it is reasonably prepared", R: "you start before you feel prepared" };
+function archCode(name) { var A = ARCH[name]; if (!A.m) return "F5IVE"; return ANCHOR_CODE[A.p] + "-" + MODE_CODE[A.m]; }
+function codeOf(r) {
+  var complete = r.archetype === "The Complete Architect";
+  return (complete ? "F5IVE" : ANCHOR_CODE[r.anchor]) + "-" + MODE_CODE[r.mode] + VAR_CODE[r.readiness];
+}
+function codeHTML(r, cls) {
+  var complete = r.archetype === "The Complete Architect", a = complete ? "F5IVE" : ANCHOR_CODE[r.anchor];
+  return '<span class="code ' + (cls || "") + '"><span class="ca">' + a + '</span><span class="ch">-</span><span class="cm">' + MODE_CODE[r.mode] + '</span><span class="cv">' + VAR_CODE[r.readiness] + "</span></span>";
+}
+function legendHTML(r) {
+  var complete = r.archetype === "The Complete Architect", v = VAR_CODE[r.readiness];
+  return '<div class="legend"><div><b>' + (complete ? "F5IVE" : ANCHOR_CODE[r.anchor]) + "</b><span>" + (complete ? "All five pillars level and strong" : "Your anchor: " + r.anchor) + "</span></div><div><b>" + MODE_CODE[r.mode] + "</b><span>How you move: " + r.mode + "</span></div><div><b>" + v + "</b><span>Your variant: " + VAR_NAME[v] + ", " + VAR_MEAN[v] + "</span></div></div>";
+}
+
+/* ============ What each pillar means to you: anchor lens x pillar, plus how your mode goes about it ============ */
+var VIEW = {
+  Faith: {
+    Faith: "Faith is your foundation. It is the lens you see everything else through, and the first thing you reach for when life gets hard.",
+    Family: "Family is where your faith is meant to be lived out. You see your role at home as a responsibility you answer for, not only a relationship.",
+    Finance: "Money is a trust to you, something to look after honestly. The risk is treating it as worldly and leaving it to chance.",
+    Fitness: "Your body is something you were given to look after. You value your health, but it can feel secondary to the things of the spirit.",
+    Freedom: "Freedom, to you, means not being ruled by the wrong things. You are driven less by independence than by living rightly."
+  },
+  Family: {
+    Faith: "Faith matters to you most through the people you love: the values you want to pass on and the example you want to set.",
+    Family: "Family is your foundation. It is who you are, not only what you do, and the measure you hold your whole life against.",
+    Finance: "Money is how you protect the people you love. Every financial decision is really a family decision to you.",
+    Fitness: "Your health is what lets you keep showing up for them. You know that, yet it is usually the first thing you sacrifice for them.",
+    Freedom: "Freedom, for you, is time with the people who matter. Independence for its own sake means less to you than belonging."
+  },
+  Finance: {
+    Faith: "Faith or purpose is what keeps money in its place for you. Without it, security can quietly become the thing you trust most.",
+    Family: "Family is who the building is for. You show love through provision, and you are learning that presence matters just as much.",
+    Finance: "Finance is your foundation. Security, growth and provision are how you measure whether your life is on track.",
+    Fitness: "Your body is your most important asset, and it compounds the way money does. It rarely gets the same attention.",
+    Freedom: "Freedom is the return on all your building: the point where money buys back your time. Defining that point is the work."
+  },
+  Fitness: {
+    Faith: "Discipline is close to a spiritual practice for you. Faith or purpose gives your training a reason beyond how you look.",
+    Family: "Family gets your energy and your example. They see a man who keeps his word to himself.",
+    Finance: "You could bring the discipline of training to money, but often you do not. Finance is where your consistency is untested.",
+    Fitness: "Fitness is your foundation. Your body is where you prove your word to yourself, every day.",
+    Freedom: "Freedom, to you, is having the strength and energy to do what you choose. A capable body is your independence."
+  },
+  Freedom: {
+    Faith: "Faith or purpose answers the question freedom always leaves behind: free for what? Without an answer, freedom drifts.",
+    Family: "Family is where your independence is tested most. You want them with you, not holding you back.",
+    Finance: "Money is the engine of your freedom. Every pound saved is time bought back, and you know it.",
+    Fitness: "Your health decides how long you get to enjoy your freedom. You value energy, but routine can feel like a cage.",
+    Freedom: "Freedom is your foundation. Owning your time, your work and your direction is what makes life feel like yours."
+  }
+};
+var MODE_PILLAR = {
+  Strategist: { Faith: "You keep it through fixed rhythms: set times and a plan you follow.", Family: "You plan for them: routines, provision and the long term.", Finance: "You budget, track and plan years ahead.", Fitness: "You train to a programme and track your progress.", Freedom: "You map the route: the number, the date and the conditions." },
+  Visionary: { Faith: "You are moved by meaning and big moments more than routine.", Family: "You picture the family life you want and steer toward it.", Finance: "You chase growth and opportunity more than budgets.", Fitness: "You are drawn to transformation and the big change.", Freedom: "You follow possibility wherever it leads." },
+  Builder: { Faith: "You live it in small daily acts more than words.", Family: "You show up and do the practical work, day after day.", Finance: "You save steadily, brick by brick.", Fitness: "You show up and put in the reps, whatever the mood.", Freedom: "You build your independence one step at a time." },
+  Operator: { Faith: "It is what you reach for in a crisis, and you act on it fast.", Family: "You are first to move when they need you.", Finance: "You act on opportunities quickly and recover from losses.", Fitness: "You thrive on intensity and challenge.", Freedom: "You seize openings and adapt as you go." }
+};
+function eyesHTML(anchor, mode, scores, id) {
+  var tabs = PILLARS.map(function (p, i) { return '<button class="eyetab' + (i === PILLARS.indexOf(anchor) ? " on" : "") + '" data-act="eye" data-g="' + id + '" data-n="' + p + '" role="tab">' + emblem(p) + "<span>" + p + "</span>" + (scores ? "<small>" + scores[p] + "/25</small>" : "") + "</button>"; }).join("");
+  var panes = PILLARS.map(function (p) {
+    return '<div class="eyepane" data-g="' + id + '" data-n="' + p + '"' + (p === anchor ? "" : " hidden") + '><span class="k">' + (p === anchor ? p + ": your anchor" : "What " + p + " means to you") + "</span><p class=\"big\">" + VIEW[anchor][p] + '</p><p class="muted" style="margin:0">' + MODE_PILLAR[mode][p] + (scores ? " Today it scores " + scores[p] + " out of 25: " + pillarBand(scores[p]).toLowerCase() + "." : "") + "</p></div>";
+  }).join("");
+  return '<div class="eyes"><div class="eyetabs" role="tablist">' + tabs + '</div><div class="eyepanes">' + panes + "</div></div>";
+}
+
 /* ============ Profile page ============ */
 function reportHTML(r) {
   var complete = r.archetype === "The Complete Architect", A = ARCH[r.archetype], ep = complete ? "Complete" : r.anchor;
@@ -1321,20 +1450,22 @@ function reportHTML(r) {
   var lowCount = PILLARS.filter(function (p) { return r.scores[p] < 16; }).length;
   var retake = new Date(Date.now() + 90 * 864e5).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
   var Q = QUOTE[ep];
-  var nav = [["who", "Who you are"], ["how", "How we know"], ["pillars", "Your five pillars"], ["life", "You at home and at work"], ["pattern", "Your pattern"], ["growth", "Your personal growth"], ["days", "Your first seven days"], ["deeper", "Go deeper"]];
+  var nav = [["who", "Who you are"], ["eyes", "Your pillars, through your eyes"], ["how", "Your anchor, and why"], ["pillars", "Your five pillars"], ["life", "You at home and at work"], ["pattern", "Your pattern"], ["growth", "Your personal growth"], ["days", "Your first seven days"], ["deeper", "Go deeper"]];
 
-  var h = '<header class="phero rise"><div><p class="label">Your F5IVE archetype</p><h1 class="pname">' + r.archetype + '</h1><p class="psub">' + (complete ? "All five pillars level and strong" : r.anchor + " anchor  ·  " + r.mode) + '</p></div><div class="pmedal">' + medal(ep) + "</div></header>";
+  var h = '<header class="phero rise"><div><p class="label">Your F5IVE archetype</p><h1 class="pname">' + r.archetype + '</h1><div class="pcode">' + codeHTML(r, "big") + '</div><p class="psub">' + (complete ? "All five pillars level and strong" : r.anchor + " anchor  ·  " + r.mode) + '</p></div><div class="pmedal">' + medal(ep) + "</div></header>";
   h += '<div class="pgrid"><article class="pmain">';
   h += '<blockquote class="pquote"><p>' + Q.q + "</p><cite>" + Q.s + "</cite></blockquote>";
 
   // 1 Who you are
   h += '<section class="sec" id="who"><p class="label">1. Who you are</p><h2>You are ' + r.archetype + '</h2><p class="lead">As ' + r.archetype + ", " + SIGNATURE[r.archetype].charAt(0).toLowerCase() + SIGNATURE[r.archetype].slice(1) + " " + A.who.split(". ").slice(1).join(". ") + "</p>" +
-    (complete ? "" : "<p>" + ANCHOR_P[r.anchor] + "</p>") + "<p>" + MODE_P[r.mode] + " In F5IVE terms, you are a " + r.mode + ": " + MODE_WHO[r.mode] + ".</p><p>" + TENSION[r.archetype] + "</p>" +
+    (complete ? "" : "<p>" + ANCHOR_P[r.anchor] + "</p>") + "<p>" + MODE_P[r.mode] + " That is the " + r.mode + " side of " + r.archetype + ": " + MODE_WHO[r.mode] + ".</p><p>" + TENSION[r.archetype] + "</p>" +
     '<div class="two"><div class="panel"><span class="k">When your ' + (complete ? "balance" : r.anchor + " anchor") + ' is working</span><ul class="ticks">' + A.best.map(function (b) { return "<li>" + b + "</li>"; }).join("") + '</ul></div><div class="panel dark"><span class="k">When it works against you</span><ul class="ticks">' + A.pressure.map(function (b) { return "<li>" + b + "</li>"; }).join("") + "</ul></div></div>" +
     '<p class="muted" style="margin-top:16px">' + A.others + "</p></section>";
 
-  // 2 How we know
-  h += '<section class="sec" id="how"><p class="label">2. How we know</p><h2>Why ' + (complete ? "your pillars are level" : r.anchor + " is your anchor") + "</h2>";
+  // Your code and pillars through your eyes
+  h += '<section class="sec" id="eyes"><p class="label">2. Your pillars, through your eyes</p><h2>What each pillar means to ' + r.archetype.replace(/^The /, "a ") + '</h2><p>Every man has the same five pillars, but they do not mean the same thing to everyone. This is how each one looks to someone with your anchor and your way of moving. Tap a pillar to read it.</p>' + eyesHTML(r.anchor, r.mode, r.scores, "rep") + '<h3>Your code: ' + codeOf(r) + '</h3><p class="muted">Like a personality type code, yours is built from three parts.</p>' + legendHTML(r) + '</section>';
+  // 3 Your anchor, and why
+  h += '<section class="sec" id="how"><p class="label">3. Your anchor, and why</p><h2>Why ' + (complete ? "your pillars are level" : r.anchor + " is your anchor") + "</h2>";
   if (!complete) {
     h += '<div class="evid"><div class="ev"><b>' + picks + " of 6</b><span>identity questions where you chose " + r.anchor + "</span></div><div class=\"ev\"><b>" + top + "</b><span>the value you said you would defend hardest</span></div><div class=\"ev\"><b>" + as + '/25</b><span>how ' + r.anchor + " is actually going today</span></div></div>";
     h += "<p>Your anchor comes from Part IV, where you chose what your free time goes to, where your mind wanders, which compliment means most and which loss would shake you. Those answers describe <b>who you are</b>. Your pillar scores come from Parts I and II, which ask what you have <b>actually done lately</b>. They measure two different things on purpose.</p>";
@@ -1349,7 +1480,7 @@ function reportHTML(r) {
 
   // 3 Pillars
   var ins = r.anchor === w ? SAME : INSIGHT[r.anchor][w];
-  h += '<section class="sec" id="pillars"><p class="label">3. Your five pillars</p><h2>Where your structure is strong, and where it is cracking</h2><div class="templewrap">' + temple("repsvg") + '</div><div class="bars">';
+  h += '<section class="sec" id="pillars"><p class="label">4. Your five pillars</p><h2>Where your structure is strong, and where it is cracking</h2><div class="templewrap">' + temple("repsvg") + '</div><div class="bars">';
   PILLARS.forEach(function (p) {
     h += '<div class="barrow">' + emblem(p) + '<span class="n">' + p + (p === r.anchor ? ' <em class="tagA">Anchor</em>' : "") + (p === w ? ' <em class="tagW">Costing you</em>' : "") + '</span><span class="track"><i class="' + bandClass(r.bands[p]) + '" style="--w:' + (r.scores[p] / 25) + '"></i></span><span class="v"><span data-count="' + r.scores[p] + '">' + r.scores[p] + "</span>/25<small>" + r.bands[p] + "</small></span></div>";
   });
@@ -1359,23 +1490,23 @@ function reportHTML(r) {
   h += "</section>";
 
   // 4 Home and work
-  h += '<section class="sec" id="life"><p class="label">4. You at home and at work</p><h2>How it shows up in your life</h2><h3>At home</h3><p>' + HOME[r.anchor] + " " + SUPPORT_P[r.support] + "</p><h3>At work</h3><p>" + WORK[r.mode] + '</p><div class="how">';
+  h += '<section class="sec" id="life"><p class="label">5. You at home and at work</p><h2>How it shows up in your life</h2><h3>At home</h3><p>' + HOME[r.anchor] + " " + SUPPORT_P[r.support] + "</p><h3>At work</h3><p>" + WORK[r.mode] + '</p><div class="how">';
   [["start", r.start], ["keep", r.rhythm], ["drive", r.drive], ["solve", r.support], ["ready", r.readiness]].forEach(function (x) { h += '<div class="howrow"><span class="hq">' + HOW[x[0]].q + "</span><p>" + HOW[x[0]][x[1]] + "</p></div>"; });
   h += "</div></section>";
 
   // 5 Pattern
-  h += '<section class="sec" id="pattern"><p class="label">5. Your pattern</p><h2>' + pat.name + '</h2><div class="patgrid"><div class="loopbox">' + loopSVG(pat.steps) + '<ol class="loopsteps">' + pat.steps.map(function (s2) { return "<li>" + s2 + "</li>"; }).join("") + '</ol></div><div><p class="lead">' + pat.why + '</p><div class="rule"><small>How to break it</small>' + pat.fix + "</div></div></div></section>";
+  h += '<section class="sec" id="pattern"><p class="label">6. Your pattern</p><h2>' + pat.name + '</h2><div class="patgrid"><div class="loopbox">' + loopSVG(pat.steps) + '<ol class="loopsteps">' + pat.steps.map(function (s2) { return "<li>" + s2 + "</li>"; }).join("") + '</ol></div><div><p class="lead">' + pat.why + '</p><div class="rule"><small>How to break it</small>' + pat.fix + "</div></div></div></section>";
 
   // 6 Growth
   var m12 = lowCount ? "Every pillar at 16 or higher. That is The Complete Architect: no pillar carrying the others, none left behind." : "Every pillar at 21 or higher. Strong, not just level.";
-  h += '<section class="sec" id="growth"><p class="label">6. Your personal growth</p><h2>Where you need to get to</h2><p class="lead">Your next level: <b>' + A.next + "</b>.</p><p>" + A.nextText + '</p><div class="journey">' +
+  h += '<section class="sec" id="growth"><p class="label">7. Your personal growth</p><h2>Where you need to get to</h2><p class="lead">Your next level: <b>' + A.next + "</b>.</p><p>" + A.nextText + '</p><div class="journey">' +
     '<div class="jstep"><span class="jk">Today</span><b>' + r.archetype + "</b><span>" + w + " at " + ws + "/25" + (lowCount ? ", " + lowCount + " of 5 pillars below Solid" : "") + "</span></div>" +
     '<div class="jstep"><span class="jk">In 90 days</span><b>' + w + " to " + tgt + "/25</b><span>" + (tgt > ws ? "Up " + (tgt - ws) + " point" + (tgt - ws === 1 ? "" : "s") + ", into the next band. The seven days below are the start." : "Hold it, and lift your next lowest pillar.") + "</span></div>" +
     '<div class="jstep last"><span class="jk">In 12 months</span><b>' + (lowCount ? "The Complete Architect" : "Strong in all five") + "</b><span>" + m12 + "</span></div></div>" +
     '<div class="rule"><small>What to try first</small>' + TRY[r.readiness] + " " + TRY_MODE[r.mode] + "</div></section>";
 
   // 7 Days
-  h += '<section class="sec" id="days"><p class="label">7. Your first seven days</p><h2>Seven days to start rebuilding ' + w + '</h2><p class="muted">Each day takes under 10 minutes. ' + (r.support === "Solo" ? "Keep a private checklist, and tell one person the goal." : "Share each day with someone, and keep one block a week for yourself.") + (r.readiness === "Perfectionist" ? " Done badly still counts. The aim is to do each day, not to do it well." : "") + '</p><ol class="path">';
+  h += '<section class="sec" id="days"><p class="label">8. Your first seven days</p><h2>Seven days to start rebuilding ' + w + '</h2><p class="muted">Each day takes under 10 minutes. ' + (r.support === "Solo" ? "Keep a private checklist, and tell one person the goal." : "Share each day with someone, and keep one block a week for yourself.") + (r.readiness === "Perfectionist" ? " Done badly still counts. The aim is to do each day, not to do it well." : "") + '</p><ol class="path">';
   BRIDGE[w].forEach(function (d, k) { h += '<li><span class="n">' + (k + 1) + '</span><div><span class="t">Day ' + (k + 1) + "  " + DAY_TITLES[k] + "</span>" + d + "</div></li>"; });
   h += "</ol>" + (w === "Finance" ? '<p class="wrapnote">This is general education about money. It is not personal financial advice. For decisions about your own situation, speak to a qualified adviser.</p>' : "") + "</section>";
 
@@ -1387,7 +1518,7 @@ function reportHTML(r) {
   }
 
   // 8 Deeper
-  h += '<section class="sec" id="deeper"><p class="label">8. Go deeper</p><div class="book"><div class="cover"><img src="' + BOOK + '" alt="Vision to Victory book cover"></div><div><h2>Two chapters written for you</h2><ol class="reads"><li><b>' + pat.ch + "</b><span>Why " + pat.name.replace(/^The /, "the ") + " keeps you where you are, and how to break it.</span></li><li><b>" + ROUTE[w].ch + "</b><span>How to rebuild " + w + ", including " + ROUTE[w].th.slice(0, 2).map(function (t2) { return t2.split(":")[0]; }).join(" and ") + '.</span></li></ol><a class="btn" style="text-decoration:none;display:inline-flex;align-items:center" href="https://amzn.eu/d/0gtCoVXi" target="_blank" rel="noopener">Get Vision to Victory</a></div></div>' +
+  h += '<section class="sec" id="deeper"><p class="label">9. Go deeper</p><div class="book"><div class="cover"><img src="' + BOOK + '" alt="Vision to Victory book cover"></div><div><h2>Two chapters written for you</h2><ol class="reads"><li><b>' + pat.ch + "</b><span>Why " + pat.name.replace(/^The /, "the ") + " keeps you where you are, and how to break it.</span></li><li><b>" + ROUTE[w].ch + "</b><span>How to rebuild " + w + ", including " + ROUTE[w].th.slice(0, 2).map(function (t2) { return t2.split(":")[0]; }).join(" and ") + '.</span></li></ol><a class="btn" style="text-decoration:none;display:inline-flex;align-items:center" href="https://amzn.eu/d/0gtCoVXi" target="_blank" rel="noopener">Get Vision to Victory</a></div></div>' +
     '<div class="note"><img src="' + DAN + '" alt="Daniel Brown"><div><p>"Your weakest pillar is not a verdict. It is the next thing to build. Start with Day 1 tonight."</p><span class="label" style="color:var(--stone)">Daniel Brown <span class="tag">Draft line</span></span></div></div>' +
     '<h3 style="margin-top:40px">Your card</h3><p class="muted">Press and hold the card on a phone, or right click it on a computer, to save it.</p><img class="cardimg" id="cardimg" alt="Your F5IVE archetype card">' +
     '<h3 style="margin-top:40px">Measure what moved</h3><p>Your result describes where you stand today. It can change, and the aim is that it does. Take it again on or after <b class="gold">' + retake + "</b> and see whether " + w + " has reached " + tgt + '.</p><div class="row"><button class="btn ghost" data-act="arch" data-n="' + r.archetype + '">Read the full archetype page</button><button class="btn ghost" data-act="lib">Explore all 20 archetypes</button></div>' +
@@ -1395,7 +1526,7 @@ function reportHTML(r) {
 
   h += "</article>";
   // sidebar
-  h += '<aside class="pside"><div class="scard"><div class="sid">' + emblem(ep, "", ";width:52px;height:52px;flex:none") + '<div><span class="sk">Your archetype is:</span><b>' + r.archetype + "</b><span class=\"ss\">" + (complete ? "Balanced" : r.anchor + " anchor  ·  " + r.mode) + '</span></div></div><span class="sk" style="display:block;margin:18px 0 8px">On this page</span><ol class="snav">' +
+  h += '<aside class="pside"><div class="scard"><div class="sid">' + emblem(ep, "", ";width:52px;height:52px;flex:none") + '<div><span class="sk">Your archetype is:</span><b>' + r.archetype + "</b>" + codeHTML(r, "small") + "<span class=\"ss\">" + (complete ? "Balanced" : r.anchor + " anchor  ·  " + r.mode) + '</span></div></div><span class="sk" style="display:block;margin:18px 0 8px">On this page</span><ol class="snav">' +
     nav.map(function (n) { return '<li><button data-act="goto" data-n="' + n[0] + '">' + n[1] + "</button></li>"; }).join("") + "</ol></div></aside></div>";
   return h;
 }
@@ -1429,6 +1560,22 @@ function afterReport(r) {
     }, { threshold: 0.15 });
     secs.forEach(function (s) { if (s.getBoundingClientRect().top > window.innerHeight * 0.9) { s.classList.add("armed"); io.observe(s); } });
   }
+  // the crack in the weakest pillar
+  if (r.weakest) {
+    var cx = COLX[PILLARS.indexOf(r.weakest)], crack = document.createElementNS(ns, "path");
+    crack.setAttribute("d", "M" + (cx - 6) + " 96L" + (cx + 5) + " 122L" + (cx - 4) + " 140L" + (cx + 8) + " 168L" + (cx - 2) + " 186L" + (cx + 4) + " 214");
+    crack.setAttribute("class", "crack"); crack.setAttribute("pathLength", "1"); sv.appendChild(crack);
+    later(function () { crack.classList.add("go"); }, 1900);
+  }
+  // highlight the section being read in the sidebar
+  if ("IntersectionObserver" in window) {
+    var btns = {}; stage.querySelectorAll(".snav button").forEach(function (bt) { btns[bt.getAttribute("data-n")] = bt; });
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (!e.isIntersecting) return; Object.keys(btns).forEach(function (k) { btns[k].classList.toggle("on", k === e.target.id); }); });
+    }, { rootMargin: "-35% 0px -60% 0px" });
+    stage.querySelectorAll(".pmain .sec[id]").forEach(function (s) { spy.observe(s); });
+    var first = stage.querySelector(".snav button"); if (first) first.classList.add("on");
+  }
   drawCard(r);
 }
 
@@ -1442,7 +1589,7 @@ function renderView() {
       ["Strategist", "Visionary", "Builder", "Operator"].map(function (m) { return "<span>" + m + "<small>" + MODE_PLAIN[m] + "</small></span>"; }).join("") + "</div>";
     PILLARS.forEach(function (p) {
       h += '<div class="arow"><div class="ahead">' + emblem(p) + "<b>" + p + "</b></div>";
-      ["Strategist", "Visionary", "Builder", "Operator"].forEach(function (m) { var n = ARCHETYPES[p][m]; h += '<button class="acell" data-act="arch" data-n="' + n + '"><b>' + n + "</b><span>" + SIGNATURE[n] + "</span></button>"; });
+      ["Strategist", "Visionary", "Builder", "Operator"].forEach(function (m) { var n = ARCHETYPES[p][m]; h += '<button class="acell" data-act="arch" data-n="' + n + '"><em class="acode">' + archCode(n) + "</em><b>" + n + "</b><span>" + SIGNATURE[n] + "</span></button>"; });
       h += "</div>";
     });
     h += '<button class="acell rare" data-act="arch" data-n="The Complete Architect">' + emblem("Complete", "", ";width:40px;height:40px") + "<div><b>The Complete Architect</b><span>The rare result, when all five pillars stand level and strong.</span></div></button>";
@@ -1453,9 +1600,10 @@ function renderView() {
   setHash(slug(n));
   var others = A.m ? PILLARS.filter(function (p) { return p !== A.p; }).map(function (p) { return ARCHETYPES[p][A.m]; }) : [];
   var sameP = A.m ? ["Strategist", "Visionary", "Builder", "Operator"].filter(function (m) { return m !== A.m; }).map(function (m) { return ARCHETYPES[A.p][m]; }) : [];
-  var h2 = '<section class="rhero rise">' + medal(ep) + '<p class="label">' + (A.m ? A.p + " anchor  ·  " + A.m : "The rare result") + '</p><h1 style="margin:12px 0 14px">' + n + '</h1><p class="sigline">' + SIGNATURE[n] + "</p></section>" +
+  var h2 = '<section class="rhero rise">' + medal(ep) + '<p class="label">' + (A.m ? A.p + " anchor  ·  " + A.m : "The rare result") + '</p><h1 style="margin:12px 0 6px">' + n + '</h1><div class="pcode" style="justify-content:center"><span class="code big"><span class="ca">' + archCode(n).split("-")[0] + '</span>' + (A.m ? '<span class="ch">-</span><span class="cm">' + MODE_CODE[A.m] + "</span>" : "") + '<span class="cv">*</span></span></div><p class="muted small" style="margin:0 0 12px">The final letter is your variant: P, M or R, set by how ready you feel to begin.</p><p class="sigline">' + SIGNATURE[n] + "</p></section>" +
     '<section class="sec"><p class="label">Who you are</p><p class="lead">' + A.who + "</p>" + (A.m ? '<p class="muted">' + n + " is anchored in " + A.p + " (" + PILLAR_MEANS[A.p] + ") and " + MODE_PLAIN[A.m] + ".</p>" : "") + "</section>" +
     '<section class="sec"><div class="two"><div class="panel"><span class="k">At his best</span><ul class="ticks">' + A.best.map(function (b) { return "<li>" + b + "</li>"; }).join("") + '</ul></div><div class="panel dark"><span class="k">Under pressure</span><ul class="ticks">' + A.pressure.map(function (b) { return "<li>" + b + "</li>"; }).join("") + "</ul></div></div></section>" +
+    (A.m ? '<section class="sec"><p class="label">What each pillar means to ' + n.replace(/^The /, "a ") + '</p>' + eyesHTML(A.p, A.m, null, "ap") + "</section>" : "") +
     '<section class="sec"><p class="label">How others see you</p><p class="lead">' + A.others + "</p></section>" +
     '<section class="sec"><p class="label">Where you need to get to</p><div class="nextlvl"><span class="k">The next level</span><h3>' + A.next + "</h3><p>" + A.nextText + "</p></div></section>";
   if (A.m) {
@@ -1554,6 +1702,7 @@ document.addEventListener("click", function (ev) {
   else if (a === "lib") { clearTimers(); state.from = steps()[state.i].t === "report" ? "report" : state.from; state.view = "lib"; render(); }
   else if (a === "arch") { clearTimers(); if (!state.view && steps()[state.i].t === "report") state.from = "report"; state.view = b.getAttribute("data-n"); render(); }
   else if (a === "closeview") { state.view = null; render(); }
+  else if (a === "eye") { var g = b.getAttribute("data-g"), pn = b.getAttribute("data-n"); document.querySelectorAll('.eyetab[data-g="' + g + '"]').forEach(function (t) { t.classList.toggle("on", t === b); }); document.querySelectorAll('.eyepane[data-g="' + g + '"]').forEach(function (p) { p.hidden = p.getAttribute("data-n") !== pn; if (!p.hidden) { p.classList.remove("fresh"); void p.offsetWidth; p.classList.add("fresh"); } }); vibe(); }
   else if (a === "goto") { var el = document.getElementById(b.getAttribute("data-n")); if (el) el.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "start" }); }
   else if (a === "restart") { state.i = 0; state.ans = {}; state.age = false; state.faith = null; state.lens = false; state.rank = []; state.protect = null; state.slip = null; state.orient = {}; state.override = null; state.from = null; jump(0); }
 });
