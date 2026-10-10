@@ -463,6 +463,21 @@ p,.q{max-width:none}
 .code.small{display:flex;width:max-content}
 .sid .ss{display:block}
 .eyepane .big{max-width:none}
+/* version 6: code key */
+.psig{font:italic 500 clamp(1.15rem,2.6vw,1.5rem)/1.4 var(--serif);color:var(--stone);margin:0 0 18px}
+.ckey{display:flex;align-items:stretch;flex-wrap:wrap;gap:0}
+.kseg{appearance:none;background:rgba(201,168,76,.08);border:1px solid var(--gold);color:var(--cream);padding:10px 16px 9px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:background .25s,transform .25s}
+.kseg+.kseg{border-left:0}
+.kseg:hover{background:rgba(201,168,76,.18);transform:translateY(-2px)}
+.kseg b{font:700 clamp(1.6rem,4vw,2.4rem)/1 var(--cond);letter-spacing:.14em;color:var(--gold-l)}
+.kseg span{font:600 .68rem var(--cond);letter-spacing:.16em;text-transform:uppercase;color:var(--stone)}
+.kdash{display:flex;align-items:center;padding:0 8px;font:700 2rem var(--cond);color:var(--stone)}
+.kmore{appearance:none;background:none;border:0;color:var(--gold-l);font:500 .92rem var(--sans);text-decoration:underline;text-underline-offset:4px;padding:12px 0 0;cursor:pointer;display:block}
+.ss2{display:block;font:600 .74rem var(--cond);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.legend button{appearance:none;text-align:left;background:var(--ink2);border:0;color:var(--cream);padding:16px;display:flex;flex-direction:column;gap:6px;min-width:0;cursor:pointer;transition:background .25s}
+.legend button:hover{background:#15171C}
+.legend small{font:600 .68rem var(--cond);letter-spacing:.18em;text-transform:uppercase;color:var(--stone2)}
+.legend em{font:600 .74rem var(--cond);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:auto;padding-top:6px}
 </style>
 </head>
 <body>
@@ -1385,9 +1400,14 @@ function codeHTML(r, cls) {
   var complete = r.archetype === "The Complete Architect", a = complete ? "F5IVE" : ANCHOR_CODE[r.anchor];
   return '<span class="code ' + (cls || "") + '"><span class="ca">' + a + '</span><span class="ch">-</span><span class="cm">' + MODE_CODE[r.mode] + '</span><span class="cv">' + VAR_CODE[r.readiness] + "</span></span>";
 }
+function codeKeyHTML(r) {
+  var complete = r.archetype === "The Complete Architect", v = VAR_CODE[r.readiness];
+  var seg = function (letters, cap, target) { return '<button class="kseg" data-act="goto" data-n="' + target + '"><b>' + letters + "</b><span>" + cap + "</span></button>"; };
+  return '<div class="ckey" aria-label="Your code ' + codeOf(r) + '">' + seg(complete ? "F5IVE" : ANCHOR_CODE[r.anchor], complete ? "All five level" : r.anchor + " anchor", "how") + '<span class="kdash">-</span>' + seg(MODE_CODE[r.mode], r.mode, "life") + seg(v, VAR_NAME[v], "life") + '</div><button class="kmore" data-act="goto" data-n="code">What your code means, and how to read it</button>';
+}
 function legendHTML(r) {
   var complete = r.archetype === "The Complete Architect", v = VAR_CODE[r.readiness];
-  return '<div class="legend"><div><b>' + (complete ? "F5IVE" : ANCHOR_CODE[r.anchor]) + "</b><span>" + (complete ? "All five pillars level and strong" : "Your anchor: " + r.anchor) + "</span></div><div><b>" + MODE_CODE[r.mode] + "</b><span>How you move: " + r.mode + "</span></div><div><b>" + v + "</b><span>Your variant: " + VAR_NAME[v] + ", " + VAR_MEAN[v] + "</span></div></div>";
+  return '<div class="legend"><button data-act="goto" data-n="how"><small>The first part</small><b>' + (complete ? "F5IVE" : ANCHOR_CODE[r.anchor]) + "</b><span>" + (complete ? "All five pillars level and strong." : "Your anchor: " + r.anchor + ". The pillar you build your identity around. One of FAI, FAM, FIN, FIT or FRE.") + '</span><em>Why this is your anchor</em></button><button data-act="goto" data-n="life"><small>The middle letter</small><b>' + MODE_CODE[r.mode] + "</b><span>How you move: " + r.mode + ". One of S Strategist, V Visionary, B Builder or O Operator.</span><em>How you work</em></button><button data-act=\"goto\" data-n=\"life\"><small>The last letter</small><b>" + v + "</b><span>Your variant: " + VAR_NAME[v] + ", " + VAR_MEAN[v] + ". One of P Perfecting, M Measured or R Ready.</span><em>How ready you feel to begin</em></button></div>";
 }
 
 /* ============ What each pillar means to you: anchor lens x pillar, plus how your mode goes about it ============ */
@@ -1452,7 +1472,7 @@ function reportHTML(r) {
   var Q = QUOTE[ep];
   var nav = [["who", "Who you are"], ["eyes", "Your pillars, through your eyes"], ["how", "Your anchor, and why"], ["pillars", "Your five pillars"], ["life", "You at home and at work"], ["pattern", "Your pattern"], ["growth", "Your personal growth"], ["days", "Your first seven days"], ["deeper", "Go deeper"]];
 
-  var h = '<header class="phero rise"><div><p class="label">Your F5IVE archetype</p><h1 class="pname">' + r.archetype + '</h1><div class="pcode">' + codeHTML(r, "big") + '</div><p class="psub">' + (complete ? "All five pillars level and strong" : r.anchor + " anchor  ·  " + r.mode) + '</p></div><div class="pmedal">' + medal(ep) + "</div></header>";
+  var h = '<header class="phero rise"><div><p class="label">Your F5IVE archetype</p><h1 class="pname">' + r.archetype + '</h1><p class="psig">' + SIGNATURE[r.archetype] + '</p>' + codeKeyHTML(r) + '</div><div class="pmedal">' + medal(ep) + "</div></header>";
   h += '<div class="pgrid"><article class="pmain">';
   h += '<blockquote class="pquote"><p>' + Q.q + "</p><cite>" + Q.s + "</cite></blockquote>";
 
@@ -1463,7 +1483,7 @@ function reportHTML(r) {
     '<p class="muted" style="margin-top:16px">' + A.others + "</p></section>";
 
   // Your code and pillars through your eyes
-  h += '<section class="sec" id="eyes"><p class="label">2. Your pillars, through your eyes</p><h2>What each pillar means to ' + r.archetype.replace(/^The /, "a ") + '</h2><p>Every man has the same five pillars, but they do not mean the same thing to everyone. This is how each one looks to someone with your anchor and your way of moving. Tap a pillar to read it.</p>' + eyesHTML(r.anchor, r.mode, r.scores, "rep") + '<h3>Your code: ' + codeOf(r) + '</h3><p class="muted">Like a personality type code, yours is built from three parts.</p>' + legendHTML(r) + '</section>';
+  h += '<section class="sec" id="eyes"><p class="label">2. Your pillars, through your eyes</p><h2>What each pillar means to ' + r.archetype.replace(/^The /, "a ") + '</h2><p>Every man has the same five pillars, but they do not mean the same thing to everyone. This is how each one looks to someone with your anchor and your way of moving. Tap a pillar to read it.</p>' + eyesHTML(r.anchor, r.mode, r.scores, "rep") + '<h3 id="code" style="scroll-margin-top:20px">Your code: ' + codeOf(r) + '</h3><p class="muted">Like a personality type code, yours is built from three parts. Tap any part to read more about it.</p>' + legendHTML(r) + '</section>';
   // 3 Your anchor, and why
   h += '<section class="sec" id="how"><p class="label">3. Your anchor, and why</p><h2>Why ' + (complete ? "your pillars are level" : r.anchor + " is your anchor") + "</h2>";
   if (!complete) {
@@ -1526,7 +1546,7 @@ function reportHTML(r) {
 
   h += "</article>";
   // sidebar
-  h += '<aside class="pside"><div class="scard"><div class="sid">' + emblem(ep, "", ";width:52px;height:52px;flex:none") + '<div><span class="sk">Your archetype is:</span><b>' + r.archetype + "</b>" + codeHTML(r, "small") + "<span class=\"ss\">" + (complete ? "Balanced" : r.anchor + " anchor  ·  " + r.mode) + '</span></div></div><span class="sk" style="display:block;margin:18px 0 8px">On this page</span><ol class="snav">' +
+  h += '<aside class="pside"><div class="scard"><div class="sid">' + emblem(ep, "", ";width:52px;height:52px;flex:none") + '<div><span class="sk">Your archetype is:</span><b>' + r.archetype + "</b>" + codeHTML(r, "small") + '<span class="ss2">' + (complete ? "Balanced" : r.anchor) + " · " + r.mode + " · " + VAR_NAME[VAR_CODE[r.readiness]] + "</span>" + '</div></div><span class="sk" style="display:block;margin:18px 0 8px">On this page</span><ol class="snav">' +
     nav.map(function (n) { return '<li><button data-act="goto" data-n="' + n[0] + '">' + n[1] + "</button></li>"; }).join("") + "</ol></div></aside></div>";
   return h;
 }
