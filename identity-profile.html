@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>F5IVE Identity Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one narrow reading column, left aligned, like a printed brief. Dark brand ground with gold as the single accent. */
+:root{
+  --bg:#12100E; --surface:#1B1815; --surface2:#25211C; --fg:#F1E9DA; --muted:#A79D89; --line:#3A332B;
+  --gold:#C9A24B; --gold-ink:#12100E; --bronze:#A8733F;
+  --crit:#D0634A; --warn:#D49A3A; --good:#8DB07F;
+  --display:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#F4EEDF; --surface:#FBF7EC; --surface2:#EBE3D0; --fg:#1C1713; --muted:#675E4F; --line:#D3C8AE;
+    --gold:#8A6414; --gold-ink:#FBF7EC; --bronze:#7A4F25;
+    --crit:#A63D24; --warn:#9A6710; --good:#3F7A47;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#F4EEDF; --surface:#FBF7EC; --surface2:#EBE3D0; --fg:#1C1713; --muted:#675E4F; --line:#D3C8AE;
+  --gold:#8A6414; --gold-ink:#FBF7EC; --bronze:#7A4F25;
+  --crit:#A63D24; --warn:#9A6710; --good:#3F7A47;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:auto}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;margin:0;padding-inline:20px;padding-block:0}
+.wrap{max-width:720px;margin-inline:auto;padding-block:20px 72px}
+.ribbon{font-size:.78rem;letter-spacing:.04em;color:var(--muted);border:1px dashed var(--line);border-radius:6px;padding:8px 12px;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.cols{display:flex;gap:3px;align-items:flex-end;height:22px}
+.cols i{display:block;width:5px;background:var(--gold);border-radius:1px 1px 0 0}
+.cols i:nth-child(1){height:14px}.cols i:nth-child(2){height:18px}.cols i:nth-child(3){height:22px}.cols i:nth-child(4){height:18px}.cols i:nth-child(5){height:14px}
+.brand b{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+.eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 10px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.3rem,7vw,3.7rem);font-weight:500;letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,4.6vw,2.2rem);margin-bottom:14px}
+h3{font-size:1.35rem;margin-bottom:6px}
+p{margin:0 0 14px;max-width:64ch}
+.lede{font-size:1.1rem;color:var(--fg);margin-top:18px}
+.muted{color:var(--muted)}
+.small{font-size:.86rem}
+.btn{appearance:none;border:1px solid var(--gold);background:var(--gold);color:var(--gold-ink);font:600 .98rem/1 var(--body);padding:15px 22px;border-radius:6px;cursor:pointer;min-height:48px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+.btn.link{background:none;border:0;color:var(--muted);padding:12px 4px;text-decoration:underline}
+.btn:focus-visible,.opt:focus-visible,.dot:focus-visible,.val:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:24px}
+.check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface);margin-top:12px;cursor:pointer}
+.check input{margin-top:4px;width:20px;height:20px;accent-color:var(--gold);flex:none}
+.check span{min-width:0}
+.prog{height:3px;background:var(--line);border-radius:2px;margin-bottom:10px}
+.prog i{display:block;height:100%;background:var(--gold);border-radius:2px}
+.meta{display:flex;justify-content:space-between;gap:12px;font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:34px}
+.q{font-family:var(--display);font-size:clamp(1.55rem,4.6vw,2.05rem);font-weight:500;line-height:1.2;margin:0 0 26px;max-width:30ch;text-wrap:balance}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:center;gap:14px;text-align:left;width:100%;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:14px 16px;font:500 1rem/1.3 var(--body);cursor:pointer;min-height:52px}
+.opt b{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.opt.on{border-color:var(--gold);background:var(--surface2)}
+.opt.on b{background:var(--gold);color:var(--gold-ink);border-color:var(--gold)}
+.stmt{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;font-size:1.05rem;line-height:1.4}
+.dots{display:flex;justify-content:space-between;gap:6px;margin:14px 0 6px;padding-inline:4px}
+.dot{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;padding:0;display:grid;place-items:center;color:var(--muted)}
+.dot.on{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.dot:nth-child(1),.dot:nth-child(5){width:52px;height:52px}
+.dotlabels{display:flex;justify-content:space-between;font-size:.76rem;color:var(--muted);margin-bottom:14px;gap:12px}
+.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px}
+.val{position:relative;text-align:left;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:14px 48px 14px 16px;font:500 1rem/1.3 var(--body);cursor:pointer;min-width:0}
+.val small{display:block;font-weight:400;color:var(--muted);margin-top:3px;font-size:.84rem;line-height:1.35}
+.val em{position:absolute;right:14px;top:14px;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:.8rem;color:var(--muted)}
+.val.on{border-color:var(--gold);background:var(--surface2)}
+.val.on em{background:var(--gold);color:var(--gold-ink);border-color:var(--gold);font-weight:600}
+.group{margin-top:20px}
+.group h3{font-size:1.15rem;font-family:var(--body);font-weight:600}
+.field{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+.field label{font-size:.84rem;color:var(--muted)}
+.field input{background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:13px 14px;font:400 1rem var(--body);min-height:48px;width:100%}
+details.tools{margin-top:56px;border-top:1px solid var(--line);padding-top:14px}
+details.tools summary{cursor:pointer;color:var(--muted);font-size:.84rem;letter-spacing:.06em;text-transform:uppercase}
+.toolrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.toolrow .btn{padding:11px 14px;min-height:42px;font-size:.88rem}
+pre.out{white-space:pre-wrap;font:.8rem/1.5 ui-monospace,Menlo,monospace;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;margin-top:12px;overflow-x:auto}
+/* report */
+.hero{border:1px solid var(--gold);border-radius:10px;padding:30px 22px;background:var(--surface);position:relative}
+.hero h1{margin:6px 0 12px}
+.sig{font-family:var(--display);font-style:italic;font-size:1.4rem;line-height:1.3;max-width:34ch;margin-bottom:18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.82rem;color:var(--fg)}
+.chip b{color:var(--gold);font-weight:600;margin-right:4px}
+.sec{margin-top:56px}
+.sec>.eyebrow{margin-bottom:6px}
+.bars{display:flex;flex-direction:column;gap:14px;margin-top:18px}
+.bar{display:grid;grid-template-columns:84px 1fr auto;gap:12px;align-items:center}
+.bar .track{height:12px;background:var(--surface2);border-radius:2px;overflow:hidden}
+.bar .track i{display:block;height:100%}
+.bar .lbl{font-weight:600}
+.bar .val2{font-variant-numeric:tabular-nums;font-size:.86rem;color:var(--muted);white-space:nowrap}
+.b-crit{background:var(--crit)}.b-warn{background:var(--warn)}.b-solid{background:var(--gold)}.b-strong{background:var(--good)}
+.radar{width:100%;max-width:340px;height:auto;display:block;margin:6px 0 4px}
+.radar .g{fill:none;stroke:var(--line);stroke-width:1}
+.radar .ax{stroke:var(--line);stroke-width:1}
+.radar .poly{fill:var(--gold);fill-opacity:.22;stroke:var(--gold);stroke-width:2}
+.radar text{fill:var(--fg);font:600 12px var(--body)}
+.radar .dotp{fill:var(--gold)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:16px}
+.panel{border:1px solid var(--line);border-radius:8px;padding:18px;background:var(--surface);min-width:0}
+.panel p:last-child{margin-bottom:0}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:6px 14px;margin:0}
+.kv dt{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.kv dd{margin:0}
+.rule{border-left:3px solid var(--gold);padding:4px 0 4px 14px;margin:18px 0}
+.days{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column}
+.days li{display:grid;grid-template-columns:34px 1fr;gap:4px 14px;padding:14px 0;border-top:1px solid var(--line)}
+.days li:last-child{border-bottom:1px solid var(--line)}
+.days .n{font-family:var(--display);font-size:1.7rem;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+.days .t{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.days .d{grid-column:2}
+.prompts{margin:0;padding-left:20px}
+.prompts li{margin-bottom:12px;max-width:60ch}
+.cardimg{max-width:340px;width:100%;height:auto;border:1px solid var(--line);border-radius:6px;display:block;margin-top:14px}
+.notice{border:1px dashed var(--line);border-radius:8px;padding:14px 16px;font-size:.88rem;color:var(--muted);margin-top:18px}
+.tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--bronze);color:var(--bronze);border-radius:4px;padding:2px 6px;margin-left:8px;vertical-align:middle}
+a{color:var(--gold)}
+@media (max-width:480px){.bar{grid-template-columns:70px 1fr}.bar .val2{grid-column:1 / -1;margin-top:-8px}.kv{grid-template-columns:1fr}.kv dt{padding-top:8px}}
+@media (prefers-reduced-motion:no-preference){.hero{animation:rise .5s ease both}@keyframes rise{from{transform:translateY(8px)}to{transform:none}}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+"use strict";
+/* ============ Scoring engine (identical to the tested reference file) ============ */
+var PILLARS = ["Faith", "Family", "Finance", "Fitness", "Freedom"];
+var VALUE_PILLAR = {
+  "Purpose and meaning": "Faith", "Integrity and conscience": "Faith",
+  "Loyalty and belonging": "Family", "Legacy": "Family",
+  "Security": "Finance", "Building wealth": "Finance",
+  "Discipline": "Fitness", "Strength and health": "Fitness",
+  "Independence": "Freedom", "Ownership of my time": "Freedom"
+};
+var ARCHETYPES = {
+  Faith: { Strategist: "The Compass", Visionary: "The Lighthouse", Builder: "The Cornerstone", Operator: "The Sentinel" },
+  Family: { Strategist: "The Steward", Visionary: "The Harbour", Builder: "The Provider", Operator: "The Protector" },
+  Finance: { Strategist: "The Treasurer", Visionary: "The Venturer", Builder: "The Vault Builder", Operator: "The Dealmaker" },
+  Fitness: { Strategist: "The Periodiser", Visionary: "The Phoenix", Builder: "The Forge", Operator: "The Warrior" },
+  Freedom: { Strategist: "The Cartographer", Visionary: "The Horizon Chaser", Builder: "The Independent", Operator: "The Free Agent" }
+};
+function pillarBand(score) { if (score <= 10) return "Critical gap"; if (score <= 15) return "Underbuilt"; if (score <= 20) return "Solid"; return "Strong"; }
+function imbalanceBand(gap) { if (gap <= 3) return "Balanced"; if (gap <= 8) return "Leaning"; if (gap <= 13) return "Lopsided"; return "Critical"; }
+function strength(sum) { var a = Math.abs(sum); if (a === 0) return "Blended"; if (a <= 2) return "Slight"; if (a <= 4) return "Moderate"; return "Strong"; }
+function axisResult(items) {
+  var sum = items[0] + items[1] + items[2]; var pole;
+  if (sum !== 0) pole = sum > 0 ? "A" : "B";
+  else if (items[2] !== 0) pole = items[2] > 0 ? "A" : "B";
+  else { var first = items.find(function (v) { return v !== 0; }); pole = first === undefined ? "A" : (first > 0 ? "A" : "B"); }
+  return { sum: sum, pole: pole, strength: strength(sum) };
+}
+function rankOf(scores, pillar) { return 1 + PILLARS.filter(function (p) { return scores[p] > scores[pillar]; }).length; }
+function scoreProfile(input) {
+  var scores = {};
+  PILLARS.forEach(function (p) { scores[p] = input.quick[p] + input.extra[p][0] + input.extra[p][1]; });
+  var high = Math.max.apply(null, PILLARS.map(function (p) { return scores[p]; }));
+  var low = Math.min.apply(null, PILLARS.map(function (p) { return scores[p]; }));
+  var imbalance = high - low;
+  var grav = {}; PILLARS.forEach(function (p) { grav[p] = 0; });
+  [3, 2, 1].forEach(function (w, i) { grav[VALUE_PILLAR[input.values.ranked[i]]] += w; });
+  grav[input.values.protect] += 3;
+  var maxGrav = Math.max.apply(null, PILLARS.map(function (p) { return grav[p]; }));
+  var gravTied = PILLARS.filter(function (p) { return grav[p] === maxGrav; });
+  var rank1Pillar = VALUE_PILLAR[input.values.ranked[0]];
+  var gravity;
+  if (gravTied.length === 1) gravity = gravTied[0];
+  else if (gravTied.indexOf(input.values.protect) >= 0) gravity = input.values.protect;
+  else if (gravTied.indexOf(rank1Pillar) >= 0) gravity = rank1Pillar;
+  else gravity = gravTied[0];
+  var weakCandidates = PILLARS.filter(function (p) { return scores[p] === low; });
+  weakCandidates.sort(function (a, b) { return grav[b] - grav[a] || PILLARS.indexOf(a) - PILLARS.indexOf(b); });
+  var weakest = weakCandidates[0];
+  var ordered = PILLARS.slice().sort(function (a, b) { return scores[b] - scores[a] || grav[b] - grav[a] || PILLARS.indexOf(a) - PILLARS.indexOf(b); });
+  var anchor = ordered[0]; var shadow = null;
+  if (scores[ordered[0]] - scores[ordered[1]] <= 1) shadow = ordered[1];
+  var sp = axisResult(input.style.slice(0, 3)), rh = axisResult(input.style.slice(3, 6)), dr = axisResult(input.style.slice(6, 9)), su = axisResult(input.style.slice(9, 12));
+  var mode = sp.pole === "A" ? (rh.pole === "A" ? "Strategist" : "Visionary") : (rh.pole === "A" ? "Builder" : "Operator");
+  var complete = imbalance <= 3;
+  var archetype = complete ? "The Complete Architect" : ARCHETYPES[anchor][mode];
+  var gRank = rankOf(scores, gravity); var alignment = "Aligned";
+  if (scores[ordered[0]] - scores[gravity] >= 3) alignment = gRank <= 2 ? "Aligned" : (gRank === 3 ? "Drifting" : "Misaligned");
+  return {
+    scores: scores,
+    bands: PILLARS.reduce(function (o, p) { o[p] = pillarBand(scores[p]); return o; }, {}),
+    anchor: anchor, shadow: shadow, weakest: weakest, imbalance: imbalance, imbalanceBand: imbalanceBand(imbalance),
+    mode: mode, drive: dr.pole === "A" ? "Inner" : "Outer", driveStrength: dr.strength,
+    support: su.pole === "A" ? "Solo" : "Shared", supportStrength: su.strength,
+    gravity: gravity, sacrificed: input.values.slip, sacrificedIsWeakest: input.values.slip === weakest,
+    alignment: alignment, archetype: archetype,
+    axisSums: { starting: sp.sum, rhythm: rh.sum, drive: dr.sum, support: su.sum }
+  };
+}
+
+/* ============ Questions ============ */
+var QUICK = [
+  { p: "Faith", t: "When external pressures mount, work stress, financial strain, relationship conflict, you have a clear sense of who you are that remains stable." },
+  { p: "Faith", t: "You can articulate the core values that guide your decisions, and your actions under pressure reflect those values consistently." },
+  { p: "Faith", t: "Your sense of purpose is not tied exclusively to your professional role, it would survive a redundancy, a career change, or the loss of a title." },
+  { p: "Family", t: "When you are physically present with the people closest to you, you are genuinely mentally present, not distracted by work, tasks, or your phone." },
+  { p: "Family", t: "The people closest to you would describe you as emotionally available and genuinely interested in what is happening in their lives." },
+  { p: "Family", t: "Your most important relationships are improving, not just surviving, because of the deliberate investment you make in them." },
+  { p: "Finance", t: "You have a clear picture of your net financial position, what you own, what you owe, and what you are actively building." },
+  { p: "Finance", t: "Your financial systems operate automatically, savings transfer on payday, investments are not dependent on monthly willpower." },
+  { p: "Finance", t: "Financial stress is not a persistent background noise in your life, money is managed structurally rather than reactively." },
+  { p: "Fitness", t: "Your training or physical practice is consistent regardless of how you feel, it operates as a system rather than depending on motivation." },
+  { p: "Fitness", t: "When you miss a session or fall off track, you return within 48 hours, consistency is recovered quickly rather than abandoned entirely." },
+  { p: "Fitness", t: "Your physical standards are a genuine reflection of your internal standards, your body is evidence of your commitment." },
+  { p: "Freedom", t: "Your days have a deliberate structure that protects what matters, you direct your time rather than reacting to whatever is most urgent." },
+  { p: "Freedom", t: "You regularly experience a sense of alignment, that who you are, what you do, and what you value are pointing in the same direction." },
+  { p: "Freedom", t: "The overall architecture of your life, across all five areas, feels intentional rather than something that is simply happening to you." }
+];
+var EXTRA = [
+  { id: "FTH-1", p: "Faith", t: "In the last 30 days, I made time for prayer, reflection or stillness without anyone prompting me.", lens: "In the last 30 days, I kept my five daily prayers on time on most days." },
+  { id: "FAM-1", p: "Family", t: "In the last 30 days, when there was tension with someone close to me, I raised it and repaired it instead of letting it sit." },
+  { id: "FIN-1", p: "Finance", t: "In the last 30 days, I gave from my money to people or causes I believe in." },
+  { id: "FIT-1", p: "Fitness", t: "I fuel my body on purpose most days instead of eating on autopilot." },
+  { id: "FRD-1", p: "Freedom", t: "I have defined what freedom means for me in concrete terms, such as an income, a date or a set of conditions, and I can state it." },
+  { id: "FTH-2", p: "Faith", t: "I have a trusted source of guidance, such as scripture, a teacher, a mentor or a community, and I turn to it when things are unclear." },
+  { id: "FAM-2", p: "Family", t: "In the last 30 days, I started meaningful conversations with people close to me instead of waiting for them to raise things." },
+  { id: "FIN-2", p: "Finance", t: "In the last 90 days, I took a concrete step to grow my income or assets, such as a new skill, income stream or asset." },
+  { id: "FIT-2", p: "Fitness", t: "In the last 30 days, I kept a steady sleep routine and got enough rest on most nights." },
+  { id: "FRD-2", p: "Freedom", t: "In the last 30 days, I said no to a request or commitment that did not fit where I am heading." }
+];
+var EXTRA_IDS = { Faith: ["FTH-1", "FTH-2"], Family: ["FAM-1", "FAM-2"], Finance: ["FIN-1", "FIN-2"], Fitness: ["FIT-1", "FIT-2"], Freedom: ["FRD-1", "FRD-2"] };
+var STYLE = [
+  { id: "STY-1", a: "I start a big goal by picturing the finished result in detail.", b: "I start a big goal by doing the first small thing and learning as I go." },
+  { id: "STY-2", a: "I would rather spend a week getting the plan right.", b: "I would rather put something rough out this week and improve it." },
+  { id: "STY-3", a: "People would say I see where things are heading before others do.", b: "People would say I get things moving while others are still talking." },
+  { id: "STY-4", a: "I do my best work with fixed routines and set times.", b: "I do my best work when I choose what to do based on how the day is going." },
+  { id: "STY-5", a: "A plan that changes midweek feels like a setback.", b: "A plan that cannot change midweek is a bad plan." },
+  { id: "STY-6", a: "I track my habits and review them on a schedule.", b: "I keep my habits loose and adjust them by feel." },
+  { id: "STY-7", a: "I know I did well when I met my own standard, whatever others thought.", b: "I know I did well when others noticed and recognised it." },
+  { id: "STY-8", a: "I would keep working on a goal even if no one ever knew.", b: "Having people see my progress is what keeps me going." },
+  { id: "STY-9", a: "I measure myself against who I was last year.", b: "I measure myself against the people around me." },
+  { id: "STY-10", a: "When I struggle, I work it out by myself first.", b: "When I struggle, I talk it through with someone quickly." },
+  { id: "STY-11", a: "I prefer a private plan to having an accountability partner.", b: "I commit harder when someone is holding me to it." },
+  { id: "STY-12", a: "I prefer to solve my own problems before involving anyone.", b: "I prefer to involve someone early so I do not lose time." }
+];
+var VALUES = [
+  { v: "Purpose and meaning", line: "Living for something bigger than comfort" },
+  { v: "Integrity and conscience", line: "Doing right when it costs me" },
+  { v: "Loyalty and belonging", line: "Being someone my people can rely on" },
+  { v: "Legacy", line: "What I leave behind for those who come after me" },
+  { v: "Security", line: "Knowing my household is safe whatever happens" },
+  { v: "Building wealth", line: "Growing what I own over time" },
+  { v: "Discipline", line: "Doing it when I do not feel like it" },
+  { v: "Strength and health", line: "A body that can carry my responsibilities" },
+  { v: "Independence", line: "Answering to no one for my choices" },
+  { v: "Ownership of my time", line: "Deciding how my days are spent" }
+];
+var HARD = [
+  { p: "Faith", t: "My spiritual or moral grounding" },
+  { p: "Family", t: "My time and connection with my family" },
+  { p: "Finance", t: "My financial stability" },
+  { p: "Fitness", t: "My health and training" },
+  { p: "Freedom", t: "My freedom to run my own life" }
+];
+var SCALE = ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"];
+var PARTS = { 1: "Part 1 of 4  Your F5IVE Score", 2: "Part 2 of 4  Your pillars", 3: "Part 3 of 4  How you operate", 4: "Part 4 of 4  What you protect" };
+
+/* ============ Report copy ============ */
+var SIGNATURE = {
+  "The Compass": "You plan your life around a true north, and you rarely lose it.",
+  "The Lighthouse": "You see the far shore and light the way for everyone behind you.",
+  "The Cornerstone": "You carry the weight so everyone else can build on you.",
+  "The Sentinel": "You stand watch over what matters, then move the moment it is threatened.",
+  "The Steward": "You plan for the people you answer to.",
+  "The Harbour": "You make home the place where everyone returns stronger.",
+  "The Provider": "You show love through what you build and what you carry.",
+  "The Protector": "You are first to move when your people need you.",
+  "The Treasurer": "You treat money as a trust, tracked and planned.",
+  "The Venturer": "You see the opportunity before the market names it.",
+  "The Vault Builder": "You lay the foundation one brick at a time.",
+  "The Dealmaker": "You read the room, close the gap and move fast.",
+  "The Periodiser": "You train by design, never by mood.",
+  "The Phoenix": "You see who you will become and rebuild toward it.",
+  "The Forge": "You are made daily, by repetition.",
+  "The Warrior": "You show up and fight for the next rep.",
+  "The Cartographer": "You map the route to a life on your own terms.",
+  "The Horizon Chaser": "You keep your eyes on a life no one has drawn yet.",
+  "The Independent": "You build the structure that sets you free.",
+  "The Free Agent": "You move when you choose and answer to your own call.",
+  "The Complete Architect": "All five pillars stand. The work now is keeping them level."
+};
+var ANCHOR = {
+  Faith: { head: "Faith is your base.", strength: "You hold steady when the weather turns, and your sense of meaning does not depend on a title or a result.", blind: "Steadiness without action, where trust becomes a reason to leave money, health or hard conversations alone.", cost: "The visible pillars. The people around you see your calm but not your movement.", ask: "Where am I waiting when I should be working?" },
+  Family: { head: "Family is your crossbar.", strength: "People feel safe around you, and your loyalty is real.", blind: "Giving until nothing is left, putting everyone else's needs ahead of your own health, money and direction.", cost: "Capacity. A crossbar with no anchor shaft cannot hold the weight for long.", ask: "What am I neglecting so that others do not have to notice?" },
+  Finance: { head: "Finance is your chain.", strength: "You think in stewardship, plan ahead and make others feel secure.", blind: "Measuring a life in numbers, providing for people you are rarely present with.", cost: "The very relationships the security was meant to protect.", ask: "Who is getting my money and not my time?" },
+  Fitness: { head: "Fitness is your other chain.", strength: "You keep promises to yourself, and your discipline shows in your body and your energy.", blind: "Discipline in the body and avoidance elsewhere, where training becomes the place you hide from a money decision or an honest conversation.", cost: "A strong frame on a fragile foundation.", ask: "What am I avoiding by staying busy in the gym?" },
+  Freedom: { head: "Freedom is your waterline.", strength: "You know what you want, you direct your own time and you resist being steered.", blind: "Treating freedom as escape from obligation, when lasting freedom is held up by the pillars beneath it.", cost: "A freedom that is a performance, not a foundation.", ask: "What commitment would actually make me freer?" }
+};
+var COMPLETE = { head: "Your pillars stand level.", strength: "No single pillar is carrying the others. That is rare, and it means your life has no obvious weak point to exploit.", blind: "Coasting. Balance is not a finish line, and levelness fades when no one is tending it.", cost: "The slow drift that only shows up when a pillar is tested.", ask: "Which pillar would I notice slipping last, and why?" };
+var MODES = {
+  Strategist: { axes: "Vision-led and Structured", move: "You picture the destination, then build the system that gets you there.", strength: "Consistency, because the plan holds you when motivation does not.", shadow: "Mistaking planning for progress, so the plan keeps improving while the start date slips.", cost: "The opportunities that arrive before your plan is ready.", rule: "Ship the first imperfect version within 7 days.", q: "What am I still planning that I could start this week?" },
+  Visionary: { axes: "Vision-led and Adaptive", move: "You see the picture and adjust the route as the ground changes.", strength: "You spot openings others miss and bring people with you.", shadow: "Starts outnumber finishes, and an idea without structure stays a conversation.", cost: "The trust of people who count on you to finish.", rule: "One idea at a time, each with a finish date.", q: "Which idea has waited longest for a finish date?" },
+  Builder: { axes: "Action-led and Structured", move: "You start with the next step and turn it into a routine that holds.", strength: "Reliability: you do what you said and others build on you.", shadow: "Working hard on the wrong thing, since you rarely stop to check the direction.", cost: "Years spent perfecting a route that was never aimed.", rule: "Once a quarter, ask whether this is still the right hill.", q: "Is this still the right hill, and who would tell me if it were not?" },
+  Operator: { axes: "Action-led and Adaptive", move: "You act, read the result and adjust at speed.", strength: "Momentum and recovery. You thrive when things get messy.", shadow: "Living on urgency, so important work that never shouts gets ignored.", cost: "The slow pillars, usually health and family, which drift while you are busy.", rule: "Protect one non-urgent block every week for the pillar that is quiet.", q: "Which quiet pillar has gone longest without a protected block?" }
+};
+var MODIFIERS = {
+  Inner: { mean: "Your own standard decides whether you did well.", strength: "You keep going when nobody is watching.", watch: "Dismissing feedback and staying stuck in your own head.", advice: "Expect direct challenge, plus one outside view each month." },
+  Outer: { mean: "Recognition and comparison lift your effort.", strength: "You rise to a stage and raise your standard through others.", watch: "Effort that follows the audience and goals chosen to impress.", advice: "Make progress visible, but set a standard of your own first." },
+  Solo: { mean: "You work problems out alone first.", strength: "Self-reliance and calm under strain.", watch: "Struggling in silence until it is heavy.", advice: "Use a private checklist, with one person told the goal." },
+  Shared: { mean: "You talk problems through early.", strength: "You get help fast and keep your commitments.", watch: "Handing your drive to others and stalling when no one is around.", advice: "Have a daily conversation with a partner, plus one solo block a week." }
+};
+var DAY_TITLES = ["Name it", "Set a rhythm", "Remove friction", "Invest", "Give", "Review", "Commit"];
+var BRIDGE = {
+  Faith: ["Write the three things that give your life meaning, one sentence each.", "Choose one fixed daily moment for prayer, reflection or stillness and use it today.", "Remove one thing from today that pulls you away from your values.", "Read or listen to something grounding for 10 minutes and write one line on what it asks of you.", "Do one act of service that nobody will know about.", "Review the week: where did your actions match your values, and where not?", "Write one commitment for the next 30 days and tell one person."],
+  Family: ["Ask one person close to you how they really are, then listen without fixing.", "Put your phone away for one meal or conversation.", "Message someone you have let drift, with one specific memory.", "Start one conversation you have been avoiding, with a calm opening sentence.", "Put one hour of undistracted family time in the diary this week.", "Ask one person what you could do better for them, and write down the answer.", "Choose one recurring family ritual, such as a weekly meal, and schedule it."],
+  Finance: ["Write what you own and what you owe on one page.", "Open your bank statement and mark the three biggest outgoings.", "Cancel or pause one outgoing you do not use.", "Set up one automatic transfer to savings for your next payday.", "Decide a regular amount to give to people or causes you believe in.", "Write a money goal for the next 90 days with a number and a date.", "Book a 30-minute monthly money review in your diary."],
+  Fitness: ["Log how you honestly slept and ate yesterday.", "Do 10 minutes of the movement you keep postponing.", "Lay out tomorrow's training clothes or prepare one proper meal.", "Do a short planned session and log it.", "Choose a bedtime and set an alarm to start winding down.", "Put next week's training in the diary at fixed times.", "Write your 30-day training commitment and the trigger that starts it."],
+  Freedom: ["Write what freedom means to you in one sentence, with a number or a date.", "Block 30 minutes tomorrow for your own goal and protect it.", "Politely say no to one request that does not fit your direction.", "Spend 10 minutes building a skill that makes you less dependent on one source of income.", "Write the one commitment that would make you freer, and what it asks of you.", "Mark which hours of your week were genuinely yours.", "Write your 90-day freedom target and tomorrow's first step."]
+};
+var WRAP = {
+  Strategist: "Read all 7 days on Day 1 and put them in the diary at fixed times. Do not redesign the plan midweek, only do the day as written.",
+  Visionary: "Start with Day 7 and write the finish picture first. Do the days in the order your energy suits, and finish all 7 before starting any new idea.",
+  Builder: "Attach each day to a routine you already have and tick it off. On Day 6, ask whether this is still the right hill.",
+  Operator: "Do each day in the gaps and set a phone alarm. If you miss a day, do it next and keep going, and treat Days 6 and 7 as fixed."
+};
+var ROUTE = {
+  Faith: { ch: "Chapter 4, Faith as an Anchor, and Chapter 11, The Faith Pillar", th: ["Meaning Multiplier", "Sacred Rhythms", "Belief Buffer", "Faith Flywheel"] },
+  Family: { ch: "Chapter 12, The Family Pillar, with Chapter 10 on communication", th: ["Leadership Loop", "Echo Effect", "Family Reset Principle", "3R Listening Model"] },
+  Finance: { ch: "Chapter 13, The Finance Pillar", th: ["Four Pillars of Financial Foundation: Awareness, Alignment, Automation, Accumulation", "Wealth Continuum"] },
+  Fitness: { ch: "Chapter 14, The Fitness Pillar", th: ["Four Engines: Move, Fuel, Restore, Mind", "BLR Cycle", "MVD Rule"] },
+  Freedom: { ch: "Chapter 15, The Freedom Pillar", th: ["Delayed Freedom"] }
+};
+var WEAK_Q = {
+  Faith: "What am I leaning on that I would not want to lose, and what would I lean on if it went?",
+  Family: "Who would say they have not had enough of me lately?",
+  Finance: "What number am I avoiding looking at, and what is avoiding it costing me?",
+  Fitness: "What is my body telling me that I keep postponing?",
+  Freedom: "Whose approval am I still waiting for?"
+};
+var LENS = {
+  Faith: "The five daily prayers give a Muslim's day its structure, which makes them the first of your Sacred Rhythms to protect. Trust in God, tawakkul, is understood alongside effort and never as a replacement for it.",
+  Family: "Ties of kinship are emphasised throughout Islamic teaching, and each person is described as a guardian answerable for those in their care. Your family is part of your responsibility, not only your comfort.",
+  Finance: "Islamic financial practice centres on earning and spending within halal limits, avoiding interest, and giving through zakat and voluntary charity. Wealth is held as a trust. This is general education, so take specific rulings to a qualified scholar.",
+  Fitness: "Caring for your health is widely taught as part of gratitude for the body you have been given. Strength lets you do more for your family and your faith.",
+  Freedom: "In an Islamic frame, real freedom is not the absence of obligation. It is freedom from being ruled by anything other than God, lived within responsibility."
+};
+var IMB = {
+  Balanced: "Your five pillars sit close together. Nothing is carrying the rest, and nothing is being left behind.",
+  Leaning: "You lean one way, but not far. A small, steady investment in your weakest pillar will level you.",
+  Lopsided: "A strong pillar is carrying weight the others should share. This is the pattern the book warns about: excelling in one area while the others quietly slip.",
+  Critical: "Your strongest and weakest pillars are far apart. That gap is the single most useful thing in this report."
+};
+
+/* ============ State ============ */
+var state = { i: 0, ans: {}, age: false, faith: null, lens: false, rank: [], protect: null, slip: null, flips: {}, order: null, override: null, shown: false };
+STYLE.forEach(function (s) { state.flips[s.id] = Math.random() < 0.5; });
+function shuffle(a) { var r = a.slice(); for (var i = r.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = r[i]; r[i] = r[j]; r[j] = t; } return r; }
+state.order = shuffle(VALUES.map(function (v) { return v.v; }));
+state.hardOrder = shuffle(HARD.map(function (h) { return h.p; }));
+
+function steps() {
+  var s = [{ t: "intro" }];
+  QUICK.forEach(function (q, k) { s.push({ t: "likert", id: "Q" + (k + 1), part: 1, text: q.t }); });
+  s.push({ t: "consent" });
+  EXTRA.forEach(function (e) {
+    if (e.p === "Faith" && state.faith === false) return;
+    s.push({ t: "likert", id: e.id, part: 2, text: (e.id === "FTH-1" && state.lens) ? e.lens : e.t });
+  });
+  STYLE.forEach(function (e) { s.push({ t: "style", id: e.id, part: 3, a: e.a, b: e.b }); });
+  s.push({ t: "rank", part: 4 }); s.push({ t: "choice", part: 4 }); s.push({ t: "email" }); s.push({ t: "report" });
+  return s;
+}
+
+/* ============ Build the engine input from the answers ============ */
+function buildInput() {
+  if (state.override) return state.override;
+  var q = {}; PILLARS.forEach(function (p) { q[p] = 0; });
+  QUICK.forEach(function (x, k) { q[x.p] += state.ans["Q" + (k + 1)] || 3; });
+  var extra = {};
+  PILLARS.forEach(function (p) { extra[p] = [state.ans[EXTRA_IDS[p][0]] || 3, state.ans[EXTRA_IDS[p][1]] || 3]; });
+  if (state.faith === false) { q.Faith = Math.round(q.Faith * 25 / 15); extra.Faith = [0, 0]; }
+  var style = STYLE.map(function (s) { var v = state.ans[s.id]; if (v === undefined) return 0; return state.flips[s.id] ? -v : v; });
+  var ranked = state.rank.slice();
+  var pool = state.order.filter(function (v) { return !(state.faith === false && VALUE_PILLAR[v] === "Faith"); });
+  while (ranked.length < 3) { var c = pool.find(function (v) { return ranked.indexOf(v) < 0; }); ranked.push(c); }
+  return { quick: q, extra: extra, style: style, values: { ranked: ranked, protect: state.protect || "Family", slip: state.slip || "Fitness" } };
+}
+
+/* ============ Rendering helpers ============ */
+function bandClass(b) { return b === "Critical gap" ? "b-crit" : b === "Underbuilt" ? "b-warn" : b === "Solid" ? "b-solid" : "b-strong"; }
+function radar(sc) {
+  var cx = 170, cy = 160, R = 100, out = "";
+  [5, 10, 15, 20, 25].forEach(function (v) {
+    var pts = PILLARS.map(function (p, i) { var a = -Math.PI / 2 + i * 2 * Math.PI / 5; var r = R * v / 25; return (cx + r * Math.cos(a)).toFixed(1) + "," + (cy + r * Math.sin(a)).toFixed(1); });
+    out += '<polygon class="g" points="' + pts.join(" ") + '"/>';
+  });
+  PILLARS.forEach(function (p, i) { var a = -Math.PI / 2 + i * 2 * Math.PI / 5; out += '<line class="ax" x1="' + cx + '" y1="' + cy + '" x2="' + (cx + R * Math.cos(a)).toFixed(1) + '" y2="' + (cy + R * Math.sin(a)).toFixed(1) + '"/>'; });
+  var poly = PILLARS.map(function (p, i) { var a = -Math.PI / 2 + i * 2 * Math.PI / 5; var r = R * sc[p] / 25; return (cx + r * Math.cos(a)).toFixed(1) + "," + (cy + r * Math.sin(a)).toFixed(1); });
+  out += '<polygon class="poly" points="' + poly.join(" ") + '"/>';
+  PILLARS.forEach(function (p, i) {
+    var a = -Math.PI / 2 + i * 2 * Math.PI / 5; var r = R * sc[p] / 25;
+    out += '<circle class="dotp" r="4" cx="' + (cx + r * Math.cos(a)).toFixed(1) + '" cy="' + (cy + r * Math.sin(a)).toFixed(1) + '"/>';
+    var lx = cx + (R + 24) * Math.cos(a), ly = cy + (R + 24) * Math.sin(a) + 4;
+    var anc = Math.abs(Math.cos(a)) < 0.2 ? "middle" : (Math.cos(a) > 0 ? "start" : "end");
+    out += '<text x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '" text-anchor="' + anc + '">' + p + "</text>";
+  });
+  return '<svg class="radar" viewBox="0 0 340 320" role="img" aria-label="Pillar scores radar chart">' + out + "</svg>";
+}
+function alignmentCopy(r) {
+  var g = r.gravity, rank = 1 + PILLARS.filter(function (p) { return r.scores[p] > r.scores[g]; }).length;
+  var lines = [];
+  if (r.alignment === "Aligned") lines.push("What you value and what you score agree. " + g + " is the pillar you protect hardest, and it ranks " + rank + " of 5 on your scores.");
+  else if (r.alignment === "Drifting") lines.push(g + " is the pillar you would protect hardest, yet it ranks " + rank + " of 5 on your scores. You are not far off, but your time is drifting away from your values.");
+  else lines.push("You said " + g + " matters most to you. Your score there is " + r.scores[g] + " out of 25, well below your " + r.anchor + " score of " + r.scores[r.anchor] + ". That gap between belief and behaviour is the most useful line in this report.");
+  if (r.sacrificedIsWeakest) lines.push("In a hard season you would let " + r.sacrificed + " slip. It is already your weakest pillar, so the trade is already being made, whether or not you chose it.");
+  else lines.push("In a hard season you would let " + r.sacrificed + " slip. It scores " + r.scores[r.sacrificed] + " out of 25 today, so decide in advance what the minimum looks like before the season arrives.");
+  return lines;
+}
+function reportHTML(r) {
+  var anchorMod = r.archetype === "The Complete Architect" ? COMPLETE : ANCHOR[r.anchor];
+  var mode = MODES[r.mode];
+  var retake = new Date(Date.now() + 90 * 864e5).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  var route = ROUTE[r.weakest];
+  var chips = '<span class="chip"><b>Mode</b>' + r.mode + '</span><span class="chip"><b>Drive</b>' + r.drive + (r.driveStrength === "Blended" ? "" : " (" + r.driveStrength.toLowerCase() + ")") + '</span><span class="chip"><b>Support</b>' + r.support + (r.supportStrength === "Blended" ? "" : " (" + r.supportStrength.toLowerCase() + ")") + "</span>";
+  if (r.archetype !== "The Complete Architect") chips = '<span class="chip"><b>Anchor</b>' + r.anchor + "</span>" + chips;
+  var h = '<div class="hero"><p class="eyebrow">Your F5IVE archetype</p><h1>' + r.archetype + '</h1><p class="sig">' + SIGNATURE[r.archetype] + '</p><div class="chips">' + chips + "</div></div>";
+  if (r.shadow && r.archetype !== "The Complete Architect") h += '<p class="small muted" style="margin-top:12px">You also lean ' + r.shadow + ": it sits within a point of your anchor.</p>";
+  h += '<div class="sec"><p class="eyebrow">Pillar map</p><h2>Where each pillar stands</h2><div class="two"><div>' + radar(r.scores) + '</div><div class="bars">';
+  PILLARS.forEach(function (p) { h += '<div class="bar"><span class="lbl">' + p + '</span><span class="track"><i class="' + bandClass(r.bands[p]) + '" style="width:' + (r.scores[p] / 25 * 100) + '%"></i></span><span class="val2">' + r.scores[p] + "/25 " + r.bands[p] + "</span></div>"; });
+  h += "</div></div><p style='margin-top:18px'><b>" + r.imbalanceBand + ".</b> Your strongest and weakest pillars are " + r.imbalance + " points apart. " + IMB[r.imbalanceBand] + "</p>";
+  if (state.faith === false && !state.override) h += '<div class="notice">You chose not to answer the extra Faith questions, so your Faith score is based on your Quick Score answers only, scaled to match the other pillars.</div>';
+  h += "</div>";
+  h += '<div class="sec"><p class="eyebrow">Values versus behaviour</p><h2>What you value and what you do</h2>';
+  alignmentCopy(r).forEach(function (l) { h += "<p>" + l + "</p>"; });
+  h += "</div>";
+  h += '<div class="sec"><p class="eyebrow">Strengths and shadow side</p><h2>' + anchorMod.head + "</h2><div class='two'><div class='panel'><h3>What carries you</h3><p>" + anchorMod.strength + "</p><p class='muted small'>" + mode.move + " " + mode.strength + "</p></div><div class='panel'><h3>Where it costs you</h3><p>" + anchorMod.blind + " It costs you: " + anchorMod.cost.charAt(0).toLowerCase() + anchorMod.cost.slice(1) + "</p><p class='muted small'>" + mode.shadow + " It costs you: " + mode.cost.charAt(0).toLowerCase() + mode.cost.slice(1) + "</p></div></div>";
+  h += '<div class="rule"><b>Your rule.</b> ' + mode.rule + "</div></div>";
+  var dm = MODIFIERS[r.drive], sm = MODIFIERS[r.support];
+  h += '<div class="sec"><p class="eyebrow">How you operate</p><h2>' + r.mode + ": " + mode.axes.toLowerCase() + "</h2><div class='two'><div class='panel'><h3>" + r.drive + " drive</h3><dl class='kv'><dt>Means</dt><dd>" + dm.mean + "</dd><dt>Strength</dt><dd>" + dm.strength + "</dd><dt>Watch for</dt><dd>" + dm.watch + "</dd><dt>Advice</dt><dd>" + dm.advice + "</dd></dl></div><div class='panel'><h3>" + r.support + " support</h3><dl class='kv'><dt>Means</dt><dd>" + sm.mean + "</dd><dt>Strength</dt><dd>" + sm.strength + "</dd><dt>Watch for</dt><dd>" + sm.watch + "</dd><dt>Advice</dt><dd>" + sm.advice + "</dd></dl></div></div></div>";
+  h += '<div class="sec"><p class="eyebrow">Your bridge plan</p><h2>Seven days for ' + r.weakest + "</h2><p>Each day takes under 10 minutes. " + WRAP[r.mode] + " " + (r.support === "Solo" ? "Keep a private checklist, and tell one person the goal." : "Share each day with a partner, and keep one block a week for yourself.") + "</p><ol class='days'>";
+  BRIDGE[r.weakest].forEach(function (d, k) { h += "<li><span class='n'>" + (k + 1) + "</span><div><span class='t'>" + DAY_TITLES[k] + "</span><div class='d'>" + d + "</div></div></li>"; });
+  h += "</ol>";
+  if (r.weakest === "Finance") h += '<p class="small muted" style="margin-top:14px">This is general education about money. It is not personal financial advice. For decisions about your own situation, speak to a qualified adviser.</p>';
+  h += "</div>";
+  if (state.lens) {
+    var lp = r.anchor === r.weakest ? [r.anchor] : [r.anchor, r.weakest];
+    h += '<div class="sec"><p class="eyebrow">Islamic lens <span class="tag">Draft for approval</span></p><h2>Through an Islamic lens</h2>';
+    lp.forEach(function (p) { h += "<div class='panel' style='margin-top:12px'><h3>" + p + "</h3><p>" + LENS[p] + "</p></div>"; });
+    h += "</div>";
+  }
+  h += '<div class="sec"><p class="eyebrow">Your recommended path</p><h2>Where to read next</h2><p>Your weakest pillar is ' + r.weakest + ". Start with " + route.ch + " in <i>Vision to Victory</i>.</p><p class='muted'>Ideas to look for: " + route.th.join("; ") + '.</p><div class="row" style="margin-top:12px"><a class="btn" style="text-decoration:none;display:inline-flex;align-items:center" href="https://amzn.eu/d/0gtCoVXi" target="_blank" rel="noopener">Get the book</a></div></div>';
+  h += '<div class="sec"><p class="eyebrow">Reflection prompts</p><h2>Three questions to write down</h2><ol class="prompts"><li>' + anchorMod.ask + "</li><li>" + mode.q + "</li><li>" + WEAK_Q[r.weakest] + "</li></ol></div>";
+  h += '<div class="sec"><p class="eyebrow">Your share card</p><h2>Show them yours</h2><p>Press and hold the card on a phone, or right click it on a computer, to save the image.</p><img class="cardimg" id="cardimg" alt="Your F5IVE archetype card"></div>';
+  h += '<div class="sec"><p class="eyebrow">Retake</p><h2>Measure what moved</h2><p>Your result describes where you stand today based on how you answered. It is not a label and it can change. Retake the profile on or after <b>' + retake + "</b> and compare.</p></div>";
+  h += '<div class="notice">This is a self-reflection tool built on the F5IVE framework. It is not a clinical or psychological test and it does not diagnose anything. If this brought up something heavy, you do not have to carry it alone. In the UK you can call Samaritans free on 116 123, at any hour.</div>';
+  return h;
+}
+function drawCard(r) {
+  try {
+    var c = document.createElement("canvas"); c.width = 1080; c.height = 1350; var x = c.getContext("2d");
+    var serif = '"Cormorant Garamond", Georgia, serif', sans = '"Hanken Grotesk", system-ui, sans-serif';
+    x.fillStyle = "#12100E"; x.fillRect(0, 0, 1080, 1350);
+    x.strokeStyle = "#C9A24B"; x.lineWidth = 3; x.strokeRect(48, 48, 984, 1254);
+    x.fillStyle = "#C9A24B"; x.font = "600 26px " + sans; x.textBaseline = "alphabetic";
+    if ("letterSpacing" in x) x.letterSpacing = "6px";
+    x.fillText("THE STOIC ARCHITECT", 100, 130);
+    x.font = "600 24px " + sans; x.fillText("YOUR F5IVE ARCHETYPE", 100, 300);
+    if ("letterSpacing" in x) x.letterSpacing = "0px";
+    x.fillStyle = "#F1E9DA"; x.font = "600 120px " + serif;
+    var name = r.archetype, size = 120; while (x.measureText(name).width > 880 && size > 60) { size -= 4; x.font = "600 " + size + "px " + serif; }
+    x.fillText(name, 100, 430);
+    x.fillStyle = "#F1E9DA"; x.font = "italic 500 46px " + serif;
+    var words = SIGNATURE[r.archetype].split(" "), line = "", y = 520;
+    words.forEach(function (w) { var t = line ? line + " " + w : w; if (x.measureText(t).width > 880) { x.fillText(line, 100, y); y += 58; line = w; } else line = t; });
+    x.fillText(line, 100, y);
+    var by = 700;
+    PILLARS.forEach(function (p, i) {
+      var yy = by + i * 74;
+      x.fillStyle = "#A79D89"; x.font = "600 28px " + sans; x.fillText(p, 100, yy + 24);
+      x.fillStyle = "#25211C"; x.fillRect(300, yy, 560, 30);
+      x.fillStyle = "#C9A24B"; x.fillRect(300, yy, 560 * r.scores[p] / 25, 30);
+      x.fillStyle = "#F1E9DA"; x.font = "600 28px " + sans; x.fillText(String(r.scores[p]), 890, yy + 26);
+    });
+    x.fillStyle = "#A79D89"; x.font = "500 30px " + sans;
+    x.fillText(r.mode + "  /  " + r.drive + "  /  " + r.support, 100, 1150);
+    x.fillStyle = "#C9A24B"; x.font = "600 28px " + sans; x.fillText("Find your archetype", 100, 1230);
+    x.fillStyle = "#A79D89"; x.font = "500 26px " + sans; x.fillText("https://www.thestoicarchitect.com/quiz.html", 100, 1270);
+    var img = document.getElementById("cardimg"); if (img) img.src = c.toDataURL("image/png");
+  } catch (e) { /* card is optional */ }
+}
+
+/* ============ Screens ============ */
+var app = document.getElementById("app");
+function head(part, n, total) {
+  return '<div class="brand"><span class="cols"><i></i><i></i><i></i><i></i><i></i></span><b>The Stoic Architect</b></div>' +
+    '<div class="prog"><i style="width:' + Math.round(n / total * 100) + '%"></i></div><div class="meta"><span>' + PARTS[part] + "</span><span>" + n + " of " + total + "</span></div>";
+}
+function tools() {
+  return '<details class="tools"><summary>Prototype tools</summary><div class="toolrow">' +
+    '<button class="btn ghost" data-act="sample" data-n="0">Load sample 1</button><button class="btn ghost" data-act="sample" data-n="1">Load sample 2</button><button class="btn ghost" data-act="sample" data-n="2">Load sample 3</button>' +
+    '<button class="btn ghost" data-act="fill">Fill the rest randomly</button><button class="btn ghost" data-act="tests">Run engine tests</button><button class="btn ghost" data-act="restart">Restart</button></div><pre class="out" id="out" hidden></pre></details>';
+}
+function render() {
+  var S = steps(), st = S[state.i], qs = S.filter(function (s) { return s.part; });
+  var html = "";
+  var ribbon = '<div class="ribbon">Prototype build. Nothing you enter here is sent, saved or stored.</div>';
+  if (st.t === "intro") {
+    html = ribbon + '<div class="brand"><span class="cols"><i></i><i></i><i></i><i></i><i></i></span><b>The Stoic Architect</b></div>' +
+      '<p class="eyebrow">The F5IVE Identity Profile</p><h1>One pillar is carrying you. Another is quietly costing you.</h1>' +
+      '<p class="lede">Faith, Family, Finance, Fitness, Freedom. Answer 39 questions and get a named archetype, a map of where you stand, and a seven day plan for your weakest pillar.</p>' +
+      '<p class="muted">About 8 minutes. No email until your result is ready.</p>' +
+      '<div class="notice" style="margin-top:22px">This is a self-reflection tool built on the F5IVE framework. It is not a clinical or psychological test and it does not diagnose anything. Use it to start a better conversation with yourself.</div>' +
+      '<label class="check"><input type="checkbox" id="age"' + (state.age ? " checked" : "") + '><span>I am 18 or over.</span></label>' +
+      '<div class="row"><button class="btn" data-act="next" id="go"' + (state.age ? "" : " disabled") + ">Start the profile</button></div>" + tools();
+  } else if (st.t === "likert") {
+    var n = qs.indexOf(st) + 1, cur = state.ans[st.id];
+    html = ribbon + head(st.part, n, qs.length) + '<p class="q">' + st.text + '</p><div class="opts">' +
+      SCALE.map(function (l, k) { return '<button class="opt' + (cur === k + 1 ? " on" : "") + '" data-act="ans" data-v="' + (k + 1) + '"><b>' + (k + 1) + "</b>" + l + "</button>"; }).join("") +
+      '</div><div class="row"><button class="btn link" data-act="back">Back</button></div>' + tools();
+  } else if (st.t === "consent") {
+    html = ribbon + '<div class="brand"><span class="cols"><i></i><i></i><i></i><i></i><i></i></span><b>The Stoic Architect</b></div>' +
+      '<p class="eyebrow">Before the next part</p><h2>A note on faith questions</h2>' +
+      '<p>The next questions ask about faith, purpose and conscience. Your answers can reveal religious belief, which is sensitive information. You can say no and still get a full result.</p>' +
+      '<label class="check"><input type="checkbox" id="faith"' + (state.faith === true ? " checked" : "") + '><span>Some questions ask about faith, purpose and conscience. Your answers can reveal religious belief, which is sensitive information. I agree to The Stoic Architect using my answers to calculate my profile and results. I can withdraw this at any time.</span></label>' +
+      '<label class="check"><input type="checkbox" id="lens"' + (state.lens ? " checked" : "") + (state.faith === true ? "" : " disabled") + '><span>Add an Islamic perspective to my report. This is optional and I can leave it unticked.</span></label>' +
+      '<div class="row"><button class="btn" data-act="consent-next">Continue</button><button class="btn link" data-act="back">Back</button></div>' +
+      '<p class="small muted" style="margin-top:14px">If you leave the first box unticked, the Faith questions are skipped and your Faith score comes from your Part 1 answers only.</p>' + tools();
+  } else if (st.t === "style") {
+    var n2 = qs.indexOf(st) + 1, cur2 = state.ans[st.id], fl = state.flips[st.id];
+    var first = fl ? st.b : st.a, second = fl ? st.a : st.b;
+    var vals = [2, 1, 0, -1, -2];
+    html = ribbon + head(3, n2, qs.length) + '<p class="q" style="font-size:1.3rem;margin-bottom:18px">Which sounds more like you?</p>' +
+      '<div class="stmt">' + first + '</div><div class="dots" role="group" aria-label="Choose where you sit between the two statements">' +
+      vals.map(function (v, k) { return '<button class="dot' + (cur2 === v ? " on" : "") + '" data-act="ans" data-v="' + v + '" aria-label="' + ["Much more like the first", "A little more like the first", "In the middle", "A little more like the second", "Much more like the second"][k] + '">' + (k === 2 ? "=" : "") + "</button>"; }).join("") +
+      '</div><div class="dotlabels"><span>Much more like the first</span><span>Much more like the second</span></div><div class="stmt">' + second + '</div>' +
+      '<div class="row"><button class="btn link" data-act="back">Back</button></div>' + tools();
+  } else if (st.t === "rank") {
+    var pool = state.order.filter(function (v) { return !(state.faith === false && VALUE_PILLAR[v] === "Faith"); });
+    var line = {}; VALUES.forEach(function (v) { line[v.v] = v.line; });
+    html = ribbon + head(4, qs.indexOf(S.filter(function (s) { return s.t === "rank"; })[0]) + 1, qs.length) +
+      '<p class="q" style="font-size:1.5rem;margin-bottom:8px">Choose the three values you would defend hardest, then put them in order.</p><p class="muted small">Tap in order: first tap is your top value. Tap again to remove one.</p><div class="vals">' +
+      pool.map(function (v) { var k = state.rank.indexOf(v); return '<button class="val' + (k >= 0 ? " on" : "") + '" data-act="rank" data-v="' + v + '">' + v + "<small>" + line[v] + "</small><em>" + (k >= 0 ? k + 1 : "") + "</em></button>"; }).join("") +
+      '</div><div class="row"><button class="btn" data-act="next"' + (state.rank.length === 3 ? "" : " disabled") + '>Continue</button><button class="btn link" data-act="back">Back</button></div>' + tools();
+  } else if (st.t === "choice") {
+    var hp = state.hardOrder.filter(function (p) { return !(state.faith === false && p === "Faith"); });
+    var txt = {}; HARD.forEach(function (h2) { txt[h2.p] = h2.t; });
+    var grp = function (key, title, excl) {
+      return '<div class="group"><h3>' + title + '</h3><div class="opts" style="margin-top:10px">' + hp.filter(function (p) { return p !== excl; }).map(function (p) { return '<button class="opt' + (state[key] === p ? " on" : "") + '" data-act="pick" data-key="' + key + '" data-v="' + p + '"><b></b>' + txt[p] + "</button>"; }).join("") + "</div></div>";
+    };
+    html = ribbon + head(4, qs.length, qs.length) + '<p class="q" style="font-size:1.45rem;margin-bottom:6px">It is a hard season. You have limited time, money and energy, and you can fully protect only one area of life.</p>' +
+      grp("protect", "Which do you protect?", null) + (state.protect ? grp("slip", "Which do you let slip?", state.protect) : "") +
+      '<div class="row"><button class="btn" data-act="next"' + (state.protect && state.slip ? "" : " disabled") + '>Continue</button><button class="btn link" data-act="back">Back</button></div>' + tools();
+  } else if (st.t === "email") {
+    html = ribbon + '<div class="brand"><span class="cols"><i></i><i></i><i></i><i></i><i></i></span><b>The Stoic Architect</b></div>' +
+      '<p class="eyebrow">Your result is ready</p><h2>Where should we send it?</h2><p>In the live version, your report arrives by email and you join the F5IVE Journey. In this prototype nothing is sent, so you can leave these blank.</p>' +
+      '<div class="field"><label for="fn">First name</label><input id="fn" autocomplete="given-name"></div><div class="field"><label for="em">Email</label><input id="em" type="email" autocomplete="email"></div>' +
+      '<label class="check"><input type="checkbox" id="opt"><span>Send my results and report to this address, and add me to the F5IVE Journey emails. I can unsubscribe at any time.</span></label>' +
+      '<div class="row"><button class="btn" data-act="next">See my result</button><button class="btn link" data-act="back">Back</button></div>' + tools();
+  } else {
+    var r = scoreProfile(buildInput());
+    html = ribbon + '<div class="brand"><span class="cols"><i></i><i></i><i></i><i></i><i></i></span><b>The Stoic Architect</b></div>' + reportHTML(r) +
+      '<div class="row"><button class="btn ghost" data-act="restart">Start again</button></div>' + tools();
+    app.innerHTML = html; drawCard(r); window.scrollTo(0, 0); return;
+  }
+  app.innerHTML = html; window.scrollTo(0, 0);
+}
+
+/* ============ Actions ============ */
+function next() { state.i = Math.min(state.i + 1, steps().length - 1); render(); }
+function back() { state.i = Math.max(state.i - 1, 0); render(); }
+function fillRandom() {
+  var r = function (a, b) { return a + Math.floor(Math.random() * (b - a + 1)); };
+  QUICK.forEach(function (q, k) { if (state.ans["Q" + (k + 1)] === undefined) state.ans["Q" + (k + 1)] = r(2, 5); });
+  if (state.faith === null) state.faith = true;
+  EXTRA.forEach(function (e) { if (state.ans[e.id] === undefined) state.ans[e.id] = r(2, 5); });
+  STYLE.forEach(function (s) { if (state.ans[s.id] === undefined) state.ans[s.id] = r(-2, 2); });
+  var pool = state.order.filter(function (v) { return !(state.faith === false && VALUE_PILLAR[v] === "Faith"); });
+  while (state.rank.length < 3) { var c = pool[r(0, pool.length - 1)]; if (state.rank.indexOf(c) < 0) state.rank.push(c); }
+  var ps = PILLARS.filter(function (p) { return !(state.faith === false && p === "Faith"); });
+  if (!state.protect) state.protect = ps[r(0, ps.length - 1)];
+  if (!state.slip) { var o = ps.filter(function (p) { return p !== state.protect; }); state.slip = o[r(0, o.length - 1)]; }
+  state.i = steps().findIndex(function (s) { return s.t === "email"; }); render();
+}
+var SAMPLES = [
+  { quick: { Faith: 12, Family: 9, Finance: 6, Fitness: 11, Freedom: 9 }, extra: { Faith: [4, 4], Family: [3, 2], Finance: [3, 2], Fitness: [3, 3], Freedom: [3, 3] }, style: [2, 1, 1, -1, -1, -1, 2, 2, 1, -1, -1, 0], values: { ranked: ["Legacy", "Loyalty and belonging", "Purpose and meaning"], protect: "Family", slip: "Finance" } },
+  { quick: { Faith: 11, Family: 8, Finance: 9, Fitness: 7, Freedom: 11 }, extra: { Faith: [3, 4], Family: [3, 4], Finance: [3, 4], Fitness: [3, 4], Freedom: [3, 4] }, style: [-2, -2, -1, 1, 2, 1, 0, 0, 0, 1, 1, -1], values: { ranked: ["Independence", "Ownership of my time", "Integrity and conscience"], protect: "Freedom", slip: "Family" } },
+  { quick: { Faith: 10, Family: 9, Finance: 11, Fitness: 10, Freedom: 9 }, extra: { Faith: [3, 4], Family: [3, 4], Finance: [3, 4], Fitness: [3, 4], Freedom: [3, 4] }, style: [1, 1, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0], values: { ranked: ["Ownership of my time", "Legacy", "Purpose and meaning"], protect: "Family", slip: "Fitness" } }
+];
+var EXPECT = [
+  { scores: { Faith: 20, Family: 14, Finance: 11, Fitness: 17, Freedom: 15 }, anchor: "Faith", shadow: null, weakest: "Finance", imbalance: 9, mode: "Visionary", archetype: "The Lighthouse", drive: "Inner", support: "Shared", gravity: "Family", alignment: "Misaligned", sacrificedIsWeakest: true },
+  { scores: { Faith: 18, Family: 15, Finance: 16, Fitness: 14, Freedom: 18 }, anchor: "Freedom", shadow: "Faith", weakest: "Fitness", imbalance: 4, mode: "Builder", archetype: "The Independent", drive: "Inner", support: "Solo", gravity: "Freedom", alignment: "Aligned", sacrificedIsWeakest: false },
+  { scores: { Faith: 17, Family: 16, Finance: 18, Fitness: 17, Freedom: 16 }, anchor: "Finance", shadow: "Faith", weakest: "Family", imbalance: 2, mode: "Strategist", archetype: "The Complete Architect", drive: "Inner", support: "Solo", gravity: "Family", alignment: "Aligned", sacrificedIsWeakest: false }
+];
+function runTests() {
+  var out = [], ok = 0;
+  SAMPLES.forEach(function (s, k) {
+    var r = scoreProfile(s), e = EXPECT[k], bad = [];
+    Object.keys(e).forEach(function (key) { if (JSON.stringify(r[key]) !== JSON.stringify(e[key])) bad.push(key + " got " + JSON.stringify(r[key]) + " expected " + JSON.stringify(e[key])); });
+    if (!bad.length) ok++;
+    out.push("Case " + (k + 1) + ": " + (bad.length ? "FAIL " + bad.join("; ") : "pass"));
+  });
+  out.push(ok + " of " + SAMPLES.length + " cases pass");
+  return out.join("\n");
+}
+
+document.addEventListener("click", function (ev) {
+  var b = ev.target.closest("[data-act]"); if (!b) return;
+  var a = b.getAttribute("data-act"), S = steps(), st = S[state.i];
+  if (a === "next") next();
+  else if (a === "back") back();
+  else if (a === "ans") { state.ans[st.id] = Number(b.getAttribute("data-v")); render(); setTimeout(next, 220); }
+  else if (a === "rank") {
+    var v = b.getAttribute("data-v"), k = state.rank.indexOf(v);
+    if (k >= 0) state.rank.splice(k, 1); else if (state.rank.length < 3) state.rank.push(v);
+    render();
+  } else if (a === "pick") {
+    var key = b.getAttribute("data-key"); state[key] = b.getAttribute("data-v");
+    if (key === "protect" && state.slip === state.protect) state.slip = null;
+    render();
+  } else if (a === "consent-next") {
+    var f = document.getElementById("faith"), l = document.getElementById("lens");
+    state.faith = !!(f && f.checked); state.lens = state.faith && !!(l && l.checked);
+    if (state.faith === false) { state.rank = state.rank.filter(function (v) { return VALUE_PILLAR[v] !== "Faith"; }); if (state.protect === "Faith") state.protect = null; if (state.slip === "Faith") state.slip = null; }
+    next();
+  } else if (a === "sample") { state.override = SAMPLES[Number(b.getAttribute("data-n"))]; state.faith = true; state.i = steps().length - 1; render(); }
+  else if (a === "fill") fillRandom();
+  else if (a === "tests") { var o = document.getElementById("out"); o.hidden = false; o.textContent = runTests(); }
+  else if (a === "restart") { state.i = 0; state.ans = {}; state.age = false; state.faith = null; state.lens = false; state.rank = []; state.protect = null; state.slip = null; state.override = null; render(); }
+});
+document.addEventListener("change", function (ev) {
+  if (ev.target.id === "age") { state.age = ev.target.checked; var g = document.getElementById("go"); if (g) g.disabled = !state.age; }
+  if (ev.target.id === "faith") { var l = document.getElementById("lens"); if (l) { l.disabled = !ev.target.checked; if (!ev.target.checked) l.checked = false; } }
+});
+render();
+</script>
+
+</body>
+</html>
