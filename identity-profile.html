@@ -275,9 +275,61 @@ pre.out{white-space:pre-wrap;font:.8rem/1.5 ui-monospace,Menlo,monospace;backgro
   *,*::before,*::after{animation-duration:.01s!important;animation-delay:0s!important;transition-duration:.01s!important}
   #dust{display:none}
 }
+
+/* version 2 additions */
+.col small{font:600 .7rem/1.15 var(--cond);letter-spacing:.06em;text-transform:uppercase;color:var(--stone);text-align:center;min-height:2.4em;max-width:90px}
+.col.on small{color:var(--gold-l)}
+.scale{height:210px}
+.beamlbl.five{display:grid;grid-template-columns:repeat(5,1fr);text-align:center;gap:4px;font-size:.68rem}
+.picks.one{grid-template-columns:1fr}
+.picks.one .pick{font-size:1.05rem;padding:18px}
+.why{list-style:none;counter-reset:w;padding:0;margin:22px 0 0;display:grid;gap:10px;max-width:620px}
+.why li{counter-increment:w;display:grid;grid-template-columns:44px 1fr;gap:4px 14px;padding:14px 16px;border:1px solid var(--line2);background:rgba(21,24,29,.75)}
+.why li::before{content:counter(w,upper-roman);grid-row:span 2;font:700 1.4rem/1 var(--serif);color:var(--gold);padding-top:2px}
+.why b{font:700 1.08rem var(--serif);color:var(--cream)}
+.why span{color:var(--stone);font-size:.95rem}
+.lead{font-size:1.15rem;line-height:1.6;color:var(--cream)}
+.lead b{color:var(--gold-l);font-weight:600}
+.anchorrow{display:flex;gap:18px;align-items:center;margin:8px 0 6px}
+.ticks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ticks li{padding-left:20px;position:relative}
+.ticks li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
+.panel.dark .ticks li::before{background:var(--ember)}
+.how{display:grid;gap:0;margin-top:10px;border-top:1px solid var(--line2)}
+.howrow{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:6px 22px;padding:18px 0;border-bottom:1px solid var(--line2)}
+.howrow .hq{font:600 .8rem/1.4 var(--cond);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding-top:4px}
+.howrow p{margin:0;font-size:1.05rem}
+.nextlvl{border:1px solid var(--line);background:linear-gradient(160deg,rgba(201,168,76,.12),rgba(21,24,29,.85) 55%);padding:24px}
+.nextlvl .k{font:600 .72rem var(--cond);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
+.nextlvl h3{font-size:clamp(1.4rem,4vw,1.9rem);margin-bottom:10px}
+.nextlvl p{margin:0;font-size:1.06rem}
+button.chip{appearance:none;background:none;cursor:pointer;font:600 .78rem var(--cond);letter-spacing:.14em;text-transform:uppercase;color:var(--cream)}
+button.chip:hover{border-color:var(--gold);color:var(--gold-l)}
+.grid-head{display:grid;grid-template-columns:110px repeat(4,1fr);gap:8px;margin:30px 0 8px}
+.grid-head span{font:600 .74rem/1.2 var(--cond);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.grid-head small{display:block;font:400 .78rem/1.3 var(--sans);letter-spacing:0;text-transform:none;color:var(--stone);margin-top:4px}
+.arow{display:grid;grid-template-columns:110px repeat(4,1fr);gap:8px;margin-bottom:8px}
+.ahead{display:flex;flex-direction:column;justify-content:center;gap:6px}
+.ahead svg{width:30px;height:30px}
+.ahead b{font:600 .82rem var(--cond);letter-spacing:.16em;text-transform:uppercase}
+.acell{appearance:none;text-align:left;border:1px solid var(--line2);background:rgba(21,24,29,.85);color:var(--cream);padding:14px;cursor:pointer;min-width:0;transition:border-color .25s,transform .25s}
+.acell:hover{border-color:var(--gold);transform:translateY(-2px)}
+.acell b{display:block;font:700 1.02rem/1.2 var(--serif);margin-bottom:6px}
+.acell span{display:block;font-size:.84rem;line-height:1.35;color:var(--stone)}
+.acell.rare{display:flex;gap:14px;align-items:center;width:100%;margin-top:14px;border-color:var(--gold)}
+@media (max-width:640px){
+  .grid-head{display:none}
+  .arow{grid-template-columns:1fr 1fr}
+  .ahead{grid-column:1 / -1;flex-direction:row;align-items:center;margin-top:12px}
+  .howrow{grid-template-columns:1fr}
+  .scale{height:200px;gap:5px}
+  .col small{font-size:.62rem;letter-spacing:.02em}
+  .anchorrow{align-items:flex-start}
+}
 </style>
 </head>
 <body>
+
 <canvas id="dust" aria-hidden="true"></canvas>
 <div class="glow" aria-hidden="true"></div>
 <div class="flash" id="flash" aria-hidden="true"></div>
@@ -511,29 +563,108 @@ var IMB = {
 };
 
 
-var SAMPLES = [
-  { quick: { Faith: 12, Family: 9, Finance: 6, Fitness: 11, Freedom: 9 }, extra: { Faith: [4, 4], Family: [3, 2], Finance: [3, 2], Fitness: [3, 3], Freedom: [3, 3] }, style: [2, 1, 1, -1, -1, -1, 2, 2, 1, -1, -1, 0], values: { ranked: ["Legacy", "Loyalty and belonging", "Purpose and meaning"], protect: "Family", slip: "Finance" } },
-  { quick: { Faith: 11, Family: 8, Finance: 9, Fitness: 7, Freedom: 11 }, extra: { Faith: [3, 4], Family: [3, 4], Finance: [3, 4], Fitness: [3, 4], Freedom: [3, 4] }, style: [-2, -2, -1, 1, 2, 1, 0, 0, 0, 1, 1, -1], values: { ranked: ["Independence", "Ownership of my time", "Integrity and conscience"], protect: "Freedom", slip: "Family" } },
-  { quick: { Faith: 10, Family: 9, Finance: 11, Fitness: 10, Freedom: 9 }, extra: { Faith: [3, 4], Family: [3, 4], Finance: [3, 4], Fitness: [3, 4], Freedom: [3, 4] }, style: [1, 1, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0], values: { ranked: ["Ownership of my time", "Legacy", "Purpose and meaning"], protect: "Family", slip: "Fitness" } }
-];
-var EXPECT = [
-  { scores: { Faith: 20, Family: 14, Finance: 11, Fitness: 17, Freedom: 15 }, anchor: "Faith", shadow: null, weakest: "Finance", imbalance: 9, mode: "Visionary", archetype: "The Lighthouse", drive: "Inner", support: "Shared", gravity: "Family", alignment: "Misaligned", sacrificedIsWeakest: true },
-  { scores: { Faith: 18, Family: 15, Finance: 16, Fitness: 14, Freedom: 18 }, anchor: "Freedom", shadow: "Faith", weakest: "Fitness", imbalance: 4, mode: "Builder", archetype: "The Independent", drive: "Inner", support: "Solo", gravity: "Freedom", alignment: "Aligned", sacrificedIsWeakest: false },
-  { scores: { Faith: 17, Family: 16, Finance: 18, Fitness: 17, Freedom: 16 }, anchor: "Finance", shadow: "Faith", weakest: "Family", imbalance: 2, mode: "Strategist", archetype: "The Complete Architect", drive: "Inner", support: "Solo", gravity: "Family", alignment: "Aligned", sacrificedIsWeakest: false }
-];
-function runTests() {
-  var out = [], ok = 0;
-  SAMPLES.forEach(function (s, k) {
-    var r = scoreProfile(s), e = EXPECT[k], bad = [];
-    Object.keys(e).forEach(function (key) { if (JSON.stringify(r[key]) !== JSON.stringify(e[key])) bad.push(key + " got " + JSON.stringify(r[key]) + " expected " + JSON.stringify(e[key])); });
-    if (!bad.length) ok++;
-    out.push("Case " + (k + 1) + ": " + (bad.length ? "FAIL " + bad.join("; ") : "pass"));
+// F5IVE Identity Profile - scoring engine, version 2 (reference implementation)
+// Change from version 1: the archetype now comes from IDENTITY (what you build your life around),
+// measured by six forced-choice questions plus your value ranking. Pillar HEALTH (how each pillar is
+// going) is measured separately and drives the pillar map and the bridge plan.
+// Runs in the browser or in Node. No dependencies.
+
+var PILLARS = ['Faith', 'Family', 'Finance', 'Fitness', 'Freedom'];
+
+var VALUE_PILLAR = {
+  'Purpose and meaning': 'Faith', 'Integrity and conscience': 'Faith',
+  'Loyalty and belonging': 'Family', 'Legacy': 'Family',
+  'Security': 'Finance', 'Building wealth': 'Finance',
+  'Discipline': 'Fitness', 'Strength and health': 'Fitness',
+  'Independence': 'Freedom', 'Ownership of my time': 'Freedom'
+};
+
+var ARCHETYPES = {
+  Faith: { Strategist: 'The Compass', Visionary: 'The Lighthouse', Builder: 'The Cornerstone', Operator: 'The Sentinel' },
+  Family: { Strategist: 'The Steward', Visionary: 'The Harbour', Builder: 'The Provider', Operator: 'The Protector' },
+  Finance: { Strategist: 'The Treasurer', Visionary: 'The Venturer', Builder: 'The Vault Builder', Operator: 'The Dealmaker' },
+  Fitness: { Strategist: 'The Periodiser', Visionary: 'The Phoenix', Builder: 'The Forge', Operator: 'The Warrior' },
+  Freedom: { Strategist: 'The Cartographer', Visionary: 'The Horizon Chaser', Builder: 'The Independent', Operator: 'The Free Agent' }
+};
+
+function pillarBand(score) { if (score <= 10) return 'Critical gap'; if (score <= 15) return 'Underbuilt'; if (score <= 20) return 'Solid'; return 'Strong'; }
+function imbalanceBand(gap) { if (gap <= 3) return 'Balanced'; if (gap <= 8) return 'Leaning'; if (gap <= 13) return 'Lopsided'; return 'Critical'; }
+function strength(sum) { var a = Math.abs(sum); if (a === 0) return 'Blended'; if (a <= 2) return 'Slight'; if (a <= 4) return 'Moderate'; return 'Strong'; }
+function axisResult(items) {
+  var sum = items[0] + items[1] + items[2], pole;
+  if (sum !== 0) pole = sum > 0 ? 'A' : 'B';
+  else if (items[2] !== 0) pole = items[2] > 0 ? 'A' : 'B';
+  else { var first = items.find(function (v) { return v !== 0; }); pole = first === undefined ? 'A' : (first > 0 ? 'A' : 'B'); }
+  return { sum: sum, pole: pole, strength: strength(sum) };
+}
+function readinessBand(total) { if (total >= 11) return 'Perfectionist'; if (total <= 6) return 'Bold'; return 'Steady'; }
+
+function scoreProfile(input) {
+  // input.quick:  { Faith..Freedom } Quick Score totals, each 3..15
+  // input.extra:  { Faith: [a, b], ... } new pillar items, each 1..5
+  // input.style:  12 numbers, STY-1..STY-12, each -2..+2, positive = Pole A
+  // input.ready:  3 numbers, RDY-1..RDY-3, each 1..5 (higher = holds back until it feels right)
+  // input.orient: 6 pillar names, one per forced-choice orientation question
+  // input.values: { ranked: [v1, v2, v3], protect: 'Family', slip: 'Finance' }
+  var scores = {};
+  PILLARS.forEach(function (p) { scores[p] = input.quick[p] + input.extra[p][0] + input.extra[p][1]; });
+  var high = Math.max.apply(null, PILLARS.map(function (p) { return scores[p]; }));
+  var low = Math.min.apply(null, PILLARS.map(function (p) { return scores[p]; }));
+  var imbalance = high - low;
+
+  // Identity: 2 points per orientation pick, 3/2/1 for ranked values, 1 for the pillar protected in a hard season
+  var orient = {};
+  PILLARS.forEach(function (p) { orient[p] = 0; });
+  (input.orient || []).forEach(function (p) { if (p) orient[p] += 2; });
+  [3, 2, 1].forEach(function (w, i) { orient[VALUE_PILLAR[input.values.ranked[i]]] += w; });
+  if (input.values.protect) orient[input.values.protect] += 1;
+
+  var byIdentity = PILLARS.slice().sort(function (a, b) {
+    return orient[b] - orient[a] || scores[b] - scores[a] || PILLARS.indexOf(a) - PILLARS.indexOf(b);
   });
-  out.push(ok + " of " + SAMPLES.length + " cases pass");
-  return out.join("\n");
+  var anchor = byIdentity[0];
+  var second = (orient[byIdentity[0]] - orient[byIdentity[1]] <= 1) ? byIdentity[1] : null;
+
+  var byHealth = PILLARS.slice().sort(function (a, b) {
+    return scores[b] - scores[a] || orient[b] - orient[a] || PILLARS.indexOf(a) - PILLARS.indexOf(b);
+  });
+  var strongest = byHealth[0];
+  var weakCandidates = PILLARS.filter(function (p) { return scores[p] === low; });
+  weakCandidates.sort(function (a, b) { return orient[b] - orient[a] || PILLARS.indexOf(a) - PILLARS.indexOf(b); });
+  var weakest = weakCandidates[0];
+
+  var sp = axisResult(input.style.slice(0, 3)), rh = axisResult(input.style.slice(3, 6));
+  var dr = axisResult(input.style.slice(6, 9)), su = axisResult(input.style.slice(9, 12));
+  var mode = sp.pole === 'A' ? (rh.pole === 'A' ? 'Strategist' : 'Visionary') : (rh.pole === 'A' ? 'Builder' : 'Operator');
+
+  var readyTotal = (input.ready || [3, 3, 3]).reduce(function (a, b) { return a + b; }, 0);
+
+  // Complete Architect: balanced AND every pillar at least Solid, so balance at a low level does not qualify
+  var complete = imbalance <= 3 && low >= 16;
+  var archetype = complete ? 'The Complete Architect' : ARCHETYPES[anchor][mode];
+
+  return {
+    scores: scores,
+    bands: PILLARS.reduce(function (o, p) { o[p] = pillarBand(scores[p]); return o; }, {}),
+    orient: orient,
+    anchor: anchor, second: second,
+    anchorStrong: scores[anchor] >= 16,
+    strongest: strongest, weakest: weakest,
+    imbalance: imbalance, imbalanceBand: imbalanceBand(imbalance),
+    mode: mode,
+    start: sp.pole === 'A' ? 'Vision' : 'Action',
+    rhythm: rh.pole === 'A' ? 'Structure' : 'Flex',
+    drive: dr.pole === 'A' ? 'Inner' : 'Outer', driveStrength: dr.strength,
+    support: su.pole === 'A' ? 'Solo' : 'Shared', supportStrength: su.strength,
+    readiness: readinessBand(readyTotal), readyTotal: readyTotal,
+    sacrificed: input.values.slip,
+    sacrificedIsWeakest: input.values.slip === weakest,
+    archetype: archetype,
+    axisSums: { starting: sp.sum, rhythm: rh.sum, drive: dr.sum, support: su.sum }
+  };
 }
 
-
+if (typeof module !== 'undefined') module.exports = { scoreProfile: scoreProfile, PILLARS: PILLARS };
 
 /* ============ Visual vocabulary ============ */
 var REDUCED = false; try { REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
@@ -610,167 +741,6 @@ var ROMAN = ["", "I", "II", "III", "IV"];
   })();
 })();
 
-/* ============ State ============ */
-var state = { i: 0, ans: {}, age: false, faith: null, lens: false, rank: [], protect: null, slip: null, flips: {}, override: null };
-STYLE.forEach(function (s) { state.flips[s.id] = Math.random() < 0.5; });
-function shuffle(a) { var r = a.slice(); for (var i = r.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = r[i]; r[i] = r[j]; r[j] = t; } return r; }
-state.order = shuffle(VALUES.map(function (v) { return v.v; }));
-state.hardOrder = shuffle(HARD.map(function (h) { return h.p; }));
-var CHAPTERS = {
-  1: { title: "The Foundation Scan", builds: "Fifteen statements. Each answer raises your five pillars.", quote: "Motivation fades. Vision compounds.", src: "Vision to Victory, Chapter 2" },
-  2: { title: "Pillar Depth", builds: "Ten questions about what you actually did, not how you feel. Your pillars reach full height here.", quote: "Do not pray for smaller storms. Pray for heavier anchors.", src: "Vision to Victory, Chapter 4" },
-  3: { title: "The Arches", builds: "Twelve choices between two good options. They draw the arches: how you move toward what you want.", quote: "You don't need more starts. You need more stays.", src: "Vision to Victory, Chapter 3" },
-  4: { title: "The Ground You Stand On", builds: "Two hard choices about what you protect. They lay the foundation the whole structure stands on.", quote: "Avoidance is comfort dressed as control.", src: "Vision to Victory, Chapter 6" }
-};
-function steps() {
-  var s = [{ t: "intro" }, { t: "chapter", part: 1 }];
-  QUICK.forEach(function (q, k) { s.push({ t: "likert", id: "Q" + (k + 1), part: 1, p: q.p, text: q.t }); });
-  s.push({ t: "consent" }, { t: "chapter", part: 2 });
-  EXTRA.forEach(function (e) { if (e.p === "Faith" && state.faith === false) return; s.push({ t: "likert", id: e.id, part: 2, p: e.p, text: (e.id === "FTH-1" && state.lens) ? e.lens : e.t }); });
-  s.push({ t: "chapter", part: 3 });
-  STYLE.forEach(function (e, k) { s.push({ t: "style", id: e.id, part: 3, axis: Math.floor(k / 3), a: e.a, b: e.b }); });
-  s.push({ t: "chapter", part: 4 }, { t: "rank", part: 4 }, { t: "choice", part: 4 }, { t: "email" }, { t: "reveal" }, { t: "report" });
-  return s;
-}
-function buildInput() {
-  if (state.override) return state.override;
-  var q = {}; PILLARS.forEach(function (p) { q[p] = 0; });
-  QUICK.forEach(function (x, k) { q[x.p] += state.ans["Q" + (k + 1)] || 3; });
-  var extra = {}; PILLARS.forEach(function (p) { extra[p] = [state.ans[EXTRA_IDS[p][0]] || 3, state.ans[EXTRA_IDS[p][1]] || 3]; });
-  if (state.faith === false) { q.Faith = Math.round(q.Faith * 25 / 15); extra.Faith = [0, 0]; }
-  var style = STYLE.map(function (s) { var v = state.ans[s.id]; if (v === undefined) return 0; return state.flips[s.id] ? -v : v; });
-  var ranked = state.rank.slice(), pool = state.order.filter(function (v) { return !(state.faith === false && VALUE_PILLAR[v] === "Faith"); });
-  while (ranked.length < 3) { var c = pool.find(function (v) { return ranked.indexOf(v) < 0; }); ranked.push(c); }
-  return { quick: q, extra: extra, style: style, values: { ranked: ranked, protect: state.protect || "Family", slip: state.slip || "Fitness" } };
-}
-function progress() {
-  var fills = {};
-  PILLARS.forEach(function (p) {
-    var n = 0, d = 0;
-    QUICK.forEach(function (x, k) { if (x.p === p) { d++; if (state.ans["Q" + (k + 1)] !== undefined) n++; } });
-    if (!(p === "Faith" && state.faith === false)) EXTRA_IDS[p].forEach(function (id) { d++; if (state.ans[id] !== undefined) n++; });
-    fills[p] = n / d;
-  });
-  var arches = [0, 1, 2, 3].map(function (a) { var n = 0; for (var k = 0; k < 3; k++) if (state.ans[STYLE[a * 3 + k].id] !== undefined) n++; return n / 3; });
-  var base = (state.rank.length / 3) * 0.6 + (state.protect ? 0.2 : 0) + (state.slip ? 0.2 : 0);
-  return { fills: fills, arches: arches, base: base };
-}
-
-/* ============ HUD ============ */
-var hud = document.getElementById("hud"), hudT = document.getElementById("hudtemple");
-hudT.innerHTML = temple("hudsvg", { labels: true });
-function updateHud(st, S) {
-  var show = ["likert", "style", "rank", "choice"].indexOf(st.t) >= 0;
-  hud.hidden = !show; if (!show) return;
-  setTemple(document.getElementById("hudsvg"), progress());
-  var qs = S.filter(function (s) { return s.part && s.t !== "chapter"; }), n = qs.indexOf(st) + 1;
-  document.getElementById("hudpart").innerHTML = "Part <b>" + ROMAN[st.part] + "</b>  " + CHAPTERS[st.part].title;
-  document.getElementById("hudcount").textContent = n + " / " + qs.length;
-}
-
-/* ============ Screens ============ */
-var stage = document.getElementById("stage"), timers = [];
-function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
-function clearTimers() { timers.forEach(clearTimeout); timers = []; }
-function go(delta) { clearTimers(); stage.classList.remove("enter"); stage.classList.add("leave"); setTimeout(function () { state.i = Math.max(0, Math.min(steps().length - 1, state.i + delta)); render(); }, 170); }
-function jump(i) { clearTimers(); state.i = i; render(); }
-function tools() {
-  return '<details class="tools"><summary>Prototype tools</summary><div class="toolrow"><button class="btn ghost" data-act="sample" data-n="0">Sample 1</button><button class="btn ghost" data-act="sample" data-n="1">Sample 2</button><button class="btn ghost" data-act="sample" data-n="2">Sample 3</button><button class="btn ghost" data-act="fill">Fill the rest randomly</button><button class="btn ghost" data-act="tests">Run engine tests</button><button class="btn ghost" data-act="restart">Restart</button></div><pre class="out" id="out" hidden></pre></details>';
-}
-function render() {
-  var S = steps(), st = S[state.i], html = "";
-  updateHud(st, S);
-  if (st.t === "intro") {
-    var words = "One pillar is carrying you.".split(" ").map(function (w, k) { return '<span class="w" style="animation-delay:' + (0.25 + k * 0.09) + 's">' + w + "</span>"; }).join(" ");
-    var words2 = "Another is quietly costing you.".split(" ").map(function (w, k) { return '<span class="w" style="animation-delay:' + (0.75 + k * 0.09) + 's"><em>' + w + "</em></span>"; }).join(" ");
-    html = '<section class="hero"><img class="logo" src="' + LOGO + '" alt="The Stoic Architect"><p class="label">The F5IVE Identity Profile</p><h1 style="margin-top:12px">' + words + "<br>" + words2 + '</h1>' +
-      '<div class="templebox">' + temple("introsvg", { build: true }) + "</div>" +
-      '<p style="font-size:1.12rem;margin-top:18px">Faith, Family, Finance, Fitness, Freedom. Find out which pillar holds your life up, which one is cracking, and the seven days that start the repair.</p>' +
-      '<div class="facts"><div><b>39</b>Questions</div><div><b>8</b>Minutes</div><div><b>20</b>Archetypes</div></div>' +
-      '<div class="author"><img src="' + DAN + '" alt="Daniel Brown"><p><b>Built by Daniel Brown MSc</b>, author of <i>Vision to Victory</i> and founder of the F5IVE framework.</p></div>' +
-      '<label class="check"><input type="checkbox" id="age"' + (state.age ? " checked" : "") + '><span>I am 18 or over.</span></label>' +
-      '<div class="row"><button class="btn" data-act="next" id="go"' + (state.age ? "" : " disabled") + '>Build my profile</button></div>' +
-      '<p class="fine">This is a self-reflection tool built on the F5IVE framework. It is not a clinical or psychological test and it does not diagnose anything.</p></section>' + tools();
-    stage.innerHTML = html; enter();
-    var sv = document.getElementById("introsvg");
-    setTemple(sv, { fills: { Faith: 0, Family: 0, Finance: 0, Fitness: 0, Freedom: 0 }, arches: [0, 0, 0, 0], base: 0 });
-    later(function () { setTemple(sv, { fills: { Faith: .82, Family: .55, Finance: .34, Fitness: .7, Freedom: .6 }, arches: [1, 1, 1, 1], base: 1 }); }, 700);
-    return;
-  }
-  if (st.t === "chapter") {
-    var ch = CHAPTERS[st.part], pr = progress();
-    html = '<section class="chapter rise"><div class="numeral">' + ROMAN[st.part] + '</div><p class="label">Part ' + ROMAN[st.part] + " of IV</p><h2 style='margin-top:10px'>" + ch.title + '</h2><p class="muted" style="font-size:1.08rem;margin-top:12px">' + ch.builds + '</p><div><div class="quote">' + ch.quote + "</div><small>" + ch.src + '</small></div><div class="templebox">' + temple("chsvg", { labels: false }) + '</div><div class="row"><button class="btn" data-act="next">Begin Part ' + ROMAN[st.part] + '</button>' + (state.i > 1 ? '<button class="btn text" data-act="back">Back</button>' : "") + "</div></section>" + tools();
-    stage.innerHTML = html; enter();
-    var cs = document.getElementById("chsvg"); setTemple(cs, { fills: {}, arches: [0, 0, 0, 0], base: 0 });
-    later(function () { setTemple(cs, pr); }, 400);
-    return;
-  }
-  if (st.t === "likert") {
-    var cur = state.ans[st.id];
-    html = '<div class="qtag">' + emblem(st.p) + '<span class="label">' + st.p + '</span></div><p class="q">' + st.text + '</p><div class="scale" role="group" aria-label="How strongly do you agree?">' +
-      SCALE.map(function (l, k) { var on = cur === k + 1, lit = cur && k + 1 < cur; return '<button class="col' + (on ? " on" : "") + (lit ? " lit" : "") + '" data-act="ans" data-v="' + (k + 1) + '" aria-label="' + l + '"><span class="bar" style="width:100%"><i></i></span><b>' + (k + 1) + "</b></button>"; }).join("") +
-      '</div><div class="scalelbl"><span>Strongly disagree</span><span>Strongly agree</span></div><div class="picked" id="picked">' + (cur ? SCALE[cur - 1] : "") + '</div><div class="row"><button class="btn text" data-act="back">Back</button></div>' + tools();
-    stage.innerHTML = html; enter(); return;
-  }
-  if (st.t === "style") {
-    var c2 = state.ans[st.id], fl = state.flips[st.id], first = fl ? st.b : st.a, second = fl ? st.a : st.b;
-    var vals = [2, 1, 0, -1, -2], xs = [60, 160, 260, 360, 460];
-    var tilt = c2 === undefined ? 0 : -c2 * 5;
-    var notes = vals.map(function (v, k) { return '<g class="notch' + (c2 === v ? " on" : "") + '" data-act="ans" data-v="' + v + '" role="button" tabindex="0" aria-label="' + ["Much more like A", "A little more like A", "Both equally", "A little more like B", "Much more like B"][k] + '"><circle cx="' + xs[k] + '" cy="60" r="' + (k === 2 ? 11 : (k === 0 || k === 4 ? 17 : 14)) + '"/><rect x="' + (xs[k] - 28) + '" y="30" width="56" height="60" fill="transparent"/></g>'; }).join("");
-    html = '<div class="qtag"><span class="label">Which sounds more like you?</span></div>' +
-      '<div class="pair"><div class="stmt' + (c2 > 0 ? " heavy" : "") + '"><span class="ab">A</span>' + first + '</div><div class="stmt' + (c2 < 0 ? " heavy" : "") + '"><span class="ab">B</span>' + second + "</div></div>" +
-      '<div class="beam"><svg viewBox="0 0 520 130" aria-label="Balance between A and B"><path d="M244 120L260 66L276 120Z" fill="#1C2027" stroke="#9A7629"/><rect x="200" y="118" width="120" height="6" fill="#9A7629"/><g class="arm" id="arm" style="transform:rotate(' + tilt + 'deg)"><rect x="30" y="56" width="460" height="8" fill="url(#beamg)"/><defs><linearGradient id="beamg"><stop offset="0" stop-color="#7A5C22"/><stop offset=".5" stop-color="#E8CF86"/><stop offset="1" stop-color="#7A5C22"/></linearGradient></defs><text class="end" x="14" y="66">A</text><text class="end" x="506" y="66">B</text>' + notes + "</g></svg></div>" +
-      '<div class="beamlbl"><span>More like A</span><span>Both</span><span>More like B</span></div><div class="row"><button class="btn text" data-act="back">Back</button></div>' + tools();
-    stage.innerHTML = html; enter(); return;
-  }
-  if (st.t === "consent") {
-    html = '<section class="rise"><div class="qtag">' + emblem("Faith") + '<span class="label">Before Part II</span></div><h2>A note on the faith questions</h2><p class="muted" style="margin-top:12px">The next part asks about faith, purpose and conscience. You can say no and still get a full result.</p>' +
-      '<label class="check"><input type="checkbox" id="faith"' + (state.faith === true ? " checked" : "") + '><span>Some questions ask about faith, purpose and conscience. Your answers can reveal religious belief, which is sensitive information. I agree to The Stoic Architect using my answers to calculate my profile and results. I can withdraw this at any time.</span></label>' +
-      '<label class="check"><input type="checkbox" id="lens"' + (state.lens ? " checked" : "") + (state.faith === true ? "" : " disabled") + '><span>Add an Islamic perspective to my report. This is optional and I can leave it unticked.</span></label>' +
-      '<div class="row"><button class="btn" data-act="consent-next">Continue</button><button class="btn text" data-act="back">Back</button></div><p class="fine">Leave the first box unticked and the Faith questions are skipped. Your Faith score then comes from your Part I answers only.</p></section>' + tools();
-    stage.innerHTML = html; enter(); return;
-  }
-  if (st.t === "rank") {
-    var pool = state.order.filter(function (v) { return !(state.faith === false && VALUE_PILLAR[v] === "Faith"); }), line = {};
-    VALUES.forEach(function (v) { line[v.v] = v.line; });
-    html = '<p class="q" style="margin-bottom:8px">Choose the three values you would defend hardest.</p><p class="muted">Tap in order. Your first tap is your top value. Tap again to remove one.</p><div class="vals">' +
-      pool.map(function (v) { var k = state.rank.indexOf(v); return '<button class="val' + (k >= 0 ? " on" : "") + '" data-act="rank" data-v="' + v + '">' + v + "<small>" + line[v] + "</small><em>" + (k >= 0 ? ROMAN[k + 1] : "") + "</em></button>"; }).join("") +
-      '</div><div class="row"><button class="btn" data-act="next"' + (state.rank.length === 3 ? "" : " disabled") + '>Lock in my values</button><button class="btn text" data-act="back">Back</button></div>' + tools();
-    stage.innerHTML = html; enter(); return;
-  }
-  if (st.t === "choice") {
-    var hp = state.hardOrder.filter(function (p) { return !(state.faith === false && p === "Faith"); }), txt = {};
-    HARD.forEach(function (h2) { txt[h2.p] = h2.t; });
-    var grp = function (key) {
-      return '<div class="picks">' + hp.map(function (p) {
-        var cls = "";
-        if (key === "protect") cls = state.protect === p ? " prot" : (state.protect ? " dim" : "");
-        else cls = state.slip === p ? " slip" : (p === state.protect ? " prot" : "");
-        var dis = key === "slip" && p === state.protect ? " disabled" : "";
-        return '<button class="pick' + cls + '" data-act="pick" data-key="' + key + '" data-v="' + p + '"' + dis + ">" + emblem(p) + txt[p] + "</button>";
-      }).join("") + "</div>";
-    };
-    html = '<div class="storm"><canvas id="rain" aria-hidden="true"></canvas><p class="label" style="margin-bottom:10px">The hard season</p><p class="q">You have limited time, money and energy. You can fully protect only one area of your life.</p></div>' +
-      '<div class="sub">Which do you protect?</div>' + grp("protect") + (state.protect ? '<div class="sub">Which do you let slip?</div>' + grp("slip") : "") +
-      '<div class="row"><button class="btn" data-act="next"' + (state.protect && state.slip ? "" : " disabled") + '>Lay the foundation</button><button class="btn text" data-act="back">Back</button></div>' + tools();
-    stage.innerHTML = html; enter(); rain(); return;
-  }
-  if (st.t === "email") {
-    var r0 = scoreProfile(buildInput()), ep = r0.archetype === "The Complete Architect" ? "Complete" : r0.anchor;
-    html = '<section class="rise"><div class="lock"><p class="label">Your architecture is complete</p><div class="medal">' + emblem(ep, "", ";width:110px;height:110px") + '</div><div class="blur" aria-hidden="true">' + r0.archetype + '</div><p class="muted" style="margin:0 auto">One of 20 archetypes. Yours is ready.</p></div>' +
-      '<h2>Where should we send your full profile?</h2><p class="muted" style="margin-top:10px">In the live version your report arrives by email and you join the F5IVE Journey. In this prototype nothing is sent, so you can leave these blank.</p>' +
-      '<div class="field"><label for="fn">First name</label><input id="fn" autocomplete="given-name"></div><div class="field"><label for="em">Email</label><input id="em" type="email" autocomplete="email"></div>' +
-      '<label class="check"><input type="checkbox" id="opt"><span>Send my results and report to this address, and add me to the F5IVE Journey emails. I can unsubscribe at any time.</span></label>' +
-      '<div class="row"><button class="btn" data-act="next">Reveal my archetype</button><button class="btn text" data-act="back">Back</button></div></section>' + tools();
-    stage.innerHTML = html; enter(); return;
-  }
-  if (st.t === "reveal") { runReveal(); return; }
-  var r = scoreProfile(buildInput());
-  stage.innerHTML = reportHTML(r) + '<div class="row" style="justify-content:center;margin-top:50px"><button class="btn ghost" data-act="restart">Take it again</button></div>' + tools();
-  enter(); afterReport(r);
-}
-function enter() { stage.classList.remove("leave"); void stage.offsetWidth; stage.classList.add("enter"); window.scrollTo(0, 0); }
-
 /* ============ Rain for the hard season ============ */
 function rain() {
   var c = document.getElementById("rain"); if (!c || REDUCED) return; var x = c.getContext("2d"); if (!x) return;
@@ -782,122 +752,6 @@ function rain() {
     D.forEach(function (d) { d.y += d.v; d.x -= d.v * .25; if (d.y > H) { d.y = -d.l; d.x = Math.random() * W * 1.2; } x.beginPath(); x.moveTo(d.x, d.y); x.lineTo(d.x - d.l * .25, d.y + d.l); x.stroke(); });
     requestAnimationFrame(loop);
   })();
-}
-
-/* ============ The reveal ============ */
-function runReveal() {
-  var r = scoreProfile(buildInput()), ep = r.archetype === "The Complete Architect" ? "Complete" : r.anchor;
-  stage.innerHTML = '<section class="reveal"><p class="label" id="rl">Building your architecture</p><div class="templebox">' + temple("revsvg") + '</div><p class="status" id="rs"></p><div id="rname"></div></section><button class="btn ghost skip" data-act="next" id="skipbtn">Skip</button>';
-  enter();
-  var sv = document.getElementById("revsvg"), rs = document.getElementById("rs");
-  setTemple(sv, { fills: {}, arches: [0, 0, 0, 0], base: 0 });
-  var t = 300, lines = ["Measuring five pillars", "Drawing the arches", "Laying the foundation", "Finding your anchor"];
-  var step = REDUCED ? 0 : 1;
-  later(function () { rs.textContent = lines[0]; }, t * step);
-  PILLARS.forEach(function (p, i) {
-    later(function () {
-      var f = {}; PILLARS.forEach(function (q, j) { f[q] = j <= i ? r.scores[q] / 25 : 0; });
-      setTemple(sv, { fills: f, arches: [0, 0, 0, 0], base: 0 });
-      var sc = sv.querySelector('[data-score="' + p + '"]'); sc.classList.add("on"); countUp(sc, r.scores[p], 1000); vibe();
-    }, (t + 500 + i * 420) * step);
-  });
-  var full = {}; PILLARS.forEach(function (q) { full[q] = r.scores[q] / 25; });
-  later(function () { rs.textContent = lines[1]; setTemple(sv, { fills: full, arches: [1, 1, 1, 1], base: 0 }); }, 3100 * step);
-  later(function () { rs.textContent = lines[2]; setTemple(sv, { fills: full, arches: [1, 1, 1, 1], base: 1 }); }, 4100 * step);
-  later(function () { rs.textContent = lines[3]; if (r.archetype !== "The Complete Architect") pulseCol(sv, r.anchor); }, 5000 * step);
-  later(function () {
-    var fl = document.getElementById("flash"); fl.classList.remove("go"); void fl.offsetWidth; fl.classList.add("go"); vibe();
-    document.getElementById("rl").textContent = "Your F5IVE archetype";
-    rs.textContent = "";
-    var tb = stage.querySelector(".templebox"); tb.style.transition = "max-width .8s"; tb.style.maxWidth = "260px";
-    var letters = r.archetype.split("").map(function (ch, k) { return ch === " " ? " " : '<span style="animation-delay:' + (0.35 + k * 0.045) + 's">' + ch + "</span>"; }).join("");
-    document.getElementById("rname").innerHTML = medal(ep) + '<div class="name">' + letters + '</div><p class="sigline">' + SIGNATURE[r.archetype] + '</p><div class="row" style="justify-content:center"><button class="btn" data-act="next">Read my full profile</button></div>';
-    var sk = document.getElementById("skipbtn"); if (sk) sk.remove();
-  }, 6000 * step);
-}
-
-/* ============ Report ============ */
-function bandClass(b) { return b === "Critical gap" ? "b-crit" : b === "Underbuilt" ? "b-warn" : b === "Solid" ? "b-solid" : "b-strong"; }
-function cap1(s) { return s.charAt(0).toLowerCase() + s.slice(1); }
-function reportHTML(r) {
-  var complete = r.archetype === "The Complete Architect", ep = complete ? "Complete" : r.anchor;
-  var am = complete ? COMPLETE : ANCHOR[r.anchor], mode = MODES[r.mode], route = ROUTE[r.weakest];
-  var retake = new Date(Date.now() + 90 * 864e5).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-  var chips = (complete ? "" : '<span class="chip"><b>Anchor</b>' + r.anchor + "</span>") + '<span class="chip"><b>Mode</b>' + r.mode + '</span><span class="chip"><b>Drive</b>' + r.drive + '</span><span class="chip"><b>Support</b>' + r.support + "</span>";
-  var h = '<section class="rhero rise">' + medal(ep) + '<p class="label">Your F5IVE archetype</p><h1 style="margin:12px 0 14px">' + r.archetype + '</h1><p class="sigline">' + SIGNATURE[r.archetype] + '</p><div class="chips">' + chips + "</div>" +
-    (r.shadow && !complete ? '<p class="muted small" style="margin:16px auto 0">You also lean ' + r.shadow + ". It sits within a point of your anchor.</p>" : "") + "</section>";
-
-  h += '<section class="sec"><p class="label">I. Pillar map</p><h2>Where your structure stands</h2><div style="max-width:560px">' + temple("repsvg") + '</div><div class="bars">';
-  PILLARS.forEach(function (p) {
-    h += '<div class="barrow">' + emblem(p) + '<span class="n">' + p + '</span><span class="track"><i class="' + bandClass(r.bands[p]) + '" style="--w:' + (r.scores[p] / 25) + '"></i></span><span class="v"><span data-count="' + r.scores[p] + '">' + r.scores[p] + "</span>/25<small>" + r.bands[p] + "</small></span></div>";
-  });
-  h += '</div><p class="big" style="margin-top:26px"><em>' + r.imbalanceBand + ".</em> Your strongest and weakest pillars are " + r.imbalance + " points apart.</p><p class='muted'>" + IMB[r.imbalanceBand] + "</p>";
-  if (state.faith === false && !state.override) h += '<p class="wrapnote">You chose not to answer the extra Faith questions, so your Faith score comes from your Part I answers only, scaled to match the other pillars.</p>';
-  h += "</section>";
-
-  var g = r.gravity, al = alignmentCopy(r);
-  h += '<section class="sec"><p class="label">II. Values versus behaviour</p><h2>What you protect, and what you build</h2><div class="gap"><div class="side"><span>You protect</span><b>' + g + '</b><span>' + r.scores[g] + '/25</span></div><div class="vs">vs</div><div class="side"><span>You build most</span><b>' + (complete ? "All five" : r.anchor) + "</b><span>" + (complete ? "level" : r.scores[r.anchor] + "/25") + "</span></div></div>";
-  al.forEach(function (l, k) { h += k === 0 ? '<p class="big">' + l + "</p>" : "<p>" + l + "</p>"; });
-  h += "</section>";
-
-  h += '<section class="sec"><p class="label">III. Strengths and shadow side</p><h2>' + am.head + '</h2><div class="two"><div class="panel"><span class="k">What carries you</span><p>' + am.strength + '</p><p class="muted small">' + mode.move + " " + mode.strength + '</p></div><div class="panel dark"><span class="k">Where it costs you</span><p>' + am.blind + " It costs you " + cap1(am.cost) + '</p><p class="muted small">' + mode.shadow + " It costs you " + cap1(mode.cost) + '</p></div></div><div class="rule"><small>Your rule</small>' + mode.rule + "</div></section>";
-
-  var sums = buildInput(), ax = scoreProfile(sums).axisSums;
-  var axes = [
-    { a: "Vision", b: "Action", v: ax.starting, note: "Where you start" },
-    { a: "Structure", b: "Adapt", v: ax.rhythm, note: "How you keep rhythm" },
-    { a: "Inner", b: "Outer", v: ax.drive, note: MODIFIERS[r.drive].mean + " " + MODIFIERS[r.drive].advice },
-    { a: "Solo", b: "Shared", v: ax.support, note: MODIFIERS[r.support].mean + " " + MODIFIERS[r.support].advice }
-  ];
-  h += '<section class="sec"><p class="label">IV. How you operate</p><h2>' + r.mode + '</h2><p class="muted">' + mode.axes + ". " + mode.move + '</p><div class="dial">';
-  axes.forEach(function (x) { var pos = 50 - (x.v / 6) * 46; h += '<div class="axis"><div class="ends"><b>' + x.a + "</b><b>" + x.b + '</b></div><div class="line"><i data-pos="' + pos + '" style="left:' + pos + '%"></i></div><p>' + x.note + "</p></div>"; });
-  h += "</div></section>";
-
-  h += '<section class="sec"><p class="label">V. Your bridge plan</p><h2>Seven days to rebuild ' + r.weakest + '</h2><p class="muted">Each day takes under 10 minutes. ' + WRAP[r.mode] + " " + (r.support === "Solo" ? "Keep a private checklist, and tell one person the goal." : "Share each day with a partner, and keep one block a week for yourself.") + '</p><ol class="path">';
-  BRIDGE[r.weakest].forEach(function (d, k) { h += '<li><span class="n">' + (k + 1) + '</span><div><span class="t">Day ' + (k + 1) + "  " + DAY_TITLES[k] + "</span>" + d + "</div></li>"; });
-  h += "</ol>" + (r.weakest === "Finance" ? '<p class="wrapnote">This is general education about money. It is not personal financial advice. For decisions about your own situation, speak to a qualified adviser.</p>' : "") + "</section>";
-
-  if (state.lens) {
-    var lp = r.anchor === r.weakest ? [r.anchor] : [r.anchor, r.weakest];
-    h += '<section class="sec"><p class="label">Through an Islamic lens <span class="tag">Draft for approval</span></p><div class="two">';
-    lp.forEach(function (p) { h += '<div class="panel"><span class="k">' + p + "</span><p>" + LENS[p] + "</p></div>"; });
-    h += "</div></section>";
-  }
-
-  h += '<section class="sec"><p class="label">VI. Your next chapter</p><div class="book"><div class="cover"><img src="' + BOOK + '" alt="Vision to Victory book cover"></div><div><h2>Read ' + route.ch.split(",")[0] + '</h2><p class="muted">' + route.ch + ' of <i>Vision to Victory</i> is written for exactly where you are.</p><div class="ideas">' + route.th.map(function (t2) { return "<span>" + t2.split(":")[0] + "</span>"; }).join("") + '</div><a class="btn" style="text-decoration:none;display:inline-flex;align-items:center" href="https://amzn.eu/d/0gtCoVXi" target="_blank" rel="noopener">Get the book</a></div></div>' +
-    '<div class="note"><img src="' + DAN + '" alt="Daniel Brown"><div><p>"Your weakest pillar is not a verdict. It is the next thing to build. Start with Day 1 tonight."</p><span class="label" style="color:var(--stone)">Daniel Brown <span class="tag">Draft line</span></span></div></div></section>';
-
-  h += '<section class="sec"><p class="label">VII. Three questions to write down</p><ol class="prompts"><li>' + am.ask + "</li><li>" + mode.q + "</li><li>" + WEAK_Q[r.weakest] + "</li></ol></section>";
-  h += '<section class="sec"><p class="label">VIII. Your card</p><h2>Show them what you are building</h2><p class="muted">Press and hold the card on a phone, or right click it on a computer, to save it.</p><img class="cardimg" id="cardimg" alt="Your F5IVE archetype card"></section>';
-  h += '<section class="sec"><p class="label">IX. Retake</p><h2>Measure what moved</h2><p>Your result describes where you stand today. It is not a label and it can change. Come back on or after <b class="gold">' + retake + "</b>.</p>" +
-    '<p class="fine">This is a self-reflection tool built on the F5IVE framework. It is not a clinical or psychological test. If this brought up something heavy, you do not have to carry it alone. In the UK you can call Samaritans free on 116 123, at any hour.</p></section>';
-  return h;
-}
-function alignmentCopy(r) {
-  var g = r.gravity, rank = 1 + PILLARS.filter(function (p) { return r.scores[p] > r.scores[g]; }).length, lines = [];
-  if (r.alignment === "Aligned") lines.push("What you value and what you build agree. " + g + " is the pillar you protect hardest, and it ranks " + rank + " of 5 on your scores.");
-  else if (r.alignment === "Drifting") lines.push(g + " is the pillar you would protect hardest, yet it ranks " + rank + " of 5. Your time is drifting away from your values.");
-  else lines.push("You said " + g + " matters most. You score " + r.scores[g] + " there, against " + r.scores[r.anchor] + " for " + r.anchor + ". That gap between belief and behaviour is the most important line in this profile.");
-  if (r.sacrificedIsWeakest) lines.push("In a hard season you would let " + r.sacrificed + " slip. It is already your weakest pillar, so that trade is already being made, whether or not you chose it.");
-  else lines.push("In a hard season you would let " + r.sacrificed + " slip. It scores " + r.scores[r.sacrificed] + " out of 25 today, so decide now what the minimum looks like before the season arrives.");
-  return lines;
-}
-function afterReport(r) {
-  var sv = document.getElementById("repsvg"), full = {};
-  PILLARS.forEach(function (q) { full[q] = r.scores[q] / 25; });
-  setTemple(sv, { fills: {}, arches: [0, 0, 0, 0], base: 0 });
-  later(function () { setTemple(sv, { fills: full, arches: [1, 1, 1, 1], base: 1 }); sv.querySelectorAll(".score").forEach(function (s) { s.classList.add("on"); s.textContent = r.scores[s.getAttribute("data-score")]; }); }, 500);
-  var secs = stage.querySelectorAll(".sec");
-  if ("IntersectionObserver" in window && !REDUCED) {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (!e.isIntersecting) return; var s = e.target; s.classList.add("in"); io.unobserve(s);
-        s.querySelectorAll("[data-count]").forEach(function (c) { countUp(c, Number(c.getAttribute("data-count")), 1200); });
-        s.querySelectorAll(".axis .line i").forEach(function (d) { var p = d.getAttribute("data-pos"); d.style.left = "50%"; requestAnimationFrame(function () { requestAnimationFrame(function () { d.style.left = p + "%"; }); }); });
-      });
-    }, { threshold: 0.18 });
-    secs.forEach(function (s) { if (s.getBoundingClientRect().top > window.innerHeight * 0.9) { s.classList.add("armed"); io.observe(s); } });
-  }
-  drawCard(r);
 }
 
 /* ============ Share card ============ */
@@ -939,6 +793,434 @@ function drawCard(r) {
   } catch (e) {}
 }
 
+
+/* ============ New questions (version 2) ============ */
+var ORIENT = [
+  { id: "ORI-1", q: "A free Saturday with no obligations. Where does it naturally go?", o: { Faith: "Somewhere quiet to reflect, pray or reset", Family: "With the people closest to me", Finance: "Working on money: a side project, investments or a plan", Fitness: "Training, sport or something physical", Freedom: "Building something of my own, or exploring" } },
+  { id: "ORI-2", q: "When your mind wanders, where does it usually go?", o: { Faith: "Meaning and purpose, and whether I am living right", Family: "The people I love and how they are doing", Finance: "Money: what is coming in, going out and what is next", Fitness: "My body, my training and my energy", Freedom: "Getting out from under someone else's plan" } },
+  { id: "ORI-3", q: "Which compliment would mean the most to you?", o: { Faith: "You are a man of principle", Family: "Your family is lucky to have you", Finance: "You have built real security", Fitness: "You are in the best shape of your life", Freedom: "You live completely on your own terms" } },
+  { id: "ORI-4", q: "Which loss would shake your sense of who you are the most?", o: { Faith: "Losing my sense of purpose", Family: "Losing closeness with my family", Finance: "Losing my financial security", Fitness: "Losing my health or strength", Freedom: "Losing control of my own time" } },
+  { id: "ORI-5", q: "What do people most often come to you for?", o: { Faith: "Perspective and calm when things go wrong", Family: "Support, loyalty and someone who shows up", Finance: "Advice on money, deals or big decisions", Fitness: "Motivation, discipline and energy", Freedom: "Ideas, ambition and a way out of the rut" } },
+  { id: "ORI-6", q: "If you could guarantee one thing for the next five years, what would it be?", o: { Faith: "Peace with how I am living", Family: "Close, strong relationships at home", Finance: "Real financial security", Fitness: "Strength and health that last", Freedom: "Full ownership of my time and work" } }
+];
+var READY = [
+  { id: "RDY-1", t: "I redo things many times before I am willing to let anyone see them." },
+  { id: "RDY-2", t: "Even when people tell me I am ready, I do not feel ready." },
+  { id: "RDY-3", t: "I hold back from starting things in case I do not do them well." }
+];
+var SCALE_SHORT = ["Strongly disagree", "Disagree", "Not sure", "Agree", "Strongly agree"];
+var MODE_PLAIN = {
+  Strategist: "plans first, then works to a routine",
+  Visionary: "starts from the big picture and adapts along the way",
+  Builder: "starts doing, then builds a routine that holds",
+  Operator: "acts fast and adjusts on the move"
+};
+var HOW = {
+  start: { q: "How you start something", Vision: "You start by picturing the finished result. You need to see where it is going before you move.", Action: "You start by doing. You work out the shape of it once you are moving." },
+  keep: { q: "How you keep it going", Structure: "Routine keeps you going: fixed times and a plan you can tick off.", Flex: "Flexibility keeps you going. You adjust day by day and lose interest in rigid plans." },
+  drive: { q: "What tells you that you have done well", Inner: "Your own standard. You know when you have done well, whether anyone sees it or not.", Outer: "Being seen. Recognition, and other people's progress, push you harder." },
+  solve: { q: "How you work out problems", Solo: "On your own first. You think it through privately before you talk about it.", Shared: "Out loud with someone. Talking it through gets you unstuck fastest." },
+  ready: { q: "How ready you feel to begin", Perfectionist: "Rarely ready. You redo things and wait until they feel right, and that can stop you starting at all.", Steady: "Ready enough. You start once something is reasonably prepared.", Bold: "Ready now. You start before you feel prepared and fix it as you go." }
+};
+var TRY = {
+  Perfectionist: "Make it smaller, not better. Choose one thing you keep redoing and show the rough version to one person you trust this week. Seen and unfinished beats perfect and hidden.",
+  Steady: "Pick the one thing you have prepared enough and start it this week, before you add anything else to it.",
+  Bold: "Before you start the next thing, finish the last one. Write down what finished looks like before you begin."
+};
+var TRY_MODE = {
+  Strategist: "Keep your plan, and give it a start date.",
+  Visionary: "Hold one idea at a time, and give it a finish date.",
+  Builder: "Once a month, ask whether you are still climbing the right hill.",
+  Operator: "Protect one calm hour a week for the pillar that never shouts."
+};
+var PILLAR_MEANS = {
+  Faith: "purpose, principles and what you stand for",
+  Family: "the people you love and your place among them",
+  Finance: "money, security and what you are building",
+  Fitness: "your body, your strength and your discipline",
+  Freedom: "control of your own time, work and direction"
+};
+
+/* ============ Archetype library ============ */
+var ARCH = {
+  "The Compass": { p: "Faith", m: "Strategist", who: "Your life runs on principle, and you plan it like a map. You know what you stand for and you build routines that keep you pointed at it. When others lose their way, you are the one who still knows which way is north.", best: ["Clear about right and wrong, even under pressure", "Builds habits that protect what matters", "Calm and steady when plans fall apart"], pressure: ["Waits for certainty before acting", "Judges himself harshly when he falls short", "Lets planning replace progress in money or health"], others: "People trust your judgement, but some find you hard to move once your mind is set.", next: "Direction with momentum", nextText: "You already know where north is. The next level is walking toward it before the map is perfect, starting with the pillar you have been planning for longest." },
+  "The Lighthouse": { p: "Faith", m: "Visionary", who: "You see further than most and you light the way for others. Purpose drives you, and you adapt as life changes without losing sight of what matters. People are drawn to your conviction.", best: ["Inspires others with a sense of meaning", "Sees possibility in hard seasons", "Adapts without giving up his values"], pressure: ["Starts more than he finishes", "Gives light to others and neglects his own foundations", "Mistakes inspiration for progress"], others: "People feel lifted around you, but may wonder why your own plans stay unfinished.", next: "A light with foundations", nextText: "The next level is giving your own life the structure you give hope to others: one finished commitment at a time." },
+  "The Cornerstone": { p: "Faith", m: "Builder", who: "You carry weight quietly. Your principles show up in what you do, day after day, more than in what you say. Others build on you because you do not move.", best: ["Utterly reliable", "Lives his values through action", "Holds steady through long, hard seasons"], pressure: ["Carries too much without asking for help", "Keeps going on a path he never questions", "Skips rest because duty comes first"], others: "People lean on you, sometimes more than they realise.", next: "Strength that also receives", nextText: "The next level is checking the direction now and then, and letting others carry some of the weight." },
+  "The Sentinel": { p: "Faith", m: "Operator", who: "You guard what matters and you move fast when it is threatened. Your principles are your line in the sand, and you act on instinct to protect them. In a crisis you are moving while others are still talking.", best: ["Acts decisively on his values", "Protects people and principles under pressure", "Recovers quickly from setbacks"], pressure: ["Lives in reaction, waiting for the next threat", "Neglects the slow, quiet work of growth", "Turns rigid when calm thinking would serve better"], others: "People feel safe with you in a storm, but may find you restless when things are calm.", next: "Watchful and building", nextText: "The next level is turning some of that protective energy into steady, unhurried building during the quiet seasons." },
+  "The Steward": { p: "Family", m: "Strategist", who: "You plan for the people you answer to. Your family is your responsibility and you take it seriously, with routines, plans and provision in place. You think ahead so they do not have to.", best: ["Thinks long term for the people he loves", "Creates stability and routine at home", "Keeps his promises"], pressure: ["Plans for others and forgets himself", "Shows care through organising more than presence", "Struggles when family life refuses to follow the plan"], others: "Your family feels secure, but may want more of you and less of your planning.", next: "Present as well as prepared", nextText: "The next level is matching the planning with time that is simply spent with them, unplanned." },
+  "The Harbour": { p: "Family", m: "Visionary", who: "You make home the place people return to. You picture the family and relationships you want and you bend life around them. Warmth and loyalty come naturally to you.", best: ["Makes people feel they belong", "Keeps the bigger picture of family life in view", "Flexible when the people he loves need him"], pressure: ["Puts everyone else first until he runs empty", "Avoids conflict to keep the peace", "Lets his own goals drift"], others: "People come to you to recover, but rarely ask how you are.", next: "A harbour that is also a ship", nextText: "The next level is protecting your own direction and energy, so you can keep giving without running dry." },
+  "The Provider": { p: "Family", m: "Builder", who: "You show love through what you build and carry. Work, provision and showing up are how you say you care. You do the hard thing every day for the people who depend on you.", best: ["Works hard and consistently for his family", "Dependable in a practical, visible way", "Takes responsibility without being asked"], pressure: ["Provides for people he rarely has time to be with", "Measures love in effort, not connection", "Runs himself down for others"], others: "Your family knows you will never let them down, but they may miss you.", next: "Provision with presence", nextText: "The next level is giving them your attention as reliably as you give them your effort." },
+  "The Protector": { p: "Family", m: "Operator", who: "You are first to move when your people need you. You read situations fast, react hard and stand between your family and whatever is coming.", best: ["Fiercely loyal", "Calm and quick in a crisis", "Always shows up when it counts"], pressure: ["Runs on urgency and neglects long-term building", "Reacts before listening", "Lets health and money slide while protecting others"], others: "People feel safe with you, but may wish you were as present on ordinary days as in emergencies.", next: "Steady protection", nextText: "The next level is building the long, quiet foundations that mean fewer emergencies come at all." },
+  "The Treasurer": { p: "Finance", m: "Strategist", who: "You treat money as a trust. You track it, plan it and protect it, and you sleep better with a plan in place. Security is how you take care of the future.", best: ["Disciplined with money", "Plans years ahead", "Calm under financial pressure because he prepared"], pressure: ["Measures life in numbers", "Delays living for a future that never feels secure enough", "Struggles to spend on joy or people"], others: "People trust your judgement with money, but may feel you value safety over life.", next: "Wealth with purpose", nextText: "The next level is deciding what the security is for, and spending time and money on that now." },
+  "The Venturer": { p: "Finance", m: "Visionary", who: "You see opportunity before others name it. Money, for you, is about growth and possibility, and you follow ideas where they lead.", best: ["Spots opportunities early", "Comfortable with calculated risk", "Energised by building something new"], pressure: ["Chases the next opportunity before finishing the last", "Takes risks without a safety net", "Lets health or family wait for the big win"], others: "People admire your ambition, but may worry about the swings.", next: "Vision with a vault", nextText: "The next level is pairing your opportunities with a foundation that does not move, so one bad bet never costs you everything." },
+  "The Vault Builder": { p: "Finance", m: "Builder", who: "You build wealth one brick at a time. Steady saving, steady work, no shortcuts. You trust consistency over luck.", best: ["Patient and consistent", "Builds real, lasting security", "Avoids debt and drama"], pressure: ["Works for years without checking the direction", "Postpones enjoyment indefinitely", "Lets relationships come second to the plan"], others: "People respect your discipline, but may feel you are always working toward later.", next: "A vault with a door", nextText: "The next level is deciding what the wealth is for, and opening it for the people and purpose it was meant to serve." },
+  "The Dealmaker": { p: "Finance", m: "Operator", who: "You read the room, close the gap and move fast. Money moves around you because you act while others hesitate.", best: ["Makes quick decisions", "Strong instinct for opportunity", "Bounces back after losses"], pressure: ["Lives deal to deal with no long-term plan", "Neglects health and family in the chase", "Mistakes busyness for building"], others: "People see you as sharp and driven, but rarely see you switch off.", next: "From deals to legacy", nextText: "The next level is turning quick wins into long-term structures that keep working when you stop." },
+  "The Periodiser": { p: "Fitness", m: "Strategist", who: "You train by design, never by mood. Your body is a project you plan, track and improve, and discipline in the gym is how you prove your word to yourself.", best: ["Highly disciplined", "Consistent over months and years", "Sets standards and meets them"], pressure: ["Controls his body while avoiding harder conversations", "Feels lost when the routine breaks", "Over-plans and under-rests"], others: "People admire your discipline, but may find you rigid.", next: "Discipline beyond the gym", nextText: "The next level is bringing the same planning and standards to the pillar you have been avoiding." },
+  "The Phoenix": { p: "Fitness", m: "Visionary", who: "You see who you could become and you rebuild toward it. Transformation is your story, and your body is often where it shows first.", best: ["Capable of dramatic change", "Inspires others with his comebacks", "Rises after setbacks"], pressure: ["Swings between all in and all out", "Restarts instead of sustaining", "Relies on motivation that fades"], others: "People are inspired by your comebacks, but may wonder when the next fall is coming.", next: "Rise and stay", nextText: "The next level is building the plain, steady consistency that means you never need another comeback." },
+  "The Forge": { p: "Fitness", m: "Builder", who: "You are made daily, by repetition. You show up whether you feel like it or not, and your consistency is your strength.", best: ["Shows up every day", "Tough in discomfort", "Builds strength slowly and surely"], pressure: ["Uses training to escape other problems", "Pushes through when rest is needed", "Rarely asks whether the effort is aimed right"], others: "People see you as unbreakable, but may not see what you are working through.", next: "Strength with direction", nextText: "The next level is turning the same daily discipline toward the pillar that has been waiting." },
+  "The Warrior": { p: "Fitness", m: "Operator", who: "You show up and fight for the next rep. You thrive on intensity, challenge and physical effort, and you adapt fast when things change.", best: ["High energy and drive", "Thrives under pressure", "Leads by physical example"], pressure: ["Lives on intensity and burns out", "Neglects recovery and the quiet pillars", "Reacts with force when patience is needed"], others: "People feed off your energy, but may struggle to slow you down.", next: "Strength with stillness", nextText: "The next level is learning to build in the quiet as well as fight in the noise." },
+  "The Cartographer": { p: "Freedom", m: "Strategist", who: "You map the route to a life on your own terms. Freedom, for you, is a plan: the income, the date and the conditions that let you choose.", best: ["Clear about what freedom means to him", "Plans exits and milestones", "Protects his time"], pressure: ["Plans the escape and delays the journey", "Treats people as obligations to manage", "Waits for perfect conditions"], others: "People see you as independent and organised, but may feel your mind is always somewhere else.", next: "Freedom lived, not only mapped", nextText: "The next level is taking the first real step on the route, and bringing people with you." },
+  "The Horizon Chaser": { p: "Freedom", m: "Visionary", who: "You keep your eyes on a life no one has drawn yet. You resist being boxed in, and you follow possibility wherever it leads.", best: ["Original and ambitious", "Unafraid of change", "Sees options others miss"], pressure: ["Runs from commitment", "Starts many paths and finishes few", "Confuses escape with freedom"], others: "People find you exciting, but may not know where they stand with you.", next: "Freedom with roots", nextText: "The next level is choosing the commitments that make you freer, and keeping them." },
+  "The Independent": { p: "Freedom", m: "Builder", who: "You build the structure that sets you free. You value self-reliance and you work steadily toward answering to no one.", best: ["Self-reliant", "Builds steadily toward independence", "Hard to pressure or manipulate"], pressure: ["Refuses help when he needs it", "Works alone until he is isolated", "Sees obligation as a threat"], others: "People respect your self-reliance, but may feel shut out.", next: "Free and connected", nextText: "The next level is building independence that includes people, so freedom does not turn into loneliness." },
+  "The Free Agent": { p: "Freedom", m: "Operator", who: "You move when you choose and answer to your own call. Flexible, quick and hard to pin down, you adapt to whatever life brings.", best: ["Adaptable", "Quick to seize opportunity", "Thrives without structure"], pressure: ["Has no long-term plan", "Drifts between opportunities", "Avoids the slow pillars like money and health"], others: "People enjoy your energy, but may find you hard to rely on.", next: "Free with foundations", nextText: "The next level is building a small set of fixed commitments that protect your freedom for the long run." },
+  "The Complete Architect": { p: "Complete", m: "", who: "Your five pillars stand level and strong. No single part of life is carrying the rest, and none is being left behind. That is rare.", best: ["Balanced across all five pillars", "Hard to knock over", "Shows others what a whole life looks like"], pressure: ["Coasts because nothing feels urgent", "Drifts slowly without noticing", "Plays it safe instead of growing"], others: "People see a man who has it together, which can make it hard to ask for help.", next: "From balanced to building", nextText: "The next level is raising all five pillars together, deliberately, instead of only keeping them level." }
+};
+function slug(n) { return n.toLowerCase().replace(/^the /, "").replace(/[^a-z]+/g, "-"); }
+var BY_SLUG = {}; Object.keys(ARCH).forEach(function (n) { BY_SLUG[slug(n)] = n; });
+
+/* ============ State ============ */
+var state = { i: 0, ans: {}, age: false, faith: null, lens: false, rank: [], protect: null, slip: null, orient: {}, flips: {}, override: null, view: null, from: null, optOrder: {} };
+STYLE.forEach(function (s) { state.flips[s.id] = Math.random() < 0.5; });
+function shuffle(a) { var r = a.slice(); for (var i = r.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = r[i]; r[i] = r[j]; r[j] = t; } return r; }
+state.order = shuffle(VALUES.map(function (v) { return v.v; }));
+state.hardOrder = shuffle(HARD.map(function (h) { return h.p; }));
+ORIENT.forEach(function (o) { state.optOrder[o.id] = shuffle(PILLARS); });
+var CHAPTERS = {
+  1: { title: "The Foundation Scan", builds: "Fifteen statements about how life is going right now. Each answer raises one of your five pillars.", quote: "Motivation fades. Vision compounds.", src: "Vision to Victory, Chapter 2" },
+  2: { title: "Pillar Depth", builds: "Ten questions about what you actually did lately, not how you feel. Your pillars reach full height here.", quote: "Do not pray for smaller storms. Pray for heavier anchors.", src: "Vision to Victory, Chapter 4" },
+  3: { title: "The Arches", builds: "How you move toward what you want. Pick between two good options, then three questions on how ready you feel to begin.", quote: "You don't need more starts. You need more stays.", src: "Vision to Victory, Chapter 3" },
+  4: { title: "Who You Are", builds: "What you build your life around. Pick the answer that is most true, not the one that sounds best. This decides your archetype.", quote: "Avoidance is comfort dressed as control.", src: "Vision to Victory, Chapter 6" }
+};
+function steps() {
+  var s = [{ t: "intro" }, { t: "chapter", part: 1 }];
+  QUICK.forEach(function (q, k) { s.push({ t: "likert", id: "Q" + (k + 1), part: 1, p: q.p, text: q.t }); });
+  s.push({ t: "consent" }, { t: "chapter", part: 2 });
+  EXTRA.forEach(function (e) { if (e.p === "Faith" && state.faith === false) return; s.push({ t: "likert", id: e.id, part: 2, p: e.p, text: (e.id === "FTH-1" && state.lens) ? e.lens : e.t }); });
+  s.push({ t: "chapter", part: 3 });
+  STYLE.forEach(function (e) { s.push({ t: "style", id: e.id, part: 3, a: e.a, b: e.b }); });
+  READY.forEach(function (e) { s.push({ t: "likert", id: e.id, part: 3, p: "Ready", text: e.t }); });
+  s.push({ t: "chapter", part: 4 });
+  ORIENT.forEach(function (o) { s.push({ t: "orient", id: o.id, part: 4, q: o.q, o: o.o }); });
+  s.push({ t: "rank", part: 4 }, { t: "choice", part: 4 }, { t: "email" }, { t: "reveal" }, { t: "report" });
+  return s;
+}
+function buildInput() {
+  if (state.override) return state.override;
+  var q = {}; PILLARS.forEach(function (p) { q[p] = 0; });
+  QUICK.forEach(function (x, k) { q[x.p] += state.ans["Q" + (k + 1)] || 3; });
+  var extra = {}; PILLARS.forEach(function (p) { extra[p] = [state.ans[EXTRA_IDS[p][0]] || 3, state.ans[EXTRA_IDS[p][1]] || 3]; });
+  if (state.faith === false) { q.Faith = Math.round(q.Faith * 25 / 15); extra.Faith = [0, 0]; }
+  var style = STYLE.map(function (s) { var v = state.ans[s.id]; if (v === undefined) return 0; return state.flips[s.id] ? -v : v; });
+  var ready = READY.map(function (r) { return state.ans[r.id] || 3; });
+  var orient = ORIENT.map(function (o) { return state.orient[o.id] || null; });
+  var ranked = state.rank.slice(), pool = state.order.filter(function (v) { return !(state.faith === false && VALUE_PILLAR[v] === "Faith"); });
+  while (ranked.length < 3) { var c = pool.find(function (v) { return ranked.indexOf(v) < 0; }); ranked.push(c); }
+  return { quick: q, extra: extra, style: style, ready: ready, orient: orient, values: { ranked: ranked, protect: state.protect || null, slip: state.slip || "Fitness" } };
+}
+function progress() {
+  var fills = {};
+  PILLARS.forEach(function (p) {
+    var n = 0, d = 0;
+    QUICK.forEach(function (x, k) { if (x.p === p) { d++; if (state.ans["Q" + (k + 1)] !== undefined) n++; } });
+    if (!(p === "Faith" && state.faith === false)) EXTRA_IDS[p].forEach(function (id) { d++; if (state.ans[id] !== undefined) n++; });
+    fills[p] = n / d;
+  });
+  var done3 = STYLE.filter(function (s) { return state.ans[s.id] !== undefined; }).length + READY.filter(function (s) { return state.ans[s.id] !== undefined; }).length;
+  var f3 = done3 / 15, arches = [0, 1, 2, 3].map(function (i) { return Math.max(0, Math.min(1, f3 * 4 - i)); });
+  var oN = ORIENT.filter(function (o) { return state.orient[o.id]; }).length;
+  var base = oN / 6 * 0.5 + state.rank.length / 3 * 0.3 + (state.protect ? 0.1 : 0) + (state.slip ? 0.1 : 0);
+  return { fills: fills, arches: arches, base: base };
+}
+
+/* ============ HUD ============ */
+var hud = document.getElementById("hud"), hudT = document.getElementById("hudtemple");
+hudT.innerHTML = temple("hudsvg", { labels: true });
+function updateHud(st, S) {
+  var show = !state.view && ["likert", "style", "rank", "choice", "orient"].indexOf(st.t) >= 0;
+  hud.hidden = !show; if (!show) return;
+  setTemple(document.getElementById("hudsvg"), progress());
+  var qs = S.filter(function (s) { return s.part && s.t !== "chapter"; }), n = qs.indexOf(st) + 1;
+  document.getElementById("hudpart").innerHTML = "Part <b>" + ROMAN[st.part] + "</b>  " + CHAPTERS[st.part].title;
+  document.getElementById("hudcount").textContent = n + " / " + qs.length;
+}
+
+/* ============ Navigation ============ */
+var stage = document.getElementById("stage"), timers = [];
+function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+function go(delta) { clearTimers(); stage.classList.remove("enter"); stage.classList.add("leave"); setTimeout(function () { state.i = Math.max(0, Math.min(steps().length - 1, state.i + delta)); render(); }, 170); }
+function jump(i) { clearTimers(); state.view = null; state.i = i; render(); }
+function enter() { stage.classList.remove("leave"); void stage.offsetWidth; stage.classList.add("enter"); window.scrollTo(0, 0); }
+function setHash(h) { try { history.replaceState(null, "", h ? "#" + h : location.pathname + location.search); } catch (e) {} }
+function tools() {
+  return '<details class="tools"><summary>Prototype tools</summary><div class="toolrow"><button class="btn ghost" data-act="sample" data-n="0">Sample 1</button><button class="btn ghost" data-act="sample" data-n="1">Sample 2</button><button class="btn ghost" data-act="sample" data-n="2">Sample 3</button><button class="btn ghost" data-act="sample" data-n="3">Sample 4</button><button class="btn ghost" data-act="fill">Fill the rest randomly</button><button class="btn ghost" data-act="tests">Run engine tests</button><button class="btn ghost" data-act="lib">All archetypes</button><button class="btn ghost" data-act="restart">Restart</button></div><pre class="out" id="out" hidden></pre></details>';
+}
+
+/* ============ Screens ============ */
+function render() {
+  if (state.view) { renderView(); return; }
+  var S = steps(), st = S[state.i], html = "";
+  updateHud(st, S);
+  if (st.t !== "report") setHash("");
+  if (st.t === "intro") {
+    var words = "One pillar is carrying you.".split(" ").map(function (w, k) { return '<span class="w" style="animation-delay:' + (0.25 + k * 0.09) + 's">' + w + "</span>"; }).join(" ");
+    var words2 = "Another is quietly costing you.".split(" ").map(function (w, k) { return '<span class="w" style="animation-delay:' + (0.75 + k * 0.09) + 's"><em>' + w + "</em></span>"; }).join(" ");
+    html = '<section class="hero"><img class="logo" src="' + LOGO + '" alt="The Stoic Architect"><p class="label">The F5IVE Identity Profile</p><h1 style="margin-top:12px">' + words + "<br>" + words2 + "</h1>" +
+      '<div class="templebox">' + temple("introsvg", { build: true }) + "</div>" +
+      '<p style="font-size:1.12rem;margin-top:18px">Most men are strong in one or two areas of life and quietly losing ground in the others. This profile shows you which is which, so you stop guessing.</p>' +
+      '<ol class="why"><li><b>Where you are now</b><span>Your archetype: the kind of man you are today, and the pillar you build your life around.</span></li><li><b>Where you need to get to</b><span>The next level of your archetype, and the pillar that is costing you most.</span></li><li><b>How to get there</b><span>A seven day plan built for the way you work, and the chapter of <i>Vision to Victory</i> to read next.</span></li></ol>' +
+      '<div class="facts"><div><b>48</b>Questions</div><div><b>10</b>Minutes</div><div><b>20</b>Archetypes</div></div>' +
+      '<div class="author"><img src="' + DAN + '" alt="Daniel Brown"><p><b>Built by Daniel Brown MSc</b>, author of <i>Vision to Victory</i> and founder of the F5IVE framework.</p></div>' +
+      '<label class="check"><input type="checkbox" id="age"' + (state.age ? " checked" : "") + '><span>I am 18 or over.</span></label>' +
+      '<div class="row"><button class="btn" data-act="next" id="go"' + (state.age ? "" : " disabled") + '>Build my profile</button><button class="btn text" data-act="lib">See the 20 archetypes</button></div>' +
+      '<p class="fine">This is a self-reflection tool built on the F5IVE framework. It is not a clinical or psychological test and it does not diagnose anything. Answer how things are, not how you would like them to be.</p></section>' + tools();
+    stage.innerHTML = html; enter();
+    var sv = document.getElementById("introsvg");
+    setTemple(sv, { fills: {}, arches: [0, 0, 0, 0], base: 0 });
+    later(function () { setTemple(sv, { fills: { Faith: .82, Family: .55, Finance: .34, Fitness: .7, Freedom: .6 }, arches: [1, 1, 1, 1], base: 1 }); }, 700);
+    return;
+  }
+  if (st.t === "chapter") {
+    var ch = CHAPTERS[st.part], pr = progress();
+    html = '<section class="chapter rise"><div class="numeral">' + ROMAN[st.part] + '</div><p class="label">Part ' + ROMAN[st.part] + " of IV</p><h2 style='margin-top:10px'>" + ch.title + '</h2><p class="muted" style="font-size:1.08rem;margin-top:12px">' + ch.builds + '</p><div><div class="quote">' + ch.quote + "</div><small>" + ch.src + '</small></div><div class="templebox">' + temple("chsvg", { labels: false }) + '</div><div class="row"><button class="btn" data-act="next">Begin Part ' + ROMAN[st.part] + '</button><button class="btn text" data-act="back">Back</button></div></section>' + tools();
+    stage.innerHTML = html; enter();
+    var cs = document.getElementById("chsvg"); setTemple(cs, { fills: {}, arches: [0, 0, 0, 0], base: 0 });
+    later(function () { setTemple(cs, pr); }, 400);
+    return;
+  }
+  if (st.t === "likert") {
+    var cur = state.ans[st.id], tag = st.p === "Ready" ? '<span class="label">How ready you feel</span>' : emblem(st.p) + '<span class="label">' + st.p + "</span>";
+    html = '<div class="qtag">' + tag + '</div><p class="q">' + st.text + '</p><div class="scale" role="group" aria-label="How much do you agree?">' +
+      SCALE_SHORT.map(function (l, k) { var on = cur === k + 1, lit = cur && k + 1 < cur; return '<button class="col' + (on ? " on" : "") + (lit ? " lit" : "") + '" data-act="ans" data-v="' + (k + 1) + '"><span class="bar" style="width:100%"><i></i></span><b>' + (k + 1) + "</b><small>" + l + "</small></button>"; }).join("") +
+      '</div><div class="row"><button class="btn text" data-act="back">Back</button></div>' + tools();
+    stage.innerHTML = html; enter(); return;
+  }
+  if (st.t === "style") {
+    var c2 = state.ans[st.id], fl = state.flips[st.id], first = fl ? st.b : st.a, second = fl ? st.a : st.b;
+    var vals = [2, 1, 0, -1, -2], xs = [60, 160, 260, 360, 460], tilt = c2 === undefined ? 0 : -c2 * 5;
+    var labels = ["Very much A", "A little A", "Both equally", "A little B", "Very much B"];
+    var notes = vals.map(function (v, k) { return '<g class="notch' + (c2 === v ? " on" : "") + '" data-act="ans" data-v="' + v + '" role="button" tabindex="0" aria-label="' + labels[k] + '"><circle cx="' + xs[k] + '" cy="60" r="' + (k === 2 ? 11 : (k === 0 || k === 4 ? 17 : 14)) + '"/><rect x="' + (xs[k] - 28) + '" y="30" width="56" height="60" fill="transparent"/></g>'; }).join("");
+    html = '<div class="qtag"><span class="label">Which sounds more like you?</span></div>' +
+      '<div class="pair"><div class="stmt' + (c2 > 0 ? " heavy" : "") + '"><span class="ab">A</span>' + first + '</div><div class="stmt' + (c2 < 0 ? " heavy" : "") + '"><span class="ab">B</span>' + second + "</div></div>" +
+      '<div class="beam"><svg viewBox="0 0 520 130" aria-label="Balance between A and B"><defs><linearGradient id="beamg"><stop offset="0" stop-color="#7A5C22"/><stop offset=".5" stop-color="#E8CF86"/><stop offset="1" stop-color="#7A5C22"/></linearGradient></defs><path d="M244 120L260 66L276 120Z" fill="#1C2027" stroke="#9A7629"/><rect x="200" y="118" width="120" height="6" fill="#9A7629"/><g class="arm" id="arm" style="transform:rotate(' + tilt + 'deg)"><rect x="30" y="56" width="460" height="8" fill="url(#beamg)"/><text class="end" x="14" y="66">A</text><text class="end" x="506" y="66">B</text>' + notes + "</g></svg></div>" +
+      '<div class="beamlbl five">' + labels.map(function (l) { return "<span>" + l + "</span>"; }).join("") + '</div><div class="row"><button class="btn text" data-act="back">Back</button></div>' + tools();
+    stage.innerHTML = html; enter(); return;
+  }
+  if (st.t === "orient") {
+    var curO = state.orient[st.id], order = state.optOrder[st.id].filter(function (p) { return !(state.faith === false && p === "Faith"); });
+    html = '<div class="qtag"><span class="label">Pick the one most true for you</span></div><p class="q">' + st.q + '</p><div class="picks one">' +
+      order.map(function (p) { return '<button class="pick' + (curO === p ? " prot" : (curO ? " dim" : "")) + '" data-act="orient" data-v="' + p + '">' + emblem(p) + st.o[p] + "</button>"; }).join("") +
+      '</div><div class="row"><button class="btn text" data-act="back">Back</button></div>' + tools();
+    stage.innerHTML = html; enter(); return;
+  }
+  if (st.t === "consent") {
+    html = '<section class="rise"><div class="qtag">' + emblem("Faith") + '<span class="label">Before Part II</span></div><h2>A note on the faith questions</h2><p class="muted" style="margin-top:12px">The next part asks about faith, purpose and conscience. You can say no and still get a full result.</p>' +
+      '<label class="check"><input type="checkbox" id="faith"' + (state.faith === true ? " checked" : "") + '><span>Some questions ask about faith, purpose and conscience. Your answers can reveal religious belief, which is sensitive information. I agree to The Stoic Architect using my answers to calculate my profile and results. I can withdraw this at any time.</span></label>' +
+      '<label class="check"><input type="checkbox" id="lens"' + (state.lens ? " checked" : "") + (state.faith === true ? "" : " disabled") + '><span>Add an Islamic perspective to my report. This is optional and I can leave it unticked.</span></label>' +
+      '<div class="row"><button class="btn" data-act="consent-next">Continue</button><button class="btn text" data-act="back">Back</button></div><p class="fine">Leave the first box unticked and the Faith questions are skipped. Your Faith score then comes from your Part I answers only.</p></section>' + tools();
+    stage.innerHTML = html; enter(); return;
+  }
+  if (st.t === "rank") {
+    var pool = state.order.filter(function (v) { return !(state.faith === false && VALUE_PILLAR[v] === "Faith"); }), line = {};
+    VALUES.forEach(function (v) { line[v.v] = v.line; });
+    html = '<p class="q" style="margin-bottom:8px">Choose the three values you would defend hardest.</p><p class="muted">Tap in order. Your first tap is your top value. Tap again to remove one.</p><div class="vals">' +
+      pool.map(function (v) { var k = state.rank.indexOf(v); return '<button class="val' + (k >= 0 ? " on" : "") + '" data-act="rank" data-v="' + v + '">' + v + "<small>" + line[v] + "</small><em>" + (k >= 0 ? ROMAN[k + 1] : "") + "</em></button>"; }).join("") +
+      '</div><div class="row"><button class="btn" data-act="next"' + (state.rank.length === 3 ? "" : " disabled") + '>Lock in my values</button><button class="btn text" data-act="back">Back</button></div>' + tools();
+    stage.innerHTML = html; enter(); return;
+  }
+  if (st.t === "choice") {
+    var hp = state.hardOrder.filter(function (p) { return !(state.faith === false && p === "Faith"); }), txt = {};
+    HARD.forEach(function (h2) { txt[h2.p] = h2.t; });
+    var grp = function (key) {
+      return '<div class="picks">' + hp.map(function (p) {
+        var cls = key === "protect" ? (state.protect === p ? " prot" : (state.protect ? " dim" : "")) : (state.slip === p ? " slip" : (p === state.protect ? " prot" : ""));
+        var dis = key === "slip" && p === state.protect ? " disabled" : "";
+        return '<button class="pick' + cls + '" data-act="pick" data-key="' + key + '" data-v="' + p + '"' + dis + ">" + emblem(p) + txt[p] + "</button>";
+      }).join("") + "</div>";
+    };
+    html = '<div class="storm"><canvas id="rain" aria-hidden="true"></canvas><p class="label" style="margin-bottom:10px">The hard season</p><p class="q">You have limited time, money and energy. You can fully protect only one area of your life.</p></div>' +
+      '<div class="sub">Which do you protect?</div>' + grp("protect") + (state.protect ? '<div class="sub">Which do you let slip?</div>' + grp("slip") : "") +
+      '<div class="row"><button class="btn" data-act="next"' + (state.protect && state.slip ? "" : " disabled") + '>Lay the foundation</button><button class="btn text" data-act="back">Back</button></div>' + tools();
+    stage.innerHTML = html; enter(); rain(); return;
+  }
+  if (st.t === "email") {
+    var r0 = scoreProfile(buildInput()), ep = r0.archetype === "The Complete Architect" ? "Complete" : r0.anchor;
+    html = '<section class="rise"><div class="lock"><p class="label">Your architecture is complete</p><div class="medal">' + emblem(ep, "", ";width:110px;height:110px") + '</div><div class="blur" aria-hidden="true">' + r0.archetype + '</div><p class="muted" style="margin:0 auto">One of 20 archetypes. Yours is ready.</p></div>' +
+      '<h2>Where should we send your full profile?</h2><p class="muted" style="margin-top:10px">In the live version your report arrives by email and you join the F5IVE Journey. In this prototype nothing is sent, so you can leave these blank.</p>' +
+      '<div class="field"><label for="fn">First name</label><input id="fn" autocomplete="given-name"></div><div class="field"><label for="em">Email</label><input id="em" type="email" autocomplete="email"></div>' +
+      '<label class="check"><input type="checkbox" id="opt"><span>Send my results and report to this address, and add me to the F5IVE Journey emails. I can unsubscribe at any time.</span></label>' +
+      '<div class="row"><button class="btn" data-act="next">Reveal my archetype</button><button class="btn text" data-act="back">Back</button></div></section>' + tools();
+    stage.innerHTML = html; enter(); return;
+  }
+  if (st.t === "reveal") { runReveal(); return; }
+  var r = scoreProfile(buildInput());
+  setHash(slug(r.archetype) + "-result");
+  stage.innerHTML = reportHTML(r) + '<div class="row" style="justify-content:center;margin-top:50px"><button class="btn ghost" data-act="restart">Take it again</button></div>' + tools();
+  enter(); afterReport(r);
+}
+
+/* ============ The reveal ============ */
+function runReveal() {
+  var r = scoreProfile(buildInput()), ep = r.archetype === "The Complete Architect" ? "Complete" : r.anchor;
+  stage.innerHTML = '<section class="reveal"><p class="label" id="rl">Building your architecture</p><div class="templebox">' + temple("revsvg") + '</div><p class="status" id="rs"></p><div id="rname"></div></section><button class="btn ghost skip" data-act="next" id="skipbtn">Skip</button>';
+  enter();
+  var sv = document.getElementById("revsvg"), rs = document.getElementById("rs"), step = REDUCED ? 0 : 1;
+  setTemple(sv, { fills: {}, arches: [0, 0, 0, 0], base: 0 });
+  later(function () { rs.textContent = "Measuring five pillars"; }, 300 * step);
+  PILLARS.forEach(function (p, i) {
+    later(function () {
+      var f = {}; PILLARS.forEach(function (q, j) { f[q] = j <= i ? r.scores[q] / 25 : 0; });
+      setTemple(sv, { fills: f, arches: [0, 0, 0, 0], base: 0 });
+      var sc = sv.querySelector('[data-score="' + p + '"]'); sc.classList.add("on"); countUp(sc, r.scores[p], 1000); vibe();
+    }, (800 + i * 420) * step);
+  });
+  var full = {}; PILLARS.forEach(function (q) { full[q] = r.scores[q] / 25; });
+  later(function () { rs.textContent = "Drawing the arches"; setTemple(sv, { fills: full, arches: [1, 1, 1, 1], base: 0 }); }, 3100 * step);
+  later(function () { rs.textContent = "Laying the foundation"; setTemple(sv, { fills: full, arches: [1, 1, 1, 1], base: 1 }); }, 4100 * step);
+  later(function () { rs.textContent = "Finding who you are"; if (r.archetype !== "The Complete Architect") pulseCol(sv, r.anchor); }, 5000 * step);
+  later(function () {
+    var fl = document.getElementById("flash"); fl.classList.remove("go"); void fl.offsetWidth; fl.classList.add("go"); vibe();
+    document.getElementById("rl").textContent = "You are";
+    rs.textContent = "";
+    var tb = stage.querySelector(".templebox"); tb.style.transition = "max-width .8s"; tb.style.maxWidth = "260px";
+    var letters = r.archetype.split("").map(function (ch, k) { return ch === " " ? " " : '<span style="animation-delay:' + (0.35 + k * 0.045) + 's">' + ch + "</span>"; }).join("");
+    document.getElementById("rname").innerHTML = medal(ep) + '<div class="name">' + letters + '</div><p class="sigline">' + SIGNATURE[r.archetype] + '</p><div class="row" style="justify-content:center"><button class="btn" data-act="next">Read my profile</button></div>';
+    var sk = document.getElementById("skipbtn"); if (sk) sk.remove();
+  }, 6000 * step);
+}
+
+/* ============ Report: a story in plain language ============ */
+function bandClass(b) { return b === "Critical gap" ? "b-crit" : b === "Underbuilt" ? "b-warn" : b === "Solid" ? "b-solid" : "b-strong"; }
+function reportHTML(r) {
+  var complete = r.archetype === "The Complete Architect", A = ARCH[r.archetype], ep = complete ? "Complete" : r.anchor;
+  var retake = new Date(Date.now() + 90 * 864e5).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  var route = ROUTE[r.weakest];
+  var h = '<section class="rhero rise">' + medal(ep) + '<p class="label">You are</p><h1 style="margin:12px 0 14px">' + r.archetype + '</h1><p class="sigline">' + SIGNATURE[r.archetype] + '</p><div class="row" style="justify-content:center"><button class="btn ghost" data-act="arch" data-n="' + r.archetype + '">What it means to be ' + r.archetype + "</button></div></section>";
+
+  // 1. The story in one paragraph
+  var intro = complete
+    ? "All five of your pillars are strong and level. You " + MODE_PLAIN[r.mode] + "."
+    : "Your anchor is <b>" + r.anchor + "</b>. That is the pillar you build your identity around: " + PILLAR_MEANS[r.anchor] + ". You " + MODE_PLAIN[r.mode] + ", which makes you a " + r.mode + ". Put together, that makes you " + r.archetype + ".";
+  h += '<section class="sec"><p class="label">Chapter 1</p><h2>Who you are right now</h2><p class="lead">' + intro + "</p>";
+  if (r.second && !complete) h += '<p class="muted">' + r.second + " is a close second for you, so you may recognise parts of that side too.</p>";
+  h += "<p>" + A.who + "</p></section>";
+
+  // 2. Your anchor, and how it is going
+  if (!complete) {
+    var ah = r.anchorStrong
+      ? "Good news first: your anchor is also one of your healthier pillars, scoring " + r.scores[r.anchor] + " out of 25. What you care about most is where you are putting the work."
+      : "Here is the tension: " + r.anchor + " is what you build your identity around, yet it scores " + r.scores[r.anchor] + " out of 25 right now. What defines you is not getting the attention it needs.";
+    h += '<section class="sec"><p class="label">Chapter 2</p><h2>Your anchor: ' + r.anchor + '</h2><div class="anchorrow">' + emblem(r.anchor, "", ";width:64px;height:64px;flex:none") + "<p class='lead' style='margin:0'>" + ah + '</p></div><div class="two"><div class="panel"><span class="k">At his best</span><ul class="ticks">' + A.best.map(function (b) { return "<li>" + b + "</li>"; }).join("") + '</ul></div><div class="panel dark"><span class="k">Under pressure</span><ul class="ticks">' + A.pressure.map(function (b) { return "<li>" + b + "</li>"; }).join("") + "</ul></div></div></section>";
+  }
+
+  // 3. Pillars today
+  h += '<section class="sec"><p class="label">Chapter ' + (complete ? 2 : 3) + '</p><h2>Your five pillars today</h2><p class="muted">How each part of your life is going right now, out of 25. This is separate from who you are: you can care deeply about a pillar that is struggling.</p><div style="max-width:560px">' + temple("repsvg") + '</div><div class="bars">';
+  PILLARS.forEach(function (p) {
+    h += '<div class="barrow">' + emblem(p) + '<span class="n">' + p + '</span><span class="track"><i class="' + bandClass(r.bands[p]) + '" style="--w:' + (r.scores[p] / 25) + '"></i></span><span class="v"><span data-count="' + r.scores[p] + '">' + r.scores[p] + "</span>/25<small>" + r.bands[p] + "</small></span></div>";
+  });
+  h += '</div><p class="lead" style="margin-top:24px">Strongest right now: <b>' + r.strongest + "</b>. Costing you most: <b>" + r.weakest + "</b>.</p>";
+  if (state.faith === false && !state.override) h += '<p class="wrapnote">You chose not to answer the extra Faith questions, so your Faith score comes from your Part I answers only, scaled to match the other pillars.</p>';
+  h += "</section>";
+
+  // 4. How you work
+  var how = [["start", r.start], ["keep", r.rhythm], ["drive", r.drive], ["solve", r.support], ["ready", r.readiness]];
+  h += '<section class="sec"><p class="label">Chapter ' + (complete ? 3 : 4) + '</p><h2>How you work</h2><div class="how">';
+  how.forEach(function (x) { h += '<div class="howrow"><span class="hq">' + HOW[x[0]].q + "</span><p>" + HOW[x[0]][x[1]] + "</p></div>"; });
+  h += "</div></section>";
+
+  // 5. The pillar costing you
+  var slipLine = "When life gets hard, you said you would let <b>" + r.sacrificed + "</b> go first." + (r.sacrificedIsWeakest ? " It is already your weakest pillar, so that is already happening." : "");
+  h += '<section class="sec"><p class="label">Chapter ' + (complete ? 4 : 5) + '</p><h2>What is costing you: ' + r.weakest + '</h2><div class="anchorrow">' + emblem(r.weakest, "", ";width:64px;height:64px;flex:none;color:var(--ember)") + "<p class='lead' style='margin:0'>" + r.weakest + " scores " + r.scores[r.weakest] + " out of 25. It is the pillar most likely to pull the others down if it is left alone.</p></div><p>" + slipLine + "</p></section>";
+
+  // 6. Where you need to get to
+  h += '<section class="sec"><p class="label">Chapter ' + (complete ? 5 : 6) + '</p><h2>Where you need to get to</h2><div class="nextlvl"><span class="k">Your next level</span><h3>' + A.next + "</h3><p>" + A.nextText + '</p></div><div class="rule"><small>What to try first</small>' + TRY[r.readiness] + " " + TRY_MODE[r.mode] + "</div></section>";
+
+  // 7. Seven days
+  h += '<section class="sec"><p class="label">Chapter ' + (complete ? 6 : 7) + '</p><h2>Your first seven days: ' + r.weakest + '</h2><p class="muted">Each day takes under 10 minutes. ' + (r.support === "Solo" ? "Keep a private checklist, and tell one person the goal." : "Share each day with someone, and keep one block a week for yourself.") + (r.readiness === "Perfectionist" ? " Done badly still counts. The aim is to do each day, not to do it well." : "") + '</p><ol class="path">';
+  BRIDGE[r.weakest].forEach(function (d, k) { h += '<li><span class="n">' + (k + 1) + '</span><div><span class="t">Day ' + (k + 1) + "  " + DAY_TITLES[k] + "</span>" + d + "</div></li>"; });
+  h += "</ol>" + (r.weakest === "Finance" ? '<p class="wrapnote">This is general education about money. It is not personal financial advice. For decisions about your own situation, speak to a qualified adviser.</p>' : "") + "</section>";
+
+  if (state.lens) {
+    var lp = r.anchor === r.weakest ? [r.anchor] : [r.anchor, r.weakest];
+    h += '<section class="sec"><p class="label">Through an Islamic lens <span class="tag">Draft for approval</span></p><div class="two">';
+    lp.forEach(function (p) { h += '<div class="panel"><span class="k">' + p + "</span><p>" + LENS[p] + "</p></div>"; });
+    h += "</div></section>";
+  }
+
+  // 8. Read next
+  h += '<section class="sec"><p class="label">Read next</p><div class="book"><div class="cover"><img src="' + BOOK + '" alt="Vision to Victory book cover"></div><div><h2>' + route.ch.split(",")[0] + '</h2><p class="muted">' + route.ch + ' of <i>Vision to Victory</i> is written for exactly where you are.</p><a class="btn" style="text-decoration:none;display:inline-flex;align-items:center" href="https://amzn.eu/d/0gtCoVXi" target="_blank" rel="noopener">Get the book</a></div></div>' +
+    '<div class="note"><img src="' + DAN + '" alt="Daniel Brown"><div><p>"Your weakest pillar is not a verdict. It is the next thing to build. Start with Day 1 tonight."</p><span class="label" style="color:var(--stone)">Daniel Brown <span class="tag">Draft line</span></span></div></div></section>';
+
+  h += '<section class="sec"><p class="label">Your card</p><h2>Show them what you are building</h2><p class="muted">Press and hold the card on a phone, or right click it on a computer, to save it.</p><img class="cardimg" id="cardimg" alt="Your F5IVE archetype card"></section>';
+  h += '<section class="sec"><p class="label">Come back</p><h2>Measure what moved</h2><p>Your result describes where you stand today. It can change, and the aim is that it does. Take it again on or after <b class="gold">' + retake + '</b>.</p><div class="row"><button class="btn ghost" data-act="lib">Explore all 20 archetypes</button></div>' +
+    '<p class="fine">This is a self-reflection tool built on the F5IVE framework. It is not a clinical or psychological test. If this brought up something heavy, you do not have to carry it alone. In the UK you can call Samaritans free on 116 123, at any hour.</p></section>';
+  return h;
+}
+function afterReport(r) {
+  var sv = document.getElementById("repsvg"), full = {};
+  PILLARS.forEach(function (q) { full[q] = r.scores[q] / 25; });
+  setTemple(sv, { fills: {}, arches: [0, 0, 0, 0], base: 0 });
+  later(function () { setTemple(sv, { fills: full, arches: [1, 1, 1, 1], base: 1 }); sv.querySelectorAll(".score").forEach(function (s) { s.classList.add("on"); s.textContent = r.scores[s.getAttribute("data-score")]; }); }, 500);
+  var secs = stage.querySelectorAll(".sec");
+  if ("IntersectionObserver" in window && !REDUCED) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (!e.isIntersecting) return; var s = e.target; s.classList.add("in"); io.unobserve(s);
+        s.querySelectorAll("[data-count]").forEach(function (c) { countUp(c, Number(c.getAttribute("data-count")), 1200); });
+      });
+    }, { threshold: 0.15 });
+    secs.forEach(function (s) { if (s.getBoundingClientRect().top > window.innerHeight * 0.9) { s.classList.add("armed"); io.observe(s); } });
+  }
+  drawCard(r);
+}
+
+/* ============ Archetype pages ============ */
+function renderView() {
+  hud.hidden = true; clearTimers();
+  var v = state.view, back = state.from ? '<button class="btn text" data-act="closeview">Back to my profile</button>' : '<button class="btn text" data-act="closeview">Back</button>';
+  if (v === "lib") {
+    setHash("archetypes");
+    var h = '<section class="rise"><p class="label">The F5IVE archetypes</p><h1 style="margin:12px 0 14px">Twenty ways a man builds his life</h1><p class="lead">Your archetype combines two things: the pillar you build your identity around, and the way you move toward what you want.</p></section><div class="grid-head"><span></span>' +
+      ["Strategist", "Visionary", "Builder", "Operator"].map(function (m) { return "<span>" + m + "<small>" + MODE_PLAIN[m] + "</small></span>"; }).join("") + "</div>";
+    PILLARS.forEach(function (p) {
+      h += '<div class="arow"><div class="ahead">' + emblem(p) + "<b>" + p + "</b></div>";
+      ["Strategist", "Visionary", "Builder", "Operator"].forEach(function (m) { var n = ARCHETYPES[p][m]; h += '<button class="acell" data-act="arch" data-n="' + n + '"><b>' + n + "</b><span>" + SIGNATURE[n] + "</span></button>"; });
+      h += "</div>";
+    });
+    h += '<button class="acell rare" data-act="arch" data-n="The Complete Architect">' + emblem("Complete", "", ";width:40px;height:40px") + "<div><b>The Complete Architect</b><span>The rare result, when all five pillars stand level and strong.</span></div></button>";
+    h += '<div class="row">' + back + "</div>";
+    stage.innerHTML = h; enter(); return;
+  }
+  var n = v, A = ARCH[n], ep = A.p;
+  setHash(slug(n));
+  var others = A.m ? PILLARS.filter(function (p) { return p !== A.p; }).map(function (p) { return ARCHETYPES[p][A.m]; }) : [];
+  var sameP = A.m ? ["Strategist", "Visionary", "Builder", "Operator"].filter(function (m) { return m !== A.m; }).map(function (m) { return ARCHETYPES[A.p][m]; }) : [];
+  var h2 = '<section class="rhero rise">' + medal(ep) + '<p class="label">' + (A.m ? A.p + " anchor  ·  " + A.m : "The rare result") + '</p><h1 style="margin:12px 0 14px">' + n + '</h1><p class="sigline">' + SIGNATURE[n] + "</p></section>" +
+    '<section class="sec"><p class="label">Who you are</p><p class="lead">' + A.who + "</p>" + (A.m ? '<p class="muted">' + n + " is anchored in " + A.p + " (" + PILLAR_MEANS[A.p] + ") and " + MODE_PLAIN[A.m] + ".</p>" : "") + "</section>" +
+    '<section class="sec"><div class="two"><div class="panel"><span class="k">At his best</span><ul class="ticks">' + A.best.map(function (b) { return "<li>" + b + "</li>"; }).join("") + '</ul></div><div class="panel dark"><span class="k">Under pressure</span><ul class="ticks">' + A.pressure.map(function (b) { return "<li>" + b + "</li>"; }).join("") + "</ul></div></div></section>" +
+    '<section class="sec"><p class="label">How others see you</p><p class="lead">' + A.others + "</p></section>" +
+    '<section class="sec"><p class="label">Where you need to get to</p><div class="nextlvl"><span class="k">The next level</span><h3>' + A.next + "</h3><p>" + A.nextText + "</p></div></section>";
+  if (A.m) {
+    h2 += '<section class="sec"><p class="label">Related archetypes</p><p class="muted">The same anchor, a different way of moving:</p><div class="chips" style="justify-content:flex-start">' + sameP.map(function (x) { return '<button class="chip" data-act="arch" data-n="' + x + '">' + x + "</button>"; }).join("") + '</div><p class="muted" style="margin-top:16px">The same way of moving, a different anchor:</p><div class="chips" style="justify-content:flex-start">' + others.map(function (x) { return '<button class="chip" data-act="arch" data-n="' + x + '">' + x + "</button>"; }).join("") + "</div></section>";
+  }
+  h2 += '<div class="row">' + back + '<button class="btn text" data-act="lib">All archetypes</button>' + (state.from ? "" : '<button class="btn" data-act="restart">Find my archetype</button>') + "</div>";
+  stage.innerHTML = h2; enter();
+}
+
+/* ============ Tests and samples ============ */
+var SAMPLES = [
+  { quick: { Faith: 9, Family: 13, Finance: 8, Fitness: 10, Freedom: 9 }, extra: { Faith: [3, 3], Family: [4, 4], Finance: [2, 2], Fitness: [3, 3], Freedom: [3, 3] }, style: [2, 2, 1, 1, 1, 0, 2, 1, 1, 2, 1, 1], ready: [5, 4, 4], orient: ["Freedom", "Freedom", "Finance", "Freedom", "Fitness", "Freedom"], values: { ranked: ["Ownership of my time", "Independence", "Security"], protect: "Freedom", slip: "Family" } },
+  { quick: { Faith: 12, Family: 10, Finance: 9, Fitness: 8, Freedom: 9 }, extra: { Faith: [4, 4], Family: [3, 3], Finance: [3, 3], Fitness: [2, 3], Freedom: [3, 3] }, style: [-2, -1, -1, -2, -1, -1, -1, -1, 0, -2, -1, -1], ready: [1, 2, 2], orient: ["Faith", "Family", "Faith", "Family", "Fitness", "Finance"], values: { ranked: ["Purpose and meaning", "Legacy", "Discipline"], protect: null, slip: "Fitness" } },
+  { quick: { Faith: 8, Family: 8, Finance: 8, Fitness: 8, Freedom: 8 }, extra: { Faith: [3, 3], Family: [3, 2], Finance: [3, 3], Fitness: [3, 3], Freedom: [3, 3] }, style: [1, 1, 0, -1, -1, 0, 1, 1, 1, 1, 1, 1], ready: [3, 3, 3], orient: ["Fitness", "Fitness", "Fitness", "Family", "Fitness", "Finance"], values: { ranked: ["Strength and health", "Discipline", "Security"], protect: "Fitness", slip: "Freedom" } },
+  { quick: { Faith: 12, Family: 12, Finance: 11, Fitness: 12, Freedom: 12 }, extra: { Faith: [4, 4], Family: [4, 4], Finance: [3, 3], Fitness: [4, 3], Freedom: [4, 4] }, style: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], ready: [2, 3, 3], orient: ["Faith", "Family", "Finance", "Fitness", "Freedom", "Faith"], values: { ranked: ["Legacy", "Security", "Discipline"], protect: "Family", slip: "Fitness" } }
+];
+var EXPECT = [
+  { anchor: "Freedom", strongest: "Family", weakest: "Finance", mode: "Strategist", archetype: "The Cartographer", readiness: "Perfectionist", anchorStrong: false },
+  { anchor: "Faith", second: "Family", mode: "Operator", archetype: "The Sentinel", readiness: "Bold", weakest: "Fitness", sacrificedIsWeakest: true },
+  { imbalance: 1, archetype: "The Phoenix", readiness: "Steady", weakest: "Family" },
+  { archetype: "The Complete Architect", anchor: "Family" }
+];
+function runTests() {
+  var out = [], ok = 0;
+  SAMPLES.forEach(function (s, k) {
+    var r = scoreProfile(s), e = EXPECT[k], bad = [];
+    Object.keys(e).forEach(function (key) { if (JSON.stringify(r[key]) !== JSON.stringify(e[key])) bad.push(key + " got " + JSON.stringify(r[key]) + " expected " + JSON.stringify(e[key])); });
+    if (!bad.length) ok++;
+    out.push("Case " + (k + 1) + ": " + (bad.length ? "FAIL " + bad.join("; ") : "pass") + "  (" + r.archetype + ")");
+  });
+  out.push(ok + " of " + SAMPLES.length + " cases pass");
+  return out.join("\n");
+}
+
 /* ============ Actions ============ */
 function fillRandom() {
   var rr = function (a, b) { return a + Math.floor(Math.random() * (b - a + 1)); };
@@ -946,9 +1228,11 @@ function fillRandom() {
   if (state.faith === null) state.faith = true;
   EXTRA.forEach(function (e) { if (state.ans[e.id] === undefined) state.ans[e.id] = rr(2, 5); });
   STYLE.forEach(function (s) { if (state.ans[s.id] === undefined) state.ans[s.id] = rr(-2, 2); });
+  READY.forEach(function (s) { if (state.ans[s.id] === undefined) state.ans[s.id] = rr(1, 5); });
+  var ps = PILLARS.filter(function (p) { return !(state.faith === false && p === "Faith"); });
+  ORIENT.forEach(function (o) { if (!state.orient[o.id]) state.orient[o.id] = ps[rr(0, ps.length - 1)]; });
   var pool = state.order.filter(function (v) { return !(state.faith === false && VALUE_PILLAR[v] === "Faith"); });
   while (state.rank.length < 3) { var c = pool[rr(0, pool.length - 1)]; if (state.rank.indexOf(c) < 0) state.rank.push(c); }
-  var ps = PILLARS.filter(function (p) { return !(state.faith === false && p === "Faith"); });
   if (!state.protect) state.protect = ps[rr(0, ps.length - 1)];
   if (!state.slip) { var o = ps.filter(function (p) { return p !== state.protect; }); state.slip = o[rr(0, o.length - 1)]; }
   jump(steps().findIndex(function (s) { return s.t === "email"; }));
@@ -958,8 +1242,7 @@ function answer(v) {
   state.ans[st.id] = v; vibe();
   if (st.t === "likert") {
     stage.querySelectorAll(".col").forEach(function (b, k) { b.classList.toggle("on", k + 1 === v); b.classList.toggle("lit", k + 1 < v); });
-    var pk = document.getElementById("picked"); if (pk) pk.textContent = SCALE[v - 1];
-    pulseCol(document.getElementById("hudsvg"), st.p);
+    if (st.p !== "Ready") pulseCol(document.getElementById("hudsvg"), st.p);
   } else {
     var arm = document.getElementById("arm"); if (arm) arm.style.transform = "rotate(" + (-v * 5) + "deg)";
     stage.querySelectorAll(".notch").forEach(function (n) { n.classList.toggle("on", Number(n.getAttribute("data-v")) === v); });
@@ -974,7 +1257,12 @@ document.addEventListener("click", function (ev) {
   if (a === "next") go(1);
   else if (a === "back") go(-1);
   else if (a === "ans") answer(Number(b.getAttribute("data-v")));
-  else if (a === "rank") {
+  else if (a === "orient") {
+    var st = steps()[state.i]; state.orient[st.id] = b.getAttribute("data-v"); vibe();
+    stage.querySelectorAll(".pick").forEach(function (x) { x.classList.toggle("prot", x === b); x.classList.toggle("dim", x !== b); });
+    setTemple(document.getElementById("hudsvg"), progress());
+    later(function () { go(1); }, 450);
+  } else if (a === "rank") {
     var v = b.getAttribute("data-v"), k = state.rank.indexOf(v);
     if (k >= 0) state.rank.splice(k, 1); else if (state.rank.length < 3) state.rank.push(v);
     vibe(); render(); stage.classList.remove("enter");
@@ -985,14 +1273,22 @@ document.addEventListener("click", function (ev) {
   } else if (a === "consent-next") {
     var f = document.getElementById("faith"), l = document.getElementById("lens");
     state.faith = !!(f && f.checked); state.lens = state.faith && !!(l && l.checked);
-    if (state.faith === false) { state.rank = state.rank.filter(function (x) { return VALUE_PILLAR[x] !== "Faith"; }); if (state.protect === "Faith") state.protect = null; if (state.slip === "Faith") state.slip = null; }
+    if (state.faith === false) {
+      state.rank = state.rank.filter(function (x) { return VALUE_PILLAR[x] !== "Faith"; });
+      if (state.protect === "Faith") state.protect = null; if (state.slip === "Faith") state.slip = null;
+      Object.keys(state.orient).forEach(function (k2) { if (state.orient[k2] === "Faith") delete state.orient[k2]; });
+    }
     go(1);
-  } else if (a === "sample") { state.override = SAMPLES[Number(b.getAttribute("data-n"))]; state.faith = true; jump(steps().findIndex(function (s) { return s.t === "reveal"; })); }
+  } else if (a === "sample") { state.override = SAMPLES[Number(b.getAttribute("data-n"))]; state.faith = true; state.view = null; jump(steps().findIndex(function (s) { return s.t === "reveal"; })); }
   else if (a === "fill") fillRandom();
   else if (a === "tests") { var o = document.getElementById("out"); o.hidden = false; o.textContent = runTests(); }
-  else if (a === "restart") { state.i = 0; state.ans = {}; state.age = false; state.faith = null; state.lens = false; state.rank = []; state.protect = null; state.slip = null; state.override = null; jump(0); }
+  else if (a === "lib") { clearTimers(); state.from = steps()[state.i].t === "report" ? "report" : state.from; state.view = "lib"; render(); }
+  else if (a === "arch") { clearTimers(); if (!state.view && steps()[state.i].t === "report") state.from = "report"; state.view = b.getAttribute("data-n"); render(); }
+  else if (a === "closeview") { state.view = null; render(); }
+  else if (a === "restart") { state.i = 0; state.ans = {}; state.age = false; state.faith = null; state.lens = false; state.rank = []; state.protect = null; state.slip = null; state.orient = {}; state.override = null; state.from = null; jump(0); }
 });
 document.addEventListener("keydown", function (ev) {
+  if (state.view) return;
   var st = steps()[state.i]; if (!st) return;
   if (ev.target && ev.target.closest && ev.target.closest(".notch") && (ev.key === "Enter" || ev.key === " ")) { ev.preventDefault(); answer(Number(ev.target.closest(".notch").getAttribute("data-v"))); return; }
   if (st.t === "likert" && /^[1-5]$/.test(ev.key)) answer(Number(ev.key));
@@ -1001,7 +1297,13 @@ document.addEventListener("change", function (ev) {
   if (ev.target.id === "age") { state.age = ev.target.checked; var g = document.getElementById("go"); if (g) g.disabled = !state.age; }
   if (ev.target.id === "faith") { var l = document.getElementById("lens"); if (l) { l.disabled = !ev.target.checked; if (!ev.target.checked) l.checked = false; } }
 });
-render();
+(function boot() {
+  var hsh = ""; try { hsh = (location.hash || "").slice(1); } catch (e) {}
+  if (hsh === "archetypes") state.view = "lib";
+  else if (BY_SLUG[hsh]) state.view = BY_SLUG[hsh];
+  render();
+})();
+
 </script>
 
 </body>
