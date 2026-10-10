@@ -478,6 +478,8 @@ p,.q{max-width:none}
 .legend button:hover{background:#15171C}
 .legend small{font:600 .68rem var(--cond);letter-spacing:.18em;text-transform:uppercase;color:var(--stone2)}
 .legend em{font:600 .74rem var(--cond);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:auto;padding-top:6px}
+.code .cv{color:var(--gold-l);opacity:1}
+.kseg{padding:12px 18px}
 </style>
 </head>
 <body>
@@ -1336,7 +1338,7 @@ var ANCHOR_P = {
   Family: "The people you love sit at the centre of how you see yourself. Being someone your family can rely on is not a role you play, it is who you are. You measure a good life by the health of your relationships, and you feel it sharply when you let someone close to you down.",
   Finance: "Building security sits at the centre of how you see yourself. Money, for you, is not about greed. It is safety, provision and proof that you are building something that lasts. You measure progress by what you have built, and you feel it sharply when things are financially uncertain.",
   Fitness: "Your body and your discipline sit at the centre of how you see yourself. Training is where you keep promises to yourself, and your physical standards mirror your inner ones. You feel it sharply when you lose your rhythm or your strength.",
-  Freedom: "Control of your own time and direction sits at the centre of how you see yourself. You want to choose your own path, answer to your own call and build a life that is genuinely yours. You feel it sharply when you are boxed in by someone else's plan."
+  Freedom: "Having control over your own time and direction is at the centre of how you see yourself. You want to choose your own path, answer to your own call and build a life that is genuinely yours. You feel it sharply when you are boxed in by someone else's plan."
 };
 var MODE_P = {
   Strategist: "You make plans first, then you work to a routine. You like to see where something is going before you commit, and once you commit you build a system around it. That makes you dependable and hard to knock off course. It also means you can spend longer preparing than doing.",
@@ -1390,6 +1392,7 @@ var ANCHOR_CODE = { Faith: "FAI", Family: "FAM", Finance: "FIN", Fitness: "FIT",
 var MODE_CODE = { Strategist: "S", Visionary: "V", Builder: "B", Operator: "O" };
 var VAR_CODE = { Perfectionist: "P", Steady: "M", Bold: "R" };
 var VAR_NAME = { P: "Perfecting", M: "Measured", R: "Ready" };
+var VAR_LONG = { P: "You hold back until something feels right before you start.", M: "You start once something is reasonably prepared.", R: "You start before you feel prepared and fix it as you go." };
 var VAR_MEAN = { P: "you hold back until it feels right", M: "you start once it is reasonably prepared", R: "you start before you feel prepared" };
 function archCode(name) { var A = ARCH[name]; if (!A.m) return "F5IVE"; return ANCHOR_CODE[A.p] + "-" + MODE_CODE[A.m]; }
 function codeOf(r) {
@@ -1402,12 +1405,12 @@ function codeHTML(r, cls) {
 }
 function codeKeyHTML(r) {
   var complete = r.archetype === "The Complete Architect", v = VAR_CODE[r.readiness];
-  var seg = function (letters, cap, target) { return '<button class="kseg" data-act="goto" data-n="' + target + '"><b>' + letters + "</b><span>" + cap + "</span></button>"; };
+  var seg = function (letters, cap, target) { return '<button class="kseg" data-act="goto" data-n="' + target + '" aria-label="' + cap + '"><b>' + letters + "</b></button>"; };
   return '<div class="ckey" aria-label="Your code ' + codeOf(r) + '">' + seg(complete ? "F5IVE" : ANCHOR_CODE[r.anchor], complete ? "All five level" : r.anchor + " anchor", "how") + '<span class="kdash">-</span>' + seg(MODE_CODE[r.mode], r.mode, "life") + seg(v, VAR_NAME[v], "life") + '</div><button class="kmore" data-act="goto" data-n="code">What your code means, and how to read it</button>';
 }
 function legendHTML(r) {
   var complete = r.archetype === "The Complete Architect", v = VAR_CODE[r.readiness];
-  return '<div class="legend"><button data-act="goto" data-n="how"><small>The first part</small><b>' + (complete ? "F5IVE" : ANCHOR_CODE[r.anchor]) + "</b><span>" + (complete ? "All five pillars level and strong." : "Your anchor: " + r.anchor + ". The pillar you build your identity around. One of FAI, FAM, FIN, FIT or FRE.") + '</span><em>Why this is your anchor</em></button><button data-act="goto" data-n="life"><small>The middle letter</small><b>' + MODE_CODE[r.mode] + "</b><span>How you move: " + r.mode + ". One of S Strategist, V Visionary, B Builder or O Operator.</span><em>How you work</em></button><button data-act=\"goto\" data-n=\"life\"><small>The last letter</small><b>" + v + "</b><span>Your variant: " + VAR_NAME[v] + ", " + VAR_MEAN[v] + ". One of P Perfecting, M Measured or R Ready.</span><em>How ready you feel to begin</em></button></div>";
+  return '<div class="legend"><button data-act="goto" data-n="how"><small>The first part</small><b>' + (complete ? "F5IVE" : ANCHOR_CODE[r.anchor]) + "</b><span>" + (complete ? "All five pillars level and strong." : "Your anchor: " + r.anchor + ". The pillar you build your identity around.") + '</span><em>Why this is your anchor</em></button><button data-act="goto" data-n="life"><small>The middle letter</small><b>' + MODE_CODE[r.mode] + "</b><span>How you move: " + r.mode + ". You " + MODE_YOU[r.mode] + ".</span><em>How you work</em></button><button data-act=\"goto\" data-n=\"life\"><small>The last letter</small><b>" + v + "</b><span>Your variant: " + VAR_NAME[v] + ". " + VAR_LONG[v] + "</span><em>How ready you feel to begin</em></button></div>";
 }
 
 /* ============ What each pillar means to you: anchor lens x pillar, plus how your mode goes about it ============ */
@@ -1478,12 +1481,12 @@ function reportHTML(r) {
 
   // 1 Who you are
   h += '<section class="sec" id="who"><p class="label">1. Who you are</p><h2>You are ' + r.archetype + '</h2><p class="lead">As ' + r.archetype + ", " + SIGNATURE[r.archetype].charAt(0).toLowerCase() + SIGNATURE[r.archetype].slice(1) + " " + A.who.split(". ").slice(1).join(". ") + "</p>" +
-    (complete ? "" : "<p>" + ANCHOR_P[r.anchor] + "</p>") + "<p>" + MODE_P[r.mode] + " That is the " + r.mode + " side of " + r.archetype + ": " + MODE_WHO[r.mode] + ".</p><p>" + TENSION[r.archetype] + "</p>" +
+    (complete ? "" : "<p>" + ANCHOR_P[r.anchor] + "</p>") + "<p>" + MODE_P[r.mode] + " This is the " + r.mode + " side of your archetype.</p><p>" + TENSION[r.archetype] + "</p>" +
     '<div class="two"><div class="panel"><span class="k">When your ' + (complete ? "balance" : r.anchor + " anchor") + ' is working</span><ul class="ticks">' + A.best.map(function (b) { return "<li>" + b + "</li>"; }).join("") + '</ul></div><div class="panel dark"><span class="k">When it works against you</span><ul class="ticks">' + A.pressure.map(function (b) { return "<li>" + b + "</li>"; }).join("") + "</ul></div></div>" +
     '<p class="muted" style="margin-top:16px">' + A.others + "</p></section>";
 
   // Your code and pillars through your eyes
-  h += '<section class="sec" id="eyes"><p class="label">2. Your pillars, through your eyes</p><h2>What each pillar means to ' + r.archetype.replace(/^The /, "a ") + '</h2><p>Every man has the same five pillars, but they do not mean the same thing to everyone. This is how each one looks to someone with your anchor and your way of moving. Tap a pillar to read it.</p>' + eyesHTML(r.anchor, r.mode, r.scores, "rep") + '<h3 id="code" style="scroll-margin-top:20px">Your code: ' + codeOf(r) + '</h3><p class="muted">Like a personality type code, yours is built from three parts. Tap any part to read more about it.</p>' + legendHTML(r) + '</section>';
+  h += '<section class="sec" id="eyes"><p class="label">2. Your pillars, through your eyes</p><h2>What each pillar means to ' + r.archetype.replace(/^The /, "a ") + '</h2><p>Every man has the same five pillars, but they do not mean the same thing to everyone. This is how each one looks to someone with your anchor and your way of moving. Tap a pillar to read it.</p>' + eyesHTML(r.anchor, r.mode, r.scores, "rep") + '<h3 id="code" style="scroll-margin-top:20px">Your code: ' + codeOf(r) + '</h3>' + legendHTML(r) + '</section>';
   // 3 Your anchor, and why
   h += '<section class="sec" id="how"><p class="label">3. Your anchor, and why</p><h2>Why ' + (complete ? "your pillars are level" : r.anchor + " is your anchor") + "</h2>";
   if (!complete) {
