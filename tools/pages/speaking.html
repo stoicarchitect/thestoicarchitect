@@ -1,0 +1,136 @@
+<!--HEAD-->
+  <style>
+    .talks { list-style: none; border-top: 1px solid var(--rule); counter-reset: t; }
+    .talks li { counter-increment: t; display: grid; grid-template-columns: 70px 1fr 220px; gap: clamp(16px, 4vw, 48px); padding: 34px 0; border-bottom: 1px solid var(--rule-soft); }
+    .talks li::before { content: counter(t, upper-roman); font: 600 1.6rem var(--display); color: var(--bronze); }
+    .talks h3 { font: 600 clamp(1.15rem, 2vw, 1.45rem)/1.25 var(--display); letter-spacing: .03em; margin-bottom: 10px; }
+    .talks p { color: var(--ash); }
+    .talks .for { font-size: .92rem; color: var(--ash); border-left: 1px solid var(--rule); padding-left: 18px; }
+    .formats4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 44px; }
+    .formats4 div { background: var(--hearth); padding: 28px 24px; }
+    .formats4 h3 { font: 600 1.1rem var(--display); letter-spacing: .04em; color: var(--gilt); margin-bottom: 8px; }
+    .formats4 p { color: var(--ash); font-size: .95rem; }
+    .bio { position: relative; }
+    .bio + .bio { margin-top: 18px; }
+    .bio h3 { font-size: 1rem; color: var(--gilt); margin-bottom: 8px; }
+    .bio p { color: var(--parchment); opacity: .9; }
+    .copy { position: absolute; top: 22px; right: 22px; min-height: 36px; padding: 0 14px; font-size: .85rem; border: 1px solid var(--rule); background: none; border-radius: 2px; cursor: pointer; color: var(--ash); }
+    .copy:hover { color: var(--gilt-hi); border-color: var(--gilt); }
+    .quotes { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 44px; }
+    .quotes li { background: var(--hearth); padding: 32px 30px; }
+    .quotes p { font-family: var(--voice); font-style: italic; font-size: 1.3rem; line-height: 1.4; }
+    @media (max-width: 900px) {
+      .talks li { grid-template-columns: 1fr; gap: 8px; }
+      .talks .for { border-left: 0; padding-left: 0; }
+      .formats4 { grid-template-columns: 1fr 1fr; }
+      .quotes { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) { .formats4 { grid-template-columns: 1fr; } }
+  </style>
+<!--/HEAD-->
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumbs"><a href="/">Home</a> / Speaking and press</p>
+    <h1>Structural talks, not motivational ones</h1>
+    <p class="lede">Daniel Brown MSc speaks on why capable men fail, leadership identity and the F5IVE Framework. Every session is grounded in lived experience and leaves the room with something they can apply that week.</p>
+    <div class="actions">
+      <a class="btn btn--gilt" href="#enquiry">Make an enquiry</a>
+      <a class="btn btn--line" href="#presskit">Press kit and bios</a>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <span class="kicker">Talks</span>
+        <h2>Four talks, tailored to the room</h2>
+      </div>
+      <p class="muted">Nothing off the shelf. Each talk is shaped around the audience and the outcome the organiser needs.</p>
+    </div>
+    <ol class="talks">
+      <li><div><h3>Why capable men fail, and the structure that fixes it</h3><p>The core talk. Why talented, ambitious men keep falling short, and what the F5IVE Framework offers instead.</p></div><p class="for">Corporate events, men's groups, conferences</p></li>
+      <li><div><h3>Leadership identity: who you are when the title is gone</h3><p>How men fuse identity with role, and what happens when the role disappears. Drawn from thirteen years of senior leadership.</p></div><p class="for">Leadership programmes, professional audiences</p></li>
+      <li><div><h3>The F5IVE Framework: building the whole man</h3><p>All five pillars in depth, how they interact, and how to start building them together.</p></div><p class="for">Men's development events, wellbeing programmes</p></li>
+      <li><div><h3>Rebuilding from the ground up: resilience as architecture</h3><p>The story behind the book. Redundancy, separation and a five-year rebuild across every pillar.</p></div><p class="for">Resilience, transition and recovery events</p></li>
+    </ol>
+    <div class="formats4">
+      <div><h3>Keynote</h3><p>30 to 60 minutes for conferences and large events.</p></div>
+      <div><h3>Workshop</h3><p>Half or full day, the framework in depth with practical application.</p></div>
+      <div><h3>Podcast</h3><p>Interviews on men's development, leadership and the book.</p></div>
+      <div><h3>Press</h3><p>Features, author interviews and review copies of Vision to Victory.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--lift" id="presskit">
+  <div class="wrap split split--top">
+    <div>
+      <span class="kicker">Press kit</span>
+      <h2>Everything you need to introduce Daniel</h2>
+      <p class="muted" style="margin-top:20px">Copy a bio below, or request the full kit: long-form bio, synopsis and chapter overview, a one-page framework explainer, key quotes and high-resolution photography.</p>
+      <div class="actions" style="margin-top:28px">
+        <a class="btn btn--gilt" href="#enquiry">Request the full kit</a>
+        <a class="btn btn--line" href="/downloads/F5IVE_Framework_Guide.pdf" target="_blank" rel="noopener">Framework guide (PDF)</a>
+      </div>
+    </div>
+    <div>
+      <div class="panel bio"><h3>Short bio, 50 words</h3><p id="bio-short">Daniel Brown MSc is the author of Vision to Victory and founder of the F5IVE Framework, a men's personal development system built on five interdependent pillars. A senior leader with more than thirteen years of experience, he writes as The Stoic Architect.</p><button class="copy" data-copy="bio-short">Copy</button></div>
+      <div class="panel bio"><h3>Medium bio, 100 words</h3><p id="bio-medium">Daniel Brown MSc is a UK-based author, leadership professional and founder of the F5IVE Framework, a men's personal development system built on five interdependent pillars: Faith, Family, Finance, Fitness and Freedom. He holds an MSc in Psychology and a BSc (Hons) in Artificial Intelligence. His book, Vision to Victory: Why Men Fail, Why They Succeed, and How to Master the Difference, was written from his own redundancy, separation and five-year rebuild, and is available on Amazon. He creates content as The Stoic Architect at @danielmrbrown.</p><button class="copy" data-copy="bio-medium">Copy</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <span class="kicker">Key quotes</span>
+    <h2>For features and interviews</h2>
+    <ul class="quotes">
+      <li><p>"Most men don't fail because they lack talent. They fail because they lack structure."</p></li>
+      <li><p>"Success in one pillar while the others collapse is not victory. It's imbalance with better PR."</p></li>
+      <li><p>"Vision compounds. Motivation fades. You don't need more inspiration. You need a framework."</p></li>
+      <li><p>"This book was not written from a stage. It was written from the wreckage."</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band band--lift" id="enquiry">
+  <div class="wrap split split--top">
+    <div>
+      <h2>Let's talk</h2>
+      <p class="muted" style="margin-top:20px">Speaking, podcasts, press, review copies or partnerships. Daniel reads every enquiry himself.</p>
+      <p style="margin-top:28px">Prefer email? <a class="textlink" href="mailto:danielbrown.authorf5@gmail.com">danielbrown.authorf5@gmail.com</a></p>
+    </div>
+    <form class="panel panel--gilt" data-formspree="speaking-enquiry" data-done="Enquiry sent">
+      <input type="hidden" name="_subject" value="Speaking and press enquiry" />
+      <div class="row2">
+        <div class="field"><label for="sp-name">Name</label><input id="sp-name" name="name" autocomplete="name" required /></div>
+        <div class="field"><label for="sp-email">Email</label><input id="sp-email" type="email" name="email" autocomplete="email" required /></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="sp-org">Organisation</label><input id="sp-org" name="organisation" autocomplete="organization" /></div>
+        <div class="field">
+          <label for="sp-type">Enquiry type</label>
+          <select id="sp-type" name="type" required>
+            <option>Speaking or workshop</option><option>Podcast or interview</option><option>Press or review copy</option><option>Press kit request</option><option>Partnership</option><option>Something else</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label for="sp-msg">Message</label><textarea id="sp-msg" name="message" required placeholder="Dates, audience size, format, anything useful"></textarea></div>
+      <button class="btn btn--gilt btn--block" type="submit">Send enquiry</button>
+    </form>
+  </div>
+</section>
+
+<!--TAIL-->
+<script>
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = document.getElementById(b.dataset.copy).textContent;
+      (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1800); }, function () { b.textContent = 'Select and copy'; });
+    });
+  });
+</script>
+<!--/TAIL-->

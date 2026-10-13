@@ -1,0 +1,214 @@
+<!--HEAD-->
+  <style>
+    .fp-hero { padding: calc(76px + clamp(48px, 8vw, 104px)) 0 clamp(64px, 9vw, 112px); overflow: hidden; border-bottom: 1px solid var(--rule-soft); }
+    .fp-hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(50% 60% at 80% 30%, rgba(200,160,77,.14), transparent 70%); }
+    .fp-hero .split { position: relative; grid-template-columns: 1.2fr .8fr; }
+    .fp-hero h1 { max-width: 16ch; }
+    .ticket { border: 1px solid var(--rule); background: var(--hearth); padding: clamp(28px, 4vw, 40px); }
+    .ticket .price { font: 600 3.4rem/1 var(--display); color: var(--parchment); }
+    .ticket .price small { font: 400 .95rem var(--sans); color: var(--ash); display: block; margin-top: 10px; }
+    .ticket ul { margin: 24px 0 26px; }
+    .modules { border-top: 1px solid var(--rule); margin-top: 48px; }
+    .module { display: grid; grid-template-columns: 80px 1fr; gap: clamp(16px, 4vw, 48px); padding: 36px 0; border-bottom: 1px solid var(--rule-soft); }
+    .module .n { font: 600 2.1rem/1 var(--display); color: var(--gilt); }
+    .module h3 { font: 600 clamp(1.25rem, 2.2vw, 1.6rem)/1.2 var(--display); letter-spacing: .04em; }
+    .module > div > p { color: var(--parchment); margin: 8px 0 14px; opacity: .9; }
+    .module ul { list-style: none; }
+    .module li { color: var(--ash); padding: 6px 0 6px 22px; position: relative; font-size: .97rem; }
+    .module li::before { content: ''; position: absolute; left: 0; top: 15px; width: 10px; height: 1px; background: var(--gilt); }
+    .tools { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 40px; }
+    .tools div { background: var(--hearth); padding: 28px 24px; }
+    .tools h3 { font-size: 1.02rem; margin-bottom: 8px; }
+    .tools p { color: var(--ash); font-size: .94rem; }
+    .stack-table { width: 100%; border-collapse: collapse; margin-top: 36px; }
+    .stack-table td { padding: 18px 0; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+    .stack-table td:last-child { text-align: right; font: 600 1.1rem var(--display); white-space: nowrap; padding-left: 24px; }
+    .stack-table small { display: block; color: var(--ash); font-size: .9rem; margin-top: 4px; }
+    .stack-table tr.total td { border-bottom: 0; border-top: 1px solid var(--rule); color: var(--ash); }
+    .stack-table tr.today td { font-size: 1.15rem; color: var(--parchment); }
+    .stack-table tr.today td:last-child { font-size: 2rem; color: var(--gilt-hi); }
+    .faq details { border-bottom: 1px solid var(--rule-soft); }
+    .faq summary { cursor: pointer; list-style: none; padding: 22px 40px 22px 0; font-weight: 600; position: relative; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: '+'; position: absolute; right: 4px; top: 18px; color: var(--gilt); font-size: 1.4rem; font-weight: 400; }
+    .faq details[open] summary::after { content: '\2212'; }
+    .faq details p { color: var(--ash); padding-bottom: 22px; }
+    @media (max-width: 900px) {
+      .fp-hero .split { grid-template-columns: 1fr; }
+      .tools { grid-template-columns: 1fr 1fr; }
+      .module { grid-template-columns: 1fr; gap: 8px; }
+    }
+    @media (max-width: 520px) { .tools { grid-template-columns: 1fr; } }
+  </style>
+<!--/HEAD-->
+
+<section class="fp-hero">
+  <div class="wrap split">
+    <div>
+      <p class="crumbs"><a href="/">Home</a> / <a href="/courses.html">Courses</a> / Finance Pillar</p>
+      <span class="tag">Founding list open</span>
+      <h1 style="margin-top:18px">You read the framework. This is where you build it.</h1>
+      <p class="lede" style="margin-top:24px">Five modules, a working toolkit and one system you run every month, not once. Chapter 13 of Vision to Victory, taken from the page to your actual bank statement.</p>
+      <div class="actions" style="margin-top:34px">
+        <a class="btn btn--gilt" href="#join">Join the founding list</a>
+        <a class="btn btn--line" href="#inside">What's inside</a>
+      </div>
+    </div>
+    <div class="ticket">
+      <div class="price">&pound;97<small>One-time payment at launch. Lifetime access.</small></div>
+      <ul class="ticks">
+        <li>Five video lessons, six to ten minutes each</li>
+        <li>A full workbook for every module</li>
+        <li>The Financial Reset Toolkit</li>
+        <li>30-day money-back guarantee</li>
+      </ul>
+      <a class="btn btn--gilt btn--block" href="#join">Get first access</a>
+      <p class="fineprint" style="margin-top:12px">Founding members get the launch price whenever they join.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split split--top">
+    <div>
+      <div class="entab"><i></i></div>
+      <h2>Understanding it was the easy part</h2>
+    </div>
+    <div class="stack">
+      <p class="lede">You've read the book, worked through the Journey, or both. You know the framework.</p>
+      <p class="muted">But knowledge doesn't move money. It doesn't build a system. It doesn't sit down with your real numbers and do the uncomfortable work of naming what they reveal. Most men stop exactly here, in the gap between understanding a framework and running it.</p>
+      <p>This course is what closes that gap.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--lift" id="inside">
+  <div class="wrap">
+    <span class="kicker">What's inside</span>
+    <h2>Five modules. One integrated system.</h2>
+    <div class="modules">
+      <div class="module"><span class="n">1</span><div>
+        <h3>Money Reveals Who You Are</h3>
+        <p>The belief driving your financial pattern, named honestly, then the full Financial Audit.</p>
+        <ul>
+          <li>The Belief Inventory: what your last 30 days of decisions actually reveal</li>
+          <li>The full audit: income, fixed costs, debts and leaks mapped completely, not estimated</li>
+          <li>Your single largest leak, and the real job it does for you: comfort, status or escape</li>
+          <li>Marcus's numbers worked step by step before you do your own</li>
+        </ul></div></div>
+      <div class="module"><span class="n">2</span><div>
+        <h3>Automate</h3>
+        <p>One real system, built correctly, that moves money whether you feel motivated or not.</p>
+        <ul>
+          <li>The System Map: where money needs to move automatically instead of manually</li>
+          <li>A six-point build checklist so the system is right first time</li>
+          <li>This week's commitment: one system, one dated deadline</li>
+        </ul></div></div>
+      <div class="module"><span class="n">3</span><div>
+        <h3>Align</h3>
+        <p>Checking your automated money is moving toward what you say matters.</p>
+        <ul>
+          <li>Values specific enough to check against a bank statement</li>
+          <li>A direct comparison grid: your real spending against your stated values</li>
+          <li>One reallocation, with an exact amount and an effective date</li>
+        </ul></div></div>
+      <div class="module"><span class="n">4</span><div>
+        <h3>Anchor and Act</h3>
+        <p>A written financial identity, and one action that proves it holds under pressure.</p>
+        <ul>
+          <li>The Anchor Statement Builder: an identity statement, not a goal</li>
+          <li>Starter actions such as clearing your smallest debt, opening a dedicated account, or making a first long-term investment, including Sharia-screened options</li>
+          <li>A week-by-week tracker that records what you did, not what you planned</li>
+        </ul></div></div>
+      <div class="module"><span class="n">5</span><div>
+        <h3>The Wealth Continuum</h3>
+        <p>Wealth reframed as an accelerator of purpose, pulled into one repeatable practice.</p>
+        <ul>
+          <li>What your wealth is actually for, in specifics</li>
+          <li>Legacy documentation: who needs to know what, and where it's written down</li>
+          <li>The Integrated Financial Reset Plan: audit, automate, align, anchor, act, tracked monthly</li>
+          <li>A reflection built to be reread in six months, so the change is measured, not assumed</li>
+        </ul></div></div>
+    </div>
+    <h3 style="margin-top:64px;font:600 1.4rem var(--display);letter-spacing:.04em">Plus the Financial Reset Toolkit</h3>
+    <div class="tools">
+      <div><h3>Financial Audit Tracker</h3><p>A working spreadsheet with real formulas, not a static template.</p></div>
+      <div><h3>Debt Payoff Calculator</h3><p>Snowball-method payoff timelines, so you can see the finish line.</p></div>
+      <div><h3>Values-Alignment Worksheet</h3><p>A standalone tool to rerun whenever your spending drifts.</p></div>
+      <div><h3>Wealth Continuum Planning Sheet</h3><p>Legacy and purpose documentation, built to revisit every year.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split split--top">
+    <div class="stack">
+      <span class="kicker">Judged the way any real offer should be</span>
+      <h2>What it costs you is honesty</h2>
+      <p class="muted">The audit asks you to look directly at numbers most men avoid. That discomfort is the work. Everything else is structure.</p>
+      <ul class="ruled" style="margin-top:28px">
+        <li><span>The outcome</span><p>A complete financial system: awareness, automation, alignment, identity and legacy, running as one practice.</p></li>
+        <li><span>Why it works</span><p>Every module follows Marcus applying the framework to real numbers, so you see it work before you try it.</p></li>
+        <li><span>Time</span><p>Videos run 35 to 50 minutes in total. The workbook is a few focused hours across the five modules.</p></li>
+      </ul>
+    </div>
+    <div>
+      <table class="stack-table">
+        <tr><td>The five-module Finance Pillar course<small>Video lessons, full workbook, Marcus's worked examples</small></td><td>&pound;297</td></tr>
+        <tr><td>Financial Audit Tracker<small>Comparable spreadsheets sell standalone for &pound;15 to &pound;20</small></td><td>&pound;19</td></tr>
+        <tr><td>Debt Payoff Calculator</td><td>&pound;19</td></tr>
+        <tr><td>Values-Alignment Worksheet</td><td>&pound;12</td></tr>
+        <tr><td>Wealth Continuum Planning Sheet</td><td>&pound;12</td></tr>
+        <tr class="total"><td>Total value</td><td>&pound;359</td></tr>
+        <tr class="today"><td>At launch</td><td>&pound;97</td></tr>
+      </table>
+      <p class="fineprint" style="margin-top:18px">Less than Marcus's single largest leak cost him in a month.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--lift">
+  <div class="wrap split">
+    <div>
+      <p class="quote">"A complete guide to understanding why and how men think and do what they do."</p>
+      <span class="cite">Verified Amazon review of Vision to Victory</span>
+      <p class="muted" style="margin-top:24px">This course is built directly from the Finance chapter of that same book. If the framework landed for you on the page, this is the framework with a working system attached.</p>
+    </div>
+    <div class="panel">
+      <h3>The guarantee</h3>
+      <p class="muted" style="margin-top:12px">Go through the course. Run the audit. Build the system. If it isn't worth what you paid, say so within 30 days and you get every penny back. The risk sits with us, not you.</p>
+      <h3 style="margin-top:28px">Who's teaching it</h3>
+      <p class="muted" style="margin-top:12px">Daniel Brown MSc, author of Vision to Victory. A Masters in Psychology and thirteen years of senior leadership, applied first to his own rebuild after the 2018 redundancy, then written into a framework other men can run. <a class="textlink" href="/about.html">His story</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap narrow faq">
+    <h2 style="margin-bottom:24px">Before you join</h2>
+    <details><summary>When does the course open?</summary><p>The scripts, workbooks and toolkit are finished. Recording is the final stage. Founding members get one email the moment it opens, with the launch price held for them.</p></details>
+    <details><summary>Do I need to have read the book first?</summary><p>No. The course stands on its own. If you have read it, parts will feel like reinforcement, which is a good thing, not a requirement.</p></details>
+    <details><summary>Is this investment advice?</summary><p>No. The course is behavioural and structural: awareness, systems, alignment and identity. It won't tell you what to buy. Speak to a qualified adviser for that.</p></details>
+    <details><summary>Does it work if I keep my finances Sharia-compliant?</summary><p>That is how the course is meant to be used. Where an exercise touches debt, saving or investing, it can be completed without interest-based products, and investment examples include Sharia-screened options.</p></details>
+    <details><summary>What if I don't finish it?</summary><p>The 30-day guarantee covers you. But the modules are short on purpose, and the workbook is the actual mechanism of change. Skipping it is the one way to get less out of this than you paid for.</p></details>
+  </div>
+</section>
+
+<section class="band band--lift" id="join">
+  <div class="wrap split split--top">
+    <div>
+      <h2>The framework is free. Building it isn't, and that's the point.</h2>
+      <p class="muted" style="margin-top:20px">Six months from now you're either the man who ran his own audit and built one real system, or the man still meaning to get round to it. Join the founding list and you'll be first in when the doors open.</p>
+    </div>
+    <form class="panel panel--gilt" data-formspree="finance-founding-list" data-done="You're on the list" data-thanks="You're on the Finance Pillar founding list. Daniel will email you the moment it opens.">
+      <input type="hidden" name="_subject" value="Finance Pillar founding list sign-up" />
+      <input type="hidden" name="list" value="Finance Pillar founding list" />
+      <input type="hidden" name="pillar" value="Finance" />
+      <div class="field"><label for="fp-name">First name</label><input id="fp-name" name="name" autocomplete="given-name" required /></div>
+      <div class="field"><label for="fp-email">Email</label><input id="fp-email" type="email" name="email" autocomplete="email" required /></div>
+      <label class="consent"><input type="checkbox" name="consent" value="yes" required /><span>Email me when the Finance Pillar opens. See the <a class="textlink" href="/privacy.html">privacy policy</a>.</span></label>
+      <button class="btn btn--gilt btn--block" type="submit">Join the founding list</button>
+      <p class="fineprint" style="margin-top:12px">&pound;97 at launch. 30-day money-back guarantee.</p>
+    </form>
+  </div>
+</section>

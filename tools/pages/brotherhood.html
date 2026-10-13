@@ -1,0 +1,115 @@
+<!--HEAD-->
+  <style>
+    .br-hero h1 { max-width: 13ch; }
+    .br-hero .quote { margin-top: 40px; font-size: clamp(1.3rem, 2.4vw, 1.8rem); }
+    .codes { list-style: none; counter-reset: c; border-top: 1px solid var(--rule); }
+    .codes li { counter-increment: c; display: grid; grid-template-columns: 70px 1fr; gap: 20px; padding: 26px 0; border-bottom: 1px solid var(--rule-soft); }
+    .codes li::before { content: counter(c, upper-roman); font: 600 1.2rem var(--display); color: var(--gilt); }
+    .codes b { display: block; font-weight: 600; margin-bottom: 4px; }
+    .codes p { color: var(--ash); }
+    .how { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px; counter-reset: h; }
+    .how li { background: var(--hearth); padding: 30px 26px; counter-increment: h; }
+    .how li::before { content: counter(h); display: block; font: 600 1.8rem var(--display); color: var(--bronze); margin-bottom: 14px; }
+    .how h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .how p { color: var(--ash); font-size: .95rem; }
+    @media (max-width: 900px) { .how { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .how { grid-template-columns: 1fr; } }
+  </style>
+<!--/HEAD-->
+
+<section class="page-hero br-hero">
+  <div class="wrap">
+    <p class="crumbs"><a href="/">Home</a> / The Brotherhood</p>
+    <span class="tag tag--soon">Forming now</span>
+    <h1 style="margin-top:18px">The F5IVE Brotherhood</h1>
+    <p class="lede">A structured accountability community for men building all five pillars at once. Not a group chat. Not a Discord full of noise. Small cohorts, a shared language and a standard nobody is excused from.</p>
+    <div class="actions">
+      <a class="btn btn--gilt" href="#join">Join the founding list</a>
+      <a class="btn btn--line" href="/framework.html">The framework it runs on</a>
+    </div>
+    <p class="quote">"The man most anchored is the man most free. And no man builds that anchor alone."</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split split--top">
+    <div>
+      <div class="entab"><i></i></div>
+      <h2>Most men have no one holding them to their full potential</h2>
+    </div>
+    <div class="stack">
+      <p class="lede">Friends don't ask the hard questions. Colleagues only see one dimension. Partners are too close to it.</p>
+      <p class="muted">The Brotherhood fills that gap with men doing the same work, held to the same standard, across the same five pillars. It's the environment the framework was built to live in, and the thing that makes it last beyond the first few weeks.</p>
+      <h3 style="margin-top:32px">It's for you if</h3>
+      <ul class="ticks">
+        <li>You've read the books and need accountability more than information</li>
+        <li>You're strong in one or two pillars and quietly behind in the rest</li>
+        <li>You're in a rebuild: redundancy, separation, new fatherhood or a career change</li>
+        <li>You'll challenge other men as readily as you'll be challenged</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band band--lift">
+  <div class="wrap">
+    <span class="kicker">How it will work</span>
+    <h2>Structure over noise</h2>
+    <ol class="how">
+      <li><h3>Join the founding list</h3><p>Founding members get first access and a status that won't be offered again.</p></li>
+      <li><h3>Take your baseline</h3><p>Every member starts with the F5IVE Score and Identity Profile. Everything is built from an honest starting point.</p></li>
+      <li><h3>Join a cohort</h3><p>A small group of men at a similar stage, checking in regularly across all five pillars.</p></li>
+      <li><h3>Review and compound</h3><p>Structured reviews, framework resources, and consistent men holding each other to a consistent standard.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split split--top">
+    <div>
+      <span class="kicker">The code</span>
+      <h2>The standard we hold each other to</h2>
+      <p class="muted" style="margin-top:20px">Not values on a wall. Every man who joins agrees to hold himself and every other member to these. No exceptions and no performance.</p>
+    </div>
+    <ol class="codes">
+      <li><div><b>All five pillars, at the same time.</b><p>No one is excused from any pillar, especially the uncomfortable one.</p></div></li>
+      <li><div><b>Honesty over comfort.</b><p>Hard questions get asked. Real answers are expected.</p></div></li>
+      <li><div><b>Progress over performance.</b><p>The man who admits where he's struggling serves the group more than the man performing strength.</p></div></li>
+      <li><div><b>Consistency over intensity.</b><p>Lasting change belongs to the men who show up most reliably.</p></div></li>
+      <li><div><b>What is said here stays here.</b><p>Real accountability needs real trust. Confidentiality is non-negotiable.</p></div></li>
+      <li><div><b>The rising tide.</b><p>Every man's progress raises every other man's standard.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band band--lift" id="join">
+  <div class="wrap split split--top">
+    <div>
+      <h2>The Brotherhood is forming</h2>
+      <p class="muted" style="margin-top:20px">Register now and you'll be among the first contacted when it opens.</p>
+      <ul class="ticks" style="margin-top:24px">
+        <li>Founding member status</li>
+        <li>First access when cohorts open</li>
+        <li>Direct updates from Daniel</li>
+      </ul>
+      <p class="fineprint" style="margin-top:24px">While you wait, <a class="textlink" href="{{QUIZ}}">take the F5IVE Score</a>. It's the baseline every member starts from.</p>
+    </div>
+    <form class="panel panel--gilt" data-formspree="brotherhood-founding-list" data-done="You're on the list" data-thanks="You're on the Brotherhood founding list. Daniel will be in touch when cohorts open.">
+      <input type="hidden" name="_subject" value="Brotherhood founding list sign-up" />
+      <input type="hidden" name="list" value="Brotherhood founding list" />
+      <div class="row2">
+        <div class="field"><label for="br-name">First name</label><input id="br-name" name="name" autocomplete="given-name" required /></div>
+        <div class="field"><label for="br-email">Email</label><input id="br-email" type="email" name="email" autocomplete="email" required /></div>
+      </div>
+      <div class="field">
+        <label for="br-pillar">Which pillar needs the most work right now?</label>
+        <select id="br-pillar" name="pillar">
+          <option value="">Choose one (optional)</option>
+          <option>Faith</option><option>Family</option><option>Finance</option><option>Fitness</option><option>Freedom</option>
+        </select>
+      </div>
+      <label class="consent"><input type="checkbox" name="consent" value="yes" required /><span>Email me about the Brotherhood opening. See the <a class="textlink" href="/privacy.html">privacy policy</a>.</span></label>
+      <button class="btn btn--gilt btn--block" type="submit">Join the founding list</button>
+    </form>
+  </div>
+</section>

@@ -1,534 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Speaking & Press — Daniel Brown MSc | The Stoic Architect</title>
-  <meta name="description" content="Book Daniel Brown MSc to speak on men's personal development, leadership, and the F5IVE Framework. Press kit, media enquiries, and speaking topics." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WJHZYMBLF"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3WJHZYMBLF');</script>
-  <style>
-    :root{
-      --ink:#0d0e10;--ink-soft:#1a1c20;--ink-mid:#2e3138;
-      --stone:#6b7280;--stone-light:#9ca3af;
-      --cream:#f5f0e8;--cream-dark:#ede8de;
-      --gold:#c9a84c;--gold-light:#e2c579;--gold-dark:#a07c2e;
-      --serif:'Playfair Display',Georgia,serif;
-      --sans:'Barlow',system-ui,sans-serif;
-      --condensed:'Barlow Condensed',sans-serif;
-      --section-pad:clamp(80px,10vw,130px);
-      --container:1200px;--gutter:clamp(24px,5vw,80px);
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-    body{font-family:var(--sans);background:var(--ink);color:var(--cream);line-height:1.6;overflow-x:hidden;}
-    a{color:inherit;text-decoration:none;}
-    .container{max-width:var(--container);margin:0 auto;padding:0 var(--gutter);}
-    .label{font-family:var(--condensed);font-size:0.75rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);}
-    .divider{width:48px;height:2px;background:var(--gold);margin:16px 0 28px;}
-    .divider--center{margin:16px auto 28px;}
-    .section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.15;letter-spacing:-0.01em;}
-
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px var(--gutter);display:flex;align-items:center;justify-content:space-between;transition:background 0.4s;}
-    nav.scrolled{background:rgba(13,14,16,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.15);}
-    .nav-logo{font-family:var(--serif);font-size:1.1rem;font-weight:700;letter-spacing:0.03em;line-height:1.2;}
-    .nav-logo span{display:block;font-size:0.65rem;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-family:var(--condensed);}
-    .nav-links{display:flex;gap:36px;list-style:none;}
-    .nav-links a{font-family:var(--condensed);font-size:0.8rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone-light);transition:color 0.2s;}
-    .nav-links a:hover,.nav-links a.active{color:var(--gold);}
-    .nav-cta{font-family:var(--condensed);font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:10px 22px;border:1px solid var(--gold);color:var(--gold);transition:background 0.2s,color 0.2s;}
-    .nav-cta:hover{background:var(--gold);color:var(--ink);}
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
-    .hamburger span{display:block;width:26px;height:2px;background:var(--cream);}
-    .mobile-menu{display:none;position:fixed;inset:0;background:rgba(13,14,16,0.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
-    .mobile-menu.open{display:flex;}
-    .mobile-menu a{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--cream);transition:color 0.2s;}
-    .mobile-menu a:hover{color:var(--gold);}
-    .mobile-close{position:absolute;top:24px;right:var(--gutter);font-size:1.5rem;color:var(--stone-light);cursor:pointer;}
-
-    .btn-primary{display:inline-flex;align-items:center;gap:10px;font-family:var(--condensed);font-size:0.8rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:16px 32px;background:var(--gold);color:var(--ink);transition:background 0.2s,transform 0.15s;}
-    .btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);}
-    .btn-outline{display:inline-flex;align-items:center;gap:10px;font-family:var(--condensed);font-size:0.8rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:16px 32px;border:1px solid rgba(201,168,76,0.4);color:var(--cream);transition:border-color 0.2s,color 0.2s,transform 0.15s;}
-    .btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
-
-    /* HERO */
-    #sp-hero{padding:140px 0 100px;position:relative;overflow:hidden;background:linear-gradient(160deg,#0d0e10 0%,#111318 60%,#0a0b0d 100%);}
-    .sp-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 90% 40%,rgba(201,168,76,0.07) 0%,transparent 55%);}
-    .sp-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 30% 50%,black 10%,transparent 70%);}
-    .sp-hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-    .breadcrumb{display:flex;align-items:center;gap:10px;font-family:var(--condensed);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);margin-bottom:28px;}
-    .breadcrumb a{color:var(--stone);transition:color 0.2s;}.breadcrumb a:hover{color:var(--gold);}.breadcrumb span{color:var(--gold);}
-    .sp-hero-title{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5.5rem);font-weight:900;line-height:0.95;letter-spacing:-0.02em;margin-bottom:20px;}
-    .sp-hero-title .gold{color:var(--gold);}
-    .sp-hero-sub{font-family:var(--condensed);font-size:clamp(0.85rem,1.3vw,1rem);letter-spacing:0.15em;text-transform:uppercase;color:var(--stone-light);margin-bottom:32px;line-height:1.7;}
-    .sp-hero-def{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--cream-dark);border-left:3px solid var(--gold);padding-left:20px;margin-bottom:44px;line-height:1.7;max-width:480px;}
-    .sp-hero-actions{display:flex;flex-wrap:wrap;gap:16px;}
-    .sp-hero-right{display:flex;flex-direction:column;gap:2px;}
-    .sp-stat{background:var(--ink-soft);padding:24px 28px;display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:center;border-left:3px solid transparent;transition:border-color 0.2s,background 0.2s;}
-    .sp-stat:nth-child(1){border-color:var(--gold);}
-    .sp-stat:nth-child(2){border-color:#8b9eb7;}
-    .sp-stat:nth-child(3){border-color:#7aab7a;}
-    .sp-stat:nth-child(4){border-color:#c07070;}
-    .sp-stat:hover{background:#1c1f26;}
-    .sp-stat-num{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--gold);line-height:1;}
-    .sp-stat-label{font-family:var(--condensed);font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone-light);}
-
-    /* TOPICS */
-    #topics{padding:var(--section-pad) 0;background:var(--cream);}
-    .topics-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-    .topics-text{color:var(--ink);}
-    .topics-text .label{color:var(--gold-dark);}
-    .topics-text .divider{background:var(--gold-dark);}
-    .topics-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:24px;}
-    .topics-p{font-size:0.95rem;color:var(--ink-mid);line-height:1.85;margin-bottom:20px;}
-    .topics-p strong{color:var(--ink);font-weight:600;}
-    .topics-list{display:flex;flex-direction:column;gap:2px;}
-    .topic-card{background:var(--ink);color:var(--cream);padding:28px 32px;border-left:3px solid var(--gold);transition:background 0.2s;}
-    .topic-card:hover{background:var(--ink-soft);}
-    .topic-card-num{font-family:var(--condensed);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-    .topic-card-title{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--cream);margin-bottom:8px;}
-    .topic-card-desc{font-size:0.82rem;color:var(--stone-light);line-height:1.65;}
-
-    /* FORMATS */
-    #formats{padding:var(--section-pad) 0;background:var(--ink);}
-    .formats-header{text-align:center;margin-bottom:64px;}
-    .formats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:60px;}
-    .format-card{background:var(--ink-soft);padding:40px 28px;text-align:center;position:relative;overflow:hidden;transition:background 0.3s;}
-    .format-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.4s;}
-    .format-card:hover{background:#1c1f26;}
-    .format-card:hover::before{transform:scaleX(1);}
-    .format-icon{font-size:1.8rem;margin-bottom:16px;display:block;}
-    .format-title{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:10px;}
-    .format-desc{font-size:0.8rem;color:var(--stone-light);line-height:1.65;}
-
-    /* PRESS KIT */
-    #presskit{padding:var(--section-pad) 0;background:#0a0b0d;}
-    .presskit-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-    .presskit-text .section-title{margin-bottom:12px;}
-    .presskit-text p{color:var(--stone-light);font-size:0.95rem;line-height:1.85;margin-bottom:20px;}
-    .presskit-text p strong{color:var(--cream);font-weight:500;}
-    .presskit-items{display:flex;flex-direction:column;gap:2px;margin-bottom:36px;}
-    .presskit-item{background:var(--ink-soft);padding:20px 24px;display:flex;align-items:center;gap:16px;border-left:3px solid rgba(201,168,76,0.3);transition:border-color 0.2s,background 0.2s;}
-    .presskit-item:hover{border-left-color:var(--gold);background:#1c1f26;}
-    .presskit-item-icon{font-size:1.2rem;flex-shrink:0;}
-    .presskit-item-title{font-family:var(--condensed);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);margin-bottom:2px;}
-    .presskit-item-desc{font-size:0.78rem;color:var(--stone);line-height:1.4;}
-    .presskit-cta{display:flex;gap:16px;flex-wrap:wrap;}
-    .bio-cards{display:flex;flex-direction:column;gap:2px;}
-    .bio-card{background:var(--ink-soft);padding:24px 28px;}
-    .bio-card-label{font-family:var(--condensed);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-    .bio-card-text{font-size:0.85rem;color:var(--stone-light);line-height:1.8;}
-    .bio-copy-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--condensed);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-top:12px;cursor:pointer;background:none;border:1px solid rgba(201,168,76,0.3);padding:6px 12px;transition:background 0.2s;}
-    .bio-copy-btn:hover{background:rgba(201,168,76,0.1);}
-
-    /* KEY QUOTES */
-    #quotes{padding:var(--section-pad) 0;background:var(--cream);}
-    .quotes-header{text-align:center;margin-bottom:64px;}
-    .quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
-    .quote-card{background:var(--ink);padding:36px 32px;border-bottom:2px solid transparent;transition:border-color 0.2s;}
-    .quote-card:hover{border-bottom-color:var(--gold);}
-    .quote-text{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--cream-dark);line-height:1.7;margin-bottom:16px;}
-    .quote-source{font-family:var(--condensed);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);}
-
-    /* ENQUIRY */
-    #enquiry{padding:var(--section-pad) 0;background:var(--ink-soft);}
-    .enquiry-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-    .enquiry-text .section-title{margin-bottom:12px;}
-    .enquiry-text p{color:var(--stone-light);font-size:0.95rem;line-height:1.85;margin-bottom:20px;}
-    .enquiry-types{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
-    .enquiry-type{display:flex;gap:16px;align-items:flex-start;padding:16px 20px;background:var(--ink);border-left:2px solid var(--gold);}
-    .enquiry-type-icon{font-size:1.1rem;flex-shrink:0;}
-    .enquiry-type-title{font-family:var(--condensed);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
-    .enquiry-type-desc{font-size:0.8rem;color:var(--stone-light);}
-    .enquiry-direct{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);padding:20px 24px;}
-    .enquiry-direct p{font-size:0.82rem;color:var(--stone-light);margin-bottom:6px;}
-    .enquiry-direct a{color:var(--gold);font-family:var(--condensed);font-size:0.78rem;letter-spacing:0.1em;}
-    .enquiry-form{background:var(--ink);padding:36px 32px;}
-    .enquiry-form-title{font-family:var(--condensed);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-    .form-divider{width:48px;height:2px;background:var(--gold);margin-bottom:28px;}
-    .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
-    .form-group label{font-family:var(--condensed);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);}
-    .form-group input,.form-group select,.form-group textarea{padding:13px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-bottom:2px solid rgba(201,168,76,0.2);color:var(--cream);font-family:var(--sans);font-size:0.88rem;outline:none;transition:border-bottom-color 0.2s;resize:none;}
-    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-bottom-color:var(--gold);}
-    .form-group select option{background:var(--ink);}
-    .btn-gold-full{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;background:var(--gold);color:var(--ink);font-family:var(--condensed);font-size:0.8rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.2s;}
-    .btn-gold-full:hover{background:var(--gold-light);}
-
-    footer{background:#07080a;padding:60px 0 32px;border-top:1px solid rgba(201,168,76,0.12);}
-    .footer-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
-    .footer-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--cream);margin-bottom:4px;}
-    .footer-logo-sub{font-family:var(--condensed);font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-    .footer-tagline{font-size:0.82rem;color:var(--stone);line-height:1.7;max-width:240px;}
-    .footer-col h4{font-family:var(--condensed);font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
-    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
-    .footer-col ul a{font-size:0.82rem;color:var(--stone);transition:color 0.2s;}
-    .footer-col ul a:hover{color:var(--cream);}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
-    .footer-copy{font-size:0.78rem;color:var(--stone);font-family:var(--condensed);letter-spacing:0.08em;}
-    .footer-f5{font-family:var(--condensed);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,76,0.5);}
-
-    @media(max-width:1024px){.formats-grid{grid-template-columns:1fr 1fr;}.footer-inner{grid-template-columns:1fr 1fr;}}
-    @media(max-width:768px){
-      .nav-links,.nav-cta{display:none;}.hamburger{display:flex;}
-      .sp-hero-inner{grid-template-columns:1fr;}.sp-hero-right{display:none;}
-      .topics-inner{grid-template-columns:1fr;}
-      .formats-grid{grid-template-columns:1fr 1fr;}
-      .presskit-inner{grid-template-columns:1fr;}
-      .quotes-grid{grid-template-columns:1fr;}
-      .enquiry-inner{grid-template-columns:1fr;}
-      .footer-inner{grid-template-columns:1fr;gap:32px;}
-    }
-    .reveal { opacity:1; transform:translateY(0); transition: opacity 0.85s ease, transform 0.85s ease; }
-    .js-loaded .reveal { opacity:0; transform:translateY(36px); }
-    .js-loaded .reveal.visible { opacity:1; transform:translateY(0); }
-    .mobile-menu, .mobile-menu.open { opacity:1 !important; transform:none !important; }
-  </style>
-  <!-- Open Graph -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Speaking and Press | Daniel Brown MSc</title>
+  <meta name="description" content="Book Daniel Brown MSc for keynotes, workshops, podcasts and press. Talks on why capable men fail, leadership identity and the F5IVE Framework." />
+  <link rel="canonical" href="https://www.thestoicarchitect.com/speaking.html" />
+  <meta name="theme-color" content="#12100E" />
+  <link rel="icon" href="/Stoic_Architect_Favicon_Mark.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="The Stoic Architect" />
-  <meta property="og:title" content="Speaking & Press — Daniel Brown MSc | The Stoic Architect" />
-  <meta property="og:description" content="Book Daniel Brown MSc for speaking engagements, podcast interviews, and press. Topics include men's development, leadership, and the F5IVE Framework." />
+  <meta property="og:title" content="Speaking and Press | Daniel Brown MSc" />
+  <meta property="og:description" content="Book Daniel Brown MSc for keynotes, workshops, podcasts and press. Talks on why capable men fail, leadership identity and the F5IVE Framework." />
+  <meta property="og:url" content="https://www.thestoicarchitect.com/speaking.html" />
   <meta property="og:image" content="https://www.thestoicarchitect.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:url" content="https://www.thestoicarchitect.com/speaking.html" />
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Speaking & Press — Daniel Brown MSc | The Stoic Architect" />
-  <meta name="twitter:description" content="Book Daniel Brown MSc for speaking engagements, podcast interviews, and press. Topics include men's development, leadership, and the F5IVE Framework." />
-  <meta name="twitter:image" content="https://www.thestoicarchitect.com/og-image.png" />
   <meta name="twitter:site" content="@danielmrbrown" />
+  <meta name="twitter:image" content="https://www.thestoicarchitect.com/og-image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Cinzel:wght@500;600;700&family=EB+Garamond:ital@1&display=swap" />
+  <link rel="stylesheet" href="/assets/site.css?v=2" />
+  <script data-cfasync="false" async src="https://www.googletagmanager.com/gtag/js?id=G-3WJHZYMBLF"></script>
+  <script data-cfasync="false">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3WJHZYMBLF');</script>
+  <script type="text/javascript">_linkedin_partner_id="9707410";window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];window._linkedin_data_partner_ids.push(_linkedin_partner_id);</script>
+  <script type="text/javascript">(function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s=document.getElementsByTagName("script")[0];var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b,s);})(window.lintrk);</script>
+  <noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=9707410&fmt=gif" /></noscript>
+
+  <style>
+    .talks { list-style: none; border-top: 1px solid var(--rule); counter-reset: t; }
+    .talks li { counter-increment: t; display: grid; grid-template-columns: 70px 1fr 220px; gap: clamp(16px, 4vw, 48px); padding: 34px 0; border-bottom: 1px solid var(--rule-soft); }
+    .talks li::before { content: counter(t, upper-roman); font: 600 1.6rem var(--display); color: var(--bronze); }
+    .talks h3 { font: 600 clamp(1.15rem, 2vw, 1.45rem)/1.25 var(--display); letter-spacing: .03em; margin-bottom: 10px; }
+    .talks p { color: var(--ash); }
+    .talks .for { font-size: .92rem; color: var(--ash); border-left: 1px solid var(--rule); padding-left: 18px; }
+    .formats4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 44px; }
+    .formats4 div { background: var(--hearth); padding: 28px 24px; }
+    .formats4 h3 { font: 600 1.1rem var(--display); letter-spacing: .04em; color: var(--gilt); margin-bottom: 8px; }
+    .formats4 p { color: var(--ash); font-size: .95rem; }
+    .bio { position: relative; }
+    .bio + .bio { margin-top: 18px; }
+    .bio h3 { font-size: 1rem; color: var(--gilt); margin-bottom: 8px; }
+    .bio p { color: var(--parchment); opacity: .9; }
+    .copy { position: absolute; top: 22px; right: 22px; min-height: 36px; padding: 0 14px; font-size: .85rem; border: 1px solid var(--rule); background: none; border-radius: 2px; cursor: pointer; color: var(--ash); }
+    .copy:hover { color: var(--gilt-hi); border-color: var(--gilt); }
+    .quotes { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 44px; }
+    .quotes li { background: var(--hearth); padding: 32px 30px; }
+    .quotes p { font-family: var(--voice); font-style: italic; font-size: 1.3rem; line-height: 1.4; }
+    @media (max-width: 900px) {
+      .talks li { grid-template-columns: 1fr; gap: 8px; }
+      .talks .for { border-left: 0; padding-left: 0; }
+      .formats4 { grid-template-columns: 1fr 1fr; }
+      .quotes { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) { .formats4 { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
-
-  <nav id="nav">
-    <a href="index.html" class="nav-logo">Vision to Victory<span>The Stoic Architect</span></a>
-    <ul class="nav-links">
-      <li><a href="book.html">The Book</a></li>
-      <li><a href="framework.html">F5IVE</a></li>
-      <li><a href="F5iveassessment">Find Your Archetype</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="blog.html">Insights</a></li>
-      <li><a href="brotherhood.html">Brotherhood</a></li>
-      <li><a href="speaking.html">Speaking</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
-    <a href="#enquiry" class="nav-cta">Book Daniel</a>
-    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-  </nav>
-  <div class="mobile-menu" id="mobileMenu">
-    <span class="mobile-close" onclick="toggleMenu()">✕</span>
-    <a href="index.html" onclick="toggleMenu()">Home</a>
-    <a href="book.html" onclick="toggleMenu()">The Book</a>
-    <a href="framework.html" onclick="toggleMenu()">F5IVE</a>
-    <a href="F5iveassessment" onclick="toggleMenu()">Find Your Archetype</a>
-    <a href="about.html" onclick="toggleMenu()">About</a>
-    <a href="blog.html" onclick="toggleMenu()">Insights</a>
-    <a href="brotherhood.html" onclick="toggleMenu()">Brotherhood</a>
-    <a href="speaking.html" onclick="toggleMenu()">Speaking</a>
-    <a href="index.html#contact" onclick="toggleMenu()">Contact</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="/" aria-label="The Stoic Architect, home">
+      <img src="/assets/img/mark.png" alt="" width="40" height="40" />
+      <span><b>The Stoic Architect</b><small>Vision to Victory</small></span>
+    </a>
+    <nav aria-label="Main"><ul class="nav"><li><a href="/book.html">The Book</a></li><li><a href="/framework.html">The Framework</a></li><li><a href="/F5iveassessment">Identity Profile</a></li><li><a href="/courses.html">Courses</a></li><li><a href="/blog.html">Insights</a></li><li><a href="/about.html">About</a></li></ul></nav>
+    <a class="btn btn--gilt head-cta" href="/quiz.html">Take the F5IVE Score</a>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer"><span></span></button>
   </div>
+</header>
+<div class="drawer" id="drawer">
+  <ol>
+    <li><a href="/book.html">The Book <small>Vision to Victory</small></a></li>
+    <li><a href="/framework.html">The Framework <small>Five pillars</small></a></li>
+    <li><a href="/F5iveassessment">Identity Profile <small>Free, 10 minutes</small></a></li>
+    <li><a href="/courses.html">Courses <small>Finance first</small></a></li>
+    <li><a href="/blog.html">Insights <small>Articles</small></a></li>
+    <li><a href="/brotherhood.html">Brotherhood <small>Forming</small></a></li>
+    <li><a href="/about.html">About Daniel</a></li>
+    <li><a href="/speaking.html">Speaking and press</a></li>
+  </ol>
+  <a class="btn btn--gilt" href="/quiz.html">Take the F5IVE Score</a>
+</div>
+<main id="main">
 
-  <!-- HERO -->
-  <section id="sp-hero">
-    <div class="sp-hero-bg"></div>
-    <div class="sp-hero-grid"></div>
-    <div class="container">
-      <div class="sp-hero-inner">
-        <div>
-          <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Speaking & Press</span></div>
-          <h1 class="sp-hero-title">Speaking.<br><span class="gold">Media.</span><br>Press.</h1>
-          <p class="sp-hero-sub">Daniel Brown MSc · The Stoic Architect</p>
-          <p class="sp-hero-def">A practitioner who became an author. Not a theorist who learned to speak — a man who has lived the content and can speak to it with authority.</p>
-          <div class="sp-hero-actions">
-            <a href="#enquiry" class="btn-primary">Book Daniel to Speak <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-            <a href="#presskit" class="btn-outline">Press Kit</a>
-          </div>
-        </div>
-        <div class="sp-hero-right">
-          <div class="sp-stat"><div class="sp-stat-num">13+</div><div class="sp-stat-label">Years Senior Leadership</div></div>
-          <div class="sp-stat"><div class="sp-stat-num">400</div><div class="sp-stat-label">People Led at Director Level</div></div>
-          <div class="sp-stat"><div class="sp-stat-num">MSc</div><div class="sp-stat-label">MSc Psychology</div></div>
-          <div class="sp-stat"><div class="sp-stat-num">70K</div><div class="sp-stat-label">Words — Vision to Victory</div></div>
-        </div>
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumbs"><a href="/">Home</a> / Speaking and press</p>
+    <h1>Structural talks, not motivational ones</h1>
+    <p class="lede">Daniel Brown MSc speaks on why capable men fail, leadership identity and the F5IVE Framework. Every session is grounded in lived experience and leaves the room with something they can apply that week.</p>
+    <div class="actions">
+      <a class="btn btn--gilt" href="#enquiry">Make an enquiry</a>
+      <a class="btn btn--line" href="#presskit">Press kit and bios</a>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <span class="kicker">Talks</span>
+        <h2>Four talks, tailored to the room</h2>
+      </div>
+      <p class="muted">Nothing off the shelf. Each talk is shaped around the audience and the outcome the organiser needs.</p>
+    </div>
+    <ol class="talks">
+      <li><div><h3>Why capable men fail, and the structure that fixes it</h3><p>The core talk. Why talented, ambitious men keep falling short, and what the F5IVE Framework offers instead.</p></div><p class="for">Corporate events, men's groups, conferences</p></li>
+      <li><div><h3>Leadership identity: who you are when the title is gone</h3><p>How men fuse identity with role, and what happens when the role disappears. Drawn from thirteen years of senior leadership.</p></div><p class="for">Leadership programmes, professional audiences</p></li>
+      <li><div><h3>The F5IVE Framework: building the whole man</h3><p>All five pillars in depth, how they interact, and how to start building them together.</p></div><p class="for">Men's development events, wellbeing programmes</p></li>
+      <li><div><h3>Rebuilding from the ground up: resilience as architecture</h3><p>The story behind the book. Redundancy, separation and a five-year rebuild across every pillar.</p></div><p class="for">Resilience, transition and recovery events</p></li>
+    </ol>
+    <div class="formats4">
+      <div><h3>Keynote</h3><p>30 to 60 minutes for conferences and large events.</p></div>
+      <div><h3>Workshop</h3><p>Half or full day, the framework in depth with practical application.</p></div>
+      <div><h3>Podcast</h3><p>Interviews on men's development, leadership and the book.</p></div>
+      <div><h3>Press</h3><p>Features, author interviews and review copies of Vision to Victory.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--lift" id="presskit">
+  <div class="wrap split split--top">
+    <div>
+      <span class="kicker">Press kit</span>
+      <h2>Everything you need to introduce Daniel</h2>
+      <p class="muted" style="margin-top:20px">Copy a bio below, or request the full kit: long-form bio, synopsis and chapter overview, a one-page framework explainer, key quotes and high-resolution photography.</p>
+      <div class="actions" style="margin-top:28px">
+        <a class="btn btn--gilt" href="#enquiry">Request the full kit</a>
+        <a class="btn btn--line" href="/downloads/F5IVE_Framework_Guide.pdf" target="_blank" rel="noopener">Framework guide (PDF)</a>
       </div>
     </div>
-  </section>
+    <div>
+      <div class="panel bio"><h3>Short bio, 50 words</h3><p id="bio-short">Daniel Brown MSc is the author of Vision to Victory and founder of the F5IVE Framework, a men's personal development system built on five interdependent pillars. A senior leader with more than thirteen years of experience, he writes as The Stoic Architect.</p><button class="copy" data-copy="bio-short">Copy</button></div>
+      <div class="panel bio"><h3>Medium bio, 100 words</h3><p id="bio-medium">Daniel Brown MSc is a UK-based author, leadership professional and founder of the F5IVE Framework, a men's personal development system built on five interdependent pillars: Faith, Family, Finance, Fitness and Freedom. He holds an MSc in Psychology and a BSc (Hons) in Artificial Intelligence. His book, Vision to Victory: Why Men Fail, Why They Succeed, and How to Master the Difference, was written from his own redundancy, separation and five-year rebuild, and is available on Amazon. He creates content as The Stoic Architect at @danielmrbrown.</p><button class="copy" data-copy="bio-medium">Copy</button></div>
+    </div>
+  </div>
+</section>
 
-  <!-- TOPICS -->
-  <section id="topics">
-    <div class="container">
-      <div class="topics-inner">
-        <div class="topics-text">
-          <div class="label">Speaking Topics</div>
-          <div class="divider"></div>
-          <h2 class="topics-title">Daniel speaks from experience, not theory.</h2>
-          <p class="topics-p">Drawing on 13 years of senior leadership, the lived experience of building and applying the F5IVE Framework, and the academic grounding of an MSc in Psychology — Daniel speaks to men's personal development, leadership identity, and the structural approach to building a whole life.</p>
-          <p class="topics-p"><strong>He does not deliver motivational talks. He delivers structural ones.</strong> Every session is grounded in the F5IVE Framework and leaves the audience with something they can apply immediately.</p>
-          <div style="margin-top:32px;">
-            <a href="#enquiry" class="btn-primary">Make an Enquiry <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
+<section class="band">
+  <div class="wrap">
+    <span class="kicker">Key quotes</span>
+    <h2>For features and interviews</h2>
+    <ul class="quotes">
+      <li><p>"Most men don't fail because they lack talent. They fail because they lack structure."</p></li>
+      <li><p>"Success in one pillar while the others collapse is not victory. It's imbalance with better PR."</p></li>
+      <li><p>"Vision compounds. Motivation fades. You don't need more inspiration. You need a framework."</p></li>
+      <li><p>"This book was not written from a stage. It was written from the wreckage."</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band band--lift" id="enquiry">
+  <div class="wrap split split--top">
+    <div>
+      <h2>Let's talk</h2>
+      <p class="muted" style="margin-top:20px">Speaking, podcasts, press, review copies or partnerships. Daniel reads every enquiry himself.</p>
+      <p style="margin-top:28px">Prefer email? <a class="textlink" href="mailto:danielbrown.authorf5@gmail.com">danielbrown.authorf5@gmail.com</a></p>
+    </div>
+    <form class="panel panel--gilt" data-formspree="speaking-enquiry" data-done="Enquiry sent">
+      <input type="hidden" name="_subject" value="Speaking and press enquiry" />
+      <div class="row2">
+        <div class="field"><label for="sp-name">Name</label><input id="sp-name" name="name" autocomplete="name" required /></div>
+        <div class="field"><label for="sp-email">Email</label><input id="sp-email" type="email" name="email" autocomplete="email" required /></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="sp-org">Organisation</label><input id="sp-org" name="organisation" autocomplete="organization" /></div>
+        <div class="field">
+          <label for="sp-type">Enquiry type</label>
+          <select id="sp-type" name="type" required>
+            <option>Speaking or workshop</option><option>Podcast or interview</option><option>Press or review copy</option><option>Press kit request</option><option>Partnership</option><option>Something else</option>
+          </select>
         </div>
-        <div class="topics-list">
-          <div class="topic-card">
-            <div class="topic-card-num">Topic 01</div>
-            <div class="topic-card-title">Why Capable Men Fail — and the Structure That Fixes It</div>
-            <p class="topic-card-desc">The core talk. Why talented, ambitious men keep falling short — and what the F5IVE Framework offers as the structural solution. For corporate events, men's groups, and conferences.</p>
-          </div>
-          <div class="topic-card">
-            <div class="topic-card-num">Topic 02</div>
-            <div class="topic-card-title">Leadership Identity — Who You Are When the Title Is Gone</div>
-            <p class="topic-card-desc">For professional audiences and leadership conferences. How men conflate their identity with their role — and what happens when the role disappears. Built from 13 years of director-level experience.</p>
-          </div>
-          <div class="topic-card">
-            <div class="topic-card-num">Topic 03</div>
-            <div class="topic-card-title">The F5IVE Framework — Building the Whole Man</div>
-            <p class="topic-card-desc">A deep-dive introduction to all five pillars — Faith, Family, Finance, Fitness, Freedom — and how they interact. For men's development events and wellness programmes.</p>
-          </div>
-          <div class="topic-card">
-            <div class="topic-card-num">Topic 04</div>
-            <div class="topic-card-title">Rebuilding from the Ground Up — Resilience as Architecture</div>
-            <p class="topic-card-desc">The origin story behind the book. Redundancy, separation, and a five-year rebuild across all five pillars simultaneously. For events focused on resilience, transition, and recovery.</p>
-          </div>
-        </div>
+      </div>
+      <div class="field"><label for="sp-msg">Message</label><textarea id="sp-msg" name="message" required placeholder="Dates, audience size, format, anything useful"></textarea></div>
+      <button class="btn btn--gilt btn--block" type="submit">Send enquiry</button>
+    </form>
+  </div>
+</section>
+
+
+
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/"><img src="/assets/img/mark.png" alt="" width="40" height="40" /><span><b>The Stoic Architect</b><small>Daniel Brown MSc</small></span></a>
+        <p>Structure for the man who has read the books, done the work, and still feels something is missing.</p>
+      </div>
+      <div>
+        <h4>Start here</h4>
+        <ul>
+          <li><a href="/quiz.html">The F5IVE Score</a></li>
+          <li><a href="/F5iveassessment">The Identity Profile</a></li>
+          <li><a href="/#journey">The free 5-day Journey</a></li>
+          <li><a href="/framework.html">The Framework</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Go deeper</h4>
+        <ul>
+          <li><a href="/book.html">Vision to Victory</a></li>
+          <li><a href="https://amzn.eu/d/0gtCoVXi" target="_blank" rel="noopener">Buy on Amazon</a></li>
+          <li><a href="/courses.html">Pillar courses</a></li>
+          <li><a href="/brotherhood.html">The Brotherhood</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Daniel</h4>
+        <ul>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/blog.html">Insights</a></li>
+          <li><a href="/speaking.html">Speaking and press</a></li>
+          <li><a href="https://instagram.com/danielmrbrown" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://youtube.com/@thestoicarchitectuk" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.linkedin.com/in/daniel-brown-511a47122" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <!-- FORMATS -->
-  <section id="formats">
-    <div class="container">
-      <div class="formats-header">
-        <div class="label">Available Formats</div>
-        <div class="divider divider--center"></div>
-        <h2 class="section-title">How Daniel works with you.</h2>
-        <p style="color:var(--stone-light);max-width:480px;margin:16px auto 0;font-size:0.95rem;line-height:1.7;">Every engagement is tailored to the audience and the event. Daniel does not deliver off-the-shelf talks.</p>
-      </div>
-      <div class="formats-grid">
-        <div class="format-card">
-          <span class="format-icon">🎤</span>
-          <div class="format-title">Keynote</div>
-          <p class="format-desc">30–60 minute keynote for conferences, corporate events, and large-format men's development gatherings.</p>
-        </div>
-        <div class="format-card">
-          <span class="format-icon">🎙</span>
-          <div class="format-title">Podcast & Interview</div>
-          <p class="format-desc">Available for podcast interviews, media features, and broadcast discussions on men's development, leadership, and the book.</p>
-        </div>
-        <div class="format-card">
-          <span class="format-icon">🏛</span>
-          <div class="format-title">Workshop</div>
-          <p class="format-desc">Half or full-day workshop delivering the F5IVE Framework in depth with practical application and audience interaction.</p>
-        </div>
-        <div class="format-card">
-          <span class="format-icon">📰</span>
-          <div class="format-title">Press & Media</div>
-          <p class="format-desc">Available for editorial features, author interviews, and press relating to Vision to Victory and men's personal development.</p>
-        </div>
-      </div>
+    <div class="foot-pillars" aria-label="The five pillars"><span>Faith</span><span>Family</span><span>Finance</span><span>Fitness</span><span>Freedom</span></div>
+    <div class="foot-base">
+      <span>&copy; 2026 Daniel Brown MSc. All rights reserved.</span>
+      <span><a href="/privacy.html">Privacy</a> &nbsp; <a href="/privacy.html#cookies">Cookies</a></span>
     </div>
-  </section>
+  </div>
+</footer>
+<script src="/assets/site.js?v=2" defer></script>
 
-  <!-- PRESS KIT -->
-  <section id="presskit">
-    <div class="container">
-      <div class="presskit-inner">
-        <div class="presskit-text">
-          <div class="label">Press Kit</div>
-          <div class="divider"></div>
-          <h2 class="section-title">Everything you need.</h2>
-          <p>The full press kit is available on request for media, publishers, event organisers, and podcast hosts. It contains everything needed to introduce Daniel and the book to your audience.</p>
-          <p><strong>For review copies of Vision to Victory</strong>, speaking availability, or any press enquiry, use the form on this page or contact Daniel directly.</p>
-          <div class="presskit-items">
-            <div class="presskit-item"><div class="presskit-item-icon">✍</div><div><div class="presskit-item-title">Author Biography</div><div class="presskit-item-desc">Short (50 words), medium (150 words), and long (400 words) versions</div></div></div>
-            <div class="presskit-item"><div class="presskit-item-icon">📖</div><div><div class="presskit-item-title">Book Synopsis</div><div class="presskit-item-desc">Full synopsis and chapter-by-chapter overview of Vision to Victory</div></div></div>
-            <div class="presskit-item"><div class="presskit-item-icon">🏛</div><div><div class="presskit-item-title">F5IVE Framework Explainer</div><div class="presskit-item-desc">One-page overview of the five pillars and the framework's core premise</div></div></div>
-            <div class="presskit-item"><div class="presskit-item-icon">💬</div><div><div class="presskit-item-title">Key Quotes & Talking Points</div><div class="presskit-item-desc">Curated quotes and discussion topics for interviews and features</div></div></div>
-            <div class="presskit-item"><div class="presskit-item-icon">📸</div><div><div class="presskit-item-title">Author Photography</div><div class="presskit-item-desc">High-resolution headshots — available shortly</div></div></div>
-          </div>
-          <div class="presskit-cta">
-            <a href="#enquiry" class="btn-primary">Request Press Kit <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-            <a href="speaking.html#enquiry" class="btn-outline">Email Directly</a>
-          </div>
-        </div>
-        <div>
-          <div class="bio-cards">
-            <div class="bio-card">
-              <div class="bio-card-label">Short Bio — 50 words</div>
-              <p class="bio-card-text">Daniel Brown MSc is the author of Vision to Victory and founder of the F5IVE Framework — a men's personal development system built around five interdependent life pillars. A senior leader with over 13 years of director-level experience, he writes as The Stoic Architect.</p>
-              <button class="bio-copy-btn" onclick="copyBio('short')">Copy ↗</button>
-            </div>
-            <div class="bio-card">
-              <div class="bio-card-label">Medium Bio — 100 words</div>
-              <p class="bio-card-text">Daniel Brown MSc is a UK-based author, leadership professional, and founder of the F5IVE Framework — a men's personal development system built around five interdependent life pillars: Faith, Family, Finance, Fitness, and Freedom. He holds an MSc in Psychology and a BSc (Hons) in Artificial Intelligence. His debut book, Vision to Victory: Why Men Fail, Why They Succeed, and How to Master the Difference, is published and available on Amazon. He creates content as The Stoic Architect at @danielmrbrown.</p>
-              <button class="bio-copy-btn" onclick="copyBio('medium')">Copy ↗</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- KEY QUOTES -->
-  <section id="quotes">
-    <div class="container">
-      <div class="quotes-header">
-        <div class="label" style="color:var(--gold-dark);">Key Quotes</div>
-        <div class="divider divider--center" style="background:var(--gold-dark);"></div>
-        <h2 class="section-title" style="color:var(--ink);">From the book and author.</h2>
-        <p style="color:var(--ink-mid);max-width:480px;margin:16px auto 0;font-size:0.95rem;line-height:1.7;">For use in editorial features, interviews, and press coverage.</p>
-      </div>
-      <div class="quotes-grid">
-        <div class="quote-card">
-          <p class="quote-text">"Most men don't fail because they lack talent. They fail because they lack structure."</p>
-          <div class="quote-source">Vision to Victory — Daniel Brown MSc</div>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"Success in one pillar while the others collapse is not victory. It's imbalance with better PR."</p>
-          <div class="quote-source">Vision to Victory — Daniel Brown MSc</div>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"Vision compounds. Motivation fades. You don't need more inspiration — you need a framework."</p>
-          <div class="quote-source">Vision to Victory — Daniel Brown MSc</div>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"The man most anchored is the man most free."</p>
-          <div class="quote-source">Vision to Victory — Daniel Brown MSc</div>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"This book was not written from a stage. It was written from the wreckage."</p>
-          <div class="quote-source">Daniel Brown MSc — Author</div>
-        </div>
-        <div class="quote-card">
-          <p class="quote-text">"Every major book in this space addresses one domain. Vision to Victory is the architecture that connects them all."</p>
-          <div class="quote-source">Daniel Brown MSc — Author</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ENQUIRY -->
-  <section id="enquiry">
-    <div class="container">
-      <div class="enquiry-inner">
-        <div class="enquiry-text">
-          <div class="label">Make an Enquiry</div>
-          <div class="divider"></div>
-          <h2 class="section-title">Let's talk.</h2>
-          <p>For speaking engagements, podcast invitations, press and media features, or review copy requests — use the form or contact Daniel directly.</p>
-          <div class="enquiry-types">
-            <div class="enquiry-type"><div class="enquiry-type-icon">🎤</div><div><div class="enquiry-type-title">Speaking & Events</div><div class="enquiry-type-desc">Conferences, corporate events, men's groups, workshops</div></div></div>
-            <div class="enquiry-type"><div class="enquiry-type-icon">🎙</div><div><div class="enquiry-type-title">Podcasts & Interviews</div><div class="enquiry-type-desc">Guest appearances, author interviews, media features</div></div></div>
-            <div class="enquiry-type"><div class="enquiry-type-icon">📰</div><div><div class="enquiry-type-title">Press & Publications</div><div class="enquiry-type-desc">Editorial features, review copies, press kit requests</div></div></div>
-            <div class="enquiry-type"><div class="enquiry-type-icon">🤝</div><div><div class="enquiry-type-title">Partnerships</div><div class="enquiry-type-desc">Brand partnerships, F5IVE Brotherhood collaborations</div></div></div>
-          </div>
-          <div class="enquiry-direct">
-            <p>Prefer to reach out directly?</p>
-            <a href="speaking.html#enquiry"><span class="__cf_email__" data-cfemail="e286838c8b878e80908d958ccc8397968a8d9084d7a2858f838b8ecc818d8f">[email&#160;protected]</span></a>
-          </div>
-        </div>
-        <div class="enquiry-form">
-          <div class="enquiry-form-title">Speaking & Press Enquiry</div>
-          <div class="form-divider"></div>
-          <form onsubmit="handleEnquiry(event)">
-            <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name" required /></div>
-            <div class="form-group"><label>Organisation / Publication</label><input type="text" placeholder="Company, podcast, or publication name" /></div>
-            <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com" required /></div>
-            <div class="form-group">
-              <label>Enquiry Type</label>
-              <select>
-                <option>Speaking / Keynote</option>
-                <option>Workshop</option>
-                <option>Podcast / Interview</option>
-                <option>Press / Editorial Feature</option>
-                <option>Review Copy Request</option>
-                <option>Press Kit Request</option>
-                <option>Partnership</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="form-group"><label>Event / Opportunity Details</label><textarea rows="5" placeholder="Tell me about the opportunity — audience, format, date, and any other relevant details..."></textarea></div>
-            <button type="submit" class="btn-gold-full">Send Enquiry <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div>
-          <div class="footer-logo">Vision to Victory</div>
-          <div class="footer-logo-sub">The Stoic Architect · @danielmrbrown</div>
-          <p class="footer-tagline">The F5IVE Framework for the man who has tried everything — and knows something structural is still missing.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Speaking</h4>
-          <ul>
-            <li><a href="#topics">Speaking Topics</a></li>
-            <li><a href="#formats">Formats</a></li>
-            <li><a href="#presskit">Press Kit</a></li>
-            <li><a href="#enquiry">Make an Enquiry</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>The Site</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="book.html">The Book</a></li>
-            <li><a href="framework.html">F5IVE Framework</a></li>
-            <li><a href="about.html">About Daniel</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Community</h4>
-          <ul>
-            <li><a href="brotherhood.html">F5IVE Brotherhood</a></li>
-            <li><a href="https://instagram.com/danielmrbrown" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a href="https://youtube.com/@thestoicarchitectuk" target="_blank" rel="noopener">YouTube</a></li>
-            <li><a href="speaking.html#enquiry">Email Daniel</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2026 Daniel Brown MSc. All rights reserved. · <a href="privacy.html" style="color:var(--stone);">Privacy Policy</a> · <a href="privacy.html" style="color:var(--stone);">Cookie Policy</a></p>
-        <div class="footer-f5">Faith · Family · Finance · Fitness · Freedom</div>
-      </div>
-    </div>
-  </footer>
-
-  <script data-cfasync="false">
-
-    async function handleEnquiry(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.textContent = 'Sending...'; btn.disabled = true;
-      const data = new FormData(e.target);
-      try {
-        const res = await fetch('https://formspree.io/f/mlgpkjvl', {
-          method: 'POST', body: data, headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) { btn.textContent = '✓ Enquiry Sent'; btn.style.background = '#2e7d32'; }
-        else { btn.textContent = 'Try Again'; btn.disabled = false; }
-      } catch { btn.textContent = 'Try Again'; btn.disabled = false; }
-    }
-
-    function copyBio(type) {
-      const bios = {
-        short: 'Daniel Brown MSc is the author of Vision to Victory and founder of the F5IVE Framework — a men\'s personal development system built around five interdependent life pillars. A senior leader with over 13 years of director-level experience, he writes as The Stoic Architect.',
-        medium: 'Daniel Brown MSc is a UK-based author, leadership professional, and founder of the F5IVE Framework — a men\'s personal development system built around five interdependent life pillars: Faith, Family, Finance, Fitness, and Freedom. He holds an MSc in Psychology and a BSc (Hons) in Artificial Intelligence. His debut book, Vision to Victory: Why Men Fail, Why They Succeed, and How to Master the Difference, is published and available on Amazon. He creates content as The Stoic Architect at @danielmrbrown.'
-      };
-      navigator.clipboard.writeText(bios[type]).then(() => {
-        const btns = document.querySelectorAll('.bio-copy-btn');
-        btns.forEach(b => { if (b.getAttribute('onclick').includes(type)) { b.textContent = '✓ Copied'; setTimeout(() => b.textContent = 'Copy ↗', 2000); }});
-      });
-    }
-  </script>
-  <script src="reveal.js"></script>
-  <script src="nav.js"></script>
+<script>
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = document.getElementById(b.dataset.copy).textContent;
+      (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1800); }, function () { b.textContent = 'Select and copy'; });
+    });
+  });
+</script>
 </body>
 </html>

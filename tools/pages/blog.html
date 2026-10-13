@@ -1,0 +1,104 @@
+<!--HEAD-->
+  <style>
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
+    .chip { min-height: 42px; padding: 0 18px; border: 1px solid var(--rule-soft); background: none; border-radius: 2px; cursor: pointer; color: var(--ash); font-size: .95rem; }
+    .chip:hover { color: var(--parchment); border-color: var(--rule); }
+    .chip[aria-pressed="true"] { background: var(--gilt); border-color: var(--gilt); color: var(--basalt); font-weight: 600; }
+    .feature { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; text-decoration: none; padding-bottom: clamp(48px, 7vw, 88px); border-bottom: 1px solid var(--rule); }
+    .feature h2 { font-size: clamp(1.8rem, 3.6vw, 2.8rem); }
+    .feature:hover h2 { color: var(--gilt-hi); }
+    .feature .voice { font-size: 1.35rem; line-height: 1.45; color: var(--parchment); }
+    .feature .meta { color: var(--ash); font-size: .92rem; margin-top: 18px; }
+    .list { list-style: none; }
+    .list a { display: grid; grid-template-columns: 140px 1fr auto; gap: 28px; padding: 30px 0; border-bottom: 1px solid var(--rule-soft); text-decoration: none; align-items: baseline; }
+    .list .p { font: 600 .9rem var(--display); letter-spacing: .08em; color: var(--gilt); }
+    .list h3 { font: 500 clamp(1.1rem, 1.8vw, 1.35rem)/1.35 var(--sans); }
+    .list p { color: var(--ash); margin-top: 6px; font-size: .97rem; }
+    .list .t { color: var(--ash); font-size: .9rem; white-space: nowrap; }
+    .list a:hover h3 { color: var(--gilt-hi); }
+    .list li[hidden] { display: none; }
+    .count { color: var(--ash); font-size: .92rem; margin: 40px 0 0; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+    @media (max-width: 860px) { .feature { grid-template-columns: 1fr; } .list a { grid-template-columns: 1fr; gap: 6px; } }
+  </style>
+<!--/HEAD-->
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="crumbs"><a href="/">Home</a> / Insights</p>
+    <h1>Insights</h1>
+    <p class="lede">Writing on discipline, identity and the F5IVE Framework in practice, organised by pillar. Start with the one you've been avoiding.</p>
+    <div class="chips" role="group" aria-label="Filter by pillar">
+      <button class="chip" aria-pressed="true" data-f="all">All</button>
+      <button class="chip" aria-pressed="false" data-f="faith">Faith</button>
+      <button class="chip" aria-pressed="false" data-f="family">Family</button>
+      <button class="chip" aria-pressed="false" data-f="finance">Finance</button>
+      <button class="chip" aria-pressed="false" data-f="fitness">Fitness</button>
+      <button class="chip" aria-pressed="false" data-f="freedom">Freedom</button>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <a class="feature" href="/articles/why-purpose-survives-a-crisis.html" data-pillar="faith">
+      <div>
+        <span class="kicker">Featured, Faith</span>
+        <h2>Why Purpose Is the Only Thing That Survives a Crisis</h2>
+      </div>
+      <div>
+        <p class="voice">When everything external is stripped away, what remains is either an anchor or a void. How to build the anchor before you need it.</p>
+        <p class="meta">Daniel Brown MSc, 7 min read</p>
+      </div>
+    </a>
+    <p class="count" aria-live="polite"><span id="n">11</span> more articles</p>
+    <ul class="list" id="list">
+      <li data-pillar="finance"><a href="/articles/financial-identity-problem.html"><span class="p">Finance</span><div><h3>The Financial Identity Problem Men Don't Talk About</h3><p>Most men's relationship with money has nothing to do with numbers. It's about worth, identity and the story they were told before they could question it.</p></div><span class="t">6 min</span></a></li>
+      <li data-pillar="fitness"><a href="/articles/discipline-is-a-practice.html"><span class="p">Fitness</span><div><h3>Discipline Is Not a Personality Trait. It's a Practice.</h3><p>The men who seem to have iron discipline don't have something you lack. They have systems and environments built for consistency.</p></div><span class="t">5 min</span></a></li>
+      <li data-pillar="freedom"><a href="/articles/vision-vs-motivation.html"><span class="p">Freedom</span><div><h3>Vision Compounds. Motivation Fades. Here's the Difference.</h3><p>Motivation is weather. It changes. Vision is climate. It shapes everything around it.</p></div><span class="t">6 min</span></a></li>
+      <li data-pillar="family"><a href="/articles/communication-the-underestimated-skill.html"><span class="p">Family</span><div><h3>Communication: The Skill Every Man Underestimates Until It Costs Him</h3><p>Every significant failure in a relationship, at work or at home, has a communication breakdown somewhere in the story.</p></div><span class="t">6 min</span></a></li>
+      <li data-pillar="faith"><a href="/articles/the-identity-trap.html"><span class="p">Faith</span><div><h3>The Identity Trap: Why Men Build Their Entire Self on Things That Can Be Taken Away</h3><p>The job title. The income. The relationship. When one disappears, what remains?</p></div><span class="t">7 min</span></a></li>
+      <li data-pillar="family"><a href="/articles/what-it-means-to-be-present.html"><span class="p">Family</span><div><h3>What It Actually Means to Be Present (It's Not What Most Men Think)</h3><p>Presence is not putting your phone down at dinner. It is genuinely investing your attention in the person in front of you.</p></div><span class="t">6 min</span></a></li>
+      <li data-pillar="finance"><a href="/articles/earning-vs-building.html"><span class="p">Finance</span><div><h3>The Difference Between Earning and Building: Why Most Men Stay Stuck</h3><p>Most men in financial difficulty are not short of income. They have been earning without building.</p></div><span class="t">6 min</span></a></li>
+      <li data-pillar="fitness"><a href="/articles/men-who-never-miss.html"><span class="p">Fitness</span><div><h3>Why the Men Who Never Miss Are Not More Motivated Than You</h3><p>The most consistent men are not built differently. They stopped relying on motivation and built something structural instead.</p></div><span class="t">6 min</span></a></li>
+      <li data-pillar="freedom"><a href="/articles/structure-creates-freedom.html"><span class="p">Freedom</span><div><h3>Why Structure Creates Freedom (And Chaos Creates Prison)</h3><p>The freest men are the most structured. Not despite their disciplines, because of them.</p></div><span class="t">6 min</span></a></li>
+      <li data-pillar="framework"><a href="/articles/man-who-has-everything.html"><span class="p">The Framework</span><div><h3>The Man Who Has Everything and Still Feels Something Is Missing</h3><p>He earns well. He trains. He is respected at work. And something still doesn't add up.</p></div><span class="t">8 min</span></a></li>
+      <li data-pillar="faith"><a href="/articles/the-environment-problem.html"><span class="p">Faith</span><div><h3>The Men Around You Determine More Than Your Mindset Does</h3><p>The best intentions and the strongest work ethic can still be undone by the wrong environment.</p></div><span class="t">5 min</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band band--lift">
+  <div class="wrap split">
+    <div>
+      <h2>Not sure which pillar to read first?</h2>
+      <p class="muted" style="margin-top:20px">The F5IVE Score rates all five in 60 seconds. Your results email points you to the writing that matters most for you right now.</p>
+      <a class="btn btn--gilt" style="margin-top:28px" href="{{QUIZ}}">Take the F5IVE Score</a>
+    </div>
+    <div class="panel panel--gilt">
+      <h3>Get the next article first</h3>
+      <p class="muted" style="margin:10px 0 22px">Join the free 5-day F5IVE Journey. New writing follows by email.</p>
+      <form data-journey="blog">
+        <div class="field"><label for="bl-email">Email</label><input type="email" id="bl-email" class="input" autocomplete="email" placeholder="you@email.com" required /></div>
+        <label class="consent"><input type="checkbox" required /><span>Send me the F5IVE Journey emails. I can unsubscribe at any time.</span></label>
+        <button class="btn btn--gilt btn--block" type="submit">Send me Day One</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!--TAIL-->
+<script>
+  (function () {
+    var chips = document.querySelectorAll('.chip'), items = document.querySelectorAll('#list li'), feat = document.querySelector('.feature'), n = document.getElementById('n');
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        var f = c.dataset.f, shown = 0;
+        chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+        items.forEach(function (li) { var on = f === 'all' || li.dataset.pillar === f; li.hidden = !on; if (on) shown++; });
+        feat.hidden = !(f === 'all' || feat.dataset.pillar === f);
+        n.textContent = shown;
+      });
+    });
+  })();
+</script>
+<!--/TAIL-->

@@ -1,0 +1,357 @@
+<!--HEAD-->
+  <link rel="preload" as="image" href="/assets/img/cover.webp" type="image/webp" />
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" />
+  <style>
+    .hero { padding: calc(76px + clamp(40px, 7vw, 96px)) 0 0; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(48% 60% at 78% 30%, rgba(200,160,77,.16), transparent 70%), radial-gradient(40% 40% at 10% 100%, rgba(139,107,62,.12), transparent 70%); }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(32px, 6vw, 88px); align-items: center; position: relative; }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 4.1rem); }
+    .hero .by { color: var(--ash); font-size: .95rem; margin-bottom: 26px; }
+    .hero .lede { margin-top: 26px; }
+    .hero .actions { margin-top: 38px; }
+    .hero .fineprint { margin-top: 16px; }
+    .hero .cover img { width: min(100%, 360px); }
+    .diag { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(28px, 6vw, 88px); align-items: end; margin-top: clamp(64px, 9vw, 120px); padding-bottom: 0; }
+    .diag-copy { padding-bottom: 54px; }
+    .diag-copy p { font-family: var(--voice); font-style: italic; font-size: clamp(1.3rem, 2.2vw, 1.7rem); line-height: 1.35; }
+    .diag-copy .textlink { display: inline-block; margin-top: 18px; font-family: var(--sans); font-style: normal; font-size: 1rem; }
+    .diag .colonnade { padding: 0 2%; }
+    .diag figcaption { font-size: .82rem; color: #7d7466; text-align: right; margin-top: 10px; }
+
+    .pr-list { margin-top: 48px; }
+    .pr-close { margin-top: clamp(56px, 8vw, 96px); padding-top: clamp(40px, 6vw, 64px); border-top: 1px solid var(--rule); display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; }
+
+    .elevation { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-top: clamp(40px, 6vw, 72px); }
+    .elevation > div { padding: 34px clamp(14px, 2vw, 26px) 38px; border-left: 1px solid var(--rule-soft); position: relative; }
+    .elevation > div:first-child { border-left: 0; }
+    .elevation .num { font: 500 .9rem var(--display); color: var(--bronze); letter-spacing: .1em; }
+    .elevation h3 { font: 600 clamp(1.1rem, 1.8vw, 1.45rem)/1.2 var(--display); letter-spacing: .05em; margin: 14px 0 12px; }
+    .elevation p { font-size: .96rem; color: var(--ash); }
+    .elevation .out { background: linear-gradient(180deg, rgba(200,160,77,.10), transparent); }
+    .elevation .out h3 { color: var(--gilt-hi); }
+    .fw-foot { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 34px; }
+
+    .stairs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; align-items: end; margin-top: clamp(48px, 7vw, 88px); }
+    .step { background: var(--hearth); border-top: 2px solid var(--bronze); padding: 26px 22px 30px; display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+    .step:nth-child(1) { min-height: 300px; }
+    .step:nth-child(2) { min-height: 340px; }
+    .step:nth-child(3) { min-height: 380px; border-top-color: var(--gilt); }
+    .step:nth-child(4) { min-height: 420px; }
+    .step:nth-child(5) { min-height: 460px; }
+    .step-n { font: 600 .9rem var(--display); color: var(--gilt); letter-spacing: .1em; }
+    .step h3 { font: 600 1.35rem/1.15 var(--display); letter-spacing: .04em; }
+    .step p { font-size: .95rem; color: var(--ash); }
+    .step .go { margin-top: auto; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+    .step .go a { color: var(--parchment); font-weight: 500; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 5px; }
+    .step .go a:hover { color: var(--gilt-hi); text-decoration-color: var(--gilt); }
+
+    .review { border-left: 2px solid var(--gilt); padding: 4px 0 4px 22px; margin: 30px 0; }
+    .review p { font-family: var(--voice); font-style: italic; font-size: 1.2rem; line-height: 1.5; }
+    .review span { display: block; margin-top: 8px; font-size: .88rem; color: var(--ash); }
+
+    .portrait { position: relative; }
+    .portrait img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 50% 20%; filter: saturate(.85) contrast(1.05); }
+    .portrait::after { content: ''; position: absolute; inset: 18px -18px -18px 18px; border: 1px solid var(--rule); z-index: -1; }
+    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; margin: 32px 0 36px; padding-top: 28px; border-top: 1px solid var(--rule-soft); }
+    .facts b { display: block; font: 600 1.05rem var(--display); letter-spacing: .04em; color: var(--gilt); }
+    .facts span { font-size: .95rem; color: var(--ash); }
+
+    .journey { background: linear-gradient(180deg, var(--hearth), var(--basalt)); }
+    .journey-days { list-style: none; counter-reset: d; margin-top: 30px; border-top: 1px solid var(--rule-soft); }
+    .journey-days li { counter-increment: d; display: flex; gap: 18px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--rule-soft); }
+    .journey-days li::before { content: 'Day ' counter(d); font: 600 .85rem var(--display); color: var(--gilt); letter-spacing: .08em; min-width: 62px; }
+    .journey-days b { font-weight: 600; }
+    .journey-days span { color: var(--ash); }
+
+    .reads { list-style: none; border-top: 1px solid var(--rule-soft); }
+    .reads a { display: grid; grid-template-columns: 140px 1fr auto; gap: 28px; align-items: baseline; padding: 26px 0; border-bottom: 1px solid var(--rule-soft); text-decoration: none; }
+    .reads .p { font: 600 .9rem var(--display); letter-spacing: .08em; color: var(--gilt); }
+    .reads h3 { font: 500 clamp(1.1rem, 1.8vw, 1.35rem)/1.35 var(--sans); }
+    .reads .t { color: var(--ash); font-size: .9rem; white-space: nowrap; }
+    .reads a:hover h3 { color: var(--gilt-hi); }
+
+    .closer { text-align: center; }
+    .closer .quote { margin: 0 auto 36px; max-width: 22ch; font-size: clamp(1.8rem, 4vw, 3rem); }
+
+    @media (max-width: 980px) {
+      .stairs { grid-template-columns: 1fr; }
+      .step, .step:nth-child(n) { min-height: 0; }
+      .elevation { grid-template-columns: 1fr; }
+      .elevation > div { border-left: 0; border-top: 1px solid var(--rule-soft); }
+      .elevation > div:first-child { border-top: 0; }
+    }
+    @media (max-width: 860px) {
+      .hero-grid, .diag { grid-template-columns: 1fr; }
+      .hero .cover { margin-top: 8px; }
+      .hero .cover img { width: min(58%, 230px); }
+      .diag-copy { padding-bottom: 0; }
+      .pr-close { grid-template-columns: 1fr; }
+      .reads a { grid-template-columns: 1fr; gap: 6px; }
+    }
+  </style>
+<!--/HEAD-->
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="by">Daniel Brown MSc, The Stoic Architect</p>
+        <h1>Most men don't fail for lack of talent. They fail for lack of structure.</h1>
+        <p class="lede">Vision to Victory and the F5IVE Framework give you that structure. Five pillars, Faith, Family, Finance, Fitness and Freedom, built and held in alignment at the same time.</p>
+        <div class="actions">
+          <a class="btn btn--gilt" href="{{QUIZ}}">Find your weakest pillar</a>
+          <a class="btn btn--line" href="/book.html">Read the book</a>
+        </div>
+        <p class="fineprint">The F5IVE Score is free and takes 60 seconds. Your full breakdown arrives by email.</p>
+      </div>
+      <div class="cover">
+        <picture><img src="/assets/img/cover.webp" alt="Vision to Victory by Daniel Brown, cover with a golden helmet above five columns" width="900" height="1436" fetchpriority="high" /></picture>
+      </div>
+    </div>
+
+    <figure class="diag">
+      <div class="diag-copy">
+        <p>One of your pillars is carrying less weight than the other four. You usually feel it long before you can name it.</p>
+        <a class="textlink" href="{{QUIZ}}">Name yours in 60 seconds</a>
+      </div>
+      <div>
+        <div class="colonnade" data-raise role="img" aria-label="Five columns of uneven height, one of them cracked, illustrating an imbalanced life">
+          <div class="col" style="--h:230px"><div class="col-cap"></div><div class="col-shaft"></div><div class="col-base"></div><div class="col-name">Faith</div></div>
+          <div class="col" style="--h:196px"><div class="col-cap"></div><div class="col-shaft"></div><div class="col-base"></div><div class="col-name">Family</div></div>
+          <div class="col col--weak" style="--h:118px"><div class="col-cap"></div><div class="col-shaft"></div><div class="col-base"></div><div class="col-name">Finance</div></div>
+          <div class="col" style="--h:250px"><div class="col-cap"></div><div class="col-shaft"></div><div class="col-base"></div><div class="col-name">Fitness</div></div>
+          <div class="col" style="--h:168px"><div class="col-cap"></div><div class="col-shaft"></div><div class="col-base"></div><div class="col-name">Freedom</div></div>
+        </div>
+        <div class="plinth"></div>
+        <figcaption>An example result. Yours will look different.</figcaption>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="split split--top">
+      <div>
+        <div class="entab"><i></i></div>
+        <h2>Imbalance with better PR</h2>
+      </div>
+      <p class="lede">Succeeding in one area while the others quietly give way is not victory. It looks like it from the outside, which is exactly why so many capable men miss it until it costs them something expensive.</p>
+    </div>
+    <ul class="ruled pr-list">
+      <li><span>Career, no purpose</span><p>High performance at work and no clear answer to why any of it matters.</p></li>
+      <li><span>Income, no sovereignty</span><p>Years of earning well with nothing structural built underneath it.</p></li>
+      <li><span>Fitness, no presence</span><p>The body is in shape. The mind is somewhere else when the family needs him.</p></li>
+      <li><span>Provider, no fulfilment</span><p>Giving everything to everyone else and running on empty inside.</p></li>
+    </ul>
+    <div class="pr-close">
+      <p class="quote">The answer is not to push harder where you're already winning. It's to build all five.</p>
+      <a class="btn btn--line" href="/framework.html">How the framework works</a>
+    </div>
+  </div>
+</section>
+
+<section class="band band--lift">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <span class="kicker">The F5IVE Framework</span>
+        <h2>Five pillars. One architecture.</h2>
+      </div>
+      <p class="muted" style="max-width:44ch">Not a checklist and not a sequence. Each pillar carries load for the others, so the structure only holds when all five do.</p>
+    </div>
+    <div class="elevation">
+      <div><span class="num">I</span><h3>Faith</h3><p>The foundation. Purpose, belief and the values that hold when everything else moves.</p></div>
+      <div><span class="num">II</span><h3>Family</h3><p>The people who see who you actually are, not who you present at work.</p></div>
+      <div><span class="num">III</span><h3>Finance</h3><p>Sovereignty, not just income. Money that works inside a system you control.</p></div>
+      <div><span class="num">IV</span><h3>Fitness</h3><p>The most honest feedback you get. You can't fake it and you can't outsource it.</p></div>
+      <div class="out"><span class="num">V</span><h3>Freedom</h3><p>The output of the other four. You don't chase it. You build it.</p></div>
+    </div>
+    <div class="fw-foot">
+      <p class="voice" style="font-size:1.25rem">"The man most anchored is the man most free."</p>
+      <a class="textlink" href="/framework.html">Explore each pillar in depth</a>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="path">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <span class="kicker">Where to start</span>
+        <h2>From diagnosis to discipline</h2>
+      </div>
+      <p class="muted" style="max-width:46ch">Everything here is built on the same framework. Start with the free diagnosis, then go as deep as your weakest pillar demands.</p>
+    </div>
+    <div class="stairs">
+      <div class="step">
+        <span class="step-n">I</span><h3>Diagnose</h3>
+        <p>The F5IVE Score rates all five pillars in 60 seconds and names the one undermining the rest.</p>
+        <div class="go"><span class="tag tag--live">Free</span><a href="{{QUIZ}}">Take the F5IVE Score</a><a href="{{PROFILE}}">Or the full Identity Profile</a></div>
+      </div>
+      <div class="step">
+        <span class="step-n">II</span><h3>Begin</h3>
+        <p>The F5IVE Journey. Five days, one pillar a day, straight to your inbox. Short enough to finish.</p>
+        <div class="go"><span class="tag tag--live">Free</span><a href="#capture">Send me Day One</a></div>
+      </div>
+      <div class="step">
+        <span class="step-n">III</span><h3>Read</h3>
+        <p>Vision to Victory. The complete framework across 19 chapters, from why men fail to what victory actually looks like.</p>
+        <div class="go"><span class="tag">From &pound;7.99</span><a href="/book.html">See inside the book</a></div>
+      </div>
+      <div class="step">
+        <span class="step-n">IV</span><h3>Build</h3>
+        <p>Pillar courses with workbooks and tools. The Finance Pillar opens first, built from Chapter 13.</p>
+        <div class="go"><span class="tag">Founding list open</span><a href="/courses.html">See the courses</a></div>
+      </div>
+      <div class="step">
+        <span class="step-n">V</span><h3>Belong</h3>
+        <p>The F5IVE Brotherhood. Small cohorts of men holding each other to all five pillars, not the comfortable ones.</p>
+        <div class="go"><span class="tag tag--soon">Forming</span><a href="/brotherhood.html">Join the founding list</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--lift">
+  <div class="wrap split">
+    <div class="cover"><img src="/assets/img/cover.webp" alt="Vision to Victory book cover" width="900" height="1436" loading="lazy" /></div>
+    <div>
+      <span class="kicker">The book</span>
+      <h2>Not a motivational book. A structural one.</h2>
+      <div class="stack" style="margin-top:24px">
+        <p class="muted">For the man who has read Atomic Habits, Can't Hurt Me and The Compound Effect, and still feels something is missing. Each of those books fixes one domain. Vision to Victory is the architecture that connects them.</p>
+        <p class="muted">Four parts. The honest diagnosis, the foundation most men skip, the five pillars, and how to turn them into a system that runs without you having to feel motivated.</p>
+      </div>
+      <div class="review">
+        <p>"A complete guide to understanding why and how men think and do what they do, and then the way to change it all."</p>
+        <span>Verified Amazon review, five stars</span>
+      </div>
+      <div class="price-row">
+        <div><b>&pound;13.99</b>Paperback</div>
+        <div><b>&pound;7.99</b>Kindle</div>
+      </div>
+      <div class="actions">
+        <a class="btn btn--gilt" href="{{AMAZON}}" target="_blank" rel="noopener">Buy on Amazon</a>
+        <a class="btn btn--line" href="/book.html">Chapters and contents</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split split--wide-left">
+    <div>
+      <span class="kicker">The author</span>
+      <h2>Written from the wreckage, not from a stage</h2>
+      <div class="stack" style="margin-top:24px">
+        <p class="lede">In 2018 I was made redundant. My daughter was three. Separation followed. Every pillar I had built my life on was tested in the same season.</p>
+        <p class="muted">The rebuild took five years and it happened across all five pillars at once, while holding down a senior career. That process became the F5IVE Framework. The framework became the book. I don't teach this because I studied it. I teach it because I had to live it first.</p>
+      </div>
+      <div class="facts">
+        <div><b>MSc Psychology</b><span>Plus a BSc (Hons) in Artificial Intelligence</span></div>
+        <div><b>13+ years</b><span>Senior leadership, including director-level roles</span></div>
+        <div><b>Four sectors</b><span>Businesses built in housing, automotive, eCommerce and recruitment</span></div>
+        <div><b>Five years</b><span>Rebuilding all five pillars, one system at a time</span></div>
+      </div>
+      <a class="textlink" href="/about.html">Read Daniel's story</a>
+    </div>
+    <div class="portrait"><img src="/assets/img/daniel.webp" alt="Daniel Brown MSc" width="1100" height="1461" loading="lazy" /></div>
+  </div>
+</section>
+
+<section class="band journey" id="capture">
+  <span id="journey"></span>
+  <div class="wrap split split--top">
+    <div>
+      <span class="kicker">Free 5-day email course</span>
+      <h2>Start the F5IVE Journey</h2>
+      <p class="muted" style="margin-top:20px">Five short reads, one pillar a day. The framework Vision to Victory is built on, in a form you'll actually finish.</p>
+      <ol class="journey-days">
+        <li><b>Faith</b><span>The foundation under everything</span></li>
+        <li><b>Family</b><span>Presence over proximity</span></li>
+        <li><b>Finance</b><span>Earning versus building</span></li>
+        <li><b>Fitness</b><span>Four engines, one standard</span></li>
+        <li><b>Freedom</b><span>What the other four produce</span></li>
+      </ol>
+    </div>
+    <div class="panel panel--gilt">
+      <div class="sib-form">
+        <div id="sib-form-container" class="sib-form-container">
+          <div id="error-message" class="sib-form-message-panel brevo-msg-error">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">That did not go through. Check your email address and try again.</span></div>
+          </div>
+          <div id="success-message" class="sib-form-message-panel brevo-msg-success">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">You're in. Day One is on its way to your inbox.</span></div>
+          </div>
+          <div id="sib-container" class="sib-container--large sib-container--vertical">
+            <form id="sib-form" method="POST" action="https://b91ab0ac.sibforms.com/serve/MUIFAPM-RMBoQRODsIB2NoOJSZz4z814wVCRpgwFeYFhpTBWoRjTq5QXWgEsI_KWeIxkVuv5FxFjIAcUgMYmKLBEdgj_70jpqn0nSEGa90Kd-usWBvoHz52DLlDlp5Wu_VcQcMSU9HlWttLxrYX6CLgUAC5zLTSM2gvrcX1p7E5Nv_5lcUDKXGtUNpuZuyMq0wIeX22qZqB3zLh4vA==" data-type="subscription">
+              <div class="field">
+                <label for="FIRSTNAME">First name</label>
+                <input maxlength="200" type="text" id="FIRSTNAME" name="FIRSTNAME" autocomplete="given-name" placeholder="Your first name" />
+              </div>
+              <div class="field">
+                <label for="EMAIL">Email</label>
+                <input type="email" id="EMAIL" name="EMAIL" autocomplete="email" value="" placeholder="you@email.com" data-required="true" required />
+              </div>
+              <label class="consent">
+                <input type="checkbox" value="1" id="OPT_IN" name="OPT_IN" required />
+                <span>Send me the F5IVE Journey emails. I can unsubscribe at any time. See the <a href="/privacy.html" class="textlink">privacy policy</a>.</span>
+              </label>
+              <button class="btn btn--gilt btn--block sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">Send me Day One</button>
+              <input type="text" name="email_address_check" value="" class="input--hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="hidden" name="locale" value="en">
+            </form>
+          </div>
+        </div>
+      </div>
+      <p class="fineprint" style="margin-top:16px">Day One lands immediately. Five emails, five days.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <span class="kicker">Insights</span>
+        <h2>Recent writing</h2>
+      </div>
+      <a class="textlink" href="/blog.html">All articles</a>
+    </div>
+    <ul class="reads">
+      <li><a href="/articles/why-purpose-survives-a-crisis.html"><span class="p">Faith</span><h3>Why purpose is the only thing that survives a crisis</h3><span class="t">7 min read</span></a></li>
+      <li><a href="/articles/earning-vs-building.html"><span class="p">Finance</span><h3>The difference between earning and building</h3><span class="t">6 min read</span></a></li>
+      <li><a href="/articles/what-it-means-to-be-present.html"><span class="p">Family</span><h3>What it actually means to be present</h3><span class="t">6 min read</span></a></li>
+      <li><a href="/articles/men-who-never-miss.html"><span class="p">Fitness</span><h3>Why the men who never miss are not more motivated than you</h3><span class="t">6 min read</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band band--lift closer">
+  <div class="wrap">
+    <div class="entab entab--center"><i></i></div>
+    <p class="quote">Vision compounds. Motivation fades.</p>
+    <div class="actions" style="justify-content:center">
+      <a class="btn btn--gilt" href="{{QUIZ}}">Take the F5IVE Score</a>
+      <a class="btn btn--line" href="/speaking.html">Speaking and press</a>
+    </div>
+  </div>
+</section>
+
+<!--TAIL-->
+<script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+  window.LOCALE = 'en';
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "That email address doesn't look right. Check it and try again.";
+  window.REQUIRED_ERROR_MESSAGE = "This field is required.";
+  window.GENERIC_INVALID_MESSAGE = "Something in this form isn't right. Check it and try again.";
+  window.INVALID_NUMBER = "That number isn't valid.";
+  window.INVALID_DATE = "Please enter a valid date";
+  window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
+  window.translation = { common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} lists selected', selectedOption: '{quantity} selected', selectedOptions: '{quantity} selected' } };
+  var AUTOHIDE = Boolean(0);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+<!--/TAIL-->
