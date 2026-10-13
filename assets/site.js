@@ -69,24 +69,33 @@
     });
   });
 
-  /* Enquiries and waitlists (Formspree, delivered to Daniel's inbox).
-     Any form with data-formspree posts every named field. */
-  document.querySelectorAll('form[data-formspree]').forEach(function (form) {
+  /* Founding lists and enquiries go to Brevo through /api/lead.
+     data-lead="founding" adds the person to a founding list, data-lead="enquiry" emails Daniel. */
+  var ERR = {
+    invalid_email: 'That email address does not look right. Check it and try again.',
+    consent_required: 'Tick the box so we know you are happy to hear from us.',
+    message_required: 'Add a short message so Daniel knows how to help.',
+    rate_limited: 'Too many attempts from this connection. Try again in an hour.'
+  };
+  document.querySelectorAll('form[data-lead]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var b = form.querySelector('button[type=submit]'), label = b.textContent;
+      var v = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
+      var c = form.querySelector('[name="consent"]');
+      var payload = { kind: form.dataset.lead, name: v('name'), email: v('email'), pillar: v('pillar'), organisation: v('organisation'), type: v('type'), message: v('message'), website: v('website'), consent: c ? c.checked : false };
       b.disabled = true; b.textContent = 'Sending';
-      fetch('https://formspree.io/f/mlgpkjvl', { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
-        .then(function (r) {
-          if (!r.ok) throw new Error('bad');
+      fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || !j.ok) throw new Error(j.error || 'failed'); }); })
+        .then(function () {
           b.textContent = form.dataset.done || 'Sent';
           form.querySelectorAll('input, select, textarea').forEach(function (i) { i.disabled = true; });
           say(form, form.dataset.thanks || 'Received. Daniel replies personally, usually within a few days.', true);
-          if (window.gtag) gtag('event', 'generate_lead', { method: form.dataset.formspree });
+          if (window.gtag) gtag('event', 'generate_lead', { method: form.dataset.lead + '_' + (payload.pillar || payload.type || 'site') });
         })
-        .catch(function () {
+        .catch(function (err) {
           b.disabled = false; b.textContent = label;
-          say(form, 'That did not go through. Try again, or email F5ive@thestoicarchitect.com directly.', false);
+          say(form, ERR[err.message] || 'That did not go through. Try again, or email F5ive@thestoicarchitect.com directly.', false);
         });
     });
   });

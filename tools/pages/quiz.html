@@ -1,0 +1,205 @@
+<!--HEAD-->
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" />
+<!--/HEAD-->
+
+<section class="qz-hero">
+  <div class="wrap">
+    <span class="kicker">The F5IVE Score</span>
+    <h1>One pillar is quietly undermining the other four. Which one is yours?</h1>
+    <p class="lede">Most men only find out when it has already cost them something expensive to fix. This takes less time than the last video you scrolled past.</p>
+    <p class="qz-facts"><span><b>15</b> questions</span><span><b>60</b> seconds</span><span><b>Free</b>, results by email</span></p>
+  </div>
+</section>
+
+<div class="stage" id="stage">
+  <div id="assessmentStart" class="card card--start">
+    <p>You probably already sense something is off in one area of your life. This shows you which one, and how far it has actually slipped.</p>
+    <button type="button" class="btn btn--gilt" id="startBtn">Start the F5IVE Score</button>
+    <p class="fineprint" style="margin:16px 0 0;font-size:.9rem">No email needed until your results are ready.</p>
+  </div>
+
+  <div id="assessmentQuestions" class="card" hidden>
+    <div class="tracker" id="tracker" aria-hidden="true"></div>
+    <div class="q-meta"><b id="questionPillar"></b><span id="progressLabel" aria-live="polite"></span></div>
+    <p class="q-text" id="questionText"></p>
+    <div class="answers" id="answerOptions" role="group" aria-labelledby="questionText"></div>
+    <button type="button" class="back" id="backBtn" hidden>Previous question</button>
+  </div>
+
+  <div id="assessmentGate" class="card" hidden>
+    <div class="gate">
+      <div>
+        <span class="kicker">Your overall F5IVE Score</span>
+        <div class="total" id="scoreRevealNumber" aria-hidden="true">00</div>
+        <p class="of">out of 75. Calculated, not yet unlocked.</p>
+        <div class="colonnade" id="gatePreview" aria-hidden="true"></div>
+      </div>
+      <div>
+        <h2>Your score is ready. It's just hidden.</h2>
+        <p class="muted" style="margin-bottom:22px">You've given it the 60 seconds. Enter your email to see your number, your weakest pillar and what to do about it first. We'll email it too, so you don't lose it.</p>
+        <div class="sib-form">
+          <div id="sib-form-container" class="sib-form-container">
+            <div id="error-message" class="sib-form-message-panel brevo-msg-error">
+              <div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">That did not go through. Check your email address and try again.</span></div>
+            </div>
+            <div id="success-message" class="sib-form-message-panel brevo-msg-success">
+              <div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">Unlocked. Your results are below and on their way to your inbox.</span></div>
+            </div>
+            <div id="sib-container" class="sib-container--large sib-container--vertical">
+              <form id="sib-form" method="POST" action="https://b91ab0ac.sibforms.com/serve/MUIFACrN1jjXIi87-omwfFH_XNqKuethP_mH8I5lezWH6CXJWTnihJ0pzzJy2c-3iIeVbG92efQD9jWVC6LE4fWnfJRLosTqWL1NuJoDUlaB09DIaGM7Ue09i-WB-_MU5Xe937b4zzosSWvFOZy7lomdJ7g4ivJc11NG-6Jt9qklrsNldkS-C0hbVhHsMiUnZHWvwv-VbW8w8z4ChQ==" data-type="subscription">
+                <div class="field"><label for="FIRSTNAME">First name</label><input maxlength="200" type="text" id="FIRSTNAME" name="FIRSTNAME" autocomplete="given-name" placeholder="Your first name" /></div>
+                <div class="field"><label for="EMAIL">Email</label><input type="email" id="EMAIL" name="EMAIL" autocomplete="email" value="" placeholder="you@email.com" data-required="true" required /></div>
+                <div class="score-fields" aria-hidden="true">
+                  <input maxlength="200" type="text" data-numeric="true" id="SCORE_FAITH" name="SCORE_FAITH" autocomplete="off" tabindex="-1" />
+                  <input maxlength="200" type="text" data-numeric="true" id="SCORE_FAMILY" name="SCORE_FAMILY" autocomplete="off" tabindex="-1" />
+                  <input maxlength="200" type="text" data-numeric="true" id="SCORE_FINANCE" name="SCORE_FINANCE" autocomplete="off" tabindex="-1" />
+                  <input maxlength="200" type="text" data-numeric="true" id="SCORE_FITNESS" name="SCORE_FITNESS" autocomplete="off" tabindex="-1" />
+                  <input maxlength="200" type="text" data-numeric="true" id="SCORE_FREEDOM" name="SCORE_FREEDOM" autocomplete="off" tabindex="-1" />
+                  <input maxlength="200" type="text" data-numeric="true" id="SCORE_TOTAL" name="SCORE_TOTAL" autocomplete="off" tabindex="-1" />
+                  <input maxlength="200" type="text" id="WEAKEST_PILLAR" name="WEAKEST_PILLAR" autocomplete="off" tabindex="-1" />
+                  <input maxlength="200" type="text" id="STRONGEST_PILLAR" name="STRONGEST_PILLAR" autocomplete="off" tabindex="-1" />
+                </div>
+                <label class="consent"><input type="checkbox" value="1" id="OPT_IN" name="OPT_IN" required /><span>Send me my F5IVE results and the F5IVE Journey emails. I can unsubscribe at any time. See the <a class="textlink" href="/privacy.html">privacy policy</a>.</span></label>
+                <button class="btn btn--gilt btn--block sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">Unlock my results</button>
+                <input type="text" name="email_address_check" value="" class="input--hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <input type="hidden" name="locale" value="en">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="assessmentResults" class="card" hidden>
+    <div class="res-head">
+      <span class="kicker">Your F5IVE Score</span>
+      <h2 data-r="title">Your results</h2>
+      <p data-r="sub"></p>
+    </div>
+    <div class="colonnade res-cols" data-r="cols"></div>
+    <div class="plinth"></div>
+    <div class="focus" data-r="focus"></div>
+    <ul class="reading" data-r="reading"></ul>
+    <div class="next">
+      <a class="btn btn--gilt" href="{{PROFILE}}">Find your F5IVE archetype</a>
+      <a class="btn btn--line" href="/book.html">Read Vision to Victory</a>
+    </div>
+    <p class="fineprint" style="margin-top:12px">The Identity Profile picks up your scores, so you skip the first 15 questions.</p>
+  </div>
+</div>
+
+<section class="proof">
+  <div>
+    <p class="quote">"A complete guide to understanding why and how men think and do what they do."</p>
+    <span class="cite">Verified Amazon review of Vision to Victory</span>
+  </div>
+  <div>
+    <p class="muted">The F5IVE Score is built on the framework in Vision to Victory by Daniel Brown MSc: five pillars, Faith, Family, Finance, Fitness and Freedom, that only hold when all five do.</p>
+    <a class="textlink" style="display:inline-block;margin-top:14px" href="/framework.html">How the framework works</a>
+  </div>
+</section>
+
+<!--TAIL-->
+<script src="/assets/score.js?v=1"></script>
+<script>
+(function () {
+  var F = window.F5S, PILLARS = F.PILLARS, QUESTIONS = F.QUESTIONS, ANSWERS = F.ANSWERS, extremes = F.extremes, columns = F.columns;
+  var $ = function (id) { return document.getElementById(id); };
+  var answers = [];
+  var current = 0;
+
+  function totals() {
+    var s = { Faith: 0, Family: 0, Finance: 0, Fitness: 0, Freedom: 0 };
+    answers.forEach(function (v, i) { s[QUESTIONS[i].pillar] += v; });
+    return s;
+  }
+  function show(id) {
+    ['assessmentStart', 'assessmentQuestions', 'assessmentGate', 'assessmentResults'].forEach(function (x) { $(x).hidden = x !== id; });
+    var top = $('stage').getBoundingClientRect().top + window.scrollY - 96;
+    if (window.scrollY > top || id !== 'assessmentQuestions') window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+  function renderTracker() {
+    var html = '';
+    PILLARS.forEach(function (p, pi) {
+      var stones = '';
+      for (var k = 0; k < 3; k++) stones += '<i class="' + (answers.length > pi * 3 + k ? 'on' : '') + '"></i>';
+      html += '<div class="tk' + (QUESTIONS[current] && QUESTIONS[current].pillar === p ? ' now' : '') + '"><div class="tk-stones">' + stones + '</div><div class="tk-name">' + p + '</div></div>';
+    });
+    $('tracker').innerHTML = html;
+  }
+  function render() {
+    var q = QUESTIONS[current];
+    $('questionPillar').textContent = q.pillar;
+    $('progressLabel').textContent = 'Question ' + (current + 1) + ' of ' + QUESTIONS.length;
+    $('questionText').textContent = q.text;
+    var box = $('answerOptions'); box.innerHTML = '';
+    ANSWERS.forEach(function (a, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'answer' + (answers[current] === a.score ? ' picked' : '');
+      b.innerHTML = '<kbd>' + (i + 1) + '</kbd><span></span>';
+      b.querySelector('span').textContent = a.text;
+      b.addEventListener('click', function () { pick(a.score, b); });
+      box.appendChild(b);
+    });
+    $('backBtn').hidden = current === 0;
+    renderTracker();
+  }
+  var busy = false;
+  function pick(score, btn) {
+    if (busy) return; busy = true;
+    document.querySelectorAll('.answer').forEach(function (x) { x.classList.remove('picked'); });
+    btn.classList.add('picked');
+    answers[current] = score; answers.length = current + 1;
+    renderTracker();
+    setTimeout(function () {
+      busy = false; current++;
+      if (current < QUESTIONS.length) { render(); $('answerOptions').querySelector('button').focus({ preventScroll: true }); }
+      else gate();
+    }, 260);
+  }
+  function gate() {
+    var s = totals(), e = extremes(s);
+    $('WEAKEST_PILLAR').value = e.weakest; $('STRONGEST_PILLAR').value = e.strongest;
+    $('SCORE_FAITH').value = s.Faith; $('SCORE_FAMILY').value = s.Family; $('SCORE_FINANCE').value = s.Finance;
+    $('SCORE_FITNESS').value = s.Fitness; $('SCORE_FREEDOM').value = s.Freedom; $('SCORE_TOTAL').value = e.total;
+    $('scoreRevealNumber').textContent = e.total;
+    $('gatePreview').innerHTML = columns(s, null, false);
+    try { sessionStorage.setItem('f5ive_quiz_results', JSON.stringify({ scores: s, weakest: e.weakest, strongest: e.strongest, total: e.total })); } catch (err) {}
+    if (window.gtag) gtag('event', 'quiz_complete', { total: e.total });
+    show('assessmentGate');
+  }
+  var revealed = false;
+  function results() {
+    if (revealed) return; revealed = true;
+    F.fillResults($('assessmentResults'), totals());
+    show('assessmentResults');
+    if (window.gtag) gtag('event', 'generate_lead', { method: 'f5ive_score' });
+  }
+
+  var ok = $('success-message');
+  new MutationObserver(function () { if (getComputedStyle(ok).display !== 'none') results(); }).observe(ok, { attributes: true, attributeFilter: ['style', 'class'] });
+
+  $('startBtn').addEventListener('click', function () { show('assessmentQuestions'); render(); $('answerOptions').querySelector('button').focus({ preventScroll: true }); });
+  $('backBtn').addEventListener('click', function () { if (current > 0) { current--; render(); } });
+  document.addEventListener('keydown', function (e) {
+    if ($('assessmentQuestions').hidden || e.target.tagName === 'INPUT') return;
+    var n = parseInt(e.key, 10);
+    if (n >= 1 && n <= 5) { var b = $('answerOptions').querySelectorAll('button')[n - 1]; if (b) b.click(); }
+  });
+})();
+</script>
+<script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+  window.LOCALE = 'en';
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "That email address doesn't look right. Check it and try again.";
+  window.REQUIRED_ERROR_MESSAGE = "This field is required.";
+  window.GENERIC_INVALID_MESSAGE = "Something in this form isn't right. Check it and try again.";
+  window.INVALID_NUMBER = "That number isn't valid.";
+  window.INVALID_DATE = "Please enter a valid date";
+  window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
+  window.translation = { common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} lists selected', selectedOption: '{quantity} selected', selectedOptions: '{quantity} selected' } };
+  var AUTOHIDE = Boolean(0);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+<!--/TAIL-->

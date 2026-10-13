@@ -1,711 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The F5IVE Journey — Free 5-Day Framework Course | The Stoic Architect</title>
-<meta name="description" content="A free 5-day email course. One pillar a day. Faith, Family, Finance, Fitness, Freedom. Build the framework before you build anything else.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-<style>
-  :where(.sib-form-message-panel) { display: none; }
-  :where(.sib-form-message-panel .sib-notification__icon) { width: 18px; height: 18px; }
-</style>
-<style>
-  :root {
-    --bg: #0A0C09;
-    --bg-panel: #14170F;
-    --cream: #EDE6D3;
-    --cream-dim: #A9A38C;
-    --gold: #E8C468;
-    --gold-mid: #C9A24C;
-    --bronze: #8B6B2E;
-    --line: rgba(232, 196, 104, 0.18);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background:
-      radial-gradient(ellipse 700px 500px at 50% 0%, rgba(139, 107, 46, 0.16), transparent 60%),
-      radial-gradient(ellipse 900px 700px at 50% 10%, rgba(30, 46, 30, 0.5), transparent 65%),
-      var(--bg);
-    color: var(--cream);
-    font-family: 'Cormorant Garamond', serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
-  }
-
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-
-  /* ---------- HERO ---------- */
-
-  .hero { padding: 64px 0 32px; text-align: center; }
-
-  .brand-seal {
-    width: 84px;
-    height: 84px;
-    display: block;
-    margin: 0 auto 18px;
-  }
-
-  .wordmark {
-    font-family: 'Cinzel', serif;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--cream);
-    margin-bottom: 14px;
-  }
-
-  .wordmark::after {
-    content: '';
-    display: block;
-    width: 48px;
-    height: 1px;
-    background: var(--gold);
-    opacity: 0.5;
-    margin: 14px auto 0;
-  }
-
-  .eyebrow {
-    font-family: 'Cinzel', serif;
-    font-weight: 500;
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin: 22px 0 26px;
-  }
-
-  h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    font-size: clamp(2.1rem, 6.4vw, 3.4rem);
-    line-height: 1.14;
-    letter-spacing: 0.01em;
-    color: var(--cream);
-    margin-bottom: 22px;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .sub {
-    font-size: 19px;
-    color: var(--cream-dim);
-    max-width: 480px;
-    margin: 0 auto 36px;
-  }
-
-  /* ---------- COLUMNS + HELMET SIGNATURE ---------- */
-
-  .monument { width: 100%; max-width: 560px; margin: 0 auto 8px; display: block; }
-
-  .glow-pulse {
-    animation: glowPulse 3.4s ease-in-out infinite;
-    transform-origin: 280px 45px;
-  }
-  @media (prefers-reduced-motion: reduce) { .glow-pulse { animation: none; opacity: 0.5; } }
-
-  @keyframes glowPulse {
-    0%, 100% { opacity: 0.45; }
-    50% { opacity: 0.85; }
-  }
-
-  .col-rise {
-    opacity: 0;
-    transform: translateY(22px);
-    animation: colRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  .col-1 { animation-delay: 0.05s; }
-  .col-2 { animation-delay: 0.18s; }
-  .col-3 { animation-delay: 0.31s; }
-  .col-4 { animation-delay: 0.44s; }
-  .col-5 { animation-delay: 0.57s; }
-
-  @keyframes colRise {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .helmet-rise {
-    opacity: 0;
-    transform: scale(0.88);
-    transform-origin: 280px 45px;
-    animation: helmetIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 0.7s;
-  }
-  @keyframes helmetIn { to { opacity: 1; transform: scale(1); } }
-
-  .label-fade {
-    opacity: 0;
-    animation: fadeIn 0.7s ease forwards;
-    animation-delay: 1.2s;
-  }
-  @keyframes fadeIn { to { opacity: 0.82; } }
-
-  /* ---------- FORM ---------- */
-
-  .cta-block {
-    background: var(--bg-panel);
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    padding: 34px 28px;
-    max-width: 460px;
-    margin: 0 auto;
-    box-shadow: 0 0 40px rgba(139, 107, 46, 0.08);
-  }
-
-  .cta-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: 21px;
-    margin-bottom: 6px;
-    color: var(--cream);
-  }
-
-  .cta-sub { font-size: 15px; color: var(--cream-dim); margin-bottom: 22px; }
-
-  form { display: flex; flex-direction: column; gap: 12px; }
-
-  input[type="email"] {
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    padding: 14px 16px;
-    color: var(--cream);
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-  }
-  input[type="email"]:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
-  input[type="email"]::placeholder { color: var(--cream-dim); opacity: 0.7; }
-
-  button {
-    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-mid) 100%);
-    color: #1A1305;
-    border: none;
-    border-radius: 2px;
-    padding: 15px 20px;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    font-weight: 600;
-    cursor: pointer;
-    transition: filter 0.15s ease;
-  }
-  button:hover { filter: brightness(1.08); }
-  button:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
-
-  .microcopy { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--cream-dim); margin-top: 14px; opacity: 0.7; }
-
-  /* ---------- BREVO FORM OVERRIDES ---------- */
-
-  .sib-form { background: transparent !important; text-align: left !important; padding: 0 !important; }
-  .brevo-container { background: transparent !important; border: none !important; max-width: 100% !important; padding: 0 !important; }
-
-  .brevo-field { margin-bottom: 14px; text-align: left; }
-
-  .brevo-label {
-    display: block;
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 6px;
-  }
-
-  .brevo-input {
-    width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    padding: 14px 16px;
-    color: var(--cream);
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    box-sizing: border-box;
-  }
-  .brevo-input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
-  .brevo-input::placeholder { color: var(--cream-dim); opacity: 0.7; }
-
-  .brevo-optin { margin: 16px 0; text-align: left; }
-  .brevo-optin-label { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
-  .brevo-checkbox { margin-top: 3px; accent-color: var(--gold); width: 16px; height: 16px; flex-shrink: 0; }
-  .brevo-optin-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    color: var(--cream-dim);
-    line-height: 1.5;
-  }
-
-  .brevo-submit {
-    width: 100%;
-    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-mid) 100%);
-    color: #1A1305;
-    border: none;
-    border-radius: 2px;
-    padding: 15px 20px;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: filter 0.15s ease;
-  }
-  .brevo-submit:hover { filter: brightness(1.08); }
-  .brevo-submit:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
-
-  .brevo-msg-error, .brevo-msg-success {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    border-radius: 2px;
-    padding: 12px 16px;
-    margin-bottom: 14px;
-    text-align: left;
-  }
-  .brevo-msg-error { background: rgba(220, 80, 80, 0.12); border: 1px solid rgba(220, 80, 80, 0.4); color: #E8B4B4; }
-  .brevo-msg-success { background: rgba(139, 181, 107, 0.12); border: 1px solid rgba(139, 181, 107, 0.4); color: #C8E0B0; }
-
-  .back-to-signup {
-    display: inline-block;
-    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-mid) 100%);
-    color: #1A1305;
-    text-decoration: none;
-    border-radius: 2px;
-    padding: 15px 28px;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-  .back-to-signup:hover { filter: brightness(1.08); }
-
-  /* ---------- PROOF ---------- */
-
-  .proof { padding: 8px 0 56px; }
-
-  .proof-heading {
-    font-family: 'Cinzel', serif;
-    font-weight: 500;
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-align: center;
-    margin-bottom: 24px;
-  }
-
-  .proof-card {
-    background: var(--bg-panel);
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    padding: 22px 26px;
-    max-width: 520px;
-    margin: 0 auto 14px;
-  }
-
-  .proof-stars { color: var(--gold-mid); font-size: 14px; letter-spacing: 2px; margin-bottom: 10px; }
-
-  .proof-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--cream);
-    margin-bottom: 10px;
-  }
-
-  .proof-source { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--cream-dim); }
-
-  .proof-short {
-    text-align: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 15px;
-    color: var(--cream-dim);
-    max-width: 460px;
-    margin: 0 auto;
-  }
-
-  /* ---------- COST OF INACTION ---------- */
-
-  .stakes {
-    padding: 52px 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    text-align: center;
-  }
-
-  .stakes-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    font-size: clamp(1.4rem, 3.6vw, 1.9rem);
-    color: var(--cream);
-    max-width: 460px;
-    margin: 0 auto 20px;
-  }
-
-  .stakes-heading em { font-style: italic; color: var(--gold); }
-
-  .stakes p {
-    font-size: 16px;
-    line-height: 1.75;
-    color: var(--cream-dim);
-    max-width: 480px;
-    margin: 0 auto 16px;
-  }
-
-  .stakes p:last-child { margin-bottom: 0; }
-  .stakes strong { color: var(--cream); font-weight: 600; }
-
-  /* ---------- DAYS ---------- */
-
-  .days { padding: 60px 0; }
-
-  .days-heading {
-    font-family: 'Cinzel', serif;
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-align: center;
-    margin-bottom: 34px;
-  }
-
-  .day-row {
-    display: grid;
-    grid-template-columns: 64px 1fr;
-    gap: 20px;
-    padding: 22px 0;
-    border-top: 1px solid var(--line);
-  }
-  .day-row:last-child { border-bottom: 1px solid var(--line); }
-
-  .day-num {
-    font-family: 'Cinzel', serif;
-    font-size: 26px;
-    font-weight: 500;
-    color: var(--gold);
-    line-height: 1.3;
-  }
-
-  .day-pillar {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--cream-dim);
-    margin-bottom: 6px;
-  }
-
-  .day-outcome { font-size: 17px; color: var(--cream); }
-
-  /* ---------- CREDIBILITY ---------- */
-
-  .credibility { padding: 48px 0 60px; text-align: center; border-top: 1px solid var(--line); }
-  .credibility p { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--cream-dim); max-width: 480px; margin: 0 auto; line-height: 1.7; }
-  .credibility strong { color: var(--gold); font-weight: 500; }
-
-  /* ---------- FINAL CTA ---------- */
-
-  .final-cta { padding: 0 0 80px; text-align: center; }
-  .final-cta h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    font-size: clamp(1.6rem, 4.4vw, 2.2rem);
-    margin-bottom: 30px;
-    max-width: 440px;
-    margin-left: auto;
-    margin-right: auto;
-    color: var(--cream);
-  }
-
-  @media (max-width: 480px) {
-    .hero { padding: 44px 0 24px; }
-    .cta-block { padding: 26px 20px; }
-    .day-row { grid-template-columns: 44px 1fr; }
-    .day-num { font-size: 22px; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The F5IVE Journey: free 5-day email course | The Stoic Architect</title>
+  <meta name="description" content="Five days, one pillar a day, straight to your inbox. The free email course built from Vision to Victory." />
+  <link rel="canonical" href="https://www.thestoicarchitect.com/F5ivejourney.html" />
+  <meta name="theme-color" content="#12100E" />
+  <link rel="icon" href="/Stoic_Architect_Favicon_Mark.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="The Stoic Architect" />
+  <meta property="og:title" content="The F5IVE Journey: free 5-day email course | The Stoic Architect" />
+  <meta property="og:description" content="Five days, one pillar a day, straight to your inbox. The free email course built from Vision to Victory." />
+  <meta property="og:url" content="https://www.thestoicarchitect.com/F5ivejourney.html" />
+  <meta property="og:image" content="https://www.thestoicarchitect.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@danielmrbrown" />
+  <meta name="twitter:image" content="https://www.thestoicarchitect.com/og-image.png" />
+  <link rel="preload" href="/assets/fonts/cinzel-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/archivo-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/site.css?v=3" />
+  <script src="/assets/consent.js?v=1" defer></script>
+
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" />
+  <style>
+    .jy-hero { padding: calc(76px + clamp(40px, 7vw, 96px)) 0 clamp(56px, 8vw, 104px); overflow: hidden; }
+    .jy-hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(50% 60% at 80% 30%, rgba(200,160,77,.15), transparent 70%); }
+    .jy-hero .split { position: relative; grid-template-columns: 1.1fr .9fr; }
+    .jy-hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); }
+    .jy-hero .lede { margin-top: 24px; }
+    .days { list-style: none; border-top: 1px solid var(--rule); margin-top: 48px; }
+    .days li { display: grid; grid-template-columns: 90px 200px 1fr; gap: 24px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--rule-soft); }
+    .days .d { font: 600 .9rem var(--display); letter-spacing: .1em; color: var(--bronze); }
+    .days h3 { font: 600 1.4rem/1.2 var(--display); letter-spacing: .05em; }
+    .days p { color: var(--ash); }
+    .cost { max-width: 760px; }
+    @media (max-width: 860px) { .jy-hero .split { grid-template-columns: 1fr; } .days li { grid-template-columns: 1fr; gap: 4px; } }
+  </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head site-head--focus">
+  <div class="wrap head-in">
+    <a class="brand" href="/" aria-label="The Stoic Architect, home">
+      <img src="/assets/img/mark.png" alt="" width="40" height="40" />
+      <span><b>The Stoic Architect</b><small>Vision to Victory</small></span>
+    </a>
+    <a class="textlink" href="/">Full site</a>
+  </div>
+</header>
+<main id="main">
 
-<div class="wrap">
 
-  <section class="hero">
-    <svg class="brand-seal" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Stoic Architect seal">
-      <defs>
-        <linearGradient id="sealGoldGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#F3DA96"/>
-          <stop offset="45%" stop-color="#D4A94A"/>
-          <stop offset="100%" stop-color="#8B6B2E"/>
-        </linearGradient>
-        <linearGradient id="sealRingGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#F3DA96"/>
-          <stop offset="50%" stop-color="#C9A24C"/>
-          <stop offset="100%" stop-color="#8B6B2E"/>
-        </linearGradient>
-      </defs>
-      <circle cx="400" cy="400" r="378" fill="#0D0F0B"/>
-      <circle cx="400" cy="400" r="378" fill="none" stroke="url(#sealRingGrad)" stroke-width="22"/>
-      <g transform="translate(174,174) scale(0.88)">
-        <path fill="url(#sealGoldGrad)" d="M253.714 20.358c-8.79.075-17.448.82-25.89 2.308-46.55 8.208-89.423 26.157-121.225 52.065-31.803 25.908-52.572 59.39-56.316 100.053l-.004.04-.004.04c-8.45 83.885 39.397 152.37 65.604 181.553 5.21 5.804 7.064 13.574 6.533 20.862-.53 7.288-3.04 14.494-6.598 21.838-7.114 14.688-18.703 30.06-31.03 44.457-13.957 16.303-27.375 29.703-37.75 39.627 7.203-1.214 14.764-4.37 22.67-9.368 14.66-9.265 29.554-24.475 42.097-41.298 12.543-16.824 22.807-35.28 28.802-50.586 2.998-7.654 4.912-14.54 5.614-19.72.7-5.178-.177-8.39-.354-8.687-15.34-25.73-31.257-52.027-40.687-79.112-9.43-27.085-12.2-55.565-.073-83.35 25.223-57.79 78.02-85.085 130.772-89.605 52.61-4.508 105.963 12.396 136.545 44.71l23.292 22.474 69.254-41.47c-20.34-26.314-55.49-55.33-96.24-76.257-33.546-17.226-70.702-28.978-106.18-30.428-2.957-.12-5.902-.17-8.832-.144zM372.42 146.184l-.058-.057.31.313c-.083-.087-.17-.17-.25-.256zM244.814 118.95c-2.468.102-4.935.245-7.4.457-3.562.305-7.11.73-10.64 1.255l9.628 45.077c5.76-1.637 11.657-2.823 17.646-3.564l-9.233-43.226zm43.85 3.658c-4.866 12.845-7.33 25.916-6.978 39.04 6.034.48 12.086 1.335 18.12 2.557-.868-12.19 1.306-24.43 6.362-36.98-5.66-1.82-11.515-3.363-17.504-4.617zm-106.672 11.79c-6.112 3.028-12 6.54-17.612 10.532 17.55 8.862 29.7 22.763 34.715 39.594 4.936-3.84 10.145-7.183 15.564-10.063-6.122-16.257-17.577-30.086-32.666-40.063zm88.136 44.796c-1.156-.002-2.308.014-3.457.047-2.675.076-5.328.242-7.952.502-41.993 4.176-77.31 30.258-87.475 90.07-2.198 12.94 4.293 42.822 12.246 67.66 7.952 24.836 16.634 45.517 16.634 45.517l.504 1.198.143 1.295c1.96 17.7-9.11 34.967-21.212 52.26-8.036 11.486-16.43 22.104-23.97 31.72 24-1.35 45.963-11.985 67.177-30.947-.124-.5-.17-.71-.313-1.297-.866-3.594-1.955-8.697-1.687-14.68.446-9.983 5.674-21.958 18.818-31.868-24.577-35.02-28.898-78.757-24.06-115.027l.886-6.65 6.626-1.05c58.715-9.29 97.246-28.81 139.34-54.593-27.566-21.88-61.198-34.115-92.25-34.158zm120.197 37.84c-48.424 30.517-91.56 55.67-157.556 67.35-3.253 33.408 2.427 71.84 25.226 100.798 12.607.61 23.264 6.977 29.904 16.184 6.747 9.353 9.946 21.162 10.83 33.628 23.288 21.426 62.97 39.024 97.764 56.655-3.17-39.444-.296-76.34-14.538-114.11l-62.842-25.3-.062-.027c-14.313-6.018-23.332-13.792-26.512-24.03-3.18-10.236-.874-19.966 1.188-31.064l2.2-11.852 10.74 5.476c23.407 11.94 51.394 20.52 77.548 20.065l6.582-.116 2.103 6.238c10.593 31.436 12.912 56.612 15.752 82.203l7.787 3.113c4.126-29.38 1.912-68.686-3.862-104.425-5.463-33.817-14.72-65.03-22.252-80.788zM223.397 441.148c-.01.444.094.455.01.04-.002-.008-.01-.033-.01-.04z"/>
-      </g>
-    </svg>
-    <div class="wordmark">The Stoic Architect</div>
-    <div class="eyebrow">The F5IVE Journey — Free 5-Day Email Course</div>
-    <h1>Why Some Men Rebuild.<br>Why Most Just Keep<br><em>Reading</em> About It.</h1>
-    <p class="sub">The F5IVE Journey is the five-day blueprint, one pillar a day, straight to your inbox. Miss it, and you're the same man in twelve months. Just twelve months older.</p>
-
-    <svg class="monument" viewBox="0 0 560 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Five gold Corinthian columns labelled Faith, Family, Finance, Fitness, and Freedom, crowned by a Spartan helmet above the centre column">
-      <defs>
-        <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#F3DA96"/>
-          <stop offset="45%" stop-color="#D4A94A"/>
-          <stop offset="100%" stop-color="#8B6B2E"/>
-        </linearGradient>
-        <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#E8C468" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#E8C468" stop-opacity="0"/>
-        </radialGradient>
-        <filter id="softBlur" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="9"/>
-        </filter>
-      </defs>
-
-      <circle class="glow-pulse" cx="280" cy="45" r="66" fill="url(#glowGrad)" filter="url(#softBlur)"/>
-
-      <g class="helmet-rise">
-        <path d="M250,74 L250,50 Q250,14 280,14 Q310,14 310,50 L310,74 L297,74 L297,56 L263,56 L263,74 Z" fill="url(#goldGrad)" stroke="#6B4E1F" stroke-width="0.75"/>
-        <path d="M264,18 Q280,-8 296,18 Q288,8 280,8 Q272,8 264,18 Z" fill="url(#goldGrad)" stroke="#6B4E1F" stroke-width="0.75"/>
-        <rect x="269" y="39" width="22" height="5" rx="1.5" fill="#0A0C09" opacity="0.75"/>
-      </g>
-
-      <g class="col-rise col-1">
-        <rect x="38" y="80" width="44" height="14" rx="2" fill="url(#goldGrad)"/>
-        <rect x="47" y="98" width="26" height="112" fill="url(#goldGrad)"/>
-        <line x1="52" y1="100" x2="52" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <line x1="60" y1="100" x2="60" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <line x1="68" y1="100" x2="68" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <rect x="35" y="210" width="50" height="10" rx="1" fill="url(#goldGrad)"/>
-        <rect x="30" y="220" width="60" height="6" fill="url(#goldGrad)"/>
-      </g>
-
-      <g class="col-rise col-2">
-        <rect x="148" y="80" width="44" height="14" rx="2" fill="url(#goldGrad)"/>
-        <rect x="157" y="98" width="26" height="112" fill="url(#goldGrad)"/>
-        <line x1="162" y1="100" x2="162" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <line x1="170" y1="100" x2="170" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <line x1="178" y1="100" x2="178" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <rect x="145" y="210" width="50" height="10" rx="1" fill="url(#goldGrad)"/>
-        <rect x="140" y="220" width="60" height="6" fill="url(#goldGrad)"/>
-      </g>
-
-      <g class="col-rise col-3">
-        <rect x="258" y="80" width="44" height="14" rx="2" fill="url(#goldGrad)"/>
-        <rect x="267" y="98" width="26" height="112" fill="url(#goldGrad)"/>
-        <line x1="272" y1="100" x2="272" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <line x1="280" y1="100" x2="280" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <line x1="288" y1="100" x2="288" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <rect x="255" y="210" width="50" height="10" rx="1" fill="url(#goldGrad)"/>
-        <rect x="250" y="220" width="60" height="6" fill="url(#goldGrad)"/>
-      </g>
-
-      <g class="col-rise col-4">
-        <rect x="368" y="80" width="44" height="14" rx="2" fill="url(#goldGrad)"/>
-        <rect x="377" y="98" width="26" height="112" fill="url(#goldGrad)"/>
-        <line x1="382" y1="100" x2="382" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <line x1="390" y1="100" x2="390" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <line x1="398" y1="100" x2="398" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <rect x="365" y="210" width="50" height="10" rx="1" fill="url(#goldGrad)"/>
-        <rect x="360" y="220" width="60" height="6" fill="url(#goldGrad)"/>
-      </g>
-
-      <g class="col-rise col-5">
-        <rect x="478" y="80" width="44" height="14" rx="2" fill="url(#goldGrad)"/>
-        <rect x="487" y="98" width="26" height="112" fill="url(#goldGrad)"/>
-        <line x1="492" y1="100" x2="492" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <line x1="500" y1="100" x2="500" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <line x1="508" y1="100" x2="508" y2="208" stroke="#6B4E1F" stroke-width="1" opacity="0.4"/>
-        <rect x="475" y="210" width="50" height="10" rx="1" fill="url(#goldGrad)"/>
-        <rect x="470" y="220" width="60" height="6" fill="url(#goldGrad)"/>
-      </g>
-
-      <g class="label-fade" font-family="Cinzel, serif" font-size="10" letter-spacing="1" fill="#A9A38C">
-        <text x="60" y="246" text-anchor="middle">FAITH</text>
-        <text x="170" y="246" text-anchor="middle">FAMILY</text>
-        <text x="280" y="246" text-anchor="middle">FINANCE</text>
-        <text x="390" y="246" text-anchor="middle">FITNESS</text>
-        <text x="500" y="246" text-anchor="middle">FREEDOM</text>
-      </g>
-    </svg>
-
-    <div class="cta-block" id="signup">
-      <div class="cta-title">Get Day One free, right now</div>
-      <div class="cta-sub">Enter your email. Day One lands immediately.</div>
-
+<section class="jy-hero">
+  <div class="wrap split">
+    <div>
+      <span class="kicker">The F5IVE Journey, a free 5-day email course</span>
+      <h1>Why some men rebuild. Why most just keep reading about it.</h1>
+      <p class="lede">Five days, one pillar a day, straight to your inbox. The blueprint behind Vision to Victory, in a form you will actually finish.</p>
+      <ul class="ticks" style="margin-top:26px">
+        <li>Day One lands the moment you sign up</li>
+        <li>Five minutes a day, five days</li>
+        <li>Free, and you can unsubscribe at any time</li>
+      </ul>
+    </div>
+    <div class="panel panel--gilt" id="capture">
+      <h2 style="font-size:1.4rem;margin-bottom:18px">Get Day One now</h2>
       <div class="sib-form">
         <div id="sib-form-container" class="sib-form-container">
           <div id="error-message" class="sib-form-message-panel brevo-msg-error">
-            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-              <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
-            </div>
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">That did not go through. Check your email address and try again.</span></div>
           </div>
           <div id="success-message" class="sib-form-message-panel brevo-msg-success">
-            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-              <span class="sib-form-message-panel__inner-text">Your subscription has been successful.</span>
-            </div>
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">You're in. Day One is on its way to your inbox.</span></div>
           </div>
-          <div id="sib-container" class="sib-container--large sib-container--vertical brevo-container">
+          <div id="sib-container" class="sib-container--large sib-container--vertical">
             <form id="sib-form" method="POST" action="https://b91ab0ac.sibforms.com/serve/MUIFAPM-RMBoQRODsIB2NoOJSZz4z814wVCRpgwFeYFhpTBWoRjTq5QXWgEsI_KWeIxkVuv5FxFjIAcUgMYmKLBEdgj_70jpqn0nSEGa90Kd-usWBvoHz52DLlDlp5Wu_VcQcMSU9HlWttLxrYX6CLgUAC5zLTSM2gvrcX1p7E5Nv_5lcUDKXGtUNpuZuyMq0wIeX22qZqB3zLh4vA==" data-type="subscription">
-
-              <div class="brevo-field">
-                <label class="brevo-label" for="FIRSTNAME">First name</label>
-                <input class="brevo-input" maxlength="200" type="text" id="FIRSTNAME" name="FIRSTNAME" autocomplete="off" placeholder="Your first name" />
+              <div class="field">
+                <label for="FIRSTNAME">First name</label>
+                <input maxlength="200" type="text" id="FIRSTNAME" name="FIRSTNAME" autocomplete="given-name" placeholder="Your first name" />
               </div>
-
-              <div class="brevo-field">
-                <label class="brevo-label" for="EMAIL">Email</label>
-                <input class="brevo-input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="you@email.com" data-required="true" required />
+              <div class="field">
+                <label for="EMAIL">Email</label>
+                <input type="email" id="EMAIL" name="EMAIL" autocomplete="email" value="" placeholder="you@email.com" data-required="true" required />
               </div>
-
-              <div class="brevo-optin">
-                <label class="brevo-optin-label">
-                  <input type="checkbox" class="brevo-checkbox" value="1" id="OPT_IN" name="OPT_IN" required />
-                  <span class="brevo-optin-text">I'd like to receive the F5IVE Journey emails. I can unsubscribe any time.</span>
-                </label>
-              </div>
-
-              <button class="brevo-submit sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
-                <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512" style="width:15px;height:15px;">
-                  <path fill="currentColor" d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
-                </svg>
-                Send Me Day One
-              </button>
-
-              <input type="text" name="email_address_check" value="" class="input--hidden">
+              <label class="consent">
+                <input type="checkbox" value="1" id="OPT_IN" name="OPT_IN" required />
+                <span>Send me the F5IVE Journey emails. I can unsubscribe at any time. See the <a href="/privacy.html" class="textlink">privacy policy</a>.</span>
+              </label>
+              <button class="btn btn--gilt btn--block sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">Send me Day One</button>
+              <input type="text" name="email_address_check" value="" class="input--hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
               <input type="hidden" name="locale" value="en">
             </form>
           </div>
         </div>
       </div>
-
-      <div class="microcopy">Five emails. Five days. Unsubscribe any time.</div>
+      <p class="fineprint" style="margin-top:14px">Five emails. Five days.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="proof">
-    <div class="proof-heading">What Readers Are Saying</div>
-    <div class="proof-card">
-      <div class="proof-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <div class="proof-quote">"Honestly, this book is much better than I gave the author credit for. It is a complete guide to understanding why and how men think and do what they do and then the way to change it all based on a holistic approach to the modern man. Well done, brilliant read."</div>
-      <div class="proof-source">&mdash; Verified Amazon review</div>
+<section class="band band--lift">
+  <div class="wrap">
+    <span class="kicker">What each day delivers</span>
+    <h2>Five pillars in five days</h2>
+    <ol class="days">
+      <li><span class="d">Day 1</span><h3>Faith</h3><p>The one belief that has to be settled first, or every other pillar collapses under pressure.</p></li>
+      <li><span class="d">Day 2</span><h3>Family</h3><p>Why presence beats provision, and why most men learn this only after it is too late to fix.</p></li>
+      <li><span class="d">Day 3</span><h3>Finance</h3><p>The real reason some men earn well and stay broke anyway. It isn't the number on their payslip.</p></li>
+      <li><span class="d">Day 4</span><h3>Fitness</h3><p>The one system in life where effort always equals outcome, and why most men never use it.</p></li>
+      <li><span class="d">Day 5</span><h3>Freedom</h3><p>Why freedom is earned, never given, and what it costs the men who try to skip straight to it.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split">
+    <div>
+      <p class="quote">"Honestly, this book is much better than I gave the author credit for."</p>
+      <span class="cite">Verified Amazon review of Vision to Victory, five stars</span>
     </div>
-    <div class="proof-short">&#9733;&#9733;&#9733;&#9733;&#9733; "Inspiring context." &mdash; another verified Amazon review</div>
-  </section>
+    <div class="stack">
+      <p class="muted">The Journey is built from <strong>Vision to Victory</strong> by Daniel Brown MSc, founder of the F5IVE Framework. A Masters in Psychology, thirteen years of senior leadership and a five-year rebuild after a 2018 redundancy, distilled into five pillars you can act on.</p>
+      <a class="textlink" href="/about.html">Daniel's story</a>
+    </div>
+  </div>
+</section>
 
-  <section class="days">
-    <div class="days-heading">What Each Day Delivers</div>
+<section class="band band--lift">
+  <div class="wrap cost stack">
+    <h2>What happens if you close this page</h2>
+    <p class="lede">Nothing, today. That's the problem.</p>
+    <p class="muted">You can bookmark this and mean it when you say you'll come back once things settle down. Most men do exactly that, and a year later the same pattern is still running, because closing a tab costs nothing in the moment it happens.</p>
+    <p>The Journey is free and takes five minutes a day. Twelve months from now you're either the man who started this week, or the man still waiting for a better week.</p>
+    <a class="btn btn--gilt" href="#capture" style="margin-top:12px">Send me Day One</a>
+  </div>
+</section>
 
-    <div class="day-row">
-      <div class="day-num">I</div>
+
+
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/"><img src="/assets/img/mark.png" alt="" width="40" height="40" /><span><b>The Stoic Architect</b><small>Daniel Brown MSc</small></span></a>
+        <p>Structure for the man who has read the books, done the work, and still feels something is missing.</p>
+      </div>
       <div>
-        <div class="day-pillar">Faith</div>
-        <div class="day-outcome">The one belief that has to be settled first, or every other pillar collapses under pressure.</div>
+        <h4>Start here</h4>
+        <ul>
+          <li><a href="/quiz.html">The F5IVE Score</a></li>
+          <li><a href="/F5iveassessment">The Identity Profile</a></li>
+          <li><a href="/#journey">The free 5-day Journey</a></li>
+          <li><a href="/framework.html">The Framework</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Go deeper</h4>
+        <ul>
+          <li><a href="/book.html">Vision to Victory</a></li>
+          <li><a href="https://amzn.eu/d/04l3yLcL" target="_blank" rel="noopener">Buy on Amazon</a></li>
+          <li><a href="/courses.html">Pillar courses</a></li>
+          <li><a href="/brotherhood.html">The Brotherhood</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Daniel</h4>
+        <ul>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/blog.html">Insights</a></li>
+          <li><a href="/speaking.html">Speaking and press</a></li>
+          <li><a href="https://instagram.com/danielmrbrown" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://youtube.com/@thestoicarchitectuk" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.linkedin.com/in/daniel-brown-511a47122" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
       </div>
     </div>
-
-    <div class="day-row">
-      <div class="day-num">II</div>
-      <div>
-        <div class="day-pillar">Family</div>
-        <div class="day-outcome">Why presence beats provision, and why most men learn this only after it's too late to fix.</div>
-      </div>
+    <div class="foot-pillars" aria-label="The five pillars"><span>Faith</span><span>Family</span><span>Finance</span><span>Fitness</span><span>Freedom</span></div>
+    <div class="foot-base">
+      <span>&copy; 2026 Daniel Brown MSc. All rights reserved.</span>
+      <span class="foot-legal"><a href="/privacy.html">Privacy policy</a><a href="/cookies.html">Cookie policy</a><a href="/terms.html">Terms of use</a><a href="#" data-cookie-settings>Cookie settings</a></span>
     </div>
-
-    <div class="day-row">
-      <div class="day-num">III</div>
-      <div>
-        <div class="day-pillar">Finance</div>
-        <div class="day-outcome">The real reason some men earn well and stay broke anyway, and it isn't the number on their payslip.</div>
-      </div>
-    </div>
-
-    <div class="day-row">
-      <div class="day-num">IV</div>
-      <div>
-        <div class="day-pillar">Fitness</div>
-        <div class="day-outcome">The one system in life where effort always equals outcome, and why most men never actually use it.</div>
-      </div>
-    </div>
-
-    <div class="day-row">
-      <div class="day-num">V</div>
-      <div>
-        <div class="day-pillar">Freedom</div>
-        <div class="day-outcome">Why freedom is earned, never given, and what it actually costs the men who skip straight to it.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="credibility">
-    <p>Built from <strong>Vision to Victory</strong>, by Daniel Brown MSc, founder of the F5IVE Framework and the F5IVE Brotherhood. A Masters in Psychology and years in senior leadership, distilled into five pillars men can actually implement.</p>
-  </section>
-
-  <section class="stakes">
-    <div class="stakes-heading">Here's what happens if you close this page.</div>
-    <p>Nothing, today. That's exactly the problem. You can bookmark this, tell yourself you'll come back to it "when things settle down," and mean it completely.</p>
-    <p>Most men do exactly that. And most men are in the same place a year later, just a year older, with the same pattern still running, because closing a tab costs nothing in the moment it happens.</p>
-    <p><strong>The Journey is free and takes five minutes a day.</strong> The version of you twelve months from now is either the man who started this week, or the man still waiting for a better one that never actually arrives.</p>
-  </section>
-
-  <section class="final-cta">
-    <h2>The next five days are free.<br>The next twelve months aren't.</h2>
-    <a href="#signup" class="back-to-signup">Get Day One Free</a>
-    <div class="microcopy" style="margin-top:16px;">Five emails. Five days. Unsubscribe any time.</div>
-  </section>
-
-</div>
+  </div>
+</footer>
+<script src="/assets/site.js?v=3" defer></script>
 
 <script>
   window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
   window.LOCALE = 'en';
-  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
-  window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
-  window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
-  window.INVALID_NUMBER = "The information provided is invalid. Please review the field format and try again.";
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "That email address doesn't look right. Check it and try again.";
+  window.REQUIRED_ERROR_MESSAGE = "This field is required.";
+  window.GENERIC_INVALID_MESSAGE = "Something in this form isn't right. Check it and try again.";
+  window.INVALID_NUMBER = "That number isn't valid.";
   window.INVALID_DATE = "Please enter a valid date";
   window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
-  window.translation = {
-    common: {
-      selectedList: '{quantity} list selected',
-      selectedLists: '{quantity} lists selected',
-      selectedOption: '{quantity} selected',
-      selectedOptions: '{quantity} selected',
-    }
-  };
+  window.translation = { common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} lists selected', selectedOption: '{quantity} selected', selectedOptions: '{quantity} selected' } };
   var AUTOHIDE = Boolean(0);
 </script>
 <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-
 </body>
 </html>

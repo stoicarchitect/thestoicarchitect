@@ -1,3 +1,12 @@
+/* Self-hosted fonts (SIL Open Font Licence). No requests to Google. */
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/cinzel-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/cinzel-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/cinzel-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/archivo-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/archivo-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/archivo-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'EB Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(/assets/fonts/eb-garamond-latin-400-italic.woff2) format('woff2')}
+
 /* The Stoic Architect - shared design system
    One stylesheet for every page. Edit tokens here, not per page. */
 
@@ -137,7 +146,7 @@ strong { font-weight: 600; color: var(--parchment); }
 }
 
 /* ── The Colonnade (signature element) ────────────── */
-.colonnade { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(10px, 2.4vw, 34px); align-items: end; }
+.colonnade { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(10px, 2.4vw, 34px); align-items: end; }
 .col { display: flex; flex-direction: column; align-items: center; text-decoration: none; }
 .col-cap { width: 100%; height: 12px; background: linear-gradient(var(--gilt-hi), var(--bronze)); clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%); }
 .col-shaft {
@@ -325,3 +334,85 @@ strong { font-weight: 600; color: var(--parchment); }
 @media (max-width: 520px) { .author { grid-template-columns: 1fr; } .prose { font-size: 1.06rem; } }
 .prose .article-divider:empty { justify-content: center; }
 .prose .article-divider:empty::before, .prose .article-divider:empty::after { flex: 0 0 72px; }
+.foot-legal { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.site-head--focus .textlink { font-size: .95rem; }
+
+/* ── Legal pages ── */
+.legal-grid { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: clamp(32px, 6vw, 88px); padding-block: clamp(48px, 7vw, 88px); }
+.legal-toc { position: sticky; top: 104px; align-self: start; list-style: none; border-left: 1px solid var(--rule); }
+.legal-toc a { display: block; padding: 7px 0 7px 18px; color: var(--ash); text-decoration: none; font-size: .93rem; }
+.legal-toc a:hover { color: var(--gilt-hi); }
+.summary { background: var(--hearth); border-left: 2px solid var(--gilt); padding: 24px 28px; }
+.prose h2 { scroll-margin-top: 96px; }
+.prose table { width: 100%; border-collapse: collapse; font-size: .97rem; }
+.prose th, .prose td { text-align: left; padding: 12px 14px 12px 0; border-bottom: 1px solid var(--rule-soft); vertical-align: top; color: #ddd3c1; }
+.prose th { color: var(--parchment); font-weight: 600; border-bottom-color: var(--rule); }
+.table-wrap { overflow-x: auto; }
+@media (max-width: 900px) { .legal-grid { grid-template-columns: 1fr; } .legal-toc { position: static; } }
+
+/* ── F5IVE Score (quiz and results) ── */
+.qz-hero { padding: calc(76px + clamp(40px, 6vw, 80px)) 0 clamp(32px, 5vw, 56px); }
+.qz-hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(50% 70% at 50% 0%, rgba(200,160,77,.14), transparent 70%); }
+.qz-hero .wrap { position: relative; text-align: center; }
+.qz-hero h1 { max-width: 20ch; margin: 0 auto; font-size: clamp(2rem, 4.6vw, 3.6rem); }
+.qz-hero .lede { margin: 22px auto 0; }
+.qz-facts { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 28px; margin-top: 26px; color: var(--ash); font-size: .95rem; }
+.qz-facts b { color: var(--gilt); font-weight: 600; }
+.stage { max-width: 860px; margin: 0 auto; padding: 0 var(--gutter) var(--space); }
+.card { background: var(--hearth); border: 1px solid var(--rule); padding: clamp(28px, 5vw, 52px); }
+.card--start { text-align: center; }
+.card--start p { margin: 0 auto 28px; font-size: 1.15rem; color: var(--parchment); }
+
+/* progress as a colonnade: one column per pillar, three courses of stone each */
+.tracker { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(8px, 2vw, 20px); margin-bottom: 30px; }
+.tk { text-align: center; }
+.tk-stones { display: flex; flex-direction: column-reverse; gap: 3px; width: 46%; margin: 0 auto; }
+.tk-stones i { display: block; height: 14px; background: rgba(239,230,212,.07); transition: background .35s var(--ease); }
+.tk-stones i.on { background: linear-gradient(90deg, #6d532f, var(--gilt) 50%, #6d532f); }
+.tk-name { margin-top: 8px; font: 600 .72rem var(--display); letter-spacing: .08em; color: var(--ash); }
+.tk.now .tk-name { color: var(--gilt-hi); }
+.q-meta { display: flex; justify-content: space-between; color: var(--ash); font-size: .9rem; margin-bottom: 14px; }
+.q-meta b { color: var(--gilt); font-weight: 600; }
+.q-text { font: 500 clamp(1.25rem, 2.4vw, 1.6rem)/1.4 var(--sans); color: var(--parchment); margin-bottom: 28px; max-width: none; }
+.answers { display: grid; gap: 10px; }
+.answer { text-align: left; min-height: 56px; padding: 14px 18px; background: rgba(239,230,212,.03); border: 1px solid rgba(239,230,212,.12); border-radius: 2px; color: var(--parchment); cursor: pointer; font-size: 1rem; display: flex; gap: 14px; align-items: center; transition: border-color .2s, background .2s; }
+.answer:hover { border-color: var(--rule); background: rgba(200,160,77,.06); }
+.answer.picked { border-color: var(--gilt); background: rgba(200,160,77,.14); }
+.answer kbd { font: 600 .8rem var(--sans); color: var(--ash); border: 1px solid var(--rule-soft); min-width: 26px; height: 26px; display: inline-grid; place-items: center; border-radius: 2px; flex-shrink: 0; }
+.back { margin-top: 20px; background: none; border: 0; color: var(--ash); cursor: pointer; font-size: .92rem; text-decoration: underline; text-underline-offset: 4px; }
+.back[hidden] { display: none; }
+
+.gate { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: clamp(28px, 5vw, 56px); align-items: start; }
+.gate .total { font: 700 clamp(4rem, 9vw, 6rem)/1 var(--display); color: var(--gilt-hi); filter: blur(14px); user-select: none; }
+.gate .of { color: var(--ash); margin-top: 6px; }
+.gate .colonnade { margin-top: 30px; filter: blur(5px); opacity: .85; }
+.gate .colonnade .col-name { filter: blur(0); }
+.gate h2 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin-bottom: 12px; }
+.gate .sib-form .field { margin-bottom: 12px; }
+.score-fields { display: none !important; }
+
+.res-head { text-align: center; margin-bottom: 36px; }
+.res-head h2 { font-size: clamp(1.6rem, 3.2vw, 2.4rem); }
+.res-head p { margin: 12px auto 0; color: var(--ash); }
+.res-cols .col-note { color: var(--parchment); font-weight: 600; }
+.focus { margin-top: 40px; border-left: 2px solid var(--gilt); background: var(--basalt); padding: 24px 28px; }
+.focus span { display: block; color: var(--gilt); font-size: .9rem; font-weight: 600; margin-bottom: 8px; }
+.reading { margin-top: 28px; list-style: none; border-top: 1px solid var(--rule-soft); }
+.reading a { display: block; padding: 14px 0; border-bottom: 1px solid var(--rule-soft); text-decoration: none; color: var(--parchment); }
+.reading a:hover { color: var(--gilt-hi); }
+.next { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.next .btn { width: 100%; }
+
+.proof { max-width: 860px; margin: 0 auto; padding: 0 var(--gutter) var(--space); display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.proof .quote { font-size: 1.3rem; }
+@media (max-width: 760px) {
+  .gate, .proof, .next { grid-template-columns: 1fr; }
+  .tk-name { font-size: .6rem; letter-spacing: .02em; }
+}
+.next-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 32px; }
+.next-row a { background: var(--hearth); padding: 30px 28px; text-decoration: none; transition: background .25s; }
+.next-row a:hover { background: var(--hearth-2); }
+.next-row h3 { font: 600 1.15rem/1.25 var(--display); letter-spacing: .04em; margin-bottom: 10px; }
+.next-row p { color: var(--ash); font-size: .96rem; }
+@media (max-width: 860px) { .next-row { grid-template-columns: 1fr; } }
+.legal-grid > * { min-width: 0; }

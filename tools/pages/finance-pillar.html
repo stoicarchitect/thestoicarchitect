@@ -200,13 +200,12 @@
       <h2>The framework is free. Building it isn't, and that's the point.</h2>
       <p class="muted" style="margin-top:20px">Six months from now you're either the man who ran his own audit and built one real system, or the man still meaning to get round to it. Join the founding list and you'll be first in when the doors open.</p>
     </div>
-    <form class="panel panel--gilt" data-formspree="finance-founding-list" data-done="You're on the list" data-thanks="You're on the Finance Pillar founding list. Daniel will email you the moment it opens.">
-      <input type="hidden" name="_subject" value="Finance Pillar founding list sign-up" />
-      <input type="hidden" name="list" value="Finance Pillar founding list" />
+    <form class="panel panel--gilt" data-lead="founding" data-done="You're on the list" data-thanks="You're on the Finance Pillar founding list. Daniel will email you the moment it opens.">
       <input type="hidden" name="pillar" value="Finance" />
       <div class="field"><label for="fp-name">First name</label><input id="fp-name" name="name" autocomplete="given-name" required /></div>
       <div class="field"><label for="fp-email">Email</label><input id="fp-email" type="email" name="email" autocomplete="email" required /></div>
       <label class="consent"><input type="checkbox" name="consent" value="yes" required /><span>Email me when the Finance Pillar opens. See the <a class="textlink" href="/privacy.html">privacy policy</a>.</span></label>
+      <div class="sr-only" aria-hidden="true"><label for="hp-fp">Leave this empty</label><input id="hp-fp" name="website" tabindex="-1" autocomplete="off" /></div>
       <button class="btn btn--gilt btn--block" type="submit">Join the founding list</button>
       <p class="fineprint" style="margin-top:12px">&pound;97 at launch. 30-day money-back guarantee.</p>
     </form>

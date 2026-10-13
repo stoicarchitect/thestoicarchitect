@@ -101,10 +101,9 @@
     <div>
       <h2>Let's talk</h2>
       <p class="muted" style="margin-top:20px">Speaking, podcasts, press, review copies or partnerships. Daniel reads every enquiry himself.</p>
-      <p style="margin-top:28px">Prefer email? <a class="textlink" href="mailto:danielbrown.authorf5@gmail.com">danielbrown.authorf5@gmail.com</a></p>
+      <p style="margin-top:28px">Prefer email? <a class="textlink" href="mailto:F5ive@thestoicarchitect.com">F5ive@thestoicarchitect.com</a></p>
     </div>
-    <form class="panel panel--gilt" data-formspree="speaking-enquiry" data-done="Enquiry sent">
-      <input type="hidden" name="_subject" value="Speaking and press enquiry" />
+    <form class="panel panel--gilt" data-lead="enquiry" data-done="Enquiry sent">
       <div class="row2">
         <div class="field"><label for="sp-name">Name</label><input id="sp-name" name="name" autocomplete="name" required /></div>
         <div class="field"><label for="sp-email">Email</label><input id="sp-email" type="email" name="email" autocomplete="email" required /></div>
@@ -119,6 +118,7 @@
         </div>
       </div>
       <div class="field"><label for="sp-msg">Message</label><textarea id="sp-msg" name="message" required placeholder="Dates, audience size, format, anything useful"></textarea></div>
+      <div class="sr-only" aria-hidden="true"><label for="hp-sp">Leave this empty</label><input id="hp-sp" name="website" tabindex="-1" autocomplete="off" /></div>
       <button class="btn btn--gilt btn--block" type="submit">Send enquiry</button>
     </form>
   </div>

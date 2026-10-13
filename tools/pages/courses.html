@@ -108,9 +108,7 @@
         <p class="fineprint">Not started the framework yet? <a class="textlink" href="{{QUIZ}}">Take the F5IVE Score</a> first. It tells you which pillar to build before the others.</p>
       </div>
     </div>
-    <form class="panel panel--gilt" data-formspree="course-founding-list" data-done="You're on the list" data-thanks="You're on the founding list. Daniel will email you when the course opens.">
-      <input type="hidden" name="_subject" value="Course founding list sign-up" />
-      <input type="hidden" name="list" value="Course founding list" />
+    <form class="panel panel--gilt" data-lead="founding" data-done="You're on the list" data-thanks="You're on the founding list. Daniel will email you when the course opens.">
       <div class="row2">
         <div class="field"><label for="cf-name">First name</label><input id="cf-name" name="name" autocomplete="given-name" required /></div>
         <div class="field"><label for="cf-email">Email</label><input id="cf-email" type="email" name="email" autocomplete="email" required /></div>
@@ -126,6 +124,7 @@
         </select>
       </div>
       <label class="consent"><input type="checkbox" name="consent" value="yes" required /><span>Email me when this course opens. My details are only used for that. See the <a class="textlink" href="/privacy.html">privacy policy</a>.</span></label>
+      <div class="sr-only" aria-hidden="true"><label for="hp-cf">Leave this empty</label><input id="hp-cf" name="website" tabindex="-1" autocomplete="off" /></div>
       <button class="btn btn--gilt btn--block" type="submit">Join the founding list</button>
     </form>
   </div>

@@ -5,7 +5,7 @@ import build
 from bs4 import BeautifulSoup
 
 SP = os.path.dirname(os.path.abspath(__file__))
-ORIG = os.path.join(SP, 'orig_articles')
+ORIG = os.environ.get('ORIG_ARTICLES', os.path.join(SP, 'orig_articles'))
 OUT = os.path.join(build.REPO, 'articles')
 A = json.load(open(os.path.join(SP, 'articles.json')))
 META = {s: dict(pillar=p, title=t, dek=d, mins=m) for s, p, t, d, m in A}
@@ -83,7 +83,7 @@ for slug, m in META.items():
 {body}
     </article>
     <div class="author">
-      <img src="/assets/img/daniel.webp" alt="" width="96" height="96" loading="lazy" />
+      <img src="/assets/img/daniel-square.webp" alt="" width="96" height="96" loading="lazy" />
       <div><b>Daniel Brown MSc</b><p>Author of Vision to Victory and founder of the F5IVE Framework. MSc Psychology, BSc (Hons) Artificial Intelligence, thirteen years of senior leadership and a five-year rebuild after a 2018 redundancy. <a class="textlink" href="/about.html">More about Daniel</a></p></div>
     </div>
   </div>

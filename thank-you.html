@@ -1,489 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Guide Is On Its Way — The Stoic Architect</title>
-  <meta name="description" content="Your F5IVE Framework Guide is on its way. Check your inbox." />
-  <meta name="robots" content="noindex, nofollow" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ── Reset & Base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --black:      #0A0A0A;
-      --near-black: #111111;
-      --dark:       #1A1A1A;
-      --mid:        #2E2E2E;
-      --grey:       #888888;
-      --light-grey: #CCCCCC;
-      --cream:      #F5F1EB;
-      --off-white:  #FDFAF6;
-      --gold:       #C9A84C;
-      --gold-light: #E8D5A3;
-      --gold-dim:   rgba(201,168,76,0.15);
-      --serif:      'Cormorant Garamond', Georgia, serif;
-      --sans:       'Inter', system-ui, sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--near-black);
-      color: var(--cream);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── Nav ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(10,10,10,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201,168,76,0.2);
-      padding: 0 40px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-brand {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--cream);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-    }
-
-    .nav-brand span {
-      color: var(--gold);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--light-grey);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    /* ── Gold top bar ── */
-    .gold-bar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--gold);
-      z-index: 200;
-    }
-
-    /* ── Main ── */
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 24px 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Subtle architectural grid bg */
-    main::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-    }
-
-    /* Radial glow */
-    main::after {
-      content: '';
-      position: absolute;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .thank-you-wrap {
-      position: relative;
-      z-index: 1;
-      max-width: 640px;
-      width: 100%;
-    }
-
-    /* Checkmark animation */
-    .check-circle {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      border: 2px solid var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 32px;
-      animation: fadeScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .check-circle svg {
-      width: 32px;
-      height: 32px;
-      stroke: var(--gold);
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-      stroke-dasharray: 50;
-      stroke-dashoffset: 50;
-      animation: drawCheck 0.5s 0.4s ease forwards;
-    }
-
-    @keyframes fadeScale {
-      from { opacity: 0; transform: scale(0.7); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes drawCheck {
-      to { stroke-dashoffset: 0; }
-    }
-
-    /* Label */
-    .eyebrow {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-      animation: fadeUp 0.6s 0.2s both;
-    }
-
-    /* Headline */
-    h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--cream);
-      margin-bottom: 20px;
-      animation: fadeUp 0.6s 0.3s both;
-    }
-
-    h1 em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
-    /* Rule */
-    .gold-rule {
-      width: 60px;
-      height: 1px;
-      background: var(--gold);
-      margin: 24px auto;
-      animation: fadeUp 0.6s 0.4s both;
-    }
-
-    /* Body */
-    .body-text {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--light-grey);
-      line-height: 1.75;
-      margin-bottom: 12px;
-      animation: fadeUp 0.6s 0.45s both;
-    }
-
-    .body-text strong {
-      color: var(--cream);
-      font-weight: 500;
-    }
-
-    /* Inbox note */
-    .inbox-note {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gold-dim);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 4px;
-      padding: 10px 18px;
-      font-size: 0.82rem;
-      color: var(--gold-light);
-      letter-spacing: 0.02em;
-      margin: 20px 0 36px;
-      animation: fadeUp 0.6s 0.5s both;
-    }
-
-    .inbox-note svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--gold);
-      fill: none;
-      stroke-width: 2;
-      flex-shrink: 0;
-    }
-
-    /* Next steps */
-    .next-steps {
-      border-top: 1px solid rgba(201,168,76,0.2);
-      padding-top: 40px;
-      margin-top: 8px;
-      animation: fadeUp 0.6s 0.6s both;
-    }
-
-    .next-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--grey);
-      margin-bottom: 28px;
-    }
-
-    .next-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .next-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 4px;
-      padding: 20px 16px;
-      text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .next-card:hover {
-      border-color: rgba(201,168,76,0.4);
-      background: rgba(201,168,76,0.04);
-    }
-
-    .next-card-icon {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .next-card-title {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--cream);
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .next-card-desc {
-      font-size: 0.75rem;
-      font-weight: 300;
-      color: var(--grey);
-      line-height: 1.5;
-    }
-
-    /* Quote */
-    .closing-quote {
-      margin-top: 56px;
-      padding: 32px 40px;
-      border-left: 2px solid var(--gold);
-      text-align: left;
-      background: rgba(201,168,76,0.04);
-      animation: fadeUp 0.6s 0.7s both;
-    }
-
-    .closing-quote p {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-style: italic;
-      color: var(--cream);
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-
-    .closing-quote cite {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-style: normal;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── Footer ── */
-    footer {
-      background: var(--black);
-      border-top: 1px solid rgba(201,168,76,0.15);
-      padding: 32px 40px;
-      text-align: center;
-    }
-
-    .footer-brand {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--cream);
-      margin-bottom: 8px;
-    }
-
-    .footer-pillars {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .footer-links a {
-      font-size: 0.75rem;
-      color: var(--grey);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--gold); }
-
-    .footer-copy {
-      font-size: 0.7rem;
-      color: var(--grey);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 600px) {
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      main { padding: 100px 20px 60px; }
-      .next-grid { grid-template-columns: 1fr; }
-      .closing-quote { padding: 24px 20px; }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Day One is on its way | The Stoic Architect</title>
+  <meta name="description" content="Your first F5IVE Journey email is on its way." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#12100E" />
+  <link rel="icon" href="/Stoic_Architect_Favicon_Mark.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="The Stoic Architect" />
+  <meta property="og:title" content="Day One is on its way | The Stoic Architect" />
+  <meta property="og:description" content="Your first F5IVE Journey email is on its way." />
+  <meta property="og:url" content="https://www.thestoicarchitect.com/thank-you.html" />
+  <meta property="og:image" content="https://www.thestoicarchitect.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@danielmrbrown" />
+  <meta name="twitter:image" content="https://www.thestoicarchitect.com/og-image.png" />
+  <link rel="preload" href="/assets/fonts/cinzel-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/archivo-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/site.css?v=3" />
+  <script src="/assets/consent.js?v=1" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="/" aria-label="The Stoic Architect, home">
+      <img src="/assets/img/mark.png" alt="" width="40" height="40" />
+      <span><b>The Stoic Architect</b><small>Vision to Victory</small></span>
+    </a>
+    <nav aria-label="Main"><ul class="nav"><li><a href="/book.html">The Book</a></li><li><a href="/framework.html">The Framework</a></li><li><a href="/F5iveassessment">Identity Profile</a></li><li><a href="/courses.html">Courses</a></li><li><a href="/blog.html">Insights</a></li><li><a href="/about.html">About</a></li></ul></nav>
+    <a class="btn btn--gilt head-cta" href="/quiz.html">Take the F5IVE Score</a>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer"><span></span></button>
+  </div>
+</header>
+<div class="drawer" id="drawer">
+  <ol>
+    <li><a href="/book.html">The Book <small>Vision to Victory</small></a></li>
+    <li><a href="/framework.html">The Framework <small>Five pillars</small></a></li>
+    <li><a href="/F5iveassessment">Identity Profile <small>Free, 10 minutes</small></a></li>
+    <li><a href="/courses.html">Courses <small>Finance first</small></a></li>
+    <li><a href="/blog.html">Insights <small>Articles</small></a></li>
+    <li><a href="/brotherhood.html">Brotherhood <small>Forming</small></a></li>
+    <li><a href="/about.html">About Daniel</a></li>
+    <li><a href="/speaking.html">Speaking and press</a></li>
+  </ol>
+  <a class="btn btn--gilt" href="/quiz.html">Take the F5IVE Score</a>
+</div>
+<main id="main">
+<section class="page-hero" style="border:0">
+  <div class="wrap">
+    <span class="kicker">You're in</span>
+    <h1>Day One is on its way</h1>
+    <p class="lede">Check your inbox in the next few minutes for an email from The Stoic Architect. If it isn't there, look in promotions or spam and mark it as safe, so the next four days arrive where you'll see them.</p>
+  </div>
+</section>
 
-  <div class="gold-bar"></div>
-
-  <nav>
-    <a href="/index.html" class="nav-brand">Vision to Victory <span>·</span> The Stoic Architect</a>
-    <ul class="nav-links">
-      <li><a href="/book.html">The Book</a></li>
-      <li><a href="/framework.html">F5IVE</a></li>
-      <li><a href="/F5iveassessment">Find Your Archetype</a></li>
-      <li><a href="/about.html">About</a></li>
-      <li><a href="/blog.html">Insights</a></li>
-      <li><a href="/brotherhood.html">Brotherhood</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <div class="thank-you-wrap">
-
-      <div class="check-circle">
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      </div>
-
-      <p class="eyebrow">Guide Confirmed</p>
-
-      <h1>Your F5IVE Guide<br>is on its way.</h1>
-
-      <div class="gold-rule"></div>
-
-      <p class="body-text">
-        Check your inbox — the guide will arrive within the next few minutes.<br>
-        <strong>Check your spam folder</strong> if you don't see it, then mark us as safe.
-      </p>
-
-      <div class="inbox-note">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        From: danielbrown.authorf5@gmail.com — add this to your contacts
-      </div>
-
-      <div class="next-steps">
-        <p class="next-label">While you wait — explore the framework</p>
-        <div class="next-grid">
-          <a href="/framework.html" class="next-card">
-            <span class="next-card-icon">◈</span>
-            <span class="next-card-title">The F5IVE Framework</span>
-            <p class="next-card-desc">All five pillars explained in full. The architecture behind the guide.</p>
-          </a>
-          <a href="/blog.html" class="next-card">
-            <span class="next-card-icon">∞</span>
-            <span class="next-card-title">Insights</span>
-            <p class="next-card-desc">Articles on each pillar. Structured thinking, no motivation fluff.</p>
-          </a>
-          <a href="/brotherhood.html" class="next-card">
-            <span class="next-card-icon">🏛</span>
-            <span class="next-card-title">The Brotherhood</span>
-            <p class="next-card-desc">The F5IVE accountability community. Men building the same architecture.</p>
-          </a>
-        </div>
-      </div>
-
-      <blockquote class="closing-quote">
-        <p>"Clarity is not a problem. It is the beginning of the solution."</p>
-        <cite>— Daniel Brown MSc · The Stoic Architect</cite>
-      </blockquote>
-
+<section class="band band--tight">
+  <div class="wrap">
+    <h2 style="font-size:clamp(1.4rem,2.6vw,1.9rem)">While you wait</h2>
+    <div class="next-row">
+      <a href="/quiz.html"><h3>Find your weakest pillar</h3><p>The F5IVE Score takes 60 seconds and tells you which day of the Journey to read twice.</p></a>
+      <a href="/framework.html"><h3>The framework in full</h3><p>All five pillars, the question each one asks, and how they hold each other up.</p></a>
+      <a href="/book.html"><h3>Vision to Victory</h3><p>The book the Journey is drawn from. 19 chapters, four parts, one architecture.</p></a>
     </div>
-  </main>
+    <p class="quote" style="margin-top:72px">"Clarity is not the problem. It is the beginning of the solution."</p>
+  </div>
+</section>
 
-  <footer>
-    <p class="footer-brand">Vision to Victory · The Stoic Architect</p>
-    <p class="footer-pillars">Faith · Family · Finance · Fitness · Freedom</p>
-    <div class="footer-links">
-      <a href="/book.html">The Book</a>
-      <a href="/framework.html">F5IVE</a>
-      <a href="/about.html">About</a>
-      <a href="/blog.html">Insights</a>
-      <a href="/brotherhood.html">Brotherhood</a>
-      <a href="/privacy.html">Privacy Policy</a>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/"><img src="/assets/img/mark.png" alt="" width="40" height="40" /><span><b>The Stoic Architect</b><small>Daniel Brown MSc</small></span></a>
+        <p>Structure for the man who has read the books, done the work, and still feels something is missing.</p>
+      </div>
+      <div>
+        <h4>Start here</h4>
+        <ul>
+          <li><a href="/quiz.html">The F5IVE Score</a></li>
+          <li><a href="/F5iveassessment">The Identity Profile</a></li>
+          <li><a href="/#journey">The free 5-day Journey</a></li>
+          <li><a href="/framework.html">The Framework</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Go deeper</h4>
+        <ul>
+          <li><a href="/book.html">Vision to Victory</a></li>
+          <li><a href="https://amzn.eu/d/04l3yLcL" target="_blank" rel="noopener">Buy on Amazon</a></li>
+          <li><a href="/courses.html">Pillar courses</a></li>
+          <li><a href="/brotherhood.html">The Brotherhood</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Daniel</h4>
+        <ul>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/blog.html">Insights</a></li>
+          <li><a href="/speaking.html">Speaking and press</a></li>
+          <li><a href="https://instagram.com/danielmrbrown" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://youtube.com/@thestoicarchitectuk" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.linkedin.com/in/daniel-brown-511a47122" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
     </div>
-    <p class="footer-copy">© 2026 Daniel Brown MSc. All rights reserved.</p>
-  </footer>
-
+    <div class="foot-pillars" aria-label="The five pillars"><span>Faith</span><span>Family</span><span>Finance</span><span>Fitness</span><span>Freedom</span></div>
+    <div class="foot-base">
+      <span>&copy; 2026 Daniel Brown MSc. All rights reserved.</span>
+      <span class="foot-legal"><a href="/privacy.html">Privacy policy</a><a href="/cookies.html">Cookie policy</a><a href="/terms.html">Terms of use</a><a href="#" data-cookie-settings>Cookie settings</a></span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js?v=3" defer></script>
 </body>
 </html>

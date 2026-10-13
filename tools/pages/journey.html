@@ -1,0 +1,118 @@
+<!--HEAD-->
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" />
+  <style>
+    .jy-hero { padding: calc(76px + clamp(40px, 7vw, 96px)) 0 clamp(56px, 8vw, 104px); overflow: hidden; }
+    .jy-hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(50% 60% at 80% 30%, rgba(200,160,77,.15), transparent 70%); }
+    .jy-hero .split { position: relative; grid-template-columns: 1.1fr .9fr; }
+    .jy-hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); }
+    .jy-hero .lede { margin-top: 24px; }
+    .days { list-style: none; border-top: 1px solid var(--rule); margin-top: 48px; }
+    .days li { display: grid; grid-template-columns: 90px 200px 1fr; gap: 24px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--rule-soft); }
+    .days .d { font: 600 .9rem var(--display); letter-spacing: .1em; color: var(--bronze); }
+    .days h3 { font: 600 1.4rem/1.2 var(--display); letter-spacing: .05em; }
+    .days p { color: var(--ash); }
+    .cost { max-width: 760px; }
+    @media (max-width: 860px) { .jy-hero .split { grid-template-columns: 1fr; } .days li { grid-template-columns: 1fr; gap: 4px; } }
+  </style>
+<!--/HEAD-->
+
+<section class="jy-hero">
+  <div class="wrap split">
+    <div>
+      <span class="kicker">The F5IVE Journey, a free 5-day email course</span>
+      <h1>Why some men rebuild. Why most just keep reading about it.</h1>
+      <p class="lede">Five days, one pillar a day, straight to your inbox. The blueprint behind Vision to Victory, in a form you will actually finish.</p>
+      <ul class="ticks" style="margin-top:26px">
+        <li>Day One lands the moment you sign up</li>
+        <li>Five minutes a day, five days</li>
+        <li>Free, and you can unsubscribe at any time</li>
+      </ul>
+    </div>
+    <div class="panel panel--gilt" id="capture">
+      <h2 style="font-size:1.4rem;margin-bottom:18px">Get Day One now</h2>
+      <div class="sib-form">
+        <div id="sib-form-container" class="sib-form-container">
+          <div id="error-message" class="sib-form-message-panel brevo-msg-error">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">That did not go through. Check your email address and try again.</span></div>
+          </div>
+          <div id="success-message" class="sib-form-message-panel brevo-msg-success">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center"><span class="sib-form-message-panel__inner-text">You're in. Day One is on its way to your inbox.</span></div>
+          </div>
+          <div id="sib-container" class="sib-container--large sib-container--vertical">
+            <form id="sib-form" method="POST" action="https://b91ab0ac.sibforms.com/serve/MUIFAPM-RMBoQRODsIB2NoOJSZz4z814wVCRpgwFeYFhpTBWoRjTq5QXWgEsI_KWeIxkVuv5FxFjIAcUgMYmKLBEdgj_70jpqn0nSEGa90Kd-usWBvoHz52DLlDlp5Wu_VcQcMSU9HlWttLxrYX6CLgUAC5zLTSM2gvrcX1p7E5Nv_5lcUDKXGtUNpuZuyMq0wIeX22qZqB3zLh4vA==" data-type="subscription">
+              <div class="field">
+                <label for="FIRSTNAME">First name</label>
+                <input maxlength="200" type="text" id="FIRSTNAME" name="FIRSTNAME" autocomplete="given-name" placeholder="Your first name" />
+              </div>
+              <div class="field">
+                <label for="EMAIL">Email</label>
+                <input type="email" id="EMAIL" name="EMAIL" autocomplete="email" value="" placeholder="you@email.com" data-required="true" required />
+              </div>
+              <label class="consent">
+                <input type="checkbox" value="1" id="OPT_IN" name="OPT_IN" required />
+                <span>Send me the F5IVE Journey emails. I can unsubscribe at any time. See the <a href="/privacy.html" class="textlink">privacy policy</a>.</span>
+              </label>
+              <button class="btn btn--gilt btn--block sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">Send me Day One</button>
+              <input type="text" name="email_address_check" value="" class="input--hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="hidden" name="locale" value="en">
+            </form>
+          </div>
+        </div>
+      </div>
+      <p class="fineprint" style="margin-top:14px">Five emails. Five days.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--lift">
+  <div class="wrap">
+    <span class="kicker">What each day delivers</span>
+    <h2>Five pillars in five days</h2>
+    <ol class="days">
+      <li><span class="d">Day 1</span><h3>Faith</h3><p>The one belief that has to be settled first, or every other pillar collapses under pressure.</p></li>
+      <li><span class="d">Day 2</span><h3>Family</h3><p>Why presence beats provision, and why most men learn this only after it is too late to fix.</p></li>
+      <li><span class="d">Day 3</span><h3>Finance</h3><p>The real reason some men earn well and stay broke anyway. It isn't the number on their payslip.</p></li>
+      <li><span class="d">Day 4</span><h3>Fitness</h3><p>The one system in life where effort always equals outcome, and why most men never use it.</p></li>
+      <li><span class="d">Day 5</span><h3>Freedom</h3><p>Why freedom is earned, never given, and what it costs the men who try to skip straight to it.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split">
+    <div>
+      <p class="quote">"Honestly, this book is much better than I gave the author credit for."</p>
+      <span class="cite">Verified Amazon review of Vision to Victory, five stars</span>
+    </div>
+    <div class="stack">
+      <p class="muted">The Journey is built from <strong>Vision to Victory</strong> by Daniel Brown MSc, founder of the F5IVE Framework. A Masters in Psychology, thirteen years of senior leadership and a five-year rebuild after a 2018 redundancy, distilled into five pillars you can act on.</p>
+      <a class="textlink" href="/about.html">Daniel's story</a>
+    </div>
+  </div>
+</section>
+
+<section class="band band--lift">
+  <div class="wrap cost stack">
+    <h2>What happens if you close this page</h2>
+    <p class="lede">Nothing, today. That's the problem.</p>
+    <p class="muted">You can bookmark this and mean it when you say you'll come back once things settle down. Most men do exactly that, and a year later the same pattern is still running, because closing a tab costs nothing in the moment it happens.</p>
+    <p>The Journey is free and takes five minutes a day. Twelve months from now you're either the man who started this week, or the man still waiting for a better week.</p>
+    <a class="btn btn--gilt" href="#capture" style="margin-top:12px">Send me Day One</a>
+  </div>
+</section>
+
+<!--TAIL-->
+<script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+  window.LOCALE = 'en';
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "That email address doesn't look right. Check it and try again.";
+  window.REQUIRED_ERROR_MESSAGE = "This field is required.";
+  window.GENERIC_INVALID_MESSAGE = "Something in this form isn't right. Check it and try again.";
+  window.INVALID_NUMBER = "That number isn't valid.";
+  window.INVALID_DATE = "Please enter a valid date";
+  window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
+  window.translation = { common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} lists selected', selectedOption: '{quantity} selected', selectedOptions: '{quantity} selected' } };
+  var AUTOHIDE = Boolean(0);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+<!--/TAIL-->

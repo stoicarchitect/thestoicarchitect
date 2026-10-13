@@ -94,21 +94,14 @@
       </ul>
       <p class="fineprint" style="margin-top:24px">While you wait, <a class="textlink" href="{{QUIZ}}">take the F5IVE Score</a>. It's the baseline every member starts from.</p>
     </div>
-    <form class="panel panel--gilt" data-formspree="brotherhood-founding-list" data-done="You're on the list" data-thanks="You're on the Brotherhood founding list. Daniel will be in touch when cohorts open.">
-      <input type="hidden" name="_subject" value="Brotherhood founding list sign-up" />
-      <input type="hidden" name="list" value="Brotherhood founding list" />
+    <form class="panel panel--gilt" data-lead="founding" data-done="You're on the list" data-thanks="You're on the Brotherhood founding list. Daniel will be in touch when cohorts open.">
       <div class="row2">
         <div class="field"><label for="br-name">First name</label><input id="br-name" name="name" autocomplete="given-name" required /></div>
         <div class="field"><label for="br-email">Email</label><input id="br-email" type="email" name="email" autocomplete="email" required /></div>
       </div>
-      <div class="field">
-        <label for="br-pillar">Which pillar needs the most work right now?</label>
-        <select id="br-pillar" name="pillar">
-          <option value="">Choose one (optional)</option>
-          <option>Faith</option><option>Family</option><option>Finance</option><option>Fitness</option><option>Freedom</option>
-        </select>
-      </div>
+      <input type="hidden" name="pillar" value="Brotherhood" />
       <label class="consent"><input type="checkbox" name="consent" value="yes" required /><span>Email me about the Brotherhood opening. See the <a class="textlink" href="/privacy.html">privacy policy</a>.</span></label>
+      <div class="sr-only" aria-hidden="true"><label for="hp-br">Leave this empty</label><input id="hp-br" name="website" tabindex="-1" autocomplete="off" /></div>
       <button class="btn btn--gilt btn--block" type="submit">Join the founding list</button>
     </form>
   </div>

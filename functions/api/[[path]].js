@@ -231,11 +231,92 @@ async function exportData(env, req) {
   return new Response(JSON.stringify(out, null, 2), { headers: { "content-type": "application/json; charset=utf-8", "content-disposition": 'attachment; filename="My F5IVE data.json"', "cache-control": "no-store" } });
 }
 
+/* ---------- founding lists and enquiries (Brevo) ----------
+   POST /api/lead with JSON { kind, email, name, pillar, organisation, type, message, consent, website }
+   kind "founding": adds the contact to the Brevo list "Founding list: <pillar>" (created if missing)
+                    and emails a short notice to NOTIFY_TO.
+   kind "enquiry":  emails the enquiry to NOTIFY_TO with reply-to set to the sender. Nothing is added to a list.
+   Needs BREVO_API_KEY. Optional: NOTIFY_TO (defaults to F5ive@thestoicarchitect.com), BREVO_FOLDER_ID. */
+const LEAD_PILLARS = ["Finance", "Faith", "Family", "Fitness", "Freedom", "Brotherhood"];
+const leadHits = new Map();
+async function brevo(env, path, init = {}) {
+  const r = await fetch("https://api.brevo.com/v3" + path, { ...init, headers: { "api-key": env.BREVO_API_KEY, "content-type": "application/json", accept: "application/json", ...(init.headers || {}) } });
+  const text = await r.text();
+  let body = null; try { body = text ? JSON.parse(text) : null; } catch (e) { body = text; }
+  return { ok: r.ok, status: r.status, body };
+}
+async function listIdFor(env, name) {
+  for (let offset = 0; offset < 500; offset += 50) {
+    const r = await brevo(env, `/contacts/lists?limit=50&offset=${offset}`);
+    if (!r.ok) throw new Error("lists " + r.status);
+    const lists = (r.body && r.body.lists) || [];
+    const hit = lists.find((l) => l.name === name);
+    if (hit) return hit.id;
+    if (lists.length < 50) break;
+  }
+  let folderId = Number(env.BREVO_FOLDER_ID) || 0;
+  if (!folderId) {
+    const f = await brevo(env, "/contacts/folders?limit=10&offset=0");
+    folderId = f.ok && f.body && f.body.folders && f.body.folders[0] ? f.body.folders[0].id : 0;
+  }
+  if (!folderId) throw new Error("no folder");
+  const c = await brevo(env, "/contacts/lists", { method: "POST", body: JSON.stringify({ name, folderId }) });
+  if (!c.ok) throw new Error("create list " + c.status);
+  return c.body.id;
+}
+async function notify(env, subject, lines, replyTo) {
+  const to = env.NOTIFY_TO || "F5ive@thestoicarchitect.com";
+  const html = `<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#222">${lines.map(([k, v]) => `<p style="margin:0 0 10px"><b>${esc(k)}:</b> ${esc(v).replace(/\n/g, "<br>")}</p>`).join("")}</div>`;
+  const msg = { sender: { name: env.MAIL_NAME || "The Stoic Architect", email: env.MAIL_FROM || "F5ive@thestoicarchitect.com" }, to: [{ email: to }], subject, htmlContent: html, tags: ["site-lead"] };
+  if (replyTo) msg.replyTo = { email: replyTo.email, name: replyTo.name || replyTo.email };
+  const r = await brevo(env, "/smtp/email", { method: "POST", body: JSON.stringify(msg) });
+  if (!r.ok) throw new Error("notify " + r.status);
+}
+async function lead(env, req) {
+  if (!sameOrigin(req)) return json({ error: "forbidden" }, 403);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_request" }, 400); }
+  if (b.website) return json({ ok: true }); // honeypot: bots fill every field
+  const ip = req.headers.get("cf-connecting-ip") || "local";
+  const t = now(), hits = (leadHits.get(ip) || []).filter((x) => x > t - 3600e3);
+  if (hits.length >= 10) return json({ error: "rate_limited" }, 429);
+  hits.push(t); leadHits.set(ip, hits);
+  const email = String(b.email || "").trim().toLowerCase();
+  const name = String(b.name || "").trim().slice(0, 80);
+  if (!validEmail(email)) return json({ error: "invalid_email" }, 400);
+  if (!env.BREVO_API_KEY) return json({ error: "not_configured" }, 503);
+  if (b.kind === "founding") {
+    if (b.consent !== true) return json({ error: "consent_required" }, 400);
+    const pillar = LEAD_PILLARS.includes(b.pillar) ? b.pillar : "Finance";
+    const listName = pillar === "Brotherhood" ? "Founding list: Brotherhood" : `Founding list: ${pillar} Pillar`;
+    const listId = await listIdFor(env, listName);
+    const contact = { email, listIds: [listId], updateEnabled: true };
+    if (name) contact.attributes = { FIRSTNAME: name };
+    let r = await brevo(env, "/contacts", { method: "POST", body: JSON.stringify(contact) });
+    if (!r.ok && contact.attributes) { delete contact.attributes; r = await brevo(env, "/contacts", { method: "POST", body: JSON.stringify(contact) }); }
+    if (!r.ok) { console.log("contact failed", r.status, JSON.stringify(r.body).slice(0, 200)); return json({ error: "save_failed" }, 502); }
+    try { await notify(env, `New sign-up: ${listName}`, [["List", listName], ["Name", name || "-"], ["Email", email], ["Consent", "Ticked on " + new Date(t).toISOString()]]); } catch (e) { console.log("notify failed", e.message); }
+    return json({ ok: true });
+  }
+  if (b.kind === "enquiry") {
+    const message = String(b.message || "").trim().slice(0, 5000);
+    if (!message) return json({ error: "message_required" }, 400);
+    const type = String(b.type || "Enquiry").slice(0, 60);
+    try {
+      await notify(env, `${type}: ${name || email}`, [["Type", type], ["Name", name || "-"], ["Email", email], ["Organisation", String(b.organisation || "-").slice(0, 120)], ["Message", message]], { email, name });
+    } catch (e) { console.log("enquiry failed", e.message); return json({ error: "send_failed" }, 502); }
+    return json({ ok: true });
+  }
+  return json({ error: "bad_request" }, 400);
+}
+
 export async function onRequest(context) {
   const { request: req, env } = context;
   const url = new URL(req.url);
   const path = url.pathname.replace(/\/+$/, "");
   const m = req.method;
+  if (path === "/api/lead" && m === "POST") {
+    try { return await lead(env, req); } catch (e) { console.log("lead error", e && e.stack || e); return json({ error: "server_error" }, 500); }
+  }
   if (!env.DB) return json({ error: "not_configured" }, 503);
   try {
     await ensureSchema(env.DB);

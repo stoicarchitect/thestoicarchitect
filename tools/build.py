@@ -3,10 +3,10 @@ usage: python3 build.py <repo> <fragments dir> [page ...]"""
 import sys, os, re, json
 
 REPO = sys.argv[1] if len(sys.argv)>1 else '/home/claude/thestoicarchitect'
-FRAG = sys.argv[2] if len(sys.argv)>2 else 'pages'
+FRAG = sys.argv[2] if len(sys.argv)>2 else os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pages')
 ONLY = set(sys.argv[3:])
 SITE = 'https://www.thestoicarchitect.com'
-AMAZON = 'https://amzn.eu/d/0gtCoVXi'
+AMAZON = 'https://amzn.eu/d/04l3yLcL'
 QUIZ = '/quiz.html'
 PROFILE = '/F5iveassessment'
 
@@ -41,6 +41,27 @@ PAGES = {
   '404':          dict(file='404.html', path='/404.html', nav=None, noindex=True,
                        title='Page not found | The Stoic Architect',
                        desc='This page does not exist.'),
+  'privacy':      dict(file='privacy.html', path='/privacy.html', nav=None,
+                       title='Privacy policy | The Stoic Architect',
+                       desc='How The Stoic Architect collects, uses and protects personal data, and how to exercise your rights under UK GDPR.'),
+  'cookies':      dict(file='cookies.html', path='/cookies.html', nav=None,
+                       title='Cookie policy | The Stoic Architect',
+                       desc='The cookies and similar storage thestoicarchitect.com uses, and how to change your choices.'),
+  'terms':        dict(file='terms.html', path='/terms.html', nav=None,
+                       title='Terms of use | The Stoic Architect',
+                       desc='The terms for using thestoicarchitect.com, the F5IVE Score and the Identity Profile.'),
+  'quiz':         dict(file='quiz.html', path='/quiz.html', nav='focus',
+                       title='The F5IVE Score: find your weakest pillar | The Stoic Architect',
+                       desc='Fifteen questions, 60 seconds. See which of your five pillars, Faith, Family, Finance, Fitness or Freedom, is undermining the other four.'),
+  'quiz-results': dict(file='quiz-results.html', path='/quiz-results.html', nav='focus', noindex=True,
+                       title='Your F5IVE results | The Stoic Architect',
+                       desc='Your F5IVE Score results.'),
+  'journey':      dict(file='F5ivejourney.html', path='/F5ivejourney.html', nav='focus',
+                       title='The F5IVE Journey: free 5-day email course | The Stoic Architect',
+                       desc='Five days, one pillar a day, straight to your inbox. The free email course built from Vision to Victory.'),
+  'thank-you':    dict(file='thank-you.html', path='/thank-you.html', nav=None, noindex=True,
+                       title='Day One is on its way | The Stoic Architect',
+                       desc='Your first F5IVE Journey email is on its way.'),
 }
 
 FONTS = 'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Cinzel:wght@500;600;700&family=EB+Garamond:ital@1&display=swap'
@@ -69,15 +90,10 @@ def head(p, extra=''):
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@danielmrbrown" />
   <meta name="twitter:image" content="{SITE}/og-image.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="{FONTS}" />
-  <link rel="stylesheet" href="/assets/site.css?v=2" />
-  <script data-cfasync="false" async src="https://www.googletagmanager.com/gtag/js?id=G-3WJHZYMBLF"></script>
-  <script data-cfasync="false">window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-3WJHZYMBLF');</script>
-  <script type="text/javascript">_linkedin_partner_id="9707410";window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];window._linkedin_data_partner_ids.push(_linkedin_partner_id);</script>
-  <script type="text/javascript">(function(l){{if(!l){{window.lintrk=function(a,b){{window.lintrk.q.push([a,b])}};window.lintrk.q=[]}}var s=document.getElementsByTagName("script")[0];var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b,s);}})(window.lintrk);</script>
-  <noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=9707410&fmt=gif" /></noscript>
+  <link rel="preload" href="/assets/fonts/cinzel-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/archivo-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/site.css?v=3" />
+  <script src="/assets/consent.js?v=1" defer></script>
 {extra}</head>
 <body>
 '''
@@ -86,6 +102,8 @@ NAV = [('book','/book.html','The Book'), ('framework','/framework.html','The Fra
        ('courses','/courses.html','Courses'), ('blog','/blog.html','Insights'), ('about','/about.html','About')]
 
 def header(cur):
+    if cur == 'focus':
+        return FOCUS
     items = ''.join(f'<li><a href="{h}"{" aria-current=\"page\"" if k==cur else ""}>{t}</a></li>' for k,h,t in NAV)
     return f'''<a class="skip" href="#main">Skip to content</a>
 <header class="site-head">
@@ -113,6 +131,18 @@ def header(cur):
   <a class="btn btn--gilt" href="{QUIZ}">Take the F5IVE Score</a>
 </div>
 '''
+
+FOCUS = """<a class="skip" href="#main">Skip to content</a>
+<header class="site-head site-head--focus">
+  <div class="wrap head-in">
+    <a class="brand" href="/" aria-label="The Stoic Architect, home">
+      <img src="/assets/img/mark.png" alt="" width="40" height="40" />
+      <span><b>The Stoic Architect</b><small>Vision to Victory</small></span>
+    </a>
+    <a class="textlink" href="/">Full site</a>
+  </div>
+</header>
+"""
 
 FOOTER = f'''<footer class="site-foot">
   <div class="wrap">
@@ -154,11 +184,11 @@ FOOTER = f'''<footer class="site-foot">
     <div class="foot-pillars" aria-label="The five pillars"><span>Faith</span><span>Family</span><span>Finance</span><span>Fitness</span><span>Freedom</span></div>
     <div class="foot-base">
       <span>&copy; 2026 Daniel Brown MSc. All rights reserved.</span>
-      <span><a href="/privacy.html">Privacy</a> &nbsp; <a href="/privacy.html#cookies">Cookies</a></span>
+      <span class="foot-legal"><a href="/privacy.html">Privacy policy</a><a href="/cookies.html">Cookie policy</a><a href="/terms.html">Terms of use</a><a href="#" data-cookie-settings>Cookie settings</a></span>
     </div>
   </div>
 </footer>
-<script src="/assets/site.js?v=2" defer></script>
+<script src="/assets/site.js?v=3" defer></script>
 '''
 
 def render(key):

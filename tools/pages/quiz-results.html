@@ -1,0 +1,43 @@
+<section class="qz-hero">
+  <div class="wrap">
+    <span class="kicker">The F5IVE Score</span>
+    <h1>Your results are unlocked</h1>
+    <p class="lede">A copy is on its way to your inbox now, along with Day One of the F5IVE Journey.</p>
+  </div>
+</section>
+
+<div class="stage">
+  <div class="card" id="results" hidden>
+    <div class="res-head">
+      <span class="kicker">Your overall score</span>
+      <h2 data-r="title"></h2>
+      <p data-r="sub"></p>
+    </div>
+    <div class="colonnade res-cols" data-r="cols"></div>
+    <div class="plinth"></div>
+    <div class="focus" data-r="focus"></div>
+    <ul class="reading" data-r="reading"></ul>
+    <div class="next">
+      <a class="btn btn--gilt" href="{{PROFILE}}">Find your F5IVE archetype</a>
+      <a class="btn btn--line" href="/book.html">Read Vision to Victory</a>
+    </div>
+    <p class="fineprint" style="margin-top:12px">The Identity Profile picks up your scores, so you skip the first 15 questions.</p>
+  </div>
+  <div class="card card--start" id="none" hidden>
+    <p>We couldn't find a fresh result in this browser. That usually means the link was opened on a different device from the one you took the Score on. Your results are already on their way to your inbox.</p>
+    <a class="btn btn--gilt" href="{{QUIZ}}">Take the F5IVE Score again</a>
+  </div>
+</div>
+
+<!--TAIL-->
+<script src="/assets/score.js?v=1"></script>
+<script>
+  (function () {
+    var d = null;
+    try { d = JSON.parse(sessionStorage.getItem('f5ive_quiz_results')); } catch (e) {}
+    var ok = d && d.scores && F5S.PILLARS.every(function (p) { return typeof d.scores[p] === 'number'; });
+    if (ok) { document.getElementById('results').hidden = false; F5S.fillResults(document.getElementById('results'), d.scores); }
+    else document.getElementById('none').hidden = false;
+  })();
+</script>
+<!--/TAIL-->

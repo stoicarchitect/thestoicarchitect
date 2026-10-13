@@ -3,25 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<!-- LinkedIn Insight Tag -->
-<script type="text/javascript">
-_linkedin_partner_id = "9707410";
-window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-</script><script type="text/javascript">
-(function(l) {
-if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-window.lintrk.q=[]}
-var s = document.getElementsByTagName("script")[0];
-var b = document.createElement("script");
-b.type = "text/javascript";b.async = true;
-b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-s.parentNode.insertBefore(b, s);})(window.lintrk);
-</script>
-<noscript>
-<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=9707410&fmt=gif" />
-</noscript>
-<!-- End LinkedIn Insight Tag -->
+<!-- Tracking only loads after cookie consent -->
+<script src="/assets/consent.js?v=1" defer></script>
 <title>The F5IVE Identity Profile | The Stoic Architect</title>
 <meta name="description" content="Find your F5IVE archetype. 48 questions, about 10 minutes: the pillar you build your life around, the one quietly costing you, and the seven days that start the repair.">
 <link rel="canonical" href="https://www.thestoicarchitect.com/F5iveassessment">
@@ -1823,7 +1806,7 @@ function reportHTML(r) {
   }
 
   // 8 Deeper
-  h += '<section class="sec" id="deeper"><p class="label">9. Go deeper</p><div class="book"><div class="cover"><img src="' + BOOK + '" alt="Vision to Victory book cover"></div><div><h2>Two chapters written for you</h2><ol class="reads"><li><b>' + pat.ch + "</b><span>Why " + pat.name.replace(/^The /, "the ") + " keeps you where you are, and how to break it.</span></li><li><b>" + ROUTE[w].ch + "</b><span>How to rebuild " + w + ", including " + ROUTE[w].th.slice(0, 2).map(function (t2) { return t2.split(":")[0]; }).join(" and ") + '.</span></li></ol><a class="btn" style="text-decoration:none;display:inline-flex;align-items:center" href="https://amzn.eu/d/0gtCoVXi" target="_blank" rel="noopener">Get Vision to Victory</a></div></div>' +
+  h += '<section class="sec" id="deeper"><p class="label">9. Go deeper</p><div class="book"><div class="cover"><img src="' + BOOK + '" alt="Vision to Victory book cover"></div><div><h2>Two chapters written for you</h2><ol class="reads"><li><b>' + pat.ch + "</b><span>Why " + pat.name.replace(/^The /, "the ") + " keeps you where you are, and how to break it.</span></li><li><b>" + ROUTE[w].ch + "</b><span>How to rebuild " + w + ", including " + ROUTE[w].th.slice(0, 2).map(function (t2) { return t2.split(":")[0]; }).join(" and ") + '.</span></li></ol><a class="btn" style="text-decoration:none;display:inline-flex;align-items:center" href="https://amzn.eu/d/04l3yLcL" target="_blank" rel="noopener">Get Vision to Victory</a></div></div>' +
     (DRAFTS ? '<div class="note"><img src="' + DAN + '" alt="Daniel Brown"><div><p>"Your weakest pillar is not a verdict. It is the next thing to build. Start with Day 1 tonight."</p><span class="label" style="color:var(--stone)">Daniel Brown' + (PROD ? "" : ' <span class="tag">Draft line</span>') + '</span></div></div>' : "") +
     '<h3 style="margin-top:40px">Your card</h3><p class="muted">Press and hold the card on a phone, or right click it on a computer, to save it.</p><img class="cardimg" id="cardimg" alt="Your F5IVE archetype card">' +
     '<h3 style="margin-top:40px">Measure what moved</h3><p>Your result describes where you stand today. It can change, and the aim is that it does. Take it again on or after <b class="gold">' + retake + "</b> and see whether " + w + " has reached " + tgt + '.</p><div class="row"><button class="btn ghost" data-act="arch" data-n="' + r.archetype + '">Read the full archetype page</button><button class="btn ghost" data-act="lib">Explore all 20 archetypes</button></div>' +
@@ -2117,7 +2100,7 @@ function loginHTML() {
   if (ACCT.sent) return h + '<section class="logincard rise"><div class="lc-ico">' + emblem("Freedom", "", ";width:54px;height:54px") + '</div><h2>Check your inbox</h2><p class="lead">We sent a sign-in link to <b>' + escH(ACCT.sent) + '</b>. Open it on this device and tap <b>Sign in</b>. It works once and lasts 20 minutes.</p><p class="muted small">Nothing there after a couple of minutes? Check your spam or promotions folder, then try again.</p><div class="row" style="justify-content:center"><button class="btn text" data-act="loginagain">Use a different email</button></div></section>';
   return h + '<section class="logincard rise"><p class="lead" style="margin:0 0 22px">No password to remember. Enter your email and we will send you a link that signs you in. New here? The same link creates your account.</p>' +
     '<form id="loginform" novalidate><div class="field"><label for="lemail">Email</label><input type="email" id="lemail" autocomplete="email" inputmode="email" placeholder="you@email.com" required></div>' +
-    '<label class="check"><input type="checkbox" id="lconsent"><span>Keep my F5IVE profiles in my account. This includes my answers to any Faith questions, which count as sensitive data under UK GDPR. I can download or delete everything at any time. <a href="https://www.thestoicarchitect.com/privacy" target="_blank" rel="noopener">Privacy policy</a></span></label>' +
+    '<label class="check"><input type="checkbox" id="lconsent"><span>Keep my F5IVE profiles in my account. This includes my answers to any Faith questions, which count as sensitive data under UK GDPR. I can download or delete everything at any time. <a href="https://www.thestoicarchitect.com/privacy.html" target="_blank" rel="noopener">Privacy policy</a></span></label>' +
     '<p class="lerr" id="lerr" hidden></p><div class="row" style="justify-content:center"><button class="btn" type="submit" id="lgo"' + (ACCT.busy ? " disabled" : "") + '>Email me a sign-in link</button></div></form>' +
     '<ul class="lperks"><li>Your profile on every device</li><li>Your history, so you can see your pillars rise</li><li>Delete it all in one tap</li></ul></section>';
 }
@@ -2309,6 +2292,9 @@ window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
 window.translation = { common: { selectedList: '{quantity} list selected', selectedLists: '{quantity} lists selected', selectedOption: '{quantity} selected', selectedOptions: '{quantity} selected' } };
 var AUTOHIDE = Boolean(0);
 </script>
+<footer style="border-top:1px solid rgba(201,168,76,.15);padding:28px 20px 36px;text-align:center;font-size:14px;color:var(--stone)">
+  <a href="/" style="color:var(--stone)">The Stoic Architect</a> &nbsp;|&nbsp; <a href="/privacy.html" style="color:var(--stone)">Privacy policy</a> &nbsp;|&nbsp; <a href="/cookies.html" style="color:var(--stone)">Cookie policy</a> &nbsp;|&nbsp; <a href="/terms.html" style="color:var(--stone)">Terms of use</a> &nbsp;|&nbsp; <a href="#" data-cookie-settings style="color:var(--stone)">Cookie settings</a>
+</footer>
 <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 </body>
 </html>
