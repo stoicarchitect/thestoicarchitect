@@ -64,7 +64,49 @@
       .module { grid-template-columns: 1fr; gap: 8px; }
     }
     @media (max-width: 520px) { .tools { grid-template-columns: 1fr; } }
+    /* Course overview film */
+    .film-band { padding-top: clamp(56px, 7vw, 96px); }
+    .film-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
+    .film-head p { color: var(--ash); max-width: 46ch; }
+    .film { position: relative; aspect-ratio: 16 / 9; background: var(--hearth); border: 1px solid var(--rule); overflow: hidden; }
+    .film::before { content: ''; position: absolute; inset: 0; background: radial-gradient(60% 70% at 50% 45%, rgba(200,160,77,.16), transparent 70%); pointer-events: none; }
+    .film iframe, .film video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
+    .film-cover { position: absolute; inset: 0; width: 100%; display: grid; place-items: center; align-content: center; gap: 18px; text-align: center; padding: 24px; background: none; border: 0; color: var(--parchment); font: inherit; cursor: pointer; }
+    .film-cover[disabled] { cursor: default; }
+    .film-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; }
+    .film-cover > *:not(img) { position: relative; }
+    .film-play { width: 84px; height: 84px; border: 1px solid var(--gilt); border-radius: 50%; display: grid; place-items: center; transition: transform .4s var(--ease), background .4s var(--ease); }
+    .film-play::after { content: ''; margin-left: 6px; border-left: 20px solid var(--gilt); border-top: 12px solid transparent; border-bottom: 12px solid transparent; }
+    .film-cover:not([disabled]):hover .film-play { transform: scale(1.06); background: rgba(200,160,77,.12); }
+    .film-cover b { font: 600 clamp(1.1rem, 2.4vw, 1.5rem)/1.2 var(--display); letter-spacing: .05em; }
+    .film-cover small { color: var(--ash); font-size: .92rem; }
+    .film-cover[disabled] .film-play { opacity: .45; }
+    /* Who it is for */
+    .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 40px; }
+    .fit > div { background: var(--hearth); padding: clamp(28px, 4vw, 44px); }
+    .fit h3 { font: 600 1.15rem var(--display); letter-spacing: .05em; margin-bottom: 18px; }
+    .fit .no h3 { color: var(--ash); }
+    .fit .no li { color: var(--ash); }
+    .fit .no .ticks li::before { border-color: var(--ash); }
+    [data-enrol-panel] { display: none; }
+    .is-open [data-enrol-panel] { display: block; }
+    .is-open [data-founding] { display: none; }
+    @media (max-width: 760px) { .fit { grid-template-columns: 1fr; } }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "The Finance Pillar Course",
+    "description": "Five modules and a working toolkit that turn the Finance chapter of Vision to Victory into a monthly financial system, with Sharia-compliant options throughout.",
+    "url": "https://www.thestoicarchitect.com/finance-pillar.html",
+    "inLanguage": "en-GB",
+    "provider": { "@type": "Organization", "name": "The Stoic Architect", "url": "https://www.thestoicarchitect.com/" },
+    "creator": { "@type": "Person", "name": "Daniel Brown MSc" },
+    "offers": { "@type": "Offer", "price": "97", "priceCurrency": "GBP", "category": "Paid" },
+    "hasCourseInstance": { "@type": "CourseInstance", "courseMode": "Online" }
+  }
+  </script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -92,19 +134,19 @@
   </ol>
   <a class="btn btn--gilt" href="/quiz.html">Take the F5IVE Score</a>
 </div>
-<main id="main">
+<main id="main" data-course>
 
 
 <section class="fp-hero">
   <div class="wrap split">
     <div>
       <p class="crumbs"><a href="/">Home</a> / <a href="/courses.html">Courses</a> / Finance Pillar</p>
-      <span class="tag">Founding list open</span>
+      <span class="tag" data-status>Built and ready. Doors opening soon</span>
       <h1 style="margin-top:18px">You read the framework. This is where you build it.</h1>
       <p class="lede" style="margin-top:24px">Five modules, a working toolkit and one system you run every month, not once. Chapter 13 of Vision to Victory, taken from the page to your actual bank statement.</p>
       <div class="actions" style="margin-top:34px">
-        <a class="btn btn--gilt" href="#join">Join the founding list</a>
-        <a class="btn btn--line" href="#inside">What's inside</a>
+        <a class="btn btn--gilt" href="#join" data-enrol data-enrol-label="Enrol now">Join the founding list</a>
+        <a class="btn btn--line" href="#overview">Watch the overview</a>
       </div>
     </div>
     <div class="ticket">
@@ -115,8 +157,35 @@
         <li>The Financial Reset Toolkit</li>
         <li>30-day money-back guarantee</li>
       </ul>
-      <a class="btn btn--gilt btn--block" href="#join">Get first access</a>
-      <p class="fineprint" style="margin-top:12px">Founding members get the launch price whenever they join.</p>
+      <a class="btn btn--gilt btn--block" href="#join" data-enrol data-enrol-label="Enrol now for &pound;97">Get first access</a>
+      <p class="fineprint" style="margin-top:12px" data-founding>Founding members get the launch price whenever they join.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band film-band" id="overview">
+  <div class="wrap">
+    <div class="film-head">
+      <div>
+        <span class="kicker">See it before you commit</span>
+        <h2>Five minutes inside the course</h2>
+      </div>
+      <p>What each module asks of you, what you walk away with, and why the audit comes before everything else.</p>
+    </div>
+    <!--
+      COURSE OVERVIEW VIDEO. To go live, fill ONE of these and nothing else:
+        data-youtube="VIDEO_ID"   (the code after watch?v= in the YouTube link)
+        data-vimeo="VIDEO_ID"     (the number at the end of the Vimeo link)
+        data-mp4="/assets/video/finance-overview.mp4"
+      Optional: data-poster="/assets/img/finance-overview-poster.jpg" for a still frame.
+      The video only loads when someone presses play, so the page stays fast and no tracking runs until then.
+    -->
+    <div class="film" data-film data-youtube="" data-vimeo="" data-mp4="" data-poster="" data-title="The Finance Pillar Course overview">
+      <button class="film-cover" type="button" disabled aria-label="Course overview video, coming soon">
+        <span class="film-play" aria-hidden="true"></span>
+        <b data-film-label>Course overview arriving shortly</b>
+        <small data-film-sub>Daniel walks through all five modules and the toolkit</small>
+      </button>
     </div>
   </div>
 </section>
@@ -135,7 +204,34 @@
   </div>
 </section>
 
-<section class="band band--lift" id="inside">
+<section class="band band--lift">
+  <div class="wrap">
+    <span class="kicker">Read this before the price</span>
+    <h2>Built for one kind of man</h2>
+    <div class="fit">
+      <div>
+        <h3>This is for you if</h3>
+        <ul class="ticks">
+          <li>You earn decent money and still can't say where it goes</li>
+          <li>You've tried budgets that lasted three weeks and want a system that runs without willpower</li>
+          <li>You want your money to reflect your values, your family and, if it matters to you, your deen</li>
+          <li>You'd rather face real numbers once than avoid them every month</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h3>This is not for you if</h3>
+        <ul class="ticks">
+          <li>You want stock tips or a get-rich plan</li>
+          <li>You're looking for someone to manage your money for you</li>
+          <li>You'll watch the videos and skip the workbook</li>
+          <li>You're not ready to look at your own bank statement honestly</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="inside">
   <div class="wrap">
     <span class="kicker">What's inside</span>
     <h2>Five modules. One integrated system.</h2>
@@ -193,7 +289,7 @@
   </div>
 </section>
 
-<section class="band">
+<section class="band band--lift">
   <div class="wrap split split--top">
     <div class="stack">
       <span class="kicker">Judged the way any real offer should be</span>
@@ -220,7 +316,7 @@
   </div>
 </section>
 
-<section class="band band--lift">
+<section class="band">
   <div class="wrap split">
     <div>
       <p class="quote">"A complete guide to understanding why and how men think and do what they do."</p>
@@ -236,10 +332,11 @@
   </div>
 </section>
 
-<section class="band">
+<section class="band band--lift">
   <div class="wrap narrow faq">
     <h2 style="margin-bottom:24px">Before you join</h2>
-    <details><summary>When does the course open?</summary><p>The scripts, workbooks and toolkit are finished. Recording is the final stage. Founding members get one email the moment it opens, with the launch price held for them.</p></details>
+    <details><summary>When does the course open?</summary><p>Everything is built: all five modules are recorded, and the workbooks and toolkit are finished. Doors open very shortly. Founding members get one email the moment they do, with the launch price held for them.</p></details>
+    <details><summary>How is it delivered?</summary><p>Online, at your own pace. Watch on your phone, tablet or laptop, download the workbooks and toolkit, and keep lifetime access, including any future updates to the Finance Pillar.</p></details>
     <details><summary>Do I need to have read the book first?</summary><p>No. The course stands on its own. If you have read it, parts will feel like reinforcement, which is a good thing, not a requirement.</p></details>
     <details><summary>Is this investment advice?</summary><p>No. The course is behavioural and structural: awareness, systems, alignment and identity. It won't tell you what to buy. Speak to a qualified adviser for that.</p></details>
     <details><summary>Does it work if I keep my finances Sharia-compliant?</summary><p>That is how the course is meant to be used. Where an exercise touches debt, saving or investing, it can be completed without interest-based products, and investment examples include Sharia-screened options.</p></details>
@@ -247,13 +344,23 @@
   </div>
 </section>
 
-<section class="band band--lift" id="join">
+<section class="band" id="join">
   <div class="wrap split split--top">
     <div>
       <h2>The framework is free. Building it isn't, and that's the point.</h2>
-      <p class="muted" style="margin-top:20px">Six months from now you're either the man who ran his own audit and built one real system, or the man still meaning to get round to it. Join the founding list and you'll be first in when the doors open.</p>
+      <p class="muted" style="margin-top:20px">Six months from now you're either the man who ran his own audit and built one real system, or the man still meaning to get round to it. <span data-founding>Join the founding list and you'll be first in when the doors open.</span><span data-enrol-panel>The doors are open.</span></p>
     </div>
-    <form class="panel panel--gilt" data-lead="founding" data-done="You're on the list" data-thanks="You're on the Finance Pillar founding list. Daniel will email you the moment it opens.">
+    <div class="panel panel--gilt" data-enrol-panel>
+      <div class="price" style="font:600 3.4rem/1 var(--display);color:var(--parchment)">&pound;97</div>
+      <p class="fineprint" style="margin-top:10px">One-time payment. Lifetime access.</p>
+      <ul class="ticks" style="margin:24px 0 26px">
+        <li>Five video lessons and a workbook for every module</li>
+        <li>The Financial Reset Toolkit</li>
+        <li>30-day money-back guarantee</li>
+      </ul>
+      <a class="btn btn--gilt btn--block" href="#join" data-enrol data-enrol-label="Enrol now">Enrol now</a>
+    </div>
+    <form class="panel panel--gilt" data-founding data-lead="founding" data-done="You're on the list" data-thanks="You're on the Finance Pillar founding list. Daniel will email you the moment it opens.">
       <input type="hidden" name="pillar" value="Finance" />
       <div class="field"><label for="fp-name">First name</label><input id="fp-name" name="name" autocomplete="given-name" required /></div>
       <div class="field"><label for="fp-email">Email</label><input id="fp-email" type="email" name="email" autocomplete="email" required /></div>
@@ -311,5 +418,53 @@
   </div>
 </footer>
 <script src="/assets/site.js?v=3" defer></script>
+<script>
+/* ENROLMENT SWITCH. Paste the course checkout link between the quotes on launch day.
+   Every buy button on this page updates, and the founding list form is swapped for the enrol panel. */
+var ENROL_URL = "";
+
+(function () {
+  if (ENROL_URL) {
+    document.querySelector('[data-course]').classList.add('is-open');
+    var status = document.querySelector('[data-status]');
+    if (status) { status.textContent = 'Now open'; status.classList.add('tag--live'); }
+    document.querySelectorAll('[data-enrol]').forEach(function (a) {
+      a.href = ENROL_URL;
+      a.innerHTML = a.getAttribute('data-enrol-label') || a.innerHTML;
+    });
+  }
+
+  var film = document.querySelector('[data-film]');
+  if (!film) return;
+  var yt = film.dataset.youtube, vm = film.dataset.vimeo, mp4 = film.dataset.mp4;
+  if (!yt && !vm && !mp4) return;
+  var cover = film.querySelector('.film-cover');
+  cover.disabled = false;
+  cover.setAttribute('aria-label', 'Play the course overview video');
+  film.querySelector('[data-film-label]').textContent = 'Watch the course overview';
+  if (film.dataset.poster) {
+    var img = document.createElement('img');
+    img.src = film.dataset.poster; img.alt = ''; img.loading = 'lazy';
+    cover.insertBefore(img, cover.firstChild);
+  }
+  cover.addEventListener('click', function () {
+    var el;
+    if (mp4) {
+      el = document.createElement('video');
+      el.src = mp4; el.controls = true; el.autoplay = true; el.playsInline = true;
+      if (film.dataset.poster) el.poster = film.dataset.poster;
+    } else {
+      el = document.createElement('iframe');
+      el.src = yt
+        ? 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(yt) + '?autoplay=1&rel=0&modestbranding=1'
+        : 'https://player.vimeo.com/video/' + encodeURIComponent(vm) + '?autoplay=1&title=0&byline=0&portrait=0';
+      el.allow = 'autoplay; fullscreen; picture-in-picture';
+      el.allowFullscreen = true;
+      el.title = film.dataset.title || 'Course overview';
+    }
+    film.replaceChild(el, cover);
+  });
+})();
+</script>
 </body>
 </html>
