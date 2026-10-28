@@ -1468,8 +1468,23 @@ function mountBrevo(inp) {
   var set = function (id, v) { var el = document.getElementById(id); if (el) el.value = v; };
   set("SCORE_FAITH", q.Faith); set("SCORE_FAMILY", q.Family); set("SCORE_FINANCE", q.Finance); set("SCORE_FITNESS", q.Fitness); set("SCORE_FREEDOM", q.Freedom);
   set("SCORE_TOTAL", total); set("WEAKEST_PILLAR", weakest); set("STRONGEST_PILLAR", strongest);
+  try {
+    var pr = scoreProfile(inp);
+    window.__profileLead = { archetype: pr.archetype, gravity: pr.gravity, mode: pr.mode, drive: pr.drive, support: pr.support, sacrificed: pr.sacrificed, alignment: pr.alignment, imbalance: pr.imbalanceBand };
+  } catch (e) { window.__profileLead = null; }
   slot.appendChild(f);
 }
+/* Profile data travels to Brevo alongside the form, so the email sequence can speak to his archetype */
+(function hookProfileLead() {
+  var form = document.getElementById("sib-form"); if (!form) return;
+  form.addEventListener("submit", function () {
+    var d = window.__profileLead, em = document.getElementById("EMAIL"), nm = document.getElementById("FIRSTNAME"), ok = document.getElementById("OPT_IN");
+    if (!d || !em || !em.value || !ok || !ok.checked) return;
+    var body = { kind: "profile", email: em.value, name: nm ? nm.value : "", consent: true };
+    for (var k in d) body[k] = d[k];
+    try { fetch("/api/lead", { method: "POST", keepalive: true, headers: { "content-type": "application/json" }, body: JSON.stringify(body) }).catch(function () {}); } catch (e) {}
+  }, true);
+})();
 (function watchBrevo() {
   var ok = document.getElementById("success-message"), bad = document.getElementById("error-message");
   var shown = function (el) { return el && window.getComputedStyle(el).display !== "none"; };

@@ -233,6 +233,7 @@ async function exportData(env, req) {
 
 /* ---------- founding lists and enquiries (Brevo) ----------
    POST /api/lead with JSON { kind, email, name, pillar, organisation, type, message, consent, website }
+   kind "profile":  sets Identity Profile attributes (ARCHETYPE, GRAVITY_PILLAR and so on) on the Brevo contact.
    kind "founding": adds the contact to the Brevo list "Founding list: <pillar>" (created if missing)
                     and emails a short notice to NOTIFY_TO.
    kind "enquiry":  emails the enquiry to NOTIFY_TO with reply-to set to the sender. Nothing is added to a list.
@@ -295,6 +296,32 @@ async function lead(env, req) {
     if (!r.ok && contact.attributes) { delete contact.attributes; r = await brevo(env, "/contacts", { method: "POST", body: JSON.stringify(contact) }); }
     if (!r.ok) { console.log("contact failed", r.status, JSON.stringify(r.body).slice(0, 200)); return json({ error: "save_failed" }, 502); }
     try { await notify(env, `New sign-up: ${listName}`, [["List", listName], ["Name", name || "-"], ["Email", email], ["Consent", "Ticked on " + new Date(t).toISOString()]]); } catch (e) { console.log("notify failed", e.message); }
+    return json({ ok: true });
+  }
+  if (b.kind === "profile") {
+    // Identity Profile result: written to the contact so the Brevo sequence can personalise by archetype.
+    // The Brevo form on the page handles list membership and opt-in; this only sets attributes.
+    if (b.consent !== true) return json({ error: "consent_required" }, 400);
+    const pick = (v, allowed) => (allowed.includes(v) ? v : "");
+    const PILL = ["Faith", "Family", "Finance", "Fitness", "Freedom"];
+    const archetype = String(b.archetype || "").slice(0, 40);
+    if (!/^The [A-Za-z ]{3,30}$/.test(archetype)) return json({ error: "bad_request" }, 400);
+    const attrs = {
+      ARCHETYPE: archetype,
+      GRAVITY_PILLAR: pick(b.gravity, PILL),
+      OPERATING_MODE: pick(b.mode, ["Strategist", "Visionary", "Builder", "Operator"]),
+      DRIVE_SOURCE: pick(b.drive, ["Inner", "Outer"]),
+      SUPPORT_STYLE: pick(b.support, ["Solo", "Shared"]),
+      SACRIFICED_PILLAR: pick(b.sacrificed, PILL),
+      ALIGNMENT_GAP: pick(b.alignment, ["Aligned", "Drifting", "Misaligned"]),
+      IMBALANCE_BAND: pick(b.imbalance, ["Balanced", "Leaning", "Lopsided", "Critical"]),
+      PROFILE_DATE: new Date(t).toISOString().slice(0, 10),
+      PROFILE_VERSION: 1
+    };
+    Object.keys(attrs).forEach((k) => { if (attrs[k] === "") delete attrs[k]; });
+    if (name) attrs.FIRSTNAME = name;
+    const r = await brevo(env, "/contacts", { method: "POST", body: JSON.stringify({ email, attributes: attrs, updateEnabled: true }) });
+    if (!r.ok) { console.log("profile attrs failed", r.status, JSON.stringify(r.body).slice(0, 200)); return json({ error: "save_failed" }, 502); }
     return json({ ok: true });
   }
   if (b.kind === "enquiry") {
