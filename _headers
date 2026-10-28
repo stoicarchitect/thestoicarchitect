@@ -3,3 +3,5 @@
   Access-Control-Allow-Origin: *
   Cross-Origin-Resource-Policy: cross-origin
   X-Content-Type-Options: nosniff
+/email-assets/src/*
+  X-Robots-Tag: noindex
